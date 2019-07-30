@@ -18,7 +18,7 @@ However, if you are not using Homestead, you will need to make sure your server 
 * BCMath PHP Extension 
 
 # Installation
-* Download the repository ```git clone https://github.com/prodinic/plaive.git ```
+* Download the repository ```git clone https://github.com/mgecodev/plaive.git ```
 * Run ```composer install``` in terminal
 * Directories within the ```storage``` and the ```bootstrap/cache``` directories should be writable by your web server. Otherwise, Laravel will not run.
 * Rename the ```.env.example``` file to ```.env```, configure database access and the ```APP_URL``` value
