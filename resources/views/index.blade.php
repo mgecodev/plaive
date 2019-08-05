@@ -24,7 +24,7 @@
                                         <a href="#" class="hover-btn-new"><span>Read More</span></a>
                                 </div>
                             </div>
-                        </div><!-- end row -->            
+                        </div><!-- end row -->
                     </div><!-- end container -->
                 </div>
             </div><!-- end section -->
@@ -43,7 +43,7 @@
                                         <a href="#" class="hover-btn-new"><span>Read More</span></a>
                                 </div>
                             </div>
-                        </div><!-- end row -->            
+                        </div><!-- end row -->
                     </div><!-- end container -->
                 </div>
             </div><!-- end section -->
@@ -56,7 +56,7 @@
                             <div class="col-md-12 col-sm-12 text-center">
                                 <div class="big-tagline">
                                     <h2 data-animation="animated zoomInRight"><strong>VPS Servers</strong> Company</h2>
-                                    <p class="lead" data-animation="animated fadeInLeft">1 IP included with each server 
+                                    <p class="lead" data-animation="animated fadeInLeft">1 IP included with each server
                                         Your Choice of any OS (CentOS, Windows, Debian, Fedora)
                                         FREE Reboots</p>
                                         <a href="#" class="hover-btn-new"><span>Contact Us</span></a>
@@ -64,7 +64,7 @@
                                         <a href="#" class="hover-btn-new"><span>Read More</span></a>
                                 </div>
                             </div>
-                        </div><!-- end row -->            
+                        </div><!-- end row -->
                     </div><!-- end container -->
                 </div>
             </div><!-- end section -->
@@ -91,7 +91,7 @@
                 <p class="lead">Lorem Ipsum dolroin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem!</p>
             </div>
         </div><!-- end title -->
-    
+
         <div class="row align-items-center">
             <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                 <div class="message-box">
@@ -104,20 +104,20 @@
                     <a href="#" class="hover-btn-new orange"><span>Learn More</span></a>
                 </div><!-- end messagebox -->
             </div><!-- end col -->
-            
+
             <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                 <div class="post-media wow fadeIn">
-                    <img src="images/about_02.jpg" alt="" class="img-fluid img-rounded">
+                    <img src="{{ asset('images/about_02.jpg') }}" alt="" class="img-fluid img-rounded">
                 </div><!-- end media -->
             </div><!-- end col -->
         </div>
         <div class="row align-items-center">
             <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                 <div class="post-media wow fadeIn">
-                    <img src="images/about_03.jpg" alt="" class="img-fluid img-rounded">
+                    <img src="{{ asset('images/about_03.jpg') }}" alt="" class="img-fluid img-rounded">
                 </div><!-- end media -->
             </div><!-- end col -->
-            
+
             <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                 <div class="message-box">
                     <h2>The standard Lorem Ipsum passage, used since the 1500s</h2>
@@ -128,7 +128,7 @@
                     <a href="#" class="hover-btn-new orange"><span>Learn More</span></a>
                 </div><!-- end messagebox -->
             </div><!-- end col -->
-            
+
         </div><!-- end row -->
     </div><!-- end container -->
 </div><!-- end section -->
@@ -396,7 +396,7 @@
                 <div class="testi-carousel owl-carousel owl-theme">
                     <div class="testimonial clearfix">
                         <div class="testi-meta">
-                            <img src="images/testi_01.png" alt="" class="img-fluid">
+                            <img src="{{ asset('images/testi_01.png') }}" alt="" class="img-fluid">
                             <h4>James Fernando </h4>
                         </div>
                         <div class="desc">
@@ -409,7 +409,7 @@
 
                     <div class="testimonial clearfix">
                         <div class="testi-meta">
-                            <img src="images/testi_02.png" alt="" class="img-fluid">
+                            <img src="{{ asset('images/testi_02.png') }}" alt="" class="img-fluid">
                             <h4>Jacques Philips </h4>
                         </div>
                         <div class="desc">
@@ -422,7 +422,7 @@
 
                     <div class="testimonial clearfix">
                         <div class="testi-meta">
-                            <img src="images/testi_03.png" alt="" class="img-fluid ">
+                            <img src="{{ asset('images/testi_03.png') }}" alt="" class="img-fluid ">
                             <h4>Venanda Mercy </h4>
                         </div>
                         <div class="desc">
@@ -434,7 +434,7 @@
                     <!-- end testimonial -->
                     <div class="testimonial clearfix">
                         <div class="testi-meta">
-                            <img src="images/testi_01.png" alt="" class="img-fluid">
+                            <img src="{{ asset('images/testi_01.png') }}" alt="" class="img-fluid">
                             <h4>James Fernando </h4>
                         </div>
                         <div class="desc">
@@ -447,7 +447,7 @@
 
                     <div class="testimonial clearfix">
                         <div class="testi-meta">
-                            <img src="images/testi_02.png" alt="" class="img-fluid">
+                            <img src="{{ asset('images/testi_02.png') }}" alt="" class="img-fluid">
                             <h4>Jacques Philips </h4>
                         </div>
                         <div class="desc">
@@ -460,7 +460,7 @@
 
                     <div class="testimonial clearfix">
                         <div class="testi-meta">
-                            <img src="images/testi_03.png" alt="" class="img-fluid">
+                            <img src="{{ asset('images/testi_03.png') }}" alt="" class="img-fluid">
                             <h4>Venanda Mercy </h4>
                         </div>
                         <div class="desc">
@@ -479,22 +479,22 @@
     <div class="container">
         <div class="row logos">
             <div class="col-md-2 col-sm-2 col-xs-6 wow fadeInUp">
-                <a href="#"><img src="images/logo_01.png" alt="" class="img-repsonsive"></a>
+                <a href="#"><img src="{{ asset('images/logo_01.png') }}" alt="" class="img-repsonsive"></a>
             </div>
             <div class="col-md-2 col-sm-2 col-xs-6 wow fadeInUp">
-                <a href="#"><img src="images/logo_02.png" alt="" class="img-repsonsive"></a>
+                <a href="#"><img src="{{ asset('images/logo_02.png') }}" alt="" class="img-repsonsive"></a>
             </div>
             <div class="col-md-2 col-sm-2 col-xs-6 wow fadeInUp">
-                <a href="#"><img src="images/logo_03.png" alt="" class="img-repsonsive"></a>
+                <a href="#"><img src="{{ asset('images/logo_03.png') }}" alt="" class="img-repsonsive"></a>
             </div>
             <div class="col-md-2 col-sm-2 col-xs-6 wow fadeInUp">
-                <a href="#"><img src="images/logo_04.png" alt="" class="img-repsonsive"></a>
+                <a href="#"><img src="{{ asset('images/logo_04.png') }}" alt="" class="img-repsonsive"></a>
             </div>
             <div class="col-md-2 col-sm-2 col-xs-6 wow fadeInUp">
-                <a href="#"><img src="images/logo_05.png" alt="" class="img-repsonsive"></a>
+                <a href="#"><img src="{{ asset('images/logo_05.png') }}" alt="" class="img-repsonsive"></a>
             </div>
             <div class="col-md-2 col-sm-2 col-xs-6 wow fadeInUp">
-                <a href="#"><img src="images/logo_06.png" alt="" class="img-repsonsive"></a>
+                <a href="#"><img src="{{ asset('images/logo_06.png') }}" alt="" class="img-repsonsive"></a>
             </div>
         </div><!-- end row -->
     </div><!-- end container -->
