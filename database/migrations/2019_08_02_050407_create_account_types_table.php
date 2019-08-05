@@ -12,6 +12,7 @@ class CreateAccountTypesTable extends Migration
      * @return void
      */
     public $tableName = 'AccountTypes';
+    public $connection = 'aurora';
 
     public function up()
     {

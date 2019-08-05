@@ -12,6 +12,7 @@ class CreateUsersTable extends Migration
      * @return void
      */
     public $tableName = 'Users';
+    public $connection = 'aurora';
 
     public function up()
     {

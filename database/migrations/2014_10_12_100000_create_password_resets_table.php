@@ -12,6 +12,7 @@ class CreatePasswordResetsTable extends Migration
      * @return void
      */
     public $tableName = 'password_resets';
+    public $connection = 'aurora';
 
     public function up()
     {

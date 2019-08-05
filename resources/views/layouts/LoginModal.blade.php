@@ -23,7 +23,7 @@
                                     <input placeholder="E-mail" id="email1" type="email"
                                            class="form-control @error('email') is-invalid @enderror" name="email"
                                            value="{{ old('email') }}" required autocomplete="email" autofocus>
-
+                                    ​
                                     @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -36,7 +36,7 @@
                                     <input placeholder="password" id="password1" type="password"
                                            class="form-control @error('password') is-invalid @enderror" name="password"
                                            required autocomplete="current-password">
-
+                                    ​
                                     @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -53,7 +53,7 @@
                                         {{-- <a class="for-pwd" href="{{ route('password.request') }}">
                                             {{ __('비밀번호를 잊어버리셨나요?') }}
                                         </a> --}}
-
+                                        ​
                                         {{-- <a class="for-pwd" href="#RequestPassword" data-toggle="tab">
                                             {{ __('비밀번호를 잊어버리셨나요?') }}
                                         </a> --}}
@@ -82,7 +82,7 @@
                                     <input placeholder="email" id="email2" type="email"
                                            class="form-control @error('email') is-invalid @enderror" name="email"
                                            value="{{ old('email') }}" required autocomplete="email">
-
+                                    ​
                                     @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -95,7 +95,7 @@
                                     <input placeholder="password" id="password2" type="password"
                                            class="form-control @error('password') is-invalid @enderror" name="password"
                                            required autocomplete="new-password">
-
+                                    ​
                                     @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -126,16 +126,25 @@
                     <div class="tab-pane" id="RequestPassword">
                         <form method="POST" role="form" class="form-horizontal" action="{{ route('password.update') }}">
                             @csrf
-
+                            ​
                             {{-- <input type="hidden" name="token" value="{{ $token }}"> --}}
+<<<<<<< HEAD
 
                             <div class="form-group">
                                 <div class="col-sm-12">
 
                                     <input id="email3" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $email ?? old('email') }}" required autocomplete="email" autofocus>
 
+=======
+                            ​
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    ​
+                                    <input id="email3" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $email ?? old('email') }}" required autocomplete="email" autofocus>
+                                    ​
+>>>>>>> f2540a0dbe9d694d8984ff6abe1ac8e477c9b26d
                                     @error('email')
-                                        <span class="invalid-feedback" role="alert">
+                                    <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
@@ -146,7 +155,7 @@
                                     <input placeholder="email" id="email4" type="email"
                                            class="form-control @error('email') is-invalid @enderror" name="email"
                                            value="{{ old('email') }}" required autocomplete="email">
-
+                                    ​
                                     @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -157,9 +166,13 @@
                             <div class="form-group">
                                 <div class="col-sm-12">
                                     <input id="password4" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+<<<<<<< HEAD
 
+=======
+                                    ​
+>>>>>>> f2540a0dbe9d694d8984ff6abe1ac8e477c9b26d
                                     @error('password')
-                                        <span class="invalid-feedback" role="alert">
+                                    <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror

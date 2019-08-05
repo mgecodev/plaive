@@ -11,6 +11,7 @@ class CreatePracticeDatatableTable extends Migration
      * @var string
      */
     public $tableName = 'practice_datatable';
+    public $connection = 'aurora';
 
     /**
      * Run the migrations.
