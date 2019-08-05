@@ -3,15 +3,15 @@
 
     <!-- Basic -->
     <meta charset="utf-8">
-   
+
     <!-- Mobile Metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
- 
+
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
      <!-- Site Metas -->
-    <title>SmartEDU - Education Responsive HTML5 Template</title>  
+    <title>SmartEDU - Education Responsive HTML5 Template</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -40,7 +40,7 @@
     <![endif]-->
 
 </head>
-<body class="host_version"> 
+<body class="host_version">
 
 	<!-- Modal -->
     @include('layouts.LoginModal')
@@ -53,12 +53,12 @@
 			</div>
 		</div>
 	</div>
-	<!-- END LOADER -->	
-	
+	<!-- END LOADER -->
+
 	<!-- Start header -->
 	@include('layouts.Header')
 	<!-- End header -->
-	
+
 	<!-- Start content -->
     @yield('content')
 	<!-- End content -->
@@ -86,12 +86,12 @@
 			visibleItems: 4
 		});
     </script>
-    
+
     <script>
 
-   
+
         $('#openClassForm').click(function() {
-            
+
             var title = document.getElementById("title").value;
             var num_of_books = document.getElementById("num_of_books").value;
             var stars = document.getElementById("stars").value;
@@ -108,9 +108,9 @@
                 type:"GET",
                 data: {title: title, num_of_books: num_of_books, stars: stars, period: period, comments: comments},
                 success: function(data) {
-                    
+
                     alert("success");
-                }// end
+                },// end
                 error: function(data) {
 
                     alert("fail");
@@ -118,8 +118,8 @@
             });// end ajax
             return false;
         });
-    
+
     </script>
-        
+
 </body>
 </html>

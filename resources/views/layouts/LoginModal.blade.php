@@ -20,7 +20,7 @@
                             @csrf
                             <div class="form-group">
                                 <div class="col-sm-12">
-                                    <input placeholder="E-mail" id="email" type="email"
+                                    <input placeholder="E-mail" id="email1" type="email"
                                            class="form-control @error('email') is-invalid @enderror" name="email"
                                            value="{{ old('email') }}" required autocomplete="email" autofocus>
 
@@ -33,7 +33,7 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-12">
-                                    <input placeholder="password" id="password" type="password"
+                                    <input placeholder="password" id="password1" type="password"
                                            class="form-control @error('password') is-invalid @enderror" name="password"
                                            required autocomplete="current-password">
 
@@ -79,7 +79,7 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-12">
-                                    <input placeholder="email" id="email" type="email"
+                                    <input placeholder="email" id="email2" type="email"
                                            class="form-control @error('email') is-invalid @enderror" name="email"
                                            value="{{ old('email') }}" required autocomplete="email">
 
@@ -92,7 +92,7 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-12">
-                                    <input placeholder="password" id="password" type="password"
+                                    <input placeholder="password" id="password2" type="password"
                                            class="form-control @error('password') is-invalid @enderror" name="password"
                                            required autocomplete="new-password">
 
@@ -105,7 +105,7 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-12">
-                                    <input placeholder="password-confirm" id="password-confirm" type="password"
+                                    <input placeholder="password-confirm" id="password-confirm2" type="password"
                                            class="form-control" name="password_confirmation" required
                                            autocomplete="new-password">
                                 </div>
@@ -128,11 +128,11 @@
                             @csrf
 
                             {{-- <input type="hidden" name="token" value="{{ $token }}"> --}}
-                
+
                             <div class="form-group">
                                 <div class="col-sm-12">
 
-                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $email ?? old('email') }}" required autocomplete="email" autofocus>
+                                    <input id="email3" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $email ?? old('email') }}" required autocomplete="email" autofocus>
 
                                     @error('email')
                                         <span class="invalid-feedback" role="alert">
@@ -143,7 +143,7 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-12">
-                                    <input placeholder="email" id="email" type="email"
+                                    <input placeholder="email" id="email4" type="email"
                                            class="form-control @error('email') is-invalid @enderror" name="email"
                                            value="{{ old('email') }}" required autocomplete="email">
 
@@ -156,7 +156,7 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-12">
-                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                    <input id="password4" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
 
                                     @error('password')
                                         <span class="invalid-feedback" role="alert">
@@ -167,7 +167,7 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-12">
-                                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                    <input id="password-confirm4" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                                 </div>
                             </div>
                             <div class="row">
