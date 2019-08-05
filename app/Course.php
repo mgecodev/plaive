@@ -16,10 +16,9 @@ class Course extends Model
      */
     protected $table = 'Courses';
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
+
+    protected $fillable = [
+        'CourseId', 'NumOfStudent', 'HourCount', 'WeekCount', 'Prerequisite', 'Comment', 'Active'
+    ];
 
 }
