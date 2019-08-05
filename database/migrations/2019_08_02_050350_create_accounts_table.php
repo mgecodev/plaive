@@ -12,13 +12,14 @@ class CreateAccountsTable extends Migration
      * @return void
      */
     public $tableName = 'Accounts';
+    public $connection = 'aurora';
 
     public function up()
     {
 
         // Run this code if there is no table
-        if (!Schema::hasTable($this->tableName)) {
-            Schema::create($this->tableName, function (Blueprint $table) {
+        if (!Schema::connection($this->connection)->hasTable($this->tableName)) {
+            Schema::connection($this->connection)->create($this->tableName, function (Blueprint $table) {
                 $table->bigIncrements('id');
                 $table->integer('AccountTypeId');
                 $table->string('name');

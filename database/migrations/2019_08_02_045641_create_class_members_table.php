@@ -12,6 +12,7 @@ class CreateClassMembersTable extends Migration
      * @return void
      */
     public $tableName = 'ClassMembers';
+    public $connection = 'aurora';
 
     public function up()
     {

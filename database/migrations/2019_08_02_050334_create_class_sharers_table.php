@@ -12,6 +12,7 @@ class CreateClassSharersTable extends Migration
      * @return void
      */
     public $tableName = 'ClassSharers';
+    public $connection = 'aurora';
 
     public function up()
     {

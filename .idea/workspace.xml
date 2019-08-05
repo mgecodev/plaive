@@ -2,18 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="35e28d35-536b-4eab-b88b-4029b9306f6f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/views/ClassBoard.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/ManageClass.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/OpenClass.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/index.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/layouts/Copyrights.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/layouts/Footer.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/layouts/Header.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/layouts/LoginModal.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/layouts/Master.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/layouts/Sidebar.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Course.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/CourseController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/database.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/database.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_100000_create_password_resets_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_100000_create_password_resets_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2019_07_29_000000_create_practice_datatable_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_07_29_000000_create_practice_datatable_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2019_08_02_045641_create_class_members_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_08_02_045641_create_class_members_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2019_08_02_045829_create_classes_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_08_02_045829_create_classes_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2019_08_02_045844_create_courses_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_08_02_045844_create_courses_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2019_08_02_050334_create_class_sharers_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_08_02_050334_create_class_sharers_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2019_08_02_050350_create_accounts_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_08_02_050350_create_accounts_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2019_08_02_050407_create_account_types_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_08_02_050407_create_account_types_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/Master.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/Master.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -137,16 +139,16 @@
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app" />
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\seonggyu\Local\plaive\app" />
       <recent name="C:\Users\seonggyu\Local\plaive\resources\views" />
       <recent name="C:\Users\seonggyu\Local\plaive\resources\views\layouts" />
       <recent name="C:\Users\seonggyu\Local\Plaive\resources\views" />
       <recent name="C:\Users\seonggyu\Local\Plaive\public" />
-      <recent name="C:\Users\seonggyu\Local\Plaive\public\fonts" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\seonggyu\Local\Plaive\resources\views" />
@@ -166,9 +168,10 @@
       <command value="git commit -am 'make login authentication'" />
       <command value="git commit -am 'set up login system'" />
       <command value="git push" />
-      <command value="git add ." />
       <command value="git pull" />
       <command value="git commit -am 'set up basic function for login and database migration file'" />
+      <command value="git commit -am 'upload rest of file'" />
+      <command value="git add ." />
       <command value="git push origin master" />
     </option>
   </component>
@@ -208,7 +211,7 @@
       <workItem from="1564490467325" duration="14000" />
       <workItem from="1564533367876" duration="10802000" />
       <workItem from="1564815527872" duration="1024000" />
-      <workItem from="1564960809532" duration="6793000" />
+      <workItem from="1564960809532" duration="10506000" />
     </task>
     <task id="LOCAL-00001" summary="path manager">
       <created>1564317974013</created>

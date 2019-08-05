@@ -12,11 +12,12 @@ class CreateAccountTypesTable extends Migration
      * @return void
      */
     public $tableName = 'AccountTypes';
+    public $connection = 'aurora';
 
     public function up()
     {
-        if (!Schema::hasTable($this->tableName)) {
-            Schema::create($this->tableName, function (Blueprint $table) {
+        if (!Schema::connection($this->connection)->hasTable($this->tableName)) {
+            Schema::connection($this->connection)->create($this->tableName, function (Blueprint $table) {
                 $table->Integer('AccountTypeId');
                 $table->string('Type');
             });
