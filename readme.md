@@ -1,4 +1,4 @@
-# Plaive API
+# Plaive
 
 <h3> Sever Requirements </h3>
 <hr>
@@ -25,13 +25,4 @@ However, if you are not using Homestead, you will need to make sure your server 
 * Run php artisan key:generate to generate the App's encryption keys
 * Generate the database and seed some initial data php artisan migrate --seed
 
-<h3>OAuth 2.0 Setup</h3>
-<hr>
-Create encryption keys to generate secure access tokens and create "personal access" and "password grant" clients which will
-be used to generate access tokens: php artisan passport:install
-
-<h3>Testing</h3>
-<hr>
-* Open phpunit.xml and make sure the environments are correct for your domain.
-* Run the tests ./vendor/bin/phpunit
 
