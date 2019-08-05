@@ -32,7 +32,7 @@
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
 
     <!-- Modernizer for Portfolio -->
-    <script src="js/modernizer.js"></script>
+    <script src="{{ asset('js/modernizer.js') }}"></script>
 
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -74,10 +74,10 @@
     <a href="#" id="scroll-to-top" class="dmtop global-radius"><i class="fa fa-angle-up"></i></a>
 
     <!-- ALL JS FILES -->
-    <script src="js/all.js"></script>
+    <script src="{{ asset('js/all.js') }}"></script>
     <!-- ALL PLUGINS -->
-    <script src="js/custom.js"></script>
-	<script src="js/timeline.min.js"></script>
+    <script src="{{ asset('js/custom.js') }}"></script>
+	<script src="{{ asset('js/timeline.min.js') }}"></script>
 	<script>
 		timeline(document.querySelectorAll('.timeline'), {
 			forceVerticalMode: 700,
