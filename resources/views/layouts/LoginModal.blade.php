@@ -110,6 +110,19 @@
                                            autocomplete="new-password">
                                 </div>
                             </div>
+
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    <select id="AccountType" class="form-control"  name="AccountTypeId" value="select">
+                                        <option value="0" type="hidden">Select</option>
+                                        <option value="1">Student</option>
+                                        <option value="2">Teacher</option>
+                                        <option value="3">Parent</option>
+                                        <option value="4">Government</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
                             <div class="row">
                                 <div class="form-group col-sm-10">
                                     <button type="submit" class="btn btn-light btn-radius btn-brd grd1">
