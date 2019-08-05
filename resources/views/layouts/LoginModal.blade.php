@@ -110,6 +110,19 @@
                                            autocomplete="new-password">
                                 </div>
                             </div>
+
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    <select id="AccountType" class="form-control"  name="AccountTypeId" value="select">
+                                        <option value="0" type="hidden">Select</option>
+                                        <option value="1">Student</option>
+                                        <option value="2">Teacher</option>
+                                        <option value="3">Parent</option>
+                                        <option value="4">Government</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
                             <div class="row">
                                 <div class="form-group col-sm-10">
                                     <button type="submit" class="btn btn-light btn-radius btn-brd grd1">
@@ -128,21 +141,12 @@
                             @csrf
                             ​
                             {{-- <input type="hidden" name="token" value="{{ $token }}"> --}}
-<<<<<<< HEAD
-
-                            <div class="form-group">
-                                <div class="col-sm-12">
-
-                                    <input id="email3" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $email ?? old('email') }}" required autocomplete="email" autofocus>
-
-=======
                             ​
                             <div class="form-group">
                                 <div class="col-sm-12">
                                     ​
                                     <input id="email3" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $email ?? old('email') }}" required autocomplete="email" autofocus>
                                     ​
->>>>>>> f2540a0dbe9d694d8984ff6abe1ac8e477c9b26d
                                     @error('email')
                                     <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -166,11 +170,7 @@
                             <div class="form-group">
                                 <div class="col-sm-12">
                                     <input id="password4" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-<<<<<<< HEAD
-
-=======
                                     ​
->>>>>>> f2540a0dbe9d694d8984ff6abe1ac8e477c9b26d
                                     @error('password')
                                     <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
