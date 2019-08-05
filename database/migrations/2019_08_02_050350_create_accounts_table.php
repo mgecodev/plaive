@@ -18,8 +18,8 @@ class CreateAccountsTable extends Migration
     {
 
         // Run this code if there is no table
-        if (!Schema::connection($this->connection)->hasTable($this->tableName)) {
-            Schema::connection($this->connection)->create($this->tableName, function (Blueprint $table) {
+        if (!Schema::hasTable($this->tableName)) {
+            Schema::create($this->tableName, function (Blueprint $table) {
                 $table->bigIncrements('id');
                 $table->integer('AccountTypeId');
                 $table->string('name');
