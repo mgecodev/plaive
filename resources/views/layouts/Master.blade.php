@@ -85,10 +85,6 @@
 			verticalStartPosition: 'left',
 			visibleItems: 4
 		});
-    </script>
-
-    <script>
-
 
         $('#openClassForm').click(function() {
 

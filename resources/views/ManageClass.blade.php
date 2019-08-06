@@ -4,7 +4,7 @@
 
 <div id="overviews" class="section wb">
     <div class="container">
-        <div class="row"> 
+        <div class="row">
             <div class="col-lg-3 col-12 right-single">
                 <div class="widget-search">
                     <div class="site-search-area">
@@ -44,12 +44,12 @@
                         <li><a href="#">javascript</a></li>
                         <li><a href="#"><b>Best jQuery</b></a></li>
                     </ul>
-                </div>          
+                </div>
             </div>
 
 
             <div class="col-lg-9">
-                <div class="row"> 
+                <div class="row">
                     <div class="col-lg-6 col-md-6 col-12">
                         <div class="course-item">
                             <div class="image-blog">
@@ -64,11 +64,11 @@
                                 </div>
                                 <div class="course-rating">
                                     4.5
-                                    <i class="fa fa-star"></i>	
-                                    <i class="fa fa-star"></i>	
-                                    <i class="fa fa-star"></i>	
-                                    <i class="fa fa-star"></i>	
-                                    <i class="fa fa-star-half"></i>								
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star-half"></i>
                                 </div>
                             </div>
                             <div class="course-meta-bot">
@@ -80,7 +80,7 @@
                             </div>
                         </div>
                     </div><!-- end col -->
-    
+
                     <div class="col-lg-6 col-md-6 col-12">
                         <div class="course-item">
                             <div class="image-blog">
@@ -95,11 +95,11 @@
                                 </div>
                                 <div class="course-rating">
                                     4.5
-                                    <i class="fa fa-star"></i>	
-                                    <i class="fa fa-star"></i>	
-                                    <i class="fa fa-star"></i>	
-                                    <i class="fa fa-star"></i>	
-                                    <i class="fa fa-star-half"></i>								
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star-half"></i>
                                 </div>
                             </div>
                             <div class="course-meta-bot">
@@ -110,14 +110,13 @@
                                 </ul>
                             </div>
                         </div>
-                    </div><!-- end col -->	
+                    </div><!-- end col -->
 
                 </div><!-- end row -->
-        
+
             </div>
         </div>
     </div>
 </div>
 
 @endsection
-

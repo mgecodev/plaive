@@ -1,3 +1,17 @@
+<?php
+$home_active = '';
+$class_active = '';
+$my_active = '';
+$host_explode = explode($_SERVER['HTTP_HOST'], url()->full());
+$route_name = $host_explode[1];
+if($route_name == '/' || $route_name == '/home') {
+    $home_active = 'active';
+} else if($route_name == '/ManageClass' || $route_name == '/OpenClass' || $route_name == '/ClassBoard') {
+    $class_active = 'active';
+} else if($route_name == '/My') {
+    $my_active = 'active';
+}
+?>
 <header class="top-navbar">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
@@ -11,8 +25,8 @@
             </button>
             <div class="collapse navbar-collapse" id="navbars-host">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active"><a class="nav-link" href="index.html">소식</a></li>
-                    <li class="nav-item dropdown">
+                    <li class="nav-item {{ $home_active }}"><a class="nav-link" href="{{ asset('/home') }}">소식</a></li>
+                    <li class="nav-item dropdown {{ $class_active }}">
                         <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">클래스</a>
                         <div class="dropdown-menu" aria-labelledby="dropdown-a">
                             <a class="dropdown-item" href="{{ asset('/ManageClass') }}">클래스 관리</a>
@@ -20,7 +34,7 @@
                             <a class="dropdown-item" href="{{ asset('/ClassBoard') }}">게시판</a>
                         </div>
                     </li>
-                    <li class="nav-item dropdown">
+                    <li class="nav-item dropdown {{ $my_active }}">
                         <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">나의 데이터</a>
                         <div class="dropdown-menu" aria-labelledby="dropdown-a">
                         <a class="dropdown-item" href="{{ asset('') }}">디바이스 등록</a>
@@ -28,7 +42,7 @@
                             <a class="dropdown-item" href="course-grid-4.html">자율주행자동차</a>
                         </div>
                     </li>
-    
+
                     @if (Route::has('login'))
                         @auth
                             <li class="nav-item"><a class="nav-link" href="{{ route('logout') }}">로그아웃</a></li>
@@ -47,5 +61,5 @@
             </div>
         </div>
     </nav>
-        
+
 </header>
