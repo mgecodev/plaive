@@ -11,7 +11,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
      <!-- Site Metas -->
-    <title>SmartEDU - Education Responsive HTML5 Template</title>
+    <title>Plaive Education Management Service</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">

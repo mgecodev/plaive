@@ -4,7 +4,10 @@
 namespace App\Http\Controllers;
 
 use App;
+use App\AccountType;
+use App\Course;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CourseController extends Controller
 {
@@ -25,15 +28,22 @@ class CourseController extends Controller
      */
     public function index()
     {
+        $user = Auth::user();
+
+        $name = $user->Name;
+        $id = $user->id;
+
+        $type = AccountType::where('AccountTypeId', '=', $id)->first()->Type;
+
         $courses_info = $this->showCourseInfo();
         // dd($courses_info);
-        return view('OpenClass')->with('courses_info', $courses_info);
+        return view('ManageClass')->with('courses_info', $courses_info)->with('name', $name)->with('type', $type);
     }
 
     public function saveCourseInfo() {
 
         // get data from post method
-        $user_id = \Auth::user()->id;
+        $user_id = Auth::user()->id;
         $title = $_POST['title'];
         $num_of_books = $_POST['num_of_books'];
         $stars = $_POST['stars'];

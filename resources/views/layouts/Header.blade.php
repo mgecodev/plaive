@@ -26,14 +26,27 @@ if($route_name == '/' || $route_name == '/home') {
             <div class="collapse navbar-collapse" id="navbars-host">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item {{ $home_active }}"><a class="nav-link" href="{{ asset('/home') }}">소식</a></li>
-                    <li class="nav-item dropdown {{ $class_active }}">
-                        <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">클래스</a>
-                        <div class="dropdown-menu" aria-labelledby="dropdown-a">
-                            <a class="dropdown-item" href="{{ asset('/ManageClass') }}">클래스 관리</a>
-                            <a class="dropdown-item" href="{{ asset('/OpenClass') }}">수업 만들기</a>
-                            <a class="dropdown-item" href="{{ asset('/ClassBoard') }}">게시판</a>
-                        </div>
-                    </li>
+
+                    @if ($type == 'Teacher')
+                        <li class="nav-item dropdown {{ $class_active }}">
+                            <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">클래스</a>
+                            <div class="dropdown-menu" aria-labelledby="dropdown-a">
+                                <a class="dropdown-item" href="{{ asset('/ManageClass') }}">클래스 관리</a>
+                                <a class="dropdown-item" href="{{ asset('/OpenClass') }}">수업 만들기</a>
+                                <a class="dropdown-item" href="{{ asset('/ClassBoard') }}">게시판</a>
+                            </div>
+                        </li>
+                    @else 
+                        <li class="nav-item dropdown {{ $class_active }}">
+                            <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">클래스</a>
+                            <div class="dropdown-menu" aria-labelledby="dropdown-a">
+                                <a class="dropdown-item" href="{{ asset('/ManageClass') }}">수업 입장</a>
+                                <a class="dropdown-item" href="{{ asset('/OpenClass') }}">나의 강좌</a>
+                                <a class="dropdown-item" href="{{ asset('/ClassBoard') }}">게시판</a>
+                            </div>
+                        </li>
+                    @endif
+                    
                     <li class="nav-item dropdown {{ $my_active }}">
                         <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">나의 데이터</a>
                         <div class="dropdown-menu" aria-labelledby="dropdown-a">
@@ -45,21 +58,22 @@ if($route_name == '/' || $route_name == '/home') {
 
                     @if (Route::has('login'))
                         @auth
-                            <li class="nav-item"><a class="nav-link" href="{{ route('logout') }}">로그아웃</a></li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">
+                                    @if ($type != NULL && $name != NULL) 
+                                        {{ $name." ".$type }}
+                                    @endif 
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="dropdown-a">
+                                    <a a class="dropdown-item" href="{{ route('logout') }}">로그아웃</a>
+                                </div>
+                            </li>
                         @else
-                            <li class="nav-item"><a class="nav-link" href="#" data-toggle="modal" data-target="#login">로그인/회원가입</a></li>
-                            {{-- <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">로그인</a></li>
-                            @if (Route::has('register'))
-                                <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">회원가입</a></li>
-                            @endif --}}
+                            <li class="nav-item"><a class="nav-link" href="#" data-toggle="modal" data-target="#login">로그인/회원가입</a></li>   
                         @endauth
                     @endif
                 </ul>
-                {{-- <ul class="nav navbar-nav navbar-right">
-                    <li><a class="hover-btn-new log orange" href="#" data-toggle="modal" data-target="#login"><span>로그인/회원가입</span></a></li>
-                </ul> --}}
             </div>
         </div>
     </nav>
-
 </header>
