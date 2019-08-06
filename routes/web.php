@@ -15,7 +15,7 @@ Route::get('/', function () {
     return view('index');
 });
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 // Route::get('/home', 'HomeController@index')->name('home');
 // Route::get('/home', 'HomeController@index')->redirect('/');
@@ -24,7 +24,7 @@ Route::get('/home', function () {
 
     // return redirect()->route('');
     return view('index');
-});
+})->middleware('verified');
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 Route::post('/SaveCourseInfo', 'CourseController@saveCourseInfo');
 // Route::get('/showCourseInfo', 'CourseController@showCourseInfo');
