@@ -75,7 +75,7 @@
                                     <div class="big-tagline">
                                         <h2><strong>로고 </strong>직접 수업을 개설해 보세요.</h2>
                                         <p class="lead">With Landigoo responsive landing page template, you can promote your all hosting, domain and email services. </p>
-                                            <a href="#" class="hover-btn-new"><span>커리큘럼 개설하기</span></a>
+                                            <a href="/Invite" class="hover-btn-new"><span>클래스 개설하기</span></a>
                                             
                                     </div>
                                 </div>

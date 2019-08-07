@@ -14,7 +14,7 @@
 // Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/', function () {
-    
+
     $id = NULL;
     $type = NULL;
 
@@ -27,7 +27,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index');
 // Route::get('/home', 'HomeController@index')->redirect('/');
 
-Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
+Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout'); // Do not remove this code
 Route::post('/SaveCourseInfo', 'CourseController@saveCourseInfo');
 // Route::get('/showCourseInfo', 'CourseController@showCourseInfo');
 
@@ -35,7 +35,10 @@ Route::get('/class', function () {
     return view('ClassIndex');
 });
 Route::get('/ManageClass', 'CourseController@index');
+Route::get('/OpenClass/Build', 'OpenClassController@buildClass');
+Route::get('/Invite', 'InviteMemberController@index');
 Route::get('/OpenClass', 'OpenClassController@index');
+Route::get('/SaveStudent', 'InviteMemberController@saveStudent');
 Route::get('ClassBoard', function () {
     return view('ClassBoard');
 });

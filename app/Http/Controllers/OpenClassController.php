@@ -34,4 +34,6 @@ class OpenClassController extends Controller
 
         return view('OpenClass')->with('name', $name)->with('type', $type);
     }
+
+
 }
