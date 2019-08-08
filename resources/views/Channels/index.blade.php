@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.Master')
 
 @section('content')
 <div id="overviews" class="section wb">
