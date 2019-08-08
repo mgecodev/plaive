@@ -37,7 +37,7 @@ $(document).ready( function () {
                         @foreach($channels as $channel)
                         <tr class="item{{$channel->ChannelId}}">
                             @if((new \Jenssegers\Agent\Agent())->isPhone())
-                            <td style="vertical-align: middle;">{{str_limit($channel->ChannelName,10)}}</td>
+                            <td style="vertical-align: middle;">{{str_limit($channel->ChannelName,20)}}</td>
                             <td style="vertical-align: middle;"> 
                                 <button class="btn btn-primary" data-info="">
                                     <i class="fa fa-edit fa-sm" aria-hidden="true"></i>
@@ -54,7 +54,7 @@ $(document).ready( function () {
                             </td>
                             @else
                             <td style="vertical-align: middle;">{{ $loop->iteration }}</td>
-                            <td style="vertical-align: middle;">{{ str_limit($channel->ChannelName,25) }}</td>
+                            <td style="vertical-align: middle;">{{ str_limit($channel->ChannelName,50) }}</td>
                             <td style="vertical-align: middle;">{{ $channel->created_at }}</td>
                             <td style="vertical-align: middle;"> 
                                 <button class="btn btn-primary" data-info="">
