@@ -28,7 +28,7 @@ class ManageClassController extends Controller
     {
         $user = Auth::user();
 
-        $name = $user->Name;
+        $name = $user->name;
         $id = $user->id;
 
         $type = AccountType::where('AccountTypeId', '=', $id)->first()->Type;
