@@ -31,7 +31,7 @@ class CourseController extends Controller
     {
         $user = Auth::user();
 
-        $name = $user->Name;
+        $name = $user->name;
         $id = $user->id;
 
         $account_type_id = Account::where('id', $id)->first()->AccountTypeId;
