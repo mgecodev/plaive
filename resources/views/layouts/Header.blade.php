@@ -36,7 +36,7 @@ if($route_name == '/' || $route_name == '/home') {
                                 <a class="dropdown-item" href="{{ asset('/ClassBoard') }}">게시판</a>
                             </div>
                         </li>
-                    @else 
+                    @else
                         <li class="nav-item dropdown {{ $class_active }}">
                             <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">클래스</a>
                             <div class="dropdown-menu" aria-labelledby="dropdown-a">
@@ -47,7 +47,7 @@ if($route_name == '/' || $route_name == '/home') {
                             </div>
                         </li>
                     @endif
-                    
+
                     <li class="nav-item dropdown {{ $my_active }}">
                         <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">나의 데이터</a>
                         <div class="dropdown-menu" aria-labelledby="dropdown-a">
@@ -59,18 +59,9 @@ if($route_name == '/' || $route_name == '/home') {
 
                     @if (Route::has('login'))
                         @auth
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">
-                                    @if ($type != NULL && $name != NULL) 
-                                        {{ $name." ".$type }}
-                                    @endif 
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="dropdown-a">
-                                    <a a class="dropdown-item" href="{{ route('logout') }}">로그아웃</a>
-                                </div>
-                            </li>
+                            <li class="nav-item"><a class="nav-link" href="{{ route('logout') }}">로그아웃</a></li>
                         @else
-                            <li class="nav-item"><a class="nav-link" href="#" data-toggle="modal" data-target="#login">로그인/회원가입</a></li>   
+                            <li class="nav-item"><a class="nav-link" href="#" data-toggle="modal" data-target="#login">로그인/회원가입</a></li>
                         @endauth
                     @endif
                 </ul>
