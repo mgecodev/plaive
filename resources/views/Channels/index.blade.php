@@ -20,14 +20,15 @@ $(document).ready( function () {
                 </center>
                 <div style="height:10px;"></div>
                 <div class="table-responsive text-center">
-                <table class="table table-striped table-bordered" id="table" style="width:100%; {{ (new \Jenssegers\Agent\Agent())->isPhone() ? 'table-layout:fixed;' : '' }}">
+                <table class="table table-striped table-bordered" id="table" style="width:100%;{{ (new \Jenssegers\Agent\Agent())->isPhone() ? 'table-layout:fixed;' : '' }}">
                         <thead>
                             <tr>
-                                <th class="text-center" >#</th>
-                                <th class="text-center">이름</th>
                                 @if((new \Jenssegers\Agent\Agent())->isPhone())
+                                <th class="text-center">이름</th>
                                 <th class="text-center" style="white-space:nowrap;">Action</th>
                                 @else
+                                <th class="text-center" >#</th>
+                                <th class="text-center">이름</th>
                                 <th class="text-center" style="white-space:nowrap;">생성일</th>
                                 <th class="text-center" style="white-space:nowrap;">Action</th>
                                 @endif
@@ -35,9 +36,8 @@ $(document).ready( function () {
                         </thead>
                         @foreach($channels as $channel)
                         <tr class="item{{$channel->ChannelId}}">
-                            <td style="vertical-align: middle;">{{$channel->ChannelId}}</td>
-                            <td style="vertical-align: middle; {{ (new \Jenssegers\Agent\Agent())->isPhone() ? 'text-overflow:ellipsis; overflow:hidden; white-space:nowrap;' : '' }}">{{$channel->ChannelName}}</td>
                             @if((new \Jenssegers\Agent\Agent())->isPhone())
+                            <td style="vertical-align: middle; text-overflow:ellipsis; overflow:hidden; white-space:nowrap;">{{$channel->ChannelName}}</td>
                             <td style="vertical-align: middle;"> 
                                 <button class="btn btn-primary" data-info="">
                                     <i class="fa fa-edit fa-lg" aria-hidden="true"></i>
@@ -47,9 +47,14 @@ $(document).ready( function () {
                                 </button>
                                 <button class="delete-modal btn btn-info" data-info="">
                                     <i class="fa fa-info fa-lg" aria-hidden="true"></i>
+                                </button>&nbsp;
+                                <button class="delete-modal btn btn-info" data-info="">
+                                    <i class="fa fa-download fa-lg" aria-hidden="true"></i>
                                 </button>
                             </td>
                             @else
+                            <td style="vertical-align: middle;">{{ $loop->iteration }}</td>
+                            <td style="vertical-align: middle;">{{$channel->ChannelName}}</td>
                             <td style="vertical-align: middle;">{{$channel->created_at}}</td>
                             <td style="vertical-align: middle;"> 
                                 <button class="btn btn-primary" data-info="">
@@ -87,12 +92,10 @@ $(document).ready( function () {
                             <i class="fa fa-info" aria-hidden="true"></i>
                     </li>
                     채널 ApiKey와 대략적인 데이터 넣는 법을 알려주는 아이콘
-                    @if(!(new \Jenssegers\Agent\Agent())->isPhone())
                     <li style="font-size:25px;">
                             <i class="fa fa-download" aria-hidden="true"></i>
                     </li>
                     채널에 대한 데이터를 다운 받는 아이콘
-                    @endif
                 </ul>
             </div>
         </div>
