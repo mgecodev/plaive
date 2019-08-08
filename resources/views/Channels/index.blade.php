@@ -20,7 +20,7 @@ $(document).ready( function () {
                 </center>
                 <div style="height:10px;"></div>
                 <div class="table-responsive text-center">
-                    <table class="table table-striped table-bordered" id="table" style="width:100%;">
+                <table class="table table-striped table-bordered" id="table" style="width:100%; {{ (new \Jenssegers\Agent\Agent())->isPhone() ? 'table-layout:fixed;' : '' }}">
                         <thead>
                             <tr>
                                 <th class="text-center" >#</th>
@@ -36,7 +36,7 @@ $(document).ready( function () {
                         @foreach($channels as $channel)
                         <tr class="item{{$channel->ChannelId}}">
                             <td style="vertical-align: middle;">{{$channel->ChannelId}}</td>
-                            <td style="vertical-align: middle;">{{$channel->ChannelName}}</td>
+                            <td style="vertical-align: middle; {{ (new \Jenssegers\Agent\Agent())->isPhone() ? 'text-overflow:ellipsis; overflow:hidden; white-space:nowrap;' : '' }}">{{$channel->ChannelName}}</td>
                             @if((new \Jenssegers\Agent\Agent())->isPhone())
                             <td style="vertical-align: middle;"> 
                                 <button class="btn btn-primary" data-info="">
@@ -50,7 +50,7 @@ $(document).ready( function () {
                                 </button>
                             </td>
                             @else
-                            <td style="vertical-align: middle;">{{$channel->InsertDatetime}}</td>
+                            <td style="vertical-align: middle;">{{$channel->created_at}}</td>
                             <td style="vertical-align: middle;"> 
                                 <button class="btn btn-primary" data-info="">
                                     <i class="fa fa-edit fa-lg" aria-hidden="true"></i>
