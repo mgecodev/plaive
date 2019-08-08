@@ -23,6 +23,36 @@
             padding:1rem;
             margin:0rem 0rem 0rem auto !important;
         }
+        .table_search{
+            margin-left: 0.5em;
+            border: 1px solid gray;
+            border-radius: 5px;
+            font-family: inherit;
+            font-size: inherit;
+            font-weight: inherit;
+            box-sizing: border-box;
+            -webkit-writing-mode: horizontal-tb !important;
+            text-rendering: auto;
+            color: initial;
+            letter-spacing: normal;
+            word-spacing: normal;
+            text-transform: none;
+            text-indent: 0px;
+            text-shadow: none;
+            display: inline-block;
+            text-align: start;
+            -webkit-appearance: textfield;
+            background-color: white;
+            -webkit-rtl-ordering: logical;
+            cursor: text;
+            margin: 0em;
+            font: 400 1em system-ui;
+            padding: 1px;
+            border-width: 1px;
+            border-style: inset;
+            border-color: initial;
+            border-image: initial;
+        }
     </style>
     <!-- Basic -->
     <meta charset="utf-8">
@@ -57,10 +87,7 @@
 
     <link href="css/font-face.css" rel="stylesheet" media="all">
     <link href="vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
-    <link href="vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
     <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
-
-    <link href="vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
 
     <link href="vendor/animsition/animsition.min.css" rel="stylesheet" media="all">
     <link href="vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">
@@ -69,8 +96,6 @@
     <link href="vendor/slick/slick.css" rel="stylesheet" media="all">
     <link href="vendor/select2/select2.min.css" rel="stylesheet" media="all">
     <link href="vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
-
-    <link href="css/theme.css" rel="stylesheet" media="all">
     <!-- Modernizer for Portfolio -->
     <script src="js/modernizer.js"></script>
     <script src="vendor/bootstrap-4.1/popper.min.js"></script>
@@ -117,11 +142,11 @@
     <!-- ALL JS FILES -->
     <script src="js/all.js"></script>
     <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-
     <!-- ALL PLUGINS -->
 
     <script src="js/custom.js"></script>
     <script src="js/timeline.min.js"></script>
+    @yield('javascript')
 	<script>
 		timeline(document.querySelectorAll('.timeline'), {
 			forceVerticalMode: 700,
@@ -157,9 +182,6 @@
                 }
             });// end ajax
             return false;
-        });
-        $(document).ready( function () {
-            $('#table').DataTable();
         });
 
         $('#submit').click(function (e) {

@@ -45,3 +45,4 @@ Route::get('ClassBoard', function () {
 });
 
 Route::get('/ManageDevice', 'ChannelController@index');
+Route::get('/CreateDevice', 'ChannelController@createIndex');
