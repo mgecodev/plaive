@@ -20,7 +20,7 @@ $(document).ready( function () {
                 </center>
                 <div style="height:10px;"></div>
                 <div class="table-responsive text-center">
-                <table class="table table-striped table-bordered" id="table" style="width:100%;{{ (new \Jenssegers\Agent\Agent())->isPhone() ? 'table-layout:fixed;' : '' }}">
+                <table class="table table-striped table-bordered" id="table" style="width:100%;">
                         <thead>
                             <tr>
                                 @if((new \Jenssegers\Agent\Agent())->isPhone())
@@ -37,7 +37,7 @@ $(document).ready( function () {
                         @foreach($channels as $channel)
                         <tr class="item{{$channel->ChannelId}}">
                             @if((new \Jenssegers\Agent\Agent())->isPhone())
-                            <td style="vertical-align: middle; text-overflow:ellipsis; overflow:hidden; white-space:nowrap;">{{$channel->ChannelName}}</td>
+                            <td style="vertical-align: middle;">{{str_limit($channel->ChannelName,10)}}</td>
                             <td style="vertical-align: middle;"> 
                                 <button class="btn btn-primary" data-info="">
                                     <i class="fa fa-edit fa-sm" aria-hidden="true"></i>
@@ -54,8 +54,8 @@ $(document).ready( function () {
                             </td>
                             @else
                             <td style="vertical-align: middle;">{{ $loop->iteration }}</td>
-                            <td style="vertical-align: middle;">{{$channel->ChannelName}}</td>
-                            <td style="vertical-align: middle;">{{$channel->created_at}}</td>
+                            <td style="vertical-align: middle;">{{ str_limit($channel->ChannelName,25) }}</td>
+                            <td style="vertical-align: middle;">{{ $channel->created_at }}</td>
                             <td style="vertical-align: middle;"> 
                                 <button class="btn btn-primary" data-info="">
                                     <i class="fa fa-edit fa-lg" aria-hidden="true"></i>
