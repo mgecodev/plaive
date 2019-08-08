@@ -40,16 +40,16 @@ $(document).ready( function () {
                             <td style="vertical-align: middle; text-overflow:ellipsis; overflow:hidden; white-space:nowrap;">{{$channel->ChannelName}}</td>
                             <td style="vertical-align: middle;"> 
                                 <button class="btn btn-primary" data-info="">
-                                    <i class="fa fa-edit fa-lg" aria-hidden="true"></i>
+                                    <i class="fa fa-edit fa-sm" aria-hidden="true"></i>
                                 </button>&nbsp;
                                 <button class="delete-modal btn btn-danger" data-info="">
-                                    <i class="fa fa-trash fa-lg" aria-hidden="true"></i>
+                                    <i class="fa fa-trash fa-sm" aria-hidden="true"></i>
                                 </button>
                                 <button class="delete-modal btn btn-info" data-info="">
-                                    <i class="fa fa-info fa-lg" aria-hidden="true"></i>
+                                    <i class="fa fa-info fa-sm" aria-hidden="true"></i>
                                 </button>&nbsp;
                                 <button class="delete-modal btn btn-info" data-info="">
-                                    <i class="fa fa-download fa-lg" aria-hidden="true"></i>
+                                    <i class="fa fa-download fa-sm" aria-hidden="true"></i>
                                 </button>
                             </td>
                             @else
