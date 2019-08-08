@@ -45,8 +45,10 @@ class Account extends Authenticatable
     ];
 
     public function course() {
-
         return $this->hasMany('App\Course', 'CourseId');
     }
 
+    public function channels() {
+        return $this->hasMany('App\Channel','AccountId');
+    }
 }

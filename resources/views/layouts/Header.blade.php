@@ -50,7 +50,7 @@ if($route_name == '/' || $route_name == '/home') {
                     <li class="nav-item dropdown {{ $my_active }}">
                         <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">나의 데이터</a>
                         <div class="dropdown-menu" aria-labelledby="dropdown-a">
-                        <a class="dropdown-item" href="{{ asset('') }}">디바이스 등록</a>
+                        <a class="dropdown-item" href="{{ asset('/ManageDevice') }}">디바이스 등록</a>
                             <a class="dropdown-item" href="course-grid-3.html">미세먼지</a>
                             <a class="dropdown-item" href="course-grid-4.html">자율주행자동차</a>
                         </div>

@@ -22,6 +22,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
     <!-- Site CSS -->
     <link rel="stylesheet" href="css/style.css">
     <!-- ALL VERSION CSS -->
@@ -30,7 +31,8 @@
     <link rel="stylesheet" href="css/responsive.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/custom.css">
-
+    <!-- Font Awesome Css -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <!-- Modernizer for Portfolio -->
     <script src="js/modernizer.js"></script>
 
@@ -75,6 +77,8 @@
 
     <!-- ALL JS FILES -->
     <script src="js/all.js"></script>
+    <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+
     <!-- ALL PLUGINS -->
     <script src="js/custom.js"></script>
 	<script src="js/timeline.min.js"></script>
@@ -114,7 +118,9 @@
             });// end ajax
             return false;
         });
-
+        $(document).ready( function () {
+            $('#table').DataTable();
+        });
     </script>
 
 </body>

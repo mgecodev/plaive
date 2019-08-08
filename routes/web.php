@@ -39,3 +39,5 @@ Route::get('/OpenClass', 'OpenClassController@index');
 Route::get('ClassBoard', function () {
     return view('ClassBoard');
 });
+
+Route::get('/ManageDevice', 'ChannelController@index');
