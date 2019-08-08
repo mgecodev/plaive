@@ -50,7 +50,7 @@ class CourseController extends Controller
         $period = $_POST['period'];
         $description = $_POST['description'];
 
-        $course_info = new App\Course;
+        $course_info = new Course;
 
         $course_info->user_id = $user_id;
         $course_info->title = $title;

@@ -1,13 +1,16 @@
 <?php
 
+
 namespace App\Http\Controllers;
 
-use App\Account;
+use App;
 use App\AccountType;
+use App\Account;
+use App\Invitation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class HomeController extends Controller
+class CheckInvitationController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -24,8 +27,8 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index() {
-
+    public function index()
+    {
         $user = Auth::user();
 
         $name = $user->Name;
@@ -33,7 +36,10 @@ class HomeController extends Controller
 
         $account_type_id = Account::where('id', $id)->first()->AccountTypeId;
         $type = AccountType::where('AccountTypeId', '=', $account_type_id)->first()->Type;
+        $invitations = Invitation::where('InviteeId', '=', $id)->get();
 
-        return view('index')->with('name', $name)->with('type', $type);
+        return view('CheckInvitation')->with('invitations', $invitations)->with('name', $name)->with('type', $type);
     }
+
+ 
 }

@@ -42,6 +42,7 @@ if($route_name == '/' || $route_name == '/home') {
                             <div class="dropdown-menu" aria-labelledby="dropdown-a">
                                 <a class="dropdown-item" href="{{ asset('/ManageClass') }}">수업 입장</a>
                                 <a class="dropdown-item" href="{{ asset('/OpenClass') }}">나의 강좌</a>
+                                <a class="dropdown-item" href="{{ asset('/CheckInvitation') }}">초대 확인하기</a>
                                 <a class="dropdown-item" href="{{ asset('/ClassBoard') }}">게시판</a>
                             </div>
                         </li>

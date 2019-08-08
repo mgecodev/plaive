@@ -38,7 +38,8 @@ Route::get('/ManageClass', 'CourseController@index');
 Route::get('/OpenClass/Build', 'OpenClassController@buildClass');
 Route::get('/Invite', 'InviteMemberController@index');
 Route::get('/OpenClass', 'OpenClassController@index');
-Route::get('/SaveStudent', 'InviteMemberController@saveStudent');
+Route::get('/CheckInvitation', 'CheckInvitationController@index');
+Route::post('/SaveStudent', 'InviteMemberController@saveStudent');
 Route::get('ClassBoard', function () {
     return view('ClassBoard');
 });

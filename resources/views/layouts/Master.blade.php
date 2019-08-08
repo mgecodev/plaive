@@ -1,6 +1,24 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
+    <style>
+
+        .status--waiting {
+            color: #fff900;
+        }
+
+        .table-earning thead th {
+            background: #4c5a7d !important;
+            font-size: 16px;
+            color: #fff;
+            vertical-align: middle;
+            font-weight: 400;
+            text-transform: capitalize;
+            line-height: 1;
+            padding: 22px 40px;
+            white-space: nowrap;
+        }
+    </style>
     <!-- Basic -->
     <meta charset="utf-8">
 
@@ -49,6 +67,7 @@
     <link href="css/theme.css" rel="stylesheet" media="all">
     <!-- Modernizer for Portfolio -->
     <script src="js/modernizer.js"></script>
+    <script src="vendor/bootstrap-4.1/popper.min.js"></script>
 
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -92,8 +111,9 @@
     <!-- ALL JS FILES -->
     <script src="js/all.js"></script>
     <!-- ALL PLUGINS -->
+
     <script src="js/custom.js"></script>
-	<script src="js/timeline.min.js"></script>
+    <script src="js/timeline.min.js"></script>
 	<script>
 		timeline(document.querySelectorAll('.timeline'), {
 			forceVerticalMode: 700,
@@ -140,14 +160,19 @@
             });
 
             $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
                 type : 'POST',
                 url : '/SaveStudent',
                 data : {
-                    "StudentIds" : student_ids
+                    "student_ids" : student_ids
                 },
                 success : function(data) {
                     
-                    alert(data)
+                    $('#overviews').html(data)
+                    $('#title_for_invitation').html(student_ids.length + " 명의 학생이 선택되었습니다.");
+                    $("#submit").val("되돌리기");
                    
                 },
                 error: function(request, status, error) {
