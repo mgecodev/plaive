@@ -26,8 +26,7 @@ $(document).ready( function () {
                                 <th class="text-center" >#</th>
                                 <th class="text-center">이름</th>
                                 @if((new \Jenssegers\Agent\Agent())->isPhone())
-                                <th class="text-center" style="white-space:nowrap;">수정/삭제</th>
-                                <th class="text-center" style="white-space:nowrap;">기타</th>
+                                <th class="text-center" style="white-space:nowrap;">Action</th>
                                 @else
                                 <th class="text-center" style="white-space:nowrap;">생성일</th>
                                 <th class="text-center" style="white-space:nowrap;">Action</th>
@@ -40,19 +39,14 @@ $(document).ready( function () {
                             <td style="vertical-align: middle;">{{$channel->ChannelName}}</td>
                             @if((new \Jenssegers\Agent\Agent())->isPhone())
                             <td style="vertical-align: middle;"> 
-                                    <button class="btn btn-primary" data-info="">
-                                        <i class="fa fa-edit fa-lg" aria-hidden="true"></i>
-                                    </button>&nbsp;
-                                    <button class="delete-modal btn btn-danger" data-info="">
-                                        <i class="fa fa-trash fa-lg" aria-hidden="true"></i>
-                                    </button>
-                            </td>
-                            <td>
+                                <button class="btn btn-primary" data-info="">
+                                    <i class="fa fa-edit fa-lg" aria-hidden="true"></i>
+                                </button>&nbsp;
+                                <button class="delete-modal btn btn-danger" data-info="">
+                                    <i class="fa fa-trash fa-lg" aria-hidden="true"></i>
+                                </button>
                                 <button class="delete-modal btn btn-info" data-info="">
                                     <i class="fa fa-info fa-lg" aria-hidden="true"></i>
-                                </button>&nbsp;
-                                <button class="delete-modal btn btn-info" data-info="">
-                                    <i class="fa fa-download fa-lg" aria-hidden="true"></i>
                                 </button>
                             </td>
                             @else
@@ -93,10 +87,12 @@ $(document).ready( function () {
                             <i class="fa fa-info" aria-hidden="true"></i>
                     </li>
                     채널 ApiKey와 대략적인 데이터 넣는 법을 알려주는 아이콘
+                    @if(!(new \Jenssegers\Agent\Agent())->isPhone())
                     <li style="font-size:25px;">
                             <i class="fa fa-download" aria-hidden="true"></i>
                     </li>
                     채널에 대한 데이터를 다운 받는 아이콘
+                    @endif
                 </ul>
             </div>
         </div>
