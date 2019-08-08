@@ -4,6 +4,7 @@
 namespace App\Http\Controllers;
 
 use App;
+use App\Account;
 use App\AccountType;
 use App\Course;
 use Illuminate\Http\Request;
@@ -30,10 +31,11 @@ class CourseController extends Controller
     {
         $user = Auth::user();
 
-        $name = $user->Name;
+        $name = $user->name;
         $id = $user->id;
 
-        $type = AccountType::where('AccountTypeId', '=', $id)->first()->Type;
+        $account_type_id = Account::where('id', $id)->first()->AccountTypeId;
+        $type = AccountType::where('AccountTypeId', '=', $account_type_id)->first()->Type;
 
         $courses_info = $this->showCourseInfo();
         // dd($courses_info);
