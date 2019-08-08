@@ -18,6 +18,11 @@
             padding: 22px 40px;
             white-space: nowrap;
         }
+
+        .close{
+            padding:1rem;
+            margin:0rem 0rem 0rem auto !important;
+        }
     </style>
     <!-- Basic -->
     <meta charset="utf-8">
