@@ -25,19 +25,38 @@ $(document).ready( function () {
                             <tr>
                                 <th class="text-center" >#</th>
                                 <th class="text-center">이름</th>
-                                @if((new \Jenssegers\Agent\Agent())->isDesktop())
+                                @if((new \Jenssegers\Agent\Agent())->isPhone())
+                                <th class="text-center" style="white-space:nowrap;">수정/삭제</th>
+                                <th class="text-center" style="white-space:nowrap;">기타</th>
+                                @else
                                 <th class="text-center" style="white-space:nowrap;">생성일</th>
-                                @endif
                                 <th class="text-center" style="white-space:nowrap;">Action</th>
+                                @endif
                             </tr>
                         </thead>
                         @foreach($channels as $channel)
                         <tr class="item{{$channel->ChannelId}}">
                             <td style="vertical-align: middle;">{{$channel->ChannelId}}</td>
                             <td style="vertical-align: middle;">{{$channel->ChannelName}}</td>
-                            @if((new \Jenssegers\Agent\Agent())->isDesktop())
+                            @if((new \Jenssegers\Agent\Agent())->isPhone())
+                            <td style="vertical-align: middle;"> 
+                                    <button class="btn btn-primary" data-info="">
+                                        <i class="fa fa-edit fa-lg" aria-hidden="true"></i>
+                                    </button>&nbsp;
+                                    <button class="delete-modal btn btn-danger" data-info="">
+                                        <i class="fa fa-trash fa-lg" aria-hidden="true"></i>
+                                    </button>
+                            </td>
+                            <td>
+                                <button class="delete-modal btn btn-info" data-info="">
+                                    <i class="fa fa-info fa-lg" aria-hidden="true"></i>
+                                </button>&nbsp;
+                                <button class="delete-modal btn btn-info" data-info="">
+                                    <i class="fa fa-download fa-lg" aria-hidden="true"></i>
+                                </button>
+                            </td>
+                            @else
                             <td style="vertical-align: middle;">{{$channel->InsertDatetime}}</td>
-                            @endif
                             <td style="vertical-align: middle;"> 
                                 <button class="btn btn-primary" data-info="">
                                     <i class="fa fa-edit fa-lg" aria-hidden="true"></i>
@@ -52,6 +71,8 @@ $(document).ready( function () {
                                     <i class="fa fa-download fa-lg" aria-hidden="true"></i>
                                 </button>
                             </td>
+                            @endif
+
                         </tr>
                         @endforeach
                     </table>
