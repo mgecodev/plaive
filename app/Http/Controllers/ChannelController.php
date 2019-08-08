@@ -32,7 +32,9 @@ class ChannelController extends Controller
         $name = $user->Name;
         $id = $user->id;
 
-        $type = AccountType::where('AccountTypeId', '=', $id)->first()->Type;
+        $account_type_id = Account::where('id', $id)->first()->AccountTypeId;
+        $type = AccountType::where('AccountTypeId', '=', $account_type_id)->first()->Type;
+
         $channels = Account::find($id)->channels;
 
         //return $channels;
