@@ -1,6 +1,29 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
+    <style>
+
+        .status--waiting {
+            color: #fff900;
+        }
+
+        .table-earning thead th {
+            background: #4c5a7d !important;
+            font-size: 16px;
+            color: #fff;
+            vertical-align: middle;
+            font-weight: 400;
+            text-transform: capitalize;
+            line-height: 1;
+            padding: 22px 40px;
+            white-space: nowrap;
+        }
+
+        .close{
+            padding:1rem;
+            margin:0rem 0rem 0rem auto !important;
+        }
+    </style>
     <!-- Basic -->
     <meta charset="utf-8">
 
@@ -31,10 +54,26 @@
     <link rel="stylesheet" href="css/responsive.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/custom.css">
-    <!-- Font Awesome Css -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+    <link href="css/font-face.css" rel="stylesheet" media="all">
+    <link href="vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <link href="vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
+    <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+
+    <link href="vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
+
+    <link href="vendor/animsition/animsition.min.css" rel="stylesheet" media="all">
+    <link href="vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">
+    <link href="vendor/wow/animate.css" rel="stylesheet" media="all">
+    <link href="vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
+    <link href="vendor/slick/slick.css" rel="stylesheet" media="all">
+    <link href="vendor/select2/select2.min.css" rel="stylesheet" media="all">
+    <link href="vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
+
+    <link href="css/theme.css" rel="stylesheet" media="all">
     <!-- Modernizer for Portfolio -->
     <script src="js/modernizer.js"></script>
+    <script src="vendor/bootstrap-4.1/popper.min.js"></script>
 
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -80,8 +119,9 @@
     <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 
     <!-- ALL PLUGINS -->
+
     <script src="js/custom.js"></script>
-	<script src="js/timeline.min.js"></script>
+    <script src="js/timeline.min.js"></script>
 	<script>
 		timeline(document.querySelectorAll('.timeline'), {
 			forceVerticalMode: 700,
@@ -121,6 +161,39 @@
         $(document).ready( function () {
             $('#table').DataTable();
         });
+
+        $('#submit').click(function (e) {
+                        
+            var student_ids = [];
+            
+            $(':checkbox:checked').each(function(i){
+                student_ids[i] = $(this).val();
+            });
+
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type : 'POST',
+                url : '/SaveStudent',
+                data : {
+                    "student_ids" : student_ids
+                },
+                success : function(data) {
+                    
+                    $('#overviews').html(data)
+                    $('#title_for_invitation').html(student_ids.length + " 명의 학생이 선택되었습니다.");
+                    $("#submit").val("되돌리기");
+                   
+                },
+                error: function(request, status, error) {
+                    // 에러 출력을 활성화 하려면 아래 주석을 해제한다. 
+
+                    //console.log(request + "/" + status + "/" + error);
+                }
+            }) // End Ajax Request
+        });
+
     </script>
 
 </body>

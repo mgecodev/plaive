@@ -24,6 +24,7 @@ class CreateInvitationsTable extends Migration
                 $table->Integer('InviteeId');
                 $table->Integer('ClassId');
                 $table->Integer('Accepted');
+                $table->timestamps();
             });
         }
 
@@ -31,9 +32,10 @@ class CreateInvitationsTable extends Migration
         else {
 
             // 1. Update column attributes
-//            Schema::table($this->tableName, function (Blueprint $table) {
-//                $table->Integer('AccountTypeId')->change();
-//            });
+        //    Schema::table($this->tableName, function (Blueprint $table) {
+        //        $table->Integer('AccountTypeId')->change();
+        //        $table->timestamps();
+        //    });
 
             // 2. Rename column
 //            Schema::table($this->tableName, function (Blueprint $table) {

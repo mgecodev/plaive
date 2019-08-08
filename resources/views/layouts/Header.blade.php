@@ -15,7 +15,7 @@ if($route_name == '/' || $route_name == '/home') {
 <header class="top-navbar">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-            <a class="navbar-brand" href="{{ asset('') }}">
+            <a class="navbar-brand" href="{{ asset('/home') }}">
                 <img src="{{ asset('images/logo.png') }}" alt="" />
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars-host" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
@@ -42,6 +42,7 @@ if($route_name == '/' || $route_name == '/home') {
                             <div class="dropdown-menu" aria-labelledby="dropdown-a">
                                 <a class="dropdown-item" href="{{ asset('/ManageClass') }}">수업 입장</a>
                                 <a class="dropdown-item" href="{{ asset('/OpenClass') }}">나의 강좌</a>
+                                <a class="dropdown-item" href="{{ asset('/CheckInvitation') }}">초대 확인하기</a>
                                 <a class="dropdown-item" href="{{ asset('/ClassBoard') }}">게시판</a>
                             </div>
                         </li>
