@@ -41,9 +41,9 @@ class CreateAccountsTable extends Migration
 //            });
 
             // 2. Rename column
-//            Schema::table($this->tableName, function (Blueprint $table) {
-//                $table->renameColumn('DeleteFlag', 'Active');
-//            });
+        //    Schema::table($this->tableName, function (Blueprint $table) {
+        //        $table->renameColumn('Name', 'name');
+        //    });
 
             // 3. Add column
 //            Schema::table($this->tableName, function (Blueprint $table) {
