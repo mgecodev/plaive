@@ -45,7 +45,13 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+    <!--link rel="stylesheet" href="https://s3.ap-northeast-2.amazonaws.com/s3.finedust.10make.com/framework/bootstrap-4.2.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css"-->
+    <link rel="stylesheet" type="text/css" href="https://s3.ap-northeast-2.amazonaws.com/s3.finedust.10make.com/css/datatable/jquery.dataTables.css">
+	<link rel="stylesheet" type="text/css" href="https://s3.ap-northeast-2.amazonaws.com/s3.finedust.10make.com/css/datatable/dataTables.bootstrap4.css">
+	<link rel="stylesheet" type="text/css" href="https://s3.ap-northeast-2.amazonaws.com/s3.finedust.10make.com/css/datatable/responsive.dataTables.css">
+
     <!-- Site CSS -->
     <link rel="stylesheet" href="css/style.css">
     <!-- ALL VERSION CSS -->
@@ -54,6 +60,21 @@
     <link rel="stylesheet" href="css/responsive.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/custom.css">
+<<<<<<< HEAD
+=======
+
+    <link href="css/font-face.css" rel="stylesheet" media="all">
+    <link href="vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+
+    <link href="vendor/animsition/animsition.min.css" rel="stylesheet" media="all">
+    <link href="vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">
+    <link href="vendor/wow/animate.css" rel="stylesheet" media="all">
+    <link href="vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
+    <link href="vendor/slick/slick.css" rel="stylesheet" media="all">
+    <link href="vendor/select2/select2.min.css" rel="stylesheet" media="all">
+    <link href="vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
+>>>>>>> 4d251c05a6e28237d02c4738bdfdde7b2a6cf205
     <!-- Modernizer for Portfolio -->
     <script src="js/modernizer.js"></script>
 
@@ -82,7 +103,11 @@
 	<!-- Start header -->
 	@include('layouts.Header')
 	<!-- End header -->
-
+    <div class="all-title-box">
+        <div class="container text-center">
+            @yield('page_title')
+        </div>
+    </div>
 	<!-- Start content -->
     @yield('content')
 	<!-- End content -->
@@ -99,12 +124,17 @@
 
     <!-- ALL JS FILES -->
     <script src="js/all.js"></script>
-    <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-
+    <!--script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script-->
+    <script src="https://s3.ap-northeast-2.amazonaws.com/s3.finedust.10make.com/js/datatable/jquery.dataTables.min.js"></script>
+	<script src="https://s3.ap-northeast-2.amazonaws.com/s3.finedust.10make.com/js/datatable/dataTables.bootstrap4.js"></script>
+	<script src="https://s3.ap-northeast-2.amazonaws.com/s3.finedust.10make.com/js/datatable/dataTables.responsive.js"></script>
+	<script src="https://s3.ap-northeast-2.amazonaws.com/s3.finedust.10make.com/js/datatable/responsive.bootstrap4.js"></script>
     <!-- ALL PLUGINS -->
 
     <script src="js/custom.js"></script>
     <script src="js/timeline.min.js"></script>
+    @yield('javascript')
 	<script>
 		timeline(document.querySelectorAll('.timeline'), {
 			forceVerticalMode: 700,
@@ -140,9 +170,6 @@
                 }
             });// end ajax
             return false;
-        });
-        $(document).ready( function () {
-            $('#table').DataTable();
         });
 
         $('#submit').click(function (e) {

@@ -25,7 +25,8 @@ class ChannelController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index() {
+    public function index() 
+    {
 
         $user = Auth::user();
 
@@ -39,5 +40,22 @@ class ChannelController extends Controller
 
         //return $channels;
         return view('Channels.index',compact('channels'))->with('name', $name)->with('type', $type);
+    }
+
+    public function createIndex() 
+    {
+
+        $user = Auth::user();
+
+        $name = $user->name;
+        $id = $user->id;
+
+        $account_type_id = Account::where('id', $id)->first()->AccountTypeId;
+        $type = AccountType::where('AccountTypeId', '=', $account_type_id)->first()->Type;
+
+        $channels = Account::find($id)->channels;
+
+        //return $channels;
+        return view('Channels.createIndex',compact('channels'))->with('name', $name)->with('type', $type);
     }
 }
