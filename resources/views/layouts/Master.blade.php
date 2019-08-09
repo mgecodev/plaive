@@ -100,7 +100,11 @@
 	<!-- Start header -->
 	@include('layouts.Header')
 	<!-- End header -->
-
+    <div class="all-title-box">
+        <div class="container text-center">
+            @yield('page_title')
+        </div>
+    </div>
 	<!-- Start content -->
     @yield('content')
 	<!-- End content -->

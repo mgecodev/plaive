@@ -40,14 +40,14 @@ $(document).ready( function () {
 });
 </script>
 @endsection
+@section("page_title")
+<h1>채널 리스트<span class="m_1">Lorem Ipsum dolroin gravida nibh vel velit.</span></h1>
+@endsection
 @section('content')
 <div id="overviews" class="section wb">
     <div class="container">
         <div class="row"> 
             <div class="col-lg-9 blog-post-single">
-                <center>
-                    <h1>내 채널 리스트</h1>
-                </center>
                 <div style="height:10px;"></div>
                 <div class="table-responsive text-center">
                 <table class="table table-bordered stripe hover nowrap" id="table" style="width:100%;">
@@ -55,12 +55,12 @@ $(document).ready( function () {
                             <tr>
                                 @if((new \Jenssegers\Agent\Agent())->isPhone())
                                 <th class="text-center">이름</th>
-                                <th class="text-center datatable-nosort" style="white-space:nowrap;">Action</th>
+                                <th class="text-center datatable-nosort datatable-nosearch" style="white-space:nowrap;">Action</th>
                                 @else
                                 <th class="text-center" >#</th>
                                 <th class="text-center">이름</th>
                                 <th class="text-center datatable-nosearch" style="white-space:nowrap;">생성일</th>
-                                <th class="text-center datatable-nosort" style="white-space:nowrap;">Action</th>
+                                <th class="text-center datatable-nosort datatable-nosearch" style="white-space:nowrap;">Action</th>
                                 @endif
                             </tr>
                         </thead>
