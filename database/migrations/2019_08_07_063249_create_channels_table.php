@@ -21,7 +21,7 @@ class CreateChannelsTable extends Migration
                 $table->string('ApiKey',256);
                 $table->string('TableName',32);
                 $table->string('ChannelName',64);
-                $table->text('ChannelDescription')->nullable();
+                //$table->text('ChannelDescription')->nullable();
                 $table->string('Field1Name',64);
                 $table->string('Field2Name',64)->nullable();
                 $table->string('Field3Name',64)->nullable();
@@ -33,6 +33,10 @@ class CreateChannelsTable extends Migration
                 $table->unsignedSmallInteger('FieldCount');
                 $table->timestamps();
                 $table->boolean('Active')->default(1);
+            });
+        } else {
+            Schema::table($this->tableName, function(Blueprint $table) {
+                $table->dropColumn('ChannelDescription');
             });
         }
     }

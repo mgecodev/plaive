@@ -8,4 +8,5 @@ class Channel extends Model
 {
     //
     protected $table = 'Channels';
+    protected $guarded = [];
 }
