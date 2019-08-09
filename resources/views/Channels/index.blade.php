@@ -6,7 +6,7 @@ $(document).ready( function () {
         "decimal" : "",
         "emptyTable" : "데이터가 없습니다.",
         "info" : "_START_ - _END_ (총 _TOTAL_ 개)",
-        "infoEmpty" : "0명",
+        "infoEmpty" : "0개",
         "infoFiltered" : "(전체 _MAX_ 개 중 검색결과)",
         "infoPostFix" : "",
         "thousands" : ",",
