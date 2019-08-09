@@ -23,36 +23,6 @@
             padding:1rem;
             margin:0rem 0rem 0rem auto !important;
         }
-        .table_search{
-            margin-left: 0.5em;
-            border: 1px solid gray;
-            border-radius: 5px;
-            font-family: inherit;
-            font-size: inherit;
-            font-weight: inherit;
-            box-sizing: border-box;
-            -webkit-writing-mode: horizontal-tb !important;
-            text-rendering: auto;
-            color: initial;
-            letter-spacing: normal;
-            word-spacing: normal;
-            text-transform: none;
-            text-indent: 0px;
-            text-shadow: none;
-            display: inline-block;
-            text-align: start;
-            -webkit-appearance: textfield;
-            background-color: white;
-            -webkit-rtl-ordering: logical;
-            cursor: text;
-            margin: 0em;
-            font: 400 1em system-ui;
-            padding: 1px;
-            border-width: 1px;
-            border-style: inset;
-            border-color: initial;
-            border-image: initial;
-        }
     </style>
     <!-- Basic -->
     <meta charset="utf-8">
@@ -75,7 +45,13 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+    <!--link rel="stylesheet" href="https://s3.ap-northeast-2.amazonaws.com/s3.finedust.10make.com/framework/bootstrap-4.2.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css"-->
+    <link rel="stylesheet" type="text/css" href="https://s3.ap-northeast-2.amazonaws.com/s3.finedust.10make.com/css/datatable/jquery.dataTables.css">
+	<link rel="stylesheet" type="text/css" href="https://s3.ap-northeast-2.amazonaws.com/s3.finedust.10make.com/css/datatable/dataTables.bootstrap4.css">
+	<link rel="stylesheet" type="text/css" href="https://s3.ap-northeast-2.amazonaws.com/s3.finedust.10make.com/css/datatable/responsive.dataTables.css">
+
     <!-- Site CSS -->
     <link rel="stylesheet" href="css/style.css">
     <!-- ALL VERSION CSS -->
@@ -141,7 +117,12 @@
 
     <!-- ALL JS FILES -->
     <script src="js/all.js"></script>
-    <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <!--script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script-->
+    <script src="https://s3.ap-northeast-2.amazonaws.com/s3.finedust.10make.com/js/datatable/jquery.dataTables.min.js"></script>
+	<script src="https://s3.ap-northeast-2.amazonaws.com/s3.finedust.10make.com/js/datatable/dataTables.bootstrap4.js"></script>
+	<script src="https://s3.ap-northeast-2.amazonaws.com/s3.finedust.10make.com/js/datatable/dataTables.responsive.js"></script>
+	<script src="https://s3.ap-northeast-2.amazonaws.com/s3.finedust.10make.com/js/datatable/responsive.bootstrap4.js"></script>
     <!-- ALL PLUGINS -->
 
     <script src="js/custom.js"></script>
