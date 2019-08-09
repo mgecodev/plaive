@@ -52,6 +52,21 @@
 	<link rel="stylesheet" type="text/css" href="https://s3.ap-northeast-2.amazonaws.com/s3.finedust.10make.com/css/datatable/dataTables.bootstrap4.css">
 	<link rel="stylesheet" type="text/css" href="https://s3.ap-northeast-2.amazonaws.com/s3.finedust.10make.com/css/datatable/responsive.dataTables.css">
 
+	<link rel="stylesheet" type="text/css" href="https://s3.ap-northeast-2.amazonaws.com/s3.finedust.10make.com/plaive/src/plugins/malihu-custom-scrollbar-plugin-master/jquery.mCustomScrollbar.css">
+	<link rel="stylesheet" type="text/css" href="https://s3.ap-northeast-2.amazonaws.com/s3.finedust.10make.com/plaive/src/plugins/bootstrap-wysihtml5-master/src/bootstrap-wysihtml5.css">
+    <link rel="stylesheet" type="text/css" href="https://s3.ap-northeast-2.amazonaws.com/s3.finedust.10make.com/plaive/src/plugins/bootstrap-4.0.0/dist/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="https://s3.ap-northeast-2.amazonaws.com/s3.finedust.10make.com/plaive/src/fonts/font-awesome/css/font-awesome.css">
+	<link rel="stylesheet" type="text/css" href="https://s3.ap-northeast-2.amazonaws.com/s3.finedust.10make.com/plaive/src/fonts/foundation-icons/foundation-icons.css">
+	<link rel="stylesheet" type="text/css" href="https://s3.ap-northeast-2.amazonaws.com/s3.finedust.10make.com/plaive/src/fonts/ionicons-master/css/ionicons.css">
+	<link rel="stylesheet" type="text/css" href="https://s3.ap-northeast-2.amazonaws.com/s3.finedust.10make.com/plaive/src/fonts/themify-icons/themify-icons.css">
+	<link rel="stylesheet" type="text/css" href="https://s3.ap-northeast-2.amazonaws.com/s3.finedust.10make.com/plaive/src/plugins/air-datepicker/dist/css/datepicker.css">
+	<link rel="stylesheet" type="text/css" href="https://s3.ap-northeast-2.amazonaws.com/s3.finedust.10make.com/plaive/src/plugins/timedropper/timedropper.css">
+	<link rel="stylesheet" type="text/css" href="https://s3.ap-northeast-2.amazonaws.com/s3.finedust.10make.com/plaive/src/plugins/highlight.js/src/styles/solarized-dark.css">
+	<link rel="stylesheet" type="text/css" href="https://s3.ap-northeast-2.amazonaws.com/s3.finedust.10make.com/plaive/src/plugins/select2/dist/css/select2.css">
+	<link rel="stylesheet" type="text/css" href="https://s3.ap-northeast-2.amazonaws.com/s3.finedust.10make.com/plaive/src/plugins/bootstrap-select/dist/css/bootstrap-select.css">
+	<link rel="stylesheet" type="text/css" href="https://s3.ap-northeast-2.amazonaws.com/s3.finedust.10make.com/plaive/src/styles/style.css">
+	<link rel="stylesheet" type="text/css" href="https://s3.ap-northeast-2.amazonaws.com/s3.finedust.10make.com/plaive/src/styles/media.css">
+
     <!-- Site CSS -->
     <link rel="stylesheet" href="css/style.css">
     <!-- ALL VERSION CSS -->
