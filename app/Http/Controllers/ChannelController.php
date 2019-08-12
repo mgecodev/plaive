@@ -77,8 +77,13 @@ class ChannelController extends Controller
         $month = date('m');
         $table_name = 'SensorData'.$year.$month.'s';
         $nowdate = date('Y-m-d H:i:s');
+<<<<<<< HEAD
     
         $request->merge(['AccountId'=>$id , 'ApiKey' => $api_key , 'TableName' => $table_name,'created_at'=>$nowdate,'updated_at'=>$nowdate]);
+=======
+
+        $request->merge(['AccountId'=>$id, 'ApiKey' => $api_key, 'TableName' => $table_name, 'created_at'=>$nowdate, 'updated_at'=>$nowdate]);
+>>>>>>> c38343b55babd9e63ee731d45ec1a07dd29437bd
         //dd($request->all());
         Channel::create($request->all());
         return redirect('/ManageDevice');

@@ -25,6 +25,7 @@ class CreateCoursesTable extends Migration
                 $table->Text('Prerequisite');
                 $table->Text('Comment');
                 $table->timestamps();
+                $table->integer('CreatedBy');
                 $table->boolean('Active')->default(1);
             });
 
@@ -44,14 +45,17 @@ class CreateCoursesTable extends Migration
 //            });
 
             // 3. Add column
-//            Schema::table($this->tableName, function (Blueprint $table) {
-//                $table->integer('AccountTypeId');
-//                $table->boolean('DeleteFlag')->default(1);
-//            });
+            // Schema::table($this->tableName, function (Blueprint $table) {
+            //     $table->integer('CreatedBy');
+            // });
 
             // 4. Rename table
 //            Schema::rename($this->tableName, 'Accounts');
 
+            // 5. Drop the column
+            // Schema::table($this->tableName, function(Blueprint $table) {
+            //     $table->dropColumn('ChannelDescription');
+            // });
         }
     }
 
@@ -63,6 +67,6 @@ class CreateCoursesTable extends Migration
     public function down()
     {
         //Execute this when you want to drop the table
-        Schema::dropIfExists($this->tableName);
+        // Schema::dropIfExists($this->tableName);
     }
 }
