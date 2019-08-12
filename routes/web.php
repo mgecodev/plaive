@@ -53,11 +53,7 @@ Route::get('ClassBoard', function () {
 Route::get('/ManageDevice', 'ChannelController@index');
 Route::get('/CreateDevice', 'ChannelController@createIndex');
 Route::post('/CreateDevice', 'ChannelController@create');
-<<<<<<< HEAD
 Route::get('/EditDevice/{channel}/edit', 'ChannelController@edit');
 Route::patch('/EditDevice/{channel}', 'ChannelController@update');
 Route::delete('/DeleteDevice/{channel}', 'ChannelController@destroy');
 Route::get('/SaveData','SaveDataController@save');
-=======
-
->>>>>>> c38343b55babd9e63ee731d45ec1a07dd29437bd

@@ -41,8 +41,8 @@
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title" id="myLargeModalLabel">Large modal</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title" id="myLargeModalLabel" style="font-size:1.5rem;line-height:1.5;padding:0px 0px 0px 0px;">Large modal</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" style="margin: -1rem -1rem -1rem auto !important;">×</button>
                 </div>
                 <div class="modal-body" id="modal-content1">
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod

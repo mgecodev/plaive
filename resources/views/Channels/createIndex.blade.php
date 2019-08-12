@@ -191,6 +191,7 @@ function checkField8(){
     }
 }
 function ChannelSubmit() {
+    
     var name = $("#channel-name").val();
     var field1 = $("#field1_name").val();
     var field2 = $("#field2_name").val();
