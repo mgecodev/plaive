@@ -4,11 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Channel extends Model
+class SensorData201908 extends Model
 {
     //
-    public $primaryKey = 'ChannelId';
-    protected $table = 'Channels';
+    protected $table = 'SensorData201908s';
     protected $guarded = [];
-
 }
