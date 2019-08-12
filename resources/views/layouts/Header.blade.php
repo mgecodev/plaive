@@ -32,7 +32,7 @@ if($route_name == '/' || $route_name == '/home') {
                             <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">클래스</a>
                             <div class="dropdown-menu" aria-labelledby="dropdown-a">
                                 <a class="dropdown-item" href="{{ asset('/ManageClass') }}">클래스 관리</a>
-                                <a class="dropdown-item" href="{{ asset('/ManageCurriculum') }}">강좌 관리</a>
+                                <a class="dropdown-item" href="{{ asset('/ManageCourse') }}">강좌 관리</a>
                             </div>
                         </li>
                     @else 

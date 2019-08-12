@@ -36,8 +36,10 @@ Route::get('/class', function () {
 });
 Route::get('/ManageClass', 'CourseController@index');
 
-Route::get('/ManageCurriculum', 'ManageCurriculumController@index');
-
+Route::get('/ManageCourse', 'ManageCourseController@index');
+Route::get('/ManageCourse/ShowAll', 'ManageCourseController@showAll');
+Route::get('/ManageCourse/MyList', 'ManageCourseController@showMyCourse');
+Route::get('/ManageCourse/Enroll', 'ManageCourseController@enroll');
 
 Route::get('/OpenClass/Build', 'OpenClassController@buildClass');
 Route::get('/Invite', 'InviteMemberController@index');

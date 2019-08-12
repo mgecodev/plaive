@@ -206,5 +206,93 @@
 
     </script>
 
+    <script>
+
+        $("#showall").click(function(e) {
+            
+            e.preventDefault();
+            var id = $(this).attr('val');
+            $.ajax({
+                type : 'GET',
+                url : '/ManageCourse/ShowAll',
+                data : {
+                    'user_id' : id
+                },
+                success : function(data) {      
+                    $('#courses').html(data)
+                 },
+                error: function(request, status, error) {
+                    alert("error!");
+                }
+            }) // End Ajax Request
+        });
+
+        $("#mycourse").click(function(e) {
+            
+            e.preventDefault();
+            var id = $(this).attr('val');
+            $.ajax({
+                type : 'GET',
+                url : '/ManageCourse/MyList',
+                data : {
+                    'user_id' : id
+                },
+                success : function(data) {      
+                    $('#courses').html(data);
+                    window.history.pushState({'user_id' : id}, '', '/ManageCourse/MyList/'+id);
+                 },
+                error: function(request, status, error) {
+                    alert("error!");
+                }
+            }) // End Ajax Request
+        });
+        
+        $("#enroll").click(function(e) {
+            
+            e.preventDefault();
+            var id = $(this).attr('val');
+            $.ajax({
+                type : 'GET',
+                url : '/ManageCourse/Enroll',
+                data : {
+                    'user_id' : id
+                },
+                success : function(data) {      
+                    $('#courses').html(data);
+                    window.history.pushState({'user_id' : id}, '', '/ManageCourse/Enroll/'+id);
+                 },
+                error: function(request, status, error) {
+                    alert("error!");
+                }
+            }) // End Ajax Request
+        });
+    // $('#showall').click(function (e) {
+                            
+    //     var id = $(this).getElementById('showall').value();
+    //     var a = document.getElementsByTagName("a");
+
+    //     alert(id);
+    //     alert("hey");
+
+    //     $.ajax({
+
+    //         type : 'GET',
+    //         url : '/ManageCourse/ShowAll',
+    //         data : {},
+    //         success : function(data) {
+                
+    //             $('#overviews').html(data)
+    //             $('#title_for_invitation').html(student_ids.length + " 명의 학생이 선택되었습니다.");
+    //             $("#submit").val("되돌리기");
+    //         },
+    //         error: function(request, status, error) {
+    //             // 에러 출력을 활성화 하려면 아래 주석을 해제한다. 
+
+    //             //console.log(request + "/" + status + "/" + error);
+    //         }
+    //     }) // End Ajax Request
+    // });
+    </script>
+
 </body>
 </html>

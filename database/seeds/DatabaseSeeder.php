@@ -1,6 +1,7 @@
 <?php
 
 use App\AccountType;
+use App\Course;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder

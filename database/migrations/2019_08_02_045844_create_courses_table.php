@@ -19,6 +19,7 @@ class CreateCoursesTable extends Migration
         if (!Schema::hasTable($this->tableName)) {
             Schema::create($this->tableName, function (Blueprint $table) {
                 $table->bigIncrements('CourseId');
+                $table->string('Title', 100);
                 $table->integer('NumOfStudent');
                 $table->integer('HourCount');
                 $table->integer('WeekCount');
@@ -46,7 +47,7 @@ class CreateCoursesTable extends Migration
 
             // 3. Add column
             // Schema::table($this->tableName, function (Blueprint $table) {
-            //     $table->integer('CreatedBy');
+            //     $table->integer('Title');
             // });
 
             // 4. Rename table
@@ -67,6 +68,6 @@ class CreateCoursesTable extends Migration
     public function down()
     {
         //Execute this when you want to drop the table
-        // Schema::dropIfExists($this->tableName);
+        Schema::dropIfExists($this->tableName);
     }
 }
