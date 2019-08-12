@@ -8,22 +8,19 @@ use App\Channel;
 
 class SaveDataController extends Controller
 {
-    //
     public function save(Request $request)
     {
-        //dd($request);
-        //dd($request->api_key);
         try {
             $channel = Channel::where('ApiKey', '=', $request->api_key)->first();
             $table_name = $channel->TableName;
             $channel_id = $channel->ChannelId;
-            //dd($request->all()); 
+
             $nowdate = date('Y-m-d H:i:s');
             $field1 = NULL; 
             $field2 = NULL; 
             $field3 = NULL; 
             $field4 = NULL; 
-            $field5 = NULL; 
+            $field5 = NULL;
             $field6 = NULL; 
             $field7 = NULL; 
             $field8 = NULL; 
@@ -54,13 +51,25 @@ class SaveDataController extends Controller
             }
 
             $table = DB::table($table_name);
-            $table->insert(
+            $insert = $table->insert(
                 ['ChannelId' => $channel_id, 'Field1' => $field1, 'Field2' => $field2, 'Field3' => $field3,
                  'Field4' => $field4 , 'Field5' => $field5, 'Field6' => $field6, 'Field7' => $field7, 'Field8' => $field8,
                  'created_at' => $nowdate, 'updated_at' => $nowdate]
             );
-        } catch(\Exception $e){
 
+            if($insert) {
+                return response()->json([
+                    'error_code' => '0000'
+                ]);
+            } else {
+                return response()->json([
+                    'error_code' => '1000'
+                ]);
+            }
+        } catch(\Exception $e){
+            return response()->json([
+                'error_code' => '2000'
+            ]);
         }
     }
 }
