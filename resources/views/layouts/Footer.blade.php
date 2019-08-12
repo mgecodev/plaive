@@ -70,11 +70,11 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title" id="myLargeModalLabel">Large modal</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title" id="myMediumModalLabel" style="font-size:1.5rem;line-height:1.5;padding:0px 0px 0px 0px;">Large modal</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" style="margin: -1rem -1rem -1rem auto !important;">×</button>
                 </div>
                 <div class="modal-body" id="modal-content2">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                    <p style="color:black;">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                     tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
                     quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
                     consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
@@ -141,13 +141,13 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-body text-center font-18">
-                    <h3 class="mb-20" id="modal-success-title">Form Submitted!</h3>
+                    <h3 class="mb-20" id="modal-success-title" style="font-size:1.75rem;">Form Submitted!</h3>
                     <div class="mb-30 text-center"><img src="https://s3.ap-northeast-2.amazonaws.com/s3.finedust.10make.com/plaive/vendors/images/success.png"></div>
                     <div id="modal-content6">
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p>
                     </div>
                 </div>
-                <div class="modal-footer justify-content-center">
+                <div class="modal-footer justify-content-center" id="modal-success-button">
                     <button type="button" class="btn btn-primary" data-dismiss="modal">Done</button>
                 </div>
             </div>
@@ -158,19 +158,15 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-body text-center font-18">
-                    <h4 class="padding-top-30 mb-30 weight-500" id="confirmation-title">Are you sure you want to continue?</h4>
+                    <h4 class="padding-top-30 mb-30 weight-500" style="font-size:1.5rem;" id="confirmation-title">Are you sure you want to continue?</h4>
                     <div class="padding-bottom-30 row" style="max-width: 170px; margin: 0 auto;">
-                        <div class="col-6">
+                        <div class="col-6" id="confirm-content1">
                             <button type="button" class="btn btn-secondary border-radius-100 btn-block confirmation-btn" data-dismiss="modal"><i class="fa fa-times"></i></button>
-                            <div id=confirm-content1>
                             NO
-                            </div>
                         </div>
-                        <div class="col-6">
+                        <div class="col-6" id="confirm-content2">
                             <button type="button" class="btn btn-primary border-radius-100 btn-block confirmation-btn" data-dismiss="modal"><i class="fa fa-check"></i></button>
-                            <div id=confirm-content2>
-                                YES
-                            </div>
+                            YES
                         </div>
                     </div>
                 </div>

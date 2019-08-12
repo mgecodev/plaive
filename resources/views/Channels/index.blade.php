@@ -38,10 +38,67 @@ $(document).ready( function () {
         language: lang_kor
     });
 });
+function DeleteChannel(_id,_name) {
+    console.log(_id);
+    console.log(_name);
+    $("#confirmation-title").empty();
+    $("#confirm-content1").empty();
+    $("#confirm-content2").empty();
+    $("#confirmation-title").append(_name + ' 을 지우겠습니까?');
+    var content1 = '<button type="button" class="btn btn-secondary border-radius-100 btn-block confirmation-btn" data-dismiss="modal"><i class="fa fa-times"></i></button>';
+    content1 += '아니오';
+    var content2 = '<button type="button" class="btn btn-primary border-radius-100 btn-block confirmation-btn" data-dismiss="modal" onclick="doDelete('+_id+')"><i class="fa fa-check"></i></button>';
+    content2 += '예';
+    $("#confirm-content1").append(content1);
+    $("#confirm-content2").append(content2);
+    $("#confirmation-modal").modal('show');
+}
+function doDelete(_id) {
+    var token = $("meta[name='csrf-token']").attr("content");
+    $.ajax({
+        url: "DeleteDevice/"+_id,
+        type: 'DELETE',
+        data: {
+            "_token": token,
+        },
+        success: function (data){
+            if(data.result=="Success") {
+                //location.reload();
+                $("#modal-success-title").empty();
+                $("#modal-success-title").append('삭제 성공');
+                $("#modal-content6").empty();
+                $("#modal-content6").append('성공적으로 삭제 되었습니다.');
+                $("#modal-success-button").empty();
+                $("#modal-success-button").append(' <button type="button" class="btn btn-primary" onclick="location.reload();" data-dismiss="modal">확인</button>');
+                $("#success-modal").modal('show');
+            }
+        },
+        error: function() {
+            $("#modal-content4").empty();
+            $("#modal-content4").append('<p>삭제 실패 하였습니다.</p>');
+            $("#alert-modal").modal('show');
+        }
+    });
+}
+function ShowApi(_api) {
+    $("#myMediumModalLabel").empty();
+    $("#myMediumModalLabel").append('ApiKey 및 이용안내');
+    $("#modal-content2").empty();
+    var content = '<center>';
+    content += '<p style="color:black;">ApiKey</p>';
+    content += '<p style="color:black;">'+_api+'</p>';
+    content += '<p style="color:black;">이용 예시1(field 하나)</p>';
+    content += '<p style="color:black;">'+_api+'</p>';
+    content += '<p style="color:black;">이용 예시2(field 두개)</p>';
+    content += '<p style="color:black;">'+_api+'</p>';
+    content += '</center>';
+    $("#modal-content2").append(content);
+    $("#Medium-modal").modal('show');
+}
 </script>
 @endsection
 @section("page_title")
-<h1>채널 리스트<span class="m_1">Lorem Ipsum dolroin gravida nibh vel velit.</span></h1>
+<h1>채널 리스트</h1>
 @endsection
 @section('content')
 <div id="overviews" class="section wb">
@@ -76,14 +133,17 @@ $(document).ready( function () {
                                     <div class="dropdown-menu dropdown-menu-right">
                                         <a class="dropdown-item" href="#"><i class="fa fa-eye"></i>&nbsp;&nbsp;ApiKey</a>
                                         <a class="dropdown-item" href="#"><i class="fa fa-download"></i>&nbsp;&nbsp;다운로드</a>
-                                        <a class="dropdown-item" href="#"><i class="fa fa-edit"></i>&nbsp;&nbsp;수정</a>
-                                        <a class="dropdown-item" href="#"><i class="fa fa-trash"></i>&nbsp;&nbsp;삭제</a>
+                                        <?php
+                                            $url = 'EditDevice/'.$channel->ChannelId.'/edit';
+                                        ?>
+                                        <a class="dropdown-item" href="{{ asset($url) }}"><i class="fa fa-edit"></i>&nbsp;&nbsp;수정</a>
+                                        <a class="dropdown-item delete_button" href="javascript:void(0);" onclick="DeleteChannel({{ $channel->ChannelId }},'{{ str_limit($channel->ChannelName,14) }}')"><i class="fa fa-trash"></i>&nbsp;&nbsp;삭제</a>
                                     </div>
                                 </div>
                             </td>
                             @else
                             <td style="vertical-align: middle;">{{ $loop->iteration }}</td>
-                            <td style="vertical-align: middle;">{{ str_limit($channel->ChannelName,30) }}</td>
+                            <td style="vertical-align: middle;">{{ str_limit($channel->ChannelName,24) }}</td>
                             <td style="vertical-align: middle;">{{ $channel->created_at }}</td>
                             <td style="vertical-align: middle;"> 
                                 <div class="dropdown">
@@ -91,10 +151,13 @@ $(document).ready( function () {
                                         <i class="fa fa-ellipsis-h"></i>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right">
-                                        <a class="dropdown-item" href="#"><i class="fa fa-eye"></i>&nbsp;&nbsp;ApiKey</a>
+                                        <a class="dropdown-item" href="javascript:void(0);" onclick="ShowApi('{{ $channel->ApiKey }}');"><i class="fa fa-eye"></i>&nbsp;&nbsp;ApiKey</a>
                                         <a class="dropdown-item" href="#"><i class="fa fa-download"></i>&nbsp;&nbsp;다운로드</a>
-                                        <a class="dropdown-item" href="#"><i class="fa fa-edit"></i>&nbsp;&nbsp;수정</a>
-                                        <a class="dropdown-item" href="#"><i class="fa fa-trash"></i>&nbsp;&nbsp;삭제</a>
+                                        <?php
+                                            $url = 'EditDevice/'.$channel->ChannelId.'/edit';
+                                        ?>
+                                        <a class="dropdown-item" href="{{ asset($url) }}"><i class="fa fa-edit"></i>&nbsp;&nbsp;수정</a>
+                                        <a class="dropdown-item delete_button" href="javascript:void(0);" onclick="DeleteChannel({{ $channel->ChannelId }},'{{ str_limit($channel->ChannelName,24) }}')"><i class="fa fa-trash"></i>&nbsp;&nbsp;삭제</a>
                                     </div>
                                 </div>
                             </td>

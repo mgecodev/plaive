@@ -44,7 +44,7 @@
     <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
     <!--link rel="stylesheet" href="https://s3.ap-northeast-2.amazonaws.com/s3.finedust.10make.com/framework/bootstrap-4.2.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css"-->
@@ -68,15 +68,15 @@
 	<link rel="stylesheet" type="text/css" href="https://s3.ap-northeast-2.amazonaws.com/s3.finedust.10make.com/plaive/src/styles/media.css">
 
     <!-- Site CSS -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="/css/style.css">
     <!-- ALL VERSION CSS -->
-    <link rel="stylesheet" href="css/versions.css">
+    <link rel="stylesheet" href="/css/versions.css">
     <!-- Responsive CSS -->
-    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="/css/responsive.css">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" href="/css/custom.css">
     <!-- Modernizer for Portfolio -->
-    <script src="js/modernizer.js"></script>
+    <script src="/js/modernizer.js"></script>
 
 
     <!--[if lt IE 9]>
@@ -123,7 +123,7 @@
     <a href="#" id="scroll-to-top" class="dmtop global-radius"><i class="fa fa-angle-up"></i></a>
 
     <!-- ALL JS FILES -->
-    <script src="js/all.js"></script>
+    <script src="/js/all.js"></script>
     <!--script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script-->
     <script src="https://s3.ap-northeast-2.amazonaws.com/s3.finedust.10make.com/js/datatable/jquery.dataTables.min.js"></script>
@@ -132,8 +132,8 @@
 	<script src="https://s3.ap-northeast-2.amazonaws.com/s3.finedust.10make.com/js/datatable/responsive.bootstrap4.js"></script>
     <!-- ALL PLUGINS -->
 
-    <script src="js/custom.js"></script>
-    <script src="js/timeline.min.js"></script>
+    <script src="/js/custom.js"></script>
+    <script src="/js/timeline.min.js"></script>
     @yield('javascript')
 	<script>
 		timeline(document.querySelectorAll('.timeline'), {

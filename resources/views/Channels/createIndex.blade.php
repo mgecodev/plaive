@@ -256,7 +256,7 @@ function ChannelSubmit() {
                 <div class="card">
                     <div class="card-body">
                         <div class="card-title">
-                            <h3 class="text-center title-2">Pay Invoice</h3>
+                            <h3 class="text-center title-2">채널 생성</h3>
                         </div>
                         <hr>
                         <form action="/CreateDevice" method="post" novalidate="novalidate" id="DeviceForm">
