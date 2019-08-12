@@ -35,9 +35,9 @@ class CreateChannelsTable extends Migration
                 $table->boolean('Active')->default(1);
             });
         } else {
-            Schema::table($this->tableName, function(Blueprint $table) {
+            /*Schema::table($this->tableName, function(Blueprint $table) {
                 $table->dropColumn('ChannelDescription');
-            });
+            });*/
         }
     }
 
