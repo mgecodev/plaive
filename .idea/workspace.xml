@@ -117,6 +117,11 @@
       <path value="$PROJECT_DIR$/vendor/doctrine/dbal" />
       <path value="$PROJECT_DIR$/vendor/doctrine/event-manager" />
       <path value="$PROJECT_DIR$/vendor/doctrine/cache" />
+      <path value="$PROJECT_DIR$/vendor/laravel/homestead" />
+      <path value="$PROJECT_DIR$/vendor/jaybizzle/crawler-detect" />
+      <path value="$PROJECT_DIR$/vendor/jenssegers/agent" />
+      <path value="$PROJECT_DIR$/vendor/mobiledetect/mobiledetectlib" />
+      <path value="$PROJECT_DIR$/vendor/symfony/yaml" />
     </include_path>
   </component>
   <component name="ProjectId" id="1OdVFJZXJfFWsMtLDc141AAgjiy" />
@@ -202,6 +207,7 @@
       <workItem from="1564533367876" duration="10802000" />
       <workItem from="1564815527872" duration="1024000" />
       <workItem from="1564960809532" duration="17328000" />
+      <workItem from="1565568826332" duration="597000" />
     </task>
     <task id="LOCAL-00001" summary="path manager">
       <created>1564317974013</created>
