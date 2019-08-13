@@ -143,7 +143,10 @@ function ShowApi(_api) {
                             </td>
                             @else
                             <td style="vertical-align: middle;">{{ $loop->iteration }}</td>
-                            <td style="vertical-align: middle;">{{ str_limit($channel->ChannelName,24) }}</td>
+                            <?php
+                                $url = 'ShowData/'.$channel->ChannelId;
+                            ?>
+                            <td style="vertical-align: middle;" onclick="location.href='{{ asset($url) }}'">{{ str_limit($channel->ChannelName,24) }}</td>
                             <td style="vertical-align: middle;">{{ $channel->created_at }}</td>
                             <td style="vertical-align: middle;"> 
                                 <div class="dropdown">
