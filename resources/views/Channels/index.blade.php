@@ -124,6 +124,9 @@ function ShowApi(_api) {
                         @foreach($channels as $channel)
                         <tr class="item{{$channel->ChannelId}}">
                             @if((new \Jenssegers\Agent\Agent())->isPhone())
+                            <?php
+                                $url = 'ShowData/'.$channel->ChannelId;
+                            ?>
                             <td style="vertical-align: middle;" onclick="location.href='{{ asset($url) }}'">{{str_limit($channel->ChannelName,14)}}</td>
                             <td style="vertical-align: middle;"> 
                                 <div class="dropdown">
