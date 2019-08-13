@@ -45,12 +45,12 @@ class ShowDataController extends Controller
            $option[$i]['day'] = null;
            $option[$i]['result'] = null;
            $option[$i]['dynamic'] = "N";
-
         }
         $options = Channel::find($channel_id)->options;
         foreach($options as $opt) {
             if($opt->FieldNumber<$field_count){
                 $option[$opt->FieldNumber-1]['valid'] = "Y";
+                $option[$opt->FieldNumber-1]['Id'] = $opt->OptionId;
                 $option[$opt->FieldNumber-1]["line_type"] = $opt->LineType;
                 $option[$opt->FieldNumber-1]["x_label"] = $opt->Xlabel;
                 $option[$opt->FieldNumber-1]["y_label"] = $opt->Ylabel;

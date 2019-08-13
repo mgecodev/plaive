@@ -83,13 +83,166 @@ t_data.forEach(function(field_data){
 });
 
 function openSetting(_number) {
-    console.log(_number);
+    var c_id = channel['ChannelId'];
     var title = "Field"+_number+'&nbsp;&nbsp셋팅';
     $("#myLargeModalLabel").empty();
     $("#myLargeModalLabel").append(title);
     $("#modal-content1").empty();
-    var content = 
+    var content = '<form action="/SaveOption/'+c_id+'" method="post" novalidate="novalidate" id="OptionForm">';
+    if(option[_number-1]['valid'] == "Y") {
+        var o_id = option[_number-1]['Id'];
+        var content = '<form action="/SaveOption/'+o_id+'" method="post" novalidate="novalidate" id="OptionForm">';
+        content+='<input type="hidden" name="_method" value="PATCH">';
+    } else {
+        var content = '<form action="/SaveOption/'+c_id+'" method="post" novalidate="novalidate" id="OptionForm">';
+    }
+    content += '@csrf';
+    content += '<input type="hidden" name="FieldNumber" value="'+_number+'">';
+    content += '<div class="form-group row">';
+    content += '<label class="col-sm-12 col-md-2 col-form-label" style="color:black;">그래프 유형</label>';
+	content += '<div class="col-sm-12 col-md-10">';
+    content += '<select class="custom-select col-12" id="graph_line" name="LineType">';
+    if(option[_number-1]['line_type'] === undefined || option[_number-1]['line_type'] == null || option[_number-1]['line_type']=='basicline') {
+	    content += '<option value="basicline" selected>Basic Line</option>';
+    } else {
+        content += '<option value="basicline">Basic Line</option>';
+    }
+    if(option[_number-1]['line_type']=='smoothline') {
+	    content += '<option value="smoothline" selected>Smooth Line</option>';
+    } else {
+        content += '<option value="smoothline">Smooth Line</option>';
+    }
+    if(option[_number-1]['line_type']=='arealine') {
+	    content += '<option value="arealine" selected>Area Line</option>';
+    } else {
+        content += '<option value="arealine">Area Line</option>';
+    }
+    if(option[_number-1]['line_type']=='column') {
+	    content += '<option value="column" selected>Column</option>';
+    } else {
+        content += '<option value="column">Column</option>';
+    }
+    content += '</select>';
+    content += '</div>';
+	content += '</div>';
+
+    content += '<div class="form-group row">';
+    content += '<label class="col-sm-12 col-md-2 col-form-label" style="color:black;">X축 이름</label>';
+	content += '<div class="col-sm-12 col-md-10">';
+    if(option[_number-1]['x_label'] === undefined || option[_number-1]['x_label'] == null) {
+        content += '<input class="form-control" type="text" placeholder="X축 이름" name="Xlabel" value="">';
+    } else {
+        content += '<input class="form-control" type="text" placeholder="X축 이름" name="Xlabel" value="'+option[_number-1]['x_label']+'">';
+    }
+	content += '</div>';
+	content += '</div>';
+
+    content += '<div class="form-group row">';
+    content += '<label class="col-sm-12 col-md-2 col-form-label" style="color:black;">Y축 이름</label>';
+	content += '<div class="col-sm-12 col-md-10">';
+    if(option[_number-1]['y_label'] === undefined || option[_number-1]['y_label'] == null) {
+        content += '<input class="form-control" type="text" placeholder="Y축 이름" name="Ylabel" value="">';
+    } else {
+        content += '<input class="form-control" type="text" placeholder="Y축 이름" name="Ylabel" value="'+option[_number-1]['y_label']+'">';
+    }
+	content += '</div>';
+	content += '</div>';
+
+    content += '<div class="form-group row">';
+    content += '<label class="col-sm-12 col-md-2 col-form-label" style="color:black;">그래프 색상</label>';
+	content += '<div class="col-sm-12 col-md-10">';
+    if(option[_number-1]['graph_color'] === undefined || option[_number-1]['graph_color'] == null) {
+        content += '<input class="form-control" type="color" name="GraphColor" value="#0007e3">';
+    } else {
+        content += '<input class="form-control" type="color" name="GraphColor" value="'+option[_number-1]['graph_color']+'">';
+    }
+	content += '</div>';
+	content += '</div>';
+
+    content += '<div class="form-group row">';
+    content += '<label class="col-sm-12 col-md-2 col-form-label" style="color:black;">배경 색상</label>';
+	content += '<div class="col-sm-12 col-md-10">';
+    if(option[_number-1]['back_color'] === undefined || option[_number-1]['back_color'] == null) {
+        content += '<input class="form-control" type="color" name="BackColor" value="#ffffff">';
+    } else {
+        content += '<input class="form-control" type="color" name="BackColor" value="'+option[_number-1]['back_color']+'">';
+    }
+	content += '</div>';
+	content += '</div>';
+
+    content += '<div class="form-group row">';
+    content += '<label class="col-sm-12 col-md-2 col-form-label" style="color:black;">기간</label>';
+	content += '<div class="col-sm-12 col-md-10">';
+    if(option[_number-1]['day'] === undefined || option[_number-1]['day'] == null) {
+        content += '<input class="form-control" type="text" name="Day" placeholder="기간" value="">';
+    } else {
+        content += '<input class="form-control" type="text" name="Day" placeholder="기간" value="'+option[_number-1]['day']+'">';
+    }
+	content += '</div>';
+	content += '</div>';
+
+    content += '<div class="form-group row">';
+    content += '<label class="col-sm-12 col-md-2 col-form-label" style="color:black;">결과 개수</label>';
+	content += '<div class="col-sm-12 col-md-10">';
+    if(option[_number-1]['result'] === undefined || option[_number-1]['result'] == null) {
+        content += '<input class="form-control" type="text" name="Result" placeholder="결과 개수" value="">';
+    } else {
+        content += '<input class="form-control" type="text" name="Result" placeholder="가져올 결과 개수" value="'+option[_number-1]['result']+'">';
+    }
+	content += '</div>';
+	content += '</div>';
+
+    content += '<div class="form-group row">';
+    content += '<label class="col-sm-12 col-md-2 col-form-label" style="color:black;">최소값</label>';
+	content += '<div class="col-sm-12 col-md-10">';
+    if(option[_number-1]['min'] === undefined || option[_number-1]['min'] == null) {
+        content += '<input class="form-control" type="text" name="Min" placeholder="최소값" value="">';
+    } else {
+        content += '<input class="form-control" type="text" name="Min" placeholder="최소값" value="'+option[_number-1]['min']+'">';
+    }
+	content += '</div>';
+	content += '</div>';
+
+    content += '<div class="form-group row">';
+    content += '<label class="col-sm-12 col-md-2 col-form-label" style="color:black;">최대값</label>';
+	content += '<div class="col-sm-12 col-md-10">';
+    if(option[_number-1]['max'] === undefined || option[_number-1]['max'] == null) {
+        content += '<input class="form-control" type="text" name="Max" placeholder="최대값" value="">';
+    } else {
+        content += '<input class="form-control" type="text" name="Max" placeholder="최대값" value="'+option[_number-1]['max']+'">';
+    }
+	content += '</div>';
+	content += '</div>';
+
+    content += '<div class="form-group row">';
+    content += '<label class="col-sm-12 col-md-2 col-form-label" style="color:black;">Dynamic 설정</label>';
+	content += '<div class="col-sm-12 col-md-10">';
+    content += '<select class="custom-select col-12" id="dynamic_setting" name="Dynamic">';
+    if(option[_number-1]['dynamic'] == 'Y') {
+	    content += '<option value="Y" selected>예</option>';
+    } else {
+        content += '<option value="Y">예</option>';
+    }
+    if(option[_number-1]['dynamic'] == 'N') {
+	    content += '<option value="N" selected>아니오</option>';
+    } else {
+        content += '<option value="N">아니오</option>';
+    }
+    content += '</select>';
+    content += '</div>';
+	content += '</div>';
+
+    content += '</form>';
+    $("#modal-content1").append(content);
+    $("#large-modal-button").empty();
+    var button = '<button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>';
+    button +='<button type="button" class="btn btn-primary" onclick="SaveOption()">저장</button>';
+    $("#large-modal-button").append(button);
     $("#bd-example-modal-lg").modal('show');
+}
+function SaveOption() {
+    console.log('save');
+    $("#OptionForm").submit();
 }
 </script>
 @endsection
@@ -123,8 +276,10 @@ function openSetting(_number) {
                     <div class="blog-title" style="text-align: center;">
                         <h2>Field2</h2>
                     </div>
-                    <div class="blog-button">						
-                        <a class="hover-btn-new orange" href="#"><span>설정<span></a>
+                    <div class="blog-button">
+                        <center>
+                            <a class="hover-btn-new orange" href="javascript:void(0);" onclick="openSetting(2);"><span>설정<span></a>
+                        </center>
 					</div>
                 </div>
             </div>
@@ -142,7 +297,9 @@ function openSetting(_number) {
                         <h2>Field3</h2>
                     </div>
                     <div class="blog-button">						
-                        <a class="hover-btn-new orange" href="#"><span>설정<span></a>
+                        <center>
+                            <a class="hover-btn-new orange" href="javascript:void(0);" onclick="openSetting(3);"><span>설정<span></a>
+                        </center>
 					</div>
                 </div>
             </div><!-- end col -->
@@ -155,7 +312,9 @@ function openSetting(_number) {
                         <h2>Field4</h2>
                     </div>
                     <div class="blog-button">						
-                        <a class="hover-btn-new orange" href="#"><span>설정<span></a>
+                        <center>
+                            <a class="hover-btn-new orange" href="javascript:void(0);" onclick="openSetting(4);"><span>설정<span></a>
+                        </center>
 					</div>
                 </div>
             </div>
@@ -173,7 +332,9 @@ function openSetting(_number) {
                         <h2>Field5</h2>
                     </div>
                     <div class="blog-button">						
-                        <a class="hover-btn-new orange" href="#"><span>설정<span></a>
+                        <center>
+                            <a class="hover-btn-new orange" href="javascript:void(0);" onclick="openSetting(5);"><span>설정<span></a>
+                        </center>
 					</div>
                 </div>
             </div><!-- end col -->
@@ -186,7 +347,9 @@ function openSetting(_number) {
                         <h2>Field6</h2>
                     </div>
                     <div class="blog-button">						
-                        <a class="hover-btn-new orange" href="#"><span>설정<span></a>
+                        <center>
+                            <a class="hover-btn-new orange" href="javascript:void(0);" onclick="openSetting(6);"><span>설정<span></a>
+                        </center>
 					</div>
                 </div>
             </div>
@@ -204,7 +367,9 @@ function openSetting(_number) {
                         <h2>Field7</h2>
                     </div>
                     <div class="blog-button">						
-                        <a class="hover-btn-new orange" href="#"><span>설정<span></a>
+                        <center>
+                            <a class="hover-btn-new orange" href="javascript:void(0);" onclick="openSetting(7);"><span>설정<span></a>
+                        </center>
 					</div>
                 </div>
             </div><!-- end col -->
@@ -217,7 +382,9 @@ function openSetting(_number) {
                         <h2>Field8</h2>
                     </div>
                     <div class="blog-button">						
-                        <a class="hover-btn-new orange" href="#"><span>설정<span></a>
+                        <center>
+                            <a class="hover-btn-new orange" href="javascript:void(0);" onclick="openSetting(8);"><span>설정<span></a>
+                        </center>
 					</div>
                 </div>
             </div>
