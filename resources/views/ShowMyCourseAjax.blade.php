@@ -120,7 +120,7 @@ $("#yes").click(function(e) {
     }) // End Ajax Request
 });
 
-function myFunction(_title, _comment, _) {
+function myFunction(_title, _comment, _numofstudent, _weekcount, _hourcount, _prerequisite) {
 
     $("#myLargeModalLabel").empty();
     $("#myLargeModalLabel").append('강좌 정보를 입력해주세요');
