@@ -48,7 +48,7 @@ class ShowDataController extends Controller
         }
         $options = Channel::find($channel_id)->options;
         foreach($options as $opt) {
-            if($opt->FieldNumber<$field_count){
+            if($opt->FieldNumber<=$field_count){
                 $option[$opt->FieldNumber-1]['valid'] = "Y";
                 $option[$opt->FieldNumber-1]['Id'] = $opt->OptionId;
                 $option[$opt->FieldNumber-1]["line_type"] = $opt->LineType;
@@ -66,15 +66,62 @@ class ShowDataController extends Controller
         
         //dd($option);
         if ($field_count >= 1) {
-            $field1_data = DB::table($table_name)
-                        ->select(
-                            DB::raw("created_at as datetime"),
-                            DB::raw("Field1 as field1")
-                        )
-                        ->where('channelId',$channel_id)
-                        ->where('Field1','<>','')
-                        ->orderBy("created_at",'asc')
-                        ->get();
+            if(is_null($option[0]['day']) && is_null($option[0]['result'])) {
+                $field1_data = DB::table($table_name)
+                            ->select(
+                                DB::raw("created_at as datetime"),
+                                DB::raw("Field1 as field1")
+                            )
+                            ->where('channelId',$channel_id)
+                            ->where('Field1','<>','')
+                            ->orderBy("created_at",'desc')
+                            ->limit(100)
+                            ->get();
+
+                $field1_data = $field1_data->reverse()->values();
+            } else if (is_null($option[0]['day']) && !is_null($option[0]['result'])) {
+                $field1_data = DB::table($table_name)
+                            ->select(
+                                DB::raw("created_at as datetime"),
+                                DB::raw("Field1 as field1")
+                            )
+                            ->where('channelId',$channel_id)
+                            ->where('Field1','<>','')
+                            ->orderBy("created_at",'desc')
+                            ->limit($option[0]['result'])
+                            ->get();
+                $field1_data = $field1_data->reverse()->values();
+            } else if (!is_null($option[0]['day']) && is_null($option[0]['result'])) {
+                $today = date('Y-m-d');
+                $user_day = $option[0]['day'];
+                $beforeDay = date("Y-m-d", strtotime($today." -$user_day day"));
+                $field1_data = DB::table($table_name)
+                            ->select(
+                                DB::raw("created_at as datetime"),
+                                DB::raw("Field1 as field1")
+                            )
+                            ->where('channelId',$channel_id)
+                            ->where('Field1','<>','')
+                            ->whereDate('created_at','>=',$beforeDay)
+                            ->orderBy("created_at",'asc')
+                            ->limit(100)
+                            ->get();
+            } else if (!is_null($option[0]['day']) && !is_null($option[0]['result'])) {
+                $today = date('Y-m-d');
+                $user_day = $option[0]['day'];
+                $beforeDay = date("Y-m-d", strtotime($today." -$user_day day"));
+                $field1_data = DB::table($table_name)
+                            ->select(
+                                DB::raw("created_at as datetime"),
+                                DB::raw("Field1 as field1")
+                            )
+                            ->where('channelId',$channel_id)
+                            ->where('Field1','<>','')
+                            ->whereDate('created_at','>=',$beforeDay)
+                            ->orderBy("created_at",'asc')
+                            ->limit($option[0]['result'])
+                            ->get();
+            }
 
             if(count($field1_data) == 0) {
                 $option[0]['field_valid'] = "N"; 
@@ -88,15 +135,61 @@ class ShowDataController extends Controller
             $t_data[0] = $result1;
         }
         if ($field_count >= 2) {
-            $field2_data = DB::table($table_name)
-                        ->select(
-                            DB::raw("created_at as datetime"),
-                            DB::raw("Field2 as field2")
-                        )
-                        ->where('channelId',$channel_id)
-                        ->where('Field2','<>','')
-                        ->orderBy("created_at",'asc')
-                        ->get();
+            if(is_null($option[1]['day']) && is_null($option[1]['result'])) {
+                $field2_data = DB::table($table_name)
+                            ->select(
+                                DB::raw("created_at as datetime"),
+                                DB::raw("Field2 as field2")
+                            )
+                            ->where('channelId',$channel_id)
+                            ->where('Field2','<>','')
+                            ->orderBy("created_at",'desc')
+                            ->limit(100)
+                            ->get();
+                $field2_data = $field2_data->reverse()->values();
+            } else if (is_null($option[1]['day']) && !is_null($option[1]['result'])) {
+                $field2_data = DB::table($table_name)
+                            ->select(
+                                DB::raw("created_at as datetime"),
+                                DB::raw("Field2 as field2")
+                            )
+                            ->where('channelId',$channel_id)
+                            ->where('Field2','<>','')
+                            ->orderBy("created_at",'desc')
+                            ->limit($option[1]['result'])
+                            ->get();
+                $field2_data = $field2_data->reverse()->values();
+            } else if (!is_null($option[1]['day']) && is_null($option[1]['result'])) {
+                $today = date('Y-m-d');
+                $user_day = $option[1]['day'];
+                $beforeDay = date("Y-m-d", strtotime($today." -$user_day day"));
+                $field2_data = DB::table($table_name)
+                            ->select(
+                                DB::raw("created_at as datetime"),
+                                DB::raw("Field2 as field2")
+                            )
+                            ->where('channelId',$channel_id)
+                            ->where('Field2','<>','')
+                            ->whereDate('created_at','>=',$beforeDay)
+                            ->orderBy("created_at",'asc')
+                            ->limit(100)
+                            ->get();
+            } else if (!is_null($option[1]['day']) && !is_null($option[1]['result'])) {
+                $today = date('Y-m-d');
+                $user_day = $option[1]['day'];
+                $beforeDay = date("Y-m-d", strtotime($today." -$user_day day"));
+                $field2_data = DB::table($table_name)
+                            ->select(
+                                DB::raw("created_at as datetime"),
+                                DB::raw("Field2 as field2")
+                            )
+                            ->where('channelId',$channel_id)
+                            ->where('Field2','<>','')
+                            ->whereDate('created_at','>=',$beforeDay)
+                            ->orderBy("created_at",'asc')
+                            ->limit($option[1]['result'])
+                            ->get();
+            }
 
             if(count($field2_data) == 0) {
                 $option[1]['field_valid'] = "N"; 
@@ -111,15 +204,61 @@ class ShowDataController extends Controller
             $t_data[1] = $result2;
         }
         if ($field_count >= 3) {
-            $field3_data = DB::table($table_name)
-                        ->select(
-                            DB::raw("created_at as datetime"),
-                            DB::raw("Field3 as field3")
-                        )
-                        ->where('channelId',$channel_id)
-                        ->where('Field3','<>','')
-                        ->orderBy("created_at",'asc')
-                        ->get();
+            if(is_null($option[2]['day']) && is_null($option[2]['result'])) {
+                $field3_data = DB::table($table_name)
+                            ->select(
+                                DB::raw("created_at as datetime"),
+                                DB::raw("Field3 as field3")
+                            )
+                            ->where('channelId',$channel_id)
+                            ->where('Field3','<>','')
+                            ->orderBy("created_at",'desc')
+                            ->limit(100)
+                            ->get();
+                $field3_data = $field3_data->reverse()->values();
+            } else if (is_null($option[2]['day']) && !is_null($option[2]['result'])) {
+                $field3_data = DB::table($table_name)
+                            ->select(
+                                DB::raw("created_at as datetime"),
+                                DB::raw("Field3 as field3")
+                            )
+                            ->where('channelId',$channel_id)
+                            ->where('Field3','<>','')
+                            ->orderBy("created_at",'desc')
+                            ->limit($option[2]['result'])
+                            ->get();
+                $field3_data = $field3_data->reverse()->values();
+            } else if (!is_null($option[2]['day']) && is_null($option[2]['result'])) {
+                $today = date('Y-m-d');
+                $user_day = $option[2]['day'];
+                $beforeDay = date("Y-m-d", strtotime($today." -$user_day day"));
+                $field3_data = DB::table($table_name)
+                            ->select(
+                                DB::raw("created_at as datetime"),
+                                DB::raw("Field3 as field3")
+                            )
+                            ->where('channelId',$channel_id)
+                            ->where('Field3','<>','')
+                            ->whereDate('created_at','>=',$beforeDay)
+                            ->orderBy("created_at",'asc')
+                            ->limit(100)
+                            ->get();
+            } else if (!is_null($option[2]['day']) && !is_null($option[2]['result'])) {
+                $today = date('Y-m-d');
+                $user_day = $option[2]['day'];
+                $beforeDay = date("Y-m-d", strtotime($today." -$user_day day"));
+                $field3_data = DB::table($table_name)
+                            ->select(
+                                DB::raw("created_at as datetime"),
+                                DB::raw("Field3 as field3")
+                            )
+                            ->where('channelId',$channel_id)
+                            ->where('Field3','<>','')
+                            ->whereDate('created_at','>=',$beforeDay)
+                            ->orderBy("created_at",'asc')
+                            ->limit($option[2]['result'])
+                            ->get();
+            }
 
             if(count($field3_data) == 0) {
                 $option[2]['field_valid'] = "N"; 
@@ -133,15 +272,61 @@ class ShowDataController extends Controller
             $t_data[2] = $result3;
         }
         if ($field_count >= 4) {
-            $field4_data = DB::table($table_name)
-                        ->select(
-                            DB::raw("created_at as datetime"),
-                            DB::raw("Field4 as field4")
-                        )
-                        ->where('channelId',$channel_id)
-                        ->where('Field4','<>','')
-                        ->orderBy("created_at",'asc')
-                        ->get();
+            if(is_null($option[3]['day']) && is_null($option[3]['result'])) {
+                $field4_data = DB::table($table_name)
+                            ->select(
+                                DB::raw("created_at as datetime"),
+                                DB::raw("Field4 as field4")
+                            )
+                            ->where('channelId',$channel_id)
+                            ->where('Field4','<>','')
+                            ->orderBy("created_at",'desc')
+                            ->limit(100)
+                            ->get();
+                $field4_data = $field4_data->reverse()->values();
+            } else if (is_null($option[3]['day']) && !is_null($option[3]['result'])) {
+                $field4_data = DB::table($table_name)
+                            ->select(
+                                DB::raw("created_at as datetime"),
+                                DB::raw("Field4 as field4")
+                            )
+                            ->where('channelId',$channel_id)
+                            ->where('Field4','<>','')
+                            ->orderBy("created_at",'desc')
+                            ->limit($option[3]['result'])
+                            ->get();
+                $field4_data = $field4_data->reverse()->values();
+            } else if (!is_null($option[3]['day']) && is_null($option[3]['result'])) {
+                $today = date('Y-m-d');
+                $user_day = $option[3]['day'];
+                $beforeDay = date("Y-m-d", strtotime($today." -$user_day day"));
+                $field4_data = DB::table($table_name)
+                            ->select(
+                                DB::raw("created_at as datetime"),
+                                DB::raw("Field4 as field4")
+                            )
+                            ->where('channelId',$channel_id)
+                            ->where('Field4','<>','')
+                            ->whereDate('created_at','>=',$beforeDay)
+                            ->orderBy("created_at",'asc')
+                            ->limit(100)
+                            ->get();
+            } else if (!is_null($option[3]['day']) && !is_null($option[3]['result'])) {
+                $today = date('Y-m-d');
+                $user_day = $option[3]['day'];
+                $beforeDay = date("Y-m-d", strtotime($today." -$user_day day"));
+                $field4_data = DB::table($table_name)
+                            ->select(
+                                DB::raw("created_at as datetime"),
+                                DB::raw("Field4 as field4")
+                            )
+                            ->where('channelId',$channel_id)
+                            ->where('Field4','<>','')
+                            ->whereDate('created_at','>=',$beforeDay)
+                            ->orderBy("created_at",'asc')
+                            ->limit($option[3]['result'])
+                            ->get();
+            }
 
             if(count($field4_data) == 0) {
                 $option[3]['field_valid'] = "N"; 
@@ -155,15 +340,61 @@ class ShowDataController extends Controller
             $t_data[3] = $result4;
         }
         if ($field_count >= 5) {
-            $field5_data = DB::table($table_name)
-                        ->select(
-                            DB::raw("created_at as datetime"),
-                            DB::raw("Field5 as field5")
-                        )
-                        ->where('channelId',$channel_id)
-                        ->where('Field5','<>','')
-                        ->orderBy("created_at",'asc')
-                        ->get();
+            if(is_null($option[4]['day']) && is_null($option[4]['result'])) {
+                $field5_data = DB::table($table_name)
+                            ->select(
+                                DB::raw("created_at as datetime"),
+                                DB::raw("Field5 as field5")
+                            )
+                            ->where('channelId',$channel_id)
+                            ->where('Field5','<>','')
+                            ->orderBy("created_at",'desc')
+                            ->limit(100)
+                            ->get();
+                $field5_data = $field5_data->reverse()->values();
+            } else if (is_null($option[4]['day']) && !is_null($option[4]['result'])) {
+                $field5_data = DB::table($table_name)
+                            ->select(
+                                DB::raw("created_at as datetime"),
+                                DB::raw("Field5 as field5")
+                            )
+                            ->where('channelId',$channel_id)
+                            ->where('Field5','<>','')
+                            ->orderBy("created_at",'desc')
+                            ->limit($option[4]['result'])
+                            ->get();
+                $field5_data = $field5_data->reverse()->values();
+            } else if (!is_null($option[4]['day']) && is_null($option[4]['result'])) {
+                $today = date('Y-m-d');
+                $user_day = $option[4]['day'];
+                $beforeDay = date("Y-m-d", strtotime($today." -$user_day day"));
+                $field5_data = DB::table($table_name)
+                            ->select(
+                                DB::raw("created_at as datetime"),
+                                DB::raw("Field5 as field5")
+                            )
+                            ->where('channelId',$channel_id)
+                            ->where('Field5','<>','')
+                            ->whereDate('created_at','>=',$beforeDay)
+                            ->orderBy("created_at",'asc')
+                            ->limit(100)
+                            ->get();
+            } else if (!is_null($option[4]['day']) && !is_null($option[4]['result'])) {
+                $today = date('Y-m-d');
+                $user_day = $option[4]['day'];
+                $beforeDay = date("Y-m-d", strtotime($today." -$user_day day"));
+                $field5_data = DB::table($table_name)
+                            ->select(
+                                DB::raw("created_at as datetime"),
+                                DB::raw("Field5 as field5")
+                            )
+                            ->where('channelId',$channel_id)
+                            ->where('Field5','<>','')
+                            ->whereDate('created_at','>=',$beforeDay)
+                            ->orderBy("created_at",'asc')
+                            ->limit($option[4]['result'])
+                            ->get();
+            }
 
             if(count($field5_data) == 0) {
                 $option[4]['field_valid'] = "N"; 
@@ -177,15 +408,61 @@ class ShowDataController extends Controller
             $t_data[4] = $result5;
         }
         if ($field_count >= 6) {
-            $field6_data = DB::table($table_name)
-                        ->select(
-                            DB::raw("created_at as datetime"),
-                            DB::raw("Field6 as field6")
-                        )
-                        ->where('channelId',$channel_id)
-                        ->where('Field6','<>','')
-                        ->orderBy("created_at",'asc')
-                        ->get();
+            if(is_null($option[5]['day']) && is_null($option[5]['result'])) {
+                $field6_data = DB::table($table_name)
+                            ->select(
+                                DB::raw("created_at as datetime"),
+                                DB::raw("Field6 as field6")
+                            )
+                            ->where('channelId',$channel_id)
+                            ->where('Field6','<>','')
+                            ->orderBy("created_at",'desc')
+                            ->limit(100)
+                            ->get();
+                $field6_data = $field6_data->reverse()->values();
+            } else if (is_null($option[5]['day']) && !is_null($option[5]['result'])) {
+                $field6_data = DB::table($table_name)
+                            ->select(
+                                DB::raw("created_at as datetime"),
+                                DB::raw("Field6 as field6")
+                            )
+                            ->where('channelId',$channel_id)
+                            ->where('Field6','<>','')
+                            ->orderBy("created_at",'desc')
+                            ->limit($option[5]['result'])
+                            ->get();
+                $field6_data = $field6_data->reverse()->values();
+            } else if (!is_null($option[5]['day']) && is_null($option[5]['result'])) {
+                $today = date('Y-m-d');
+                $user_day = $option[5]['day'];
+                $beforeDay = date("Y-m-d", strtotime($today." -$user_day day"));
+                $field6_data = DB::table($table_name)
+                            ->select(
+                                DB::raw("created_at as datetime"),
+                                DB::raw("Field6 as field6")
+                            )
+                            ->where('channelId',$channel_id)
+                            ->where('Field6','<>','')
+                            ->whereDate('created_at','>=',$beforeDay)
+                            ->orderBy("created_at",'asc')
+                            ->limit(100)
+                            ->get();
+            } else if (!is_null($option[5]['day']) && !is_null($option[5]['result'])) {
+                $today = date('Y-m-d');
+                $user_day = $option[5]['day'];
+                $beforeDay = date("Y-m-d", strtotime($today." -$user_day day"));
+                $field6_data = DB::table($table_name)
+                            ->select(
+                                DB::raw("created_at as datetime"),
+                                DB::raw("Field6 as field6")
+                            )
+                            ->where('channelId',$channel_id)
+                            ->where('Field6','<>','')
+                            ->whereDate('created_at','>=',$beforeDay)
+                            ->orderBy("created_at",'asc')
+                            ->limit($option[5]['result'])
+                            ->get();
+            }
 
             if(count($field6_data) == 0) {
                 $option[5]['field_valid'] = "N"; 
@@ -199,15 +476,61 @@ class ShowDataController extends Controller
             $t_data[5] = $result6;
         }
         if ($field_count >= 7) {
-            $field7_data = DB::table($table_name)
-                        ->select(
-                            DB::raw("created_at as datetime"),
-                            DB::raw("Field7 as field7")
-                        )
-                        ->where('channelId',$channel_id)
-                        ->where('Field7','<>','')
-                        ->orderBy("created_at",'asc')
-                        ->get();
+            if(is_null($option[6]['day']) && is_null($option[6]['result'])) {
+                $field7_data = DB::table($table_name)
+                            ->select(
+                                DB::raw("created_at as datetime"),
+                                DB::raw("Field7 as field7")
+                            )
+                            ->where('channelId',$channel_id)
+                            ->where('Field7','<>','')
+                            ->orderBy("created_at",'desc')
+                            ->limit(100)
+                            ->get();
+                $field7_data = $field7_data->reverse()->values();
+            } else if (is_null($option[6]['day']) && !is_null($option[6]['result'])) {
+                $field7_data = DB::table($table_name)
+                            ->select(
+                                DB::raw("created_at as datetime"),
+                                DB::raw("Field7 as field7")
+                            )
+                            ->where('channelId',$channel_id)
+                            ->where('Field7','<>','')
+                            ->orderBy("created_at",'desc')
+                            ->limit($option[6]['result'])
+                            ->get();
+                $field7_data = $field7_data->reverse()->values();
+            } else if (!is_null($option[6]['day']) && is_null($option[6]['result'])) {
+                $today = date('Y-m-d');
+                $user_day = $option[6]['day'];
+                $beforeDay = date("Y-m-d", strtotime($today." -$user_day day"));
+                $field7_data = DB::table($table_name)
+                            ->select(
+                                DB::raw("created_at as datetime"),
+                                DB::raw("Field7 as field7")
+                            )
+                            ->where('channelId',$channel_id)
+                            ->where('Field7','<>','')
+                            ->whereDate('created_at','>=',$beforeDay)
+                            ->orderBy("created_at",'asc')
+                            ->limit(100)
+                            ->get();
+            } else if (!is_null($option[6]['day']) && !is_null($option[6]['result'])) {
+                $today = date('Y-m-d');
+                $user_day = $option[6]['day'];
+                $beforeDay = date("Y-m-d", strtotime($today." -$user_day day"));
+                $field7_data = DB::table($table_name)
+                            ->select(
+                                DB::raw("created_at as datetime"),
+                                DB::raw("Field7 as field7")
+                            )
+                            ->where('channelId',$channel_id)
+                            ->where('Field7','<>','')
+                            ->whereDate('created_at','>=',$beforeDay)
+                            ->orderBy("created_at",'asc')
+                            ->limit($option[6]['result'])
+                            ->get();
+            }
 
             if(count($field7_data) == 0) {
                 $option[6]['field_valid'] = "N"; 
@@ -221,15 +544,61 @@ class ShowDataController extends Controller
             $t_data[6] = $result7;
         }
         if ($field_count >= 8) {
-            $field8_data = DB::table($table_name)
-                        ->select(
-                            DB::raw("created_at as datetime"),
-                            DB::raw("Field8 as field8")
-                        )
-                        ->where('channelId',$channel_id)
-                        ->where('Field8','<>','')
-                        ->orderBy("created_at",'asc')
-                        ->get();
+            if(is_null($option[7]['day']) && is_null($option[7]['result'])) {
+                $field8_data = DB::table($table_name)
+                            ->select(
+                                DB::raw("created_at as datetime"),
+                                DB::raw("Field8 as field8")
+                            )
+                            ->where('channelId',$channel_id)
+                            ->where('Field8','<>','')
+                            ->orderBy("created_at",'desc')
+                            ->limit(100)
+                            ->get();
+                $field8_data = $field8_data->reverse()->values();
+            } else if (is_null($option[7]['day']) && !is_null($option[7]['result'])) {
+                $field8_data = DB::table($table_name)
+                            ->select(
+                                DB::raw("created_at as datetime"),
+                                DB::raw("Field8 as field8")
+                            )
+                            ->where('channelId',$channel_id)
+                            ->where('Field8','<>','')
+                            ->orderBy("created_at",'desc')
+                            ->limit($option[7]['result'])
+                            ->get();
+                $field8_data = $field8_data->reverse()->values();
+            } else if (!is_null($option[7]['day']) && is_null($option[7]['result'])) {
+                $today = date('Y-m-d');
+                $user_day = $option[7]['day'];
+                $beforeDay = date("Y-m-d", strtotime($today." -$user_day day"));
+                $field8_data = DB::table($table_name)
+                            ->select(
+                                DB::raw("created_at as datetime"),
+                                DB::raw("Field8 as field8")
+                            )
+                            ->where('channelId',$channel_id)
+                            ->where('Field8','<>','')
+                            ->whereDate('created_at','>=',$beforeDay)
+                            ->orderBy("created_at",'asc')
+                            ->limit(100)
+                            ->get();
+            } else if (!is_null($option[7]['day']) && !is_null($option[7]['result'])) {
+                $today = date('Y-m-d');
+                $user_day = $option[7]['day'];
+                $beforeDay = date("Y-m-d", strtotime($today." -$user_day day"));
+                $field8_data = DB::table($table_name)
+                            ->select(
+                                DB::raw("created_at as datetime"),
+                                DB::raw("Field8 as field8")
+                            )
+                            ->where('channelId',$channel_id)
+                            ->where('Field8','<>','')
+                            ->whereDate('created_at','>=',$beforeDay)
+                            ->orderBy("created_at",'asc')
+                            ->limit($option[7]['result'])
+                            ->get();
+            }
 
             if(count($field8_data) == 0) {
                 $option[7]['field_valid'] = "N"; 
