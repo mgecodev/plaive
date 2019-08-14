@@ -238,7 +238,7 @@ function openSetting(_number) {
     var button = '<button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>';
     button +='<button type="button" class="btn btn-primary" onclick="SaveOption()">저장</button>';
     $("#large-modal-button").append(button);
-    $("#bd-example-modal-lg").modal('show');
+    $("#Large-modal").modal('show');
 }
 function SaveOption() {
     console.log('save');
