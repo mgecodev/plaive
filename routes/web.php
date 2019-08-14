@@ -57,8 +57,12 @@ Route::post('/CreateDevice', 'ChannelController@create');
 Route::get('/EditDevice/{channel}/edit', 'ChannelController@edit');
 Route::patch('/EditDevice/{channel}', 'ChannelController@update');
 Route::delete('/DeleteDevice/{channel}', 'ChannelController@destroy');
-Route::get('/SaveData','SaveDataController@save');
+Route::post('/SaveData','SaveDataController@save');
+Route::get('/DownloadData/{channel}','ShowDataController@download');
 Route::get('/ShowData/{channel}','ShowDataController@index');
+Route::get('/ShowData/DynamicData/{channel}/{index}','ShowDataController@dynamic');
 Route::post('/SaveOption/{channel}','SaveDataController@saveOption');
 Route::patch('/SaveOption/{graphOption}','SaveDataController@updateOption');
+Route::patch('/ShowData/DeleteData/{channel}/{index}','SaveDataController@deleteData');
+
 

@@ -6,7 +6,6 @@ var t_data = <?php echo $data; ?>;
 var option = <?php echo $option;?>;
 var channel = <?php echo $channel;?>;
 var first_count = 0;
-
 console.log(option);
 console.log(t_data);
 console.log(channel);
@@ -180,7 +179,7 @@ function openSetting(_number) {
     }
 	content += '</div>';
 	content += '</div>';
-
+    
     content += '<div class="form-group row">';
     content += '<label class="col-sm-12 col-md-2 col-form-label" style="color:black;">결과 개수</label>';
 	content += '<div class="col-sm-12 col-md-10">';
@@ -241,8 +240,143 @@ function openSetting(_number) {
     $("#Large-modal").modal('show');
 }
 function SaveOption() {
-    console.log('save');
+    //console.log('save');
     $("#OptionForm").submit();
+}
+
+let dynamic = setInterval(function() {
+    option.forEach(function(opt,index){
+        if(opt['dynamic'] == 'Y' && opt['field_valid'] == 'Y') {
+            DynamicDraw(index);
+        }
+    });
+},60000);
+function DynamicDraw(_index) {
+    //console.log(_index);
+    var token = $("meta[name='csrf-token']").attr("content");
+    $.ajax({
+        url: "DynamicData/"+channel['ChannelId']+"/"+_index,
+        type: 'GET',
+        data: {
+            "_token": token,
+            "option": option[_index],
+        },
+        async: false,
+        success: function (data){
+            //console.log(data);
+            if(data.result == "Y"){
+                option[_index]['last_field'] = data.last;
+                google.charts.load('current', {'packages':['corechart']});
+                google.charts.setOnLoadCallback(drawChart(data));
+                function drawChart(_data) {
+                    var data = google.visualization.arrayToDataTable(_data.data);
+                    var temp_count = _index+1;
+                    var graph_title = 'Field'+temp_count+'Name';
+                    if(option[_index]['valid']=="N") {
+                        var chart_option = {
+                            title: channel[graph_title]
+                        };
+                        var chart = new google.visualization.LineChart(document.getElementById('linechart'+temp_count));
+                        chart.draw(data, chart_option);
+                    } else {
+                        var chart_option = {
+                            interpolateNulls: true,
+                            title: channel[graph_title],
+                            hAxis: {title: option[_index]['x_label']},
+                            vAxis: {title: option[_index]['y_label'],
+                                viewWindow: {
+                                    max:option[_index]['max'],
+                                    min:option[_index]['min']
+                                }
+                            },
+                            colors: [option[_index]['graph_color']],
+                            backgroundColor: option[_index]['back_color']
+                        };
+                        if(option[_index]['line_type'] == "basicline") {
+                            var chart = new google.visualization.LineChart(document.getElementById('linechart'+temp_count));
+                            chart.draw(data, chart_option);
+                        } else if(option[_index]['line_type'] == "smoothline") {
+                            var chart_option = {
+                                interpolateNulls: true,
+                                title: channel[graph_title],
+                                hAxis: {title: option[_index]['x_label']},
+                                vAxis: {title: option[_index]['y_label'],
+                                    viewWindow: {
+                                        max:option[_index]['max'],
+                                        min:option[_index]['min']
+                                    }
+                                },
+                                curveType: 'function',
+                                colors: [option[_index]['graph_color']],
+                                backgroundColor: option[_index]['back_color']
+                            };
+                            var chart = new google.visualization.LineChart(document.getElementById('linechart'+temp_count));
+                            chart.draw(data, chart_option);
+                        } else if(option[_index]['line_type'] == "arealine") {
+                            var chart = new google.visualization.AreaChart(document.getElementById('linechart'+temp_count));
+                            chart.draw(data, chart_option);
+                        } else if(option[_index]['line_type'] == "column") {
+                            var chart = new google.visualization.ColumnChart(document.getElementById('linechart'+temp_count));
+                            chart.draw(data, chart_option);
+                        }
+                    }
+                }   
+            }
+        },
+        error: function() {
+            $("#modal-content4").empty();
+            $("#modal-content4").append('<p>데이터 fetch 실패</p>');
+            $("#alert-modal").modal('show');
+        }
+    });
+}
+function DeleteConfirm(_index) {
+    $("#confirmation-title").empty();
+    $("#confirm-content1").empty();
+    $("#confirm-content2").empty();
+    $("#confirmation-title").append('Field'+_index + ' 의 데이터를 초기화 하시겠습니까?');
+    var content1 = '<button type="button" class="btn btn-secondary border-radius-100 btn-block confirmation-btn" data-dismiss="modal"><i class="fa fa-times"></i></button>';
+    content1 += '아니오';
+    var content2 = '<button type="button" class="btn btn-primary border-radius-100 btn-block confirmation-btn" data-dismiss="modal" onclick="DeleteData('+_index+')"><i class="fa fa-check"></i></button>';
+    content2 += '예';
+    $("#confirm-content1").append(content1);
+    $("#confirm-content2").append(content2);
+    $("#confirmation-modal").modal('show');
+}
+function DeleteData(_index) {
+    var token = $("meta[name='csrf-token']").attr("content");
+    $.ajax({
+        url: "DeleteData/"+channel['ChannelId']+'/'+_index,
+        type: 'PATCH',
+        data: {
+            "_token": token,
+        },
+        success: function (data){
+            console.log(data);
+            if(data.result != 0) {
+                $("#modal-success-title").empty();
+                $("#modal-success-title").append('초기화 성공');
+                $("#modal-content6").empty();
+                $("#modal-content6").append('성공적으로 초기화 되었습니다.');
+                $("#modal-success-button").empty();
+                $("#modal-success-button").append(' <button type="button" class="btn btn-primary" onclick="location.reload();" data-dismiss="modal">확인</button>');
+                $("#success-modal").modal('show');
+            } else {
+                $("#modal-success-title").empty();
+                $("#modal-success-title").append('초기화 성공');
+                $("#modal-content6").empty();
+                $("#modal-content6").append('성공적으로 초기화 되었습니다.');
+                $("#modal-success-button").empty();
+                $("#modal-success-button").append(' <button type="button" class="btn btn-primary" data-dismiss="modal">확인</button>');
+                $("#success-modal").modal('show');
+            }
+        },
+        error: function() {
+            $("#modal-content4").empty();
+            $("#modal-content4").append('<p>초기화 실패 하였습니다.</p>');
+            $("#alert-modal").modal('show');
+        }
+    });
 }
 </script>
 @endsection
@@ -264,6 +398,7 @@ function SaveOption() {
                     <div class="blog-button">
                         <center>
                             <a class="hover-btn-new orange" href="javascript:void(0);" onclick="openSetting(1);"><span>설정<span></a>
+                            <a class="hover-btn-new orange" href="javascript:void(0);" onclick="DeleteConfirm(1);"><span>데이터 초기화<span></a>
                         </center>
 					</div>
                 </div>
@@ -279,7 +414,7 @@ function SaveOption() {
                     <div class="blog-button">
                         <center>
                             <a class="hover-btn-new orange" href="javascript:void(0);" onclick="openSetting(2);"><span>설정<span></a>
-                        </center>
+                            <a class="hover-btn-new orange" href="javascript:void(0);" onclick="DeleteConfirm(2);"><span>데이터 초기화<span></a>                        </center>
 					</div>
                 </div>
             </div>
@@ -299,6 +434,7 @@ function SaveOption() {
                     <div class="blog-button">						
                         <center>
                             <a class="hover-btn-new orange" href="javascript:void(0);" onclick="openSetting(3);"><span>설정<span></a>
+                            <a class="hover-btn-new orange" href="javascript:void(0);" onclick="DeleteConfirm(3);"><span>데이터 초기화<span></a>                        </center>
                         </center>
 					</div>
                 </div>
@@ -314,6 +450,7 @@ function SaveOption() {
                     <div class="blog-button">						
                         <center>
                             <a class="hover-btn-new orange" href="javascript:void(0);" onclick="openSetting(4);"><span>설정<span></a>
+                            <a class="hover-btn-new orange" href="javascript:void(0);" onclick="DeleteConfirm(4);"><span>데이터 초기화<span></a>
                         </center>
 					</div>
                 </div>
@@ -334,6 +471,7 @@ function SaveOption() {
                     <div class="blog-button">						
                         <center>
                             <a class="hover-btn-new orange" href="javascript:void(0);" onclick="openSetting(5);"><span>설정<span></a>
+                            <a class="hover-btn-new orange" href="javascript:void(0);" onclick="DeleteConfirm(5);"><span>데이터 초기화<span></a>
                         </center>
 					</div>
                 </div>
@@ -349,6 +487,7 @@ function SaveOption() {
                     <div class="blog-button">						
                         <center>
                             <a class="hover-btn-new orange" href="javascript:void(0);" onclick="openSetting(6);"><span>설정<span></a>
+                            <a class="hover-btn-new orange" href="javascript:void(0);" onclick="DeleteConfirm(6);"><span>데이터 초기화<span></a>
                         </center>
 					</div>
                 </div>
@@ -369,6 +508,7 @@ function SaveOption() {
                     <div class="blog-button">						
                         <center>
                             <a class="hover-btn-new orange" href="javascript:void(0);" onclick="openSetting(7);"><span>설정<span></a>
+                            <a class="hover-btn-new orange" href="javascript:void(0);" onclick="DeleteConfirm(7);"><span>데이터 초기화<span></a>
                         </center>
 					</div>
                 </div>
@@ -384,6 +524,7 @@ function SaveOption() {
                     <div class="blog-button">						
                         <center>
                             <a class="hover-btn-new orange" href="javascript:void(0);" onclick="openSetting(8);"><span>설정<span></a>
+                            <a class="hover-btn-new orange" href="javascript:void(0);" onclick="DeleteConfirm(8);"><span>데이터 초기화<span></a>
                         </center>
 					</div>
                 </div>

@@ -79,10 +79,23 @@ class SaveDataController extends Controller
         GraphOption::create($request->all());
         return back();
     }
+
     public function updateOption(Request $request, $graph) {
         $nowdate = date('Y-m-d H:i:s');
         $request->merge(['updated_at'=>$nowdate]);
         GraphOption::find($graph)->update($request->all());
         return back();
+    }
+
+    public function deleteData(Request $request, Channel $channel, $index) 
+    {
+        $channel_id = $channel->ChannelId;
+        $table_name = $channel->TableName;
+        $field_name = 'Field'.$index;
+
+        $update = DB::table($table_name)->where('ChannelId',$channel_id)->update([$field_name => NULL]);
+        return response()->json([
+            'result' => $update
+        ]);
     }
 }
