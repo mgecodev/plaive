@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Class;
 use App\Course;
 use App\AccountType;
 use Illuminate\Http\Request;
@@ -36,7 +37,7 @@ class ManageClassController extends Controller
 
         $courses_info = $this->showCourseInfo();
         // dd($courses_info);
-        return view('OpenClass')->with('courses_info', $courses_info)->with('name', $name)->with('type', $type);
+        return view('ManageClass')->with('courses_info', $courses_info)->with('name', $name)->with('type', $type)->with('id', $id);
     }
 
     public function saveCourseInfo() {
@@ -67,5 +68,26 @@ class ManageClassController extends Controller
 
         $course_info = Course::all();
         return $course_info;
+    }
+
+    public function showAllClass($request) {
+        // Input :
+        // Output : 
+        // Description : show all the courses that user have made
+
+        $user_id = $request->user_id;
+
+
+    }
+
+    public function deleteClass() {
+
+
+
+    }
+
+    public function enrollClass() {
+
+        
     }
 }

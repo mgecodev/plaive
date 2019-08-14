@@ -103,12 +103,15 @@
 	<!-- Start header -->
 	@include('layouts.Header')
 	<!-- End header -->
+
+    {{-- this code makes unnecessary part of main page. --}}
     <div class="all-title-box">
         <div class="container text-center">
             @yield('page_title')
         </div>
     </div>
-	<!-- Start content -->
+
+    <!-- Start content -->
     @yield('content')
 	<!-- End content -->
 
@@ -266,32 +269,6 @@
                 }
             }) // End Ajax Request
         });
-    // $('#showall').click(function (e) {
-                            
-    //     var id = $(this).getElementById('showall').value();
-    //     var a = document.getElementsByTagName("a");
-
-    //     alert(id);
-    //     alert("hey");
-
-    //     $.ajax({
-
-    //         type : 'GET',
-    //         url : '/ManageCourse/ShowAll',
-    //         data : {},
-    //         success : function(data) {
-                
-    //             $('#overviews').html(data)
-    //             $('#title_for_invitation').html(student_ids.length + " 명의 학생이 선택되었습니다.");
-    //             $("#submit").val("되돌리기");
-    //         },
-    //         error: function(request, status, error) {
-    //             // 에러 출력을 활성화 하려면 아래 주석을 해제한다. 
-
-    //             //console.log(request + "/" + status + "/" + error);
-    //         }
-    //     }) // End Ajax Request
-    // });
     </script>
 
 </body>

@@ -67,11 +67,10 @@ class InviteMemberController extends Controller
         $name = $user->Name;
         $id = $user->id;
 
-        // dd("ajax error");
         $account_type_id = Account::where('id', $id)->first()->AccountTypeId;
         $type = AccountType::where('AccountTypeId', '=', $account_type_id)->first()->Type;
         $students = Account::wherein('id', $request->student_ids)->get(); // get data from ajax
-        // dd("ajax error");
+        
         foreach($students as $student) {
 
             Invitation::create([

@@ -44,7 +44,7 @@ class ManageCourseController extends Controller
         // Description : show all the list of courses including official and mine
 
         $id = $request->user_id;
-        $courses = Course::where('CreatedBy', 0)->orwhere('CreatedBy', $id)->get();
+        $courses = Course::where('CreatedBy', 0)->orwhere('CreatedBy', $id)->where('Active', 1)->get();
 
         return view('ShowAllCourseAjax')->with('courses', $courses);
     }
@@ -53,7 +53,7 @@ class ManageCourseController extends Controller
 
 
         $id = $request->user_id;
-        $courses = Course::where('CreatedBy', $id)->get();
+        $courses = Course::where('CreatedBy', $id)->where('Active', 1)->get();
 
         return view('ShowMyCourseAjax')->with('courses', $courses);
     }
@@ -64,5 +64,17 @@ class ManageCourseController extends Controller
         $courses = Course::where('CreatedBy', $id)->get();
 
         return view('EnrollCourseAjax')->with('courses', $courses);
+    }
+
+    public function deleteCourse(Request $request) {
+
+        $course_id = $request->course_id;
+        $id = $request->user_id;
+
+        // dd($id);
+        Course::where('CourseId', $course_id)->update(['Active' => 0]);
+        $courses = Course::where('CreatedBy', $id)->where('Active', 1)->get();
+
+        return view('ShowMyCourseAjax')->with('courses', $courses);
     }
 }
