@@ -18,7 +18,6 @@ Route::get('/', function () {
     $id = NULL;
     $type = NULL;
 
-
     return view('index')->with('id', $id)->with('type', $type);
 });
 
@@ -40,12 +39,14 @@ Route::get('/ManageCourse', 'ManageCourseController@index');
 Route::get('/ManageCourse/ShowAll', 'ManageCourseController@showAll');
 Route::get('/ManageCourse/MyList', 'ManageCourseController@showMyCourse');
 Route::get('/ManageCourse/Enroll', 'ManageCourseController@enroll');
+Route::post('/ManageCourse/DeleteCourse', 'ManageCourseController@deleteCourse');
 
 Route::get('/OpenClass/Build', 'OpenClassController@buildClass');
 Route::get('/Invite', 'InviteMemberController@index');
 Route::get('/OpenClass', 'OpenClassController@index');
 Route::get('/CheckInvitation', 'CheckInvitationController@index');
 Route::post('/SaveStudent', 'InviteMemberController@saveStudent');
+
 Route::get('ClassBoard', function () {
     return view('ClassBoard');
 });

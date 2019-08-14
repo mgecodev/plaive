@@ -40,7 +40,7 @@ class CourseController extends Controller
 
         $courses_info = $this->showCourseInfo();
         // dd($courses_info);
-        return view('ManageClass')->with('courses_info', $courses_info)->with('name', $name)->with('type', $type);
+        return view('ManageClass')->with('courses_info', $courses_info)->with('name', $name)->with('type', $type)->with('id', $id);
     }
 
     public function saveCourseInfo() {
@@ -68,8 +68,32 @@ class CourseController extends Controller
     }
 
     public function showCourseInfo() {
+        // Input :
+        // Output :
+        // Description : 
 
-        $course_info = App\Course::all();
+        $course_info = Course::where('Active', 1)->get();
+
         return $course_info;
+    }
+
+    public function showAllCourse($request) {
+        // Input :  
+        // Output : 
+        // Description : show all the courses that user have made
+
+        
+
+    }
+
+    public function deleteCourse() {
+
+
+
+    }
+
+    public function enrollClass() {
+
+
     }
 }
