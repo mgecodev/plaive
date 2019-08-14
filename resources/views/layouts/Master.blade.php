@@ -211,51 +211,8 @@
             }) // End Ajax Request
         });
 
-    </script>
-
-    <script>
-
-        $("#showall").click(function(e) {
-            
-            e.preventDefault();
-            var id = $(this).attr('val');
-            $.ajax({
-                type : 'GET',
-                url : '/ManageCourse/ShowAll',
-                data : {
-                    'user_id' : id
-                },
-                success : function(data) {      
-                    $('#courses').html(data)
-                 },
-                error: function(request, status, error) {
-                    alert("error!");
-                }
-            }) // End Ajax Request
-        });
-
-        $("#mycourse").click(function(e) {
-            
-            e.preventDefault();
-            var id = $(this).attr('val');
-            $.ajax({
-                type : 'GET',
-                url : '/ManageCourse/MyList',
-                data : {
-                    'user_id' : id
-                },
-                success : function(data) {      
-                    $('#courses').html(data);
-                    window.history.pushState({'user_id' : id}, '', '/ManageCourse/MyList/'+id);
-                 },
-                error: function(request, status, error) {
-                    alert("error!");
-                }
-            }) // End Ajax Request
-        });
-        
         $("#enroll").click(function(e) {
-            
+        
             e.preventDefault();
             var id = $(this).attr('val');
             $.ajax({
@@ -266,14 +223,52 @@
                 },
                 success : function(data) {      
                     $('#courses').html(data);
-                    window.history.pushState({'user_id' : id}, '', '/ManageCourse/Enroll/'+id);
-                 },
+                    // window.history.pushState({'user_id' : id}, '', '/ManageCourse/Enroll/'+id);
+                    },
+                error: function(request, status, error) {
+                    alert("error!");
+                }
+            }) // End Ajax Request
+        });
+
+        $("#mycourse").click(function(e) {
+    
+            e.preventDefault();
+            var id = $(this).attr('val');
+            $.ajax({
+                type : 'GET',
+                url : '/ManageCourse/MyList',
+                data : {
+                    '_userid' : id
+                },
+                success : function(data) {      
+                    $('#courses').html(data);
+                    // window.history.pushState({'user_id' : id}, '', '/ManageCourse/MyList/'+id);
+                    },
+                error: function(request, status, error) {
+                    alert("error!");
+                }
+            }) // End Ajax Request
+        });
+
+        $("#showall").click(function(e) {
+        
+            e.preventDefault();
+            var id = $(this).attr('val');
+            $.ajax({
+                type : 'GET',
+                url : '/ManageCourse/ShowAll',
+                data : {
+                    '_userid' : id
+                },
+                success : function(data) {      
+                    $('#courses').html(data)
+                },
                 error: function(request, status, error) {
                     alert("error!");
                 }
             }) // End Ajax Request
         });
     </script>
-
 </body>
 </html>
