@@ -105,11 +105,13 @@
 	<!-- End header -->
 
     {{-- this code makes unnecessary part of main page. --}}
-    <div class="all-title-box">
-        <div class="container text-center">
-            @yield('page_title')
+    @if(Request::path() !== 'home')
+        <div class="all-title-box">
+            <div class="container text-center">
+                @yield('page_title')
+            </div>
         </div>
-    </div>
+    @endif
 
     <!-- Start content -->
     @yield('content')

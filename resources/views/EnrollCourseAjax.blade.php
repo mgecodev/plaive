@@ -39,12 +39,12 @@
 
         $("#modal-content1").append(content);
 
-        $("#large-modal-footer").empty();   
+        $("#large-modal-button").empty();   
        
         var content = '<button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>';
         content += '<button type="button" class="btn btn-primary" id="save">저장</button>';
 
-        $("#large-modal-footer").append(content);
+        $("#large-modal-button").append(content);
         $("#Large-modal").modal('show');
     }
 </script>
