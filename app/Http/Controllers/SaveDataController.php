@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Channel;
+use App\GraphOption;
 
 class SaveDataController extends Controller
 {
@@ -71,5 +72,17 @@ class SaveDataController extends Controller
                 'error_code' => '2000'
             ]);
         }
+    }
+    public function saveOption(Request $request,Channel $channel) {
+        $nowdate = date('Y-m-d H:i:s');
+        $request->merge(['ChannelId' => $channel->ChannelId,'created_at'=>$nowdate,'updated_at'=>$nowdate]);
+        GraphOption::create($request->all());
+        return back();
+    }
+    public function updateOption(Request $request, $graph) {
+        $nowdate = date('Y-m-d H:i:s');
+        $request->merge(['updated_at'=>$nowdate]);
+        GraphOption::find($graph)->update($request->all());
+        return back();
     }
 }

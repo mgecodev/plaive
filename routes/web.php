@@ -58,3 +58,7 @@ Route::get('/EditDevice/{channel}/edit', 'ChannelController@edit');
 Route::patch('/EditDevice/{channel}', 'ChannelController@update');
 Route::delete('/DeleteDevice/{channel}', 'ChannelController@destroy');
 Route::get('/SaveData','SaveDataController@save');
+Route::get('/ShowData/{channel}','ShowDataController@index');
+Route::post('/SaveOption/{channel}','SaveDataController@saveOption');
+Route::patch('/SaveOption/{graphOption}','SaveDataController@updateOption');
+
