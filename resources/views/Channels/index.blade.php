@@ -81,19 +81,51 @@ function doDelete(_id) {
     });
 }
 function ShowApi(_api) {
-    $("#myMediumModalLabel").empty();
-    $("#myMediumModalLabel").append('ApiKey 및 이용안내');
-    $("#modal-content2").empty();
-    var content = '<center>';
-    content += '<p style="color:black;">ApiKey</p>';
-    content += '<p style="color:black;">'+_api+'</p>';
-    content += '<p style="color:black;">이용 예시1(field 하나)</p>';
-    content += '<p style="color:black;">'+_api+'</p>';
-    content += '<p style="color:black;">이용 예시2(field 두개)</p>';
-    content += '<p style="color:black;">'+_api+'</p>';
-    content += '</center>';
-    $("#modal-content2").append(content);
-    $("#Medium-modal").modal('show');
+    $("#myLargeModalLabel").empty();
+    $("#myLargeModalLabel").append('ApiKey 및 이용안내');
+    $("#modal-content1").empty();
+    var field1 = 'POST https://plaive.10make.com/SaveData?api_key='+_api+'&field1={value1}';
+    var field2 = 'POST https://plaive.10make.com/SaveData?api_key='+_api+'&field1={value1}&field2={value2}';
+    var content = '<form>';
+    content += '<div class="form-group">';
+    content += '<label style="color:black;">ApiKey</label>';
+	content += '<div class="input-group mb-3">';
+    content += '<input type="text" id="api_key" class="form-control" value="'+_api+'" readonly>';
+    content += '<div class="input-group-append">';
+    content += '<button class="btn btn-secondary" type="button" onclick="ApiCopy()">복사</button>';
+    content += '</div>';
+    content += '</div>';
+	content += '</div>'; 
+    content += '<div class="form-group">';
+    content += '<label style="color:black;">field 하나 사용</label>';
+    content += '<input class="form-control" type="text" value="'+field1+'" readonly>';
+	content += '</div>';
+    content += '<div class="form-group">';
+    content += '<label style="color:black;">field 두개 사용</label>';
+    content += '<input class="form-control" type="text" value="'+field2+'" readonly>';
+	content += '</div>';
+    content += '<div class="form-group">';
+    content += '<label style="color:black;">ErrorCode 0000</label>';
+    content += '<input class="form-control" type="text" value="데이터가 정상적으로 삽입되었습니다" readonly>';
+	content += '</div>';
+    content += '<div class="form-group">';
+    content += '<label style="color:black;">ErrorCode 1000</label>';
+    content += '<input class="form-control" type="text" value="데이터 삽입 에러. 데이터 필드를 다시 한번 확인해 주세요" readonly>';
+	content += '</div>';
+    content += '<div class="form-group">';
+    content += '<label style="color:black;">ErrorCode 2000</label>';
+    content += '<input class="form-control" type="text" value="Apikey 에러. Apikey를 확인해 주세요" readonly>';
+	content += '</div>';
+    content += '</form>';
+    $("#modal-content1").append(content);
+    $("#large-modal-button").empty();
+    $("#large-modal-button").append('<button type="button" class="btn btn-primary" data-dismiss="modal">확인</button>');
+    $("#Large-modal").modal('show');
+}
+function ApiCopy() {
+    var copyText = document.getElementById("api_key");
+    copyText.select();
+    document.execCommand("copy");
 }
 </script>
 @endsection
@@ -158,7 +190,10 @@ function ShowApi(_api) {
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right">
                                         <a class="dropdown-item" href="javascript:void(0);" onclick="ShowApi('{{ $channel->ApiKey }}');"><i class="fa fa-eye"></i>&nbsp;&nbsp;ApiKey</a>
-                                        <a class="dropdown-item" href="#"><i class="fa fa-download"></i>&nbsp;&nbsp;다운로드</a>
+                                        <?php
+                                            $url = 'DownloadData/'.$channel->ChannelId;
+                                        ?>
+                                        <a class="dropdown-item" href="{{ asset($url) }}"><i class="fa fa-download"></i>&nbsp;&nbsp;다운로드</a>
                                         <?php
                                             $url = 'EditDevice/'.$channel->ChannelId.'/edit';
                                         ?>

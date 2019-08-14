@@ -45,6 +45,7 @@ class ShowDataController extends Controller
            $option[$i]['day'] = null;
            $option[$i]['result'] = null;
            $option[$i]['dynamic'] = "N";
+           $option[$i]['Id'] = 0;
         }
         $options = Channel::find($channel_id)->options;
         foreach($options as $opt) {
@@ -122,11 +123,11 @@ class ShowDataController extends Controller
                             ->limit($option[0]['result'])
                             ->get();
             }
-
             if(count($field1_data) == 0) {
                 $option[0]['field_valid'] = "N"; 
             } else {
-                $option[0]['field_valid'] = "Y"; 
+                $option[0]['field_valid'] = "Y";
+                $option[0]['last_field'] = $field1_data->last()->datetime; 
             }
             $result1[] = ['Date','Field1'];
             foreach ($field1_data as $key => $value) {
@@ -194,7 +195,8 @@ class ShowDataController extends Controller
             if(count($field2_data) == 0) {
                 $option[1]['field_valid'] = "N"; 
             } else {
-                $option[1]['field_valid'] = "Y"; 
+                $option[1]['field_valid'] = "Y";
+                $option[1]['last_field'] = $field2_data->last()->datetime;  
             }
 
             $result2[] = ['Date','Field2'];
@@ -263,7 +265,8 @@ class ShowDataController extends Controller
             if(count($field3_data) == 0) {
                 $option[2]['field_valid'] = "N"; 
             } else {
-                $option[2]['field_valid'] = "Y"; 
+                $option[2]['field_valid'] = "Y";
+                $option[2]['last_field'] = $field3_data->last()->datetime;   
             }
             $result3[] = ['Date','Field3'];
             foreach ($field3_data as $key => $value) {
@@ -331,7 +334,8 @@ class ShowDataController extends Controller
             if(count($field4_data) == 0) {
                 $option[3]['field_valid'] = "N"; 
             } else {
-                $option[3]['field_valid'] = "Y"; 
+                $option[3]['field_valid'] = "Y";
+                $option[3]['last_field'] = $field4_data->last()->datetime;    
             }
             $result4[] = ['Date','Field4'];
             foreach ($field4_data as $key => $value) {
@@ -399,7 +403,8 @@ class ShowDataController extends Controller
             if(count($field5_data) == 0) {
                 $option[4]['field_valid'] = "N"; 
             } else {
-                $option[4]['field_valid'] = "Y"; 
+                $option[4]['field_valid'] = "Y";
+                $option[4]['last_field'] = $field5_data->last()->datetime; 
             }
             $result5[] = ['Date','Field5'];
             foreach ($field5_data as $key => $value) {
@@ -467,7 +472,8 @@ class ShowDataController extends Controller
             if(count($field6_data) == 0) {
                 $option[5]['field_valid'] = "N"; 
             } else {
-                $option[5]['field_valid'] = "Y"; 
+                $option[5]['field_valid'] = "Y";
+                $option[5]['last_field'] = $field6_data->last()->datetime; 
             }
             $result6[] = ['Date','Field6'];
             foreach ($field6_data as $key => $value) {
@@ -535,7 +541,8 @@ class ShowDataController extends Controller
             if(count($field7_data) == 0) {
                 $option[6]['field_valid'] = "N"; 
             } else {
-                $option[6]['field_valid'] = "Y"; 
+                $option[6]['field_valid'] = "Y";
+                $option[6]['last_field'] = $field7_data->last()->datetime; 
             }
             $result7[] = ['Date','Field7'];
             foreach ($field7_data as $key => $value) {
@@ -599,11 +606,11 @@ class ShowDataController extends Controller
                             ->limit($option[7]['result'])
                             ->get();
             }
-
             if(count($field8_data) == 0) {
                 $option[7]['field_valid'] = "N"; 
             } else {
-                $option[7]['field_valid'] = "Y"; 
+                $option[7]['field_valid'] = "Y";
+                $option[7]['last_field'] = $field8_data->last()->datetime; 
             }
             $result8[] = ['Date','Field8'];
             foreach ($field8_data as $key => $value) {
@@ -617,4 +624,97 @@ class ShowDataController extends Controller
         //return $channels;
         return view('ShowData',compact('channel'))->with('option', json_encode($option))->with('data', json_encode($t_data))->with('name', $name)->with('type', $type);
     }
+    public function dynamic(Request $request, Channel $channel, $index) 
+    {
+        $channel_id = $channel->ChannelId;
+        $field_count = $channel->FieldCount;
+        $table_name = $channel->TableName;
+
+        $option = $request->option;
+        $r_index = $index + 1;
+        $field_name = "Field".$r_index;
+        $as_name = "field".$r_index;
+
+        if(is_null($option['day']) && is_null($option['result'])) {
+            $field_data = DB::table($table_name)
+                        ->select(
+                            DB::raw("created_at as datetime"),
+                            DB::raw($field_name.' as '.$as_name)
+                        )
+                        ->where('channelId',$channel_id)
+                        ->where($field_name,'<>','')
+                        ->orderBy("created_at",'desc')
+                        ->limit(100)
+                        ->get();
+            $field_data = $field_data->reverse()->values();
+        } else if (is_null($option['day']) && !is_null($option['result'])) {
+            $field_data = DB::table($table_name)
+                        ->select(
+                            DB::raw("created_at as datetime"),
+                            DB::raw($field_name.' as '.$as_name)
+                        )
+                        ->where('channelId',$channel_id)
+                        ->where($field_name,'<>','')
+                        ->orderBy("created_at",'desc')
+                        ->limit($option['result'])
+                        ->get();
+            $field_data = $field_data->reverse()->values();
+        } else if (!is_null($option['day']) && is_null($option['result'])) {
+            $today = date('Y-m-d');
+            $user_day = $option['day'];
+            $beforeDay = date("Y-m-d", strtotime($today." -$user_day day"));
+            $field_data = DB::table($table_name)
+                        ->select(
+                            DB::raw("created_at as datetime"),
+                            DB::raw($field_name.' as '.$as_name)
+                        )
+                        ->where('channelId',$channel_id)
+                        ->where($field_name,'<>','')
+                        ->whereDate('created_at','>=',$beforeDay)
+                        ->orderBy("created_at",'asc')
+                        ->limit(100)
+                        ->get();
+        } else if (!is_null($option['day']) && !is_null($option['result'])) {
+            $today = date('Y-m-d');
+            $user_day = $option['day'];
+            $beforeDay = date("Y-m-d", strtotime($today." -$user_day day"));
+            $field_data = DB::table($table_name)
+                        ->select(
+                            DB::raw("created_at as datetime"),
+                            DB::raw($field_name.' as '.$as_name)
+                        )
+                        ->where('channelId',$channel_id)
+                        ->where($field_name,'<>','')
+                        ->whereDate('created_at','>=',$beforeDay)
+                        ->orderBy("created_at",'asc')
+                        ->limit($option['result'])
+                        ->get();
+        }
+        if($field_data->last()->datetime != $option['last_field']){
+            $result[] = ['Date',$field_name];
+                foreach ($field_data as $key => $value) {
+                    $result[++$key] = [$value->datetime, (float)$value->$as_name];
+            }
+            return response()->json([
+                'result' => 'Y',
+                'data' => $result,
+                'last' => $field_data->last()->datetime
+            ]);
+        } else {
+            return response()->json([
+                'result' => "N"
+            ]);
+        }
+    }
+    public function download(Request $request, Channel $channel)
+    {
+        $csvExporter = new \Laracsv\Export();
+        $channel_id = $channel->ChannelId;
+        $field_count = $channel->FieldCount;
+        $table_name = $channel->TableName;
+        $channel_name = $channel->ChannelName;
+
+        $data = DB::table($table_name)->where('ChannelId',$channel_id)->orderby('created_at','asc')->get();
+        return $csvExporter->build($data, ['Field1','Field2','Field3','Field4','Field5','Field6','Field7','Field8','created_at'=>'입력 일자'])->download($channel_name.'.csv');
+    } 
 }
