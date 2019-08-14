@@ -39,7 +39,9 @@ Route::get('/ManageCourse', 'ManageCourseController@index');
 Route::get('/ManageCourse/ShowAll', 'ManageCourseController@showAll');
 Route::get('/ManageCourse/MyList', 'ManageCourseController@showMyCourse');
 Route::get('/ManageCourse/Enroll', 'ManageCourseController@enroll');
+Route::post('/ManageCourse/EnrollCourse', 'ManageCourseController@enrollCourse');
 Route::post('/ManageCourse/DeleteCourse', 'ManageCourseController@deleteCourse');
+Route::post('/ManageCourse/UpdateCourse', 'ManageCourseController@updateCourse');
 
 Route::get('/OpenClass/Build', 'OpenClassController@buildClass');
 Route::get('/Invite', 'InviteMemberController@index');

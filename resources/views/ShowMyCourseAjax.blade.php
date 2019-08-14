@@ -59,7 +59,7 @@
                             </ul>
                         </div>
                         <div class="big-tagline" style="text-align: center;" >
-                            <a href="javascript:void(0)" class="hover-btn-new" data-toggle="modal" onclick="myFunction('{{ $course->Title }}')"><span>수정</span></a>
+                            <a href="javascript:void(0)" class="hover-btn-new" data-toggle="modal" onclick="myFunction('{{ $course->CreatedBy }}','{{ $course->CourseId }}','{{ $course->Title }}','{{ $course->Comment }}','{{ $course->NumOfStudent }}','{{ $course->HourCount }}','{{ $course->WeekCount }}')"><span>수정</span></a>
                             <a href="#" class="hover-btn-new" data-toggle="modal" data-target="#confirmation-modal"><span>삭제</span></a>
                             <div class="modal fade" id="confirmation-modal" tabindex="-1" role="dialog" style="display: none;" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered" role="document">
@@ -90,7 +90,6 @@
 </div><!-- end section -->
 
 <script>
-
 $("#yes").click(function(e) {
             
     e.preventDefault();
@@ -109,7 +108,7 @@ $("#yes").click(function(e) {
         url : '/ManageCourse/DeleteCourse',
         data : {
             'course_id' : id,
-            'user_id' : user_id
+            '_userid' : user_id
         },
         success : function(data) {      
             $('#courses').html(data)
@@ -120,22 +119,68 @@ $("#yes").click(function(e) {
     }) // End Ajax Request
 });
 
-function myFunction(_title, _comment, _numofstudent, _weekcount, _hourcount, _prerequisite) {
+function myFunction(_createdby, _courseid, _title, _comment, _numofstudent, _weekcount, _hourcount) {
 
     $("#myLargeModalLabel").empty();
-    $("#myLargeModalLabel").append('강좌 정보를 입력해주세요');
+    $("#myLargeModalLabel").append('강좌 정보를 수정해주세요');
     $("#modal-content1").empty();
 
     var content = '<form>';
-    content += '<div class="form-group row"><label class="col-sm-12 col-md-2 col-form-label">Text</label><div class="col-sm-12 col-md-10"><input class="form-control" type="Title" value="'+_title+'"></div></div>';
-    content += '<div class="form-group row"><label class="col-sm-12 col-md-2 col-form-label">Text</label><div class="col-sm-12 col-md-10"><input class="form-control" type="Comment" placeholder="{{ $course->Comment }}"></div></div>';
-    content += '<div class="form-group row"><label class="col-sm-12 col-md-2 col-form-label">Text</label><div class="col-sm-12 col-md-10"><input class="form-control" type="NumOfStudent" placeholder="{{ $course->NumOfStudent }}"></div></div>';
-    content += '<div class="form-group row"><label class="col-sm-12 col-md-2 col-form-label">Text</label><div class="col-sm-12 col-md-10"><input class="form-control" type="Title" placeholder="{{ $course->Title }}"></div></div>';
-
-    content += '<div class="form-group row"><label class="col-sm-12 col-md-2 col-form-label">Select</label><div class="col-sm-12 col-md-10"><select class="custom-select col-12"><option selected="">Choose...</option><option value="1">One</option><option value="2">Two</option><option value="3">Three</option></select></div></div>';
+    content += '<div class="form-group row"><label class="col-sm-12 col-md-2 col-form-label">제목</label><div class="col-sm-12 col-md-10"><input class="form-control" id="title" type="Title" value="'+_title+'"></div></div>';
+    content += '<div class="form-group row"><label class="col-sm-12 col-md-2 col-form-label">코멘트</label><div class="col-sm-12 col-md-10"><input class="form-control" id="comment" type="Comment" value="'+_comment+'"></div></div>';
+    content += '<div class="form-group row"><label class="col-sm-12 col-md-2 col-form-label">학생 수</label><div class="col-sm-12 col-md-10"><input class="form-control" id="numofstudent" type="NumOfStudent" value="'+_numofstudent+'"></div></div>';
+    content += '<div class="form-group row"><label class="col-sm-12 col-md-2 col-form-label">주수</label><div class="col-sm-12 col-md-10"><input class="form-control" id="weekcount" type="Title" value="'+_weekcount+'"></div></div>';
+    content += '<div class="form-group row"><label class="col-sm-12 col-md-2 col-form-label">시수</label><div class="col-sm-12 col-md-10"><input class="form-control" id="hourcount" type="Title" value="'+_hourcount+'"></div></div>';
     content += '</form>';
+
     $("#modal-content1").append(content);
+
+    $("#large-modal-button").empty();   
+       
+    var content = '<button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>';
+    content += '<button type="button" class="btn btn-primary" id="save">저장</button>';
+
+    
+    $("#large-modal-button").append(content);
     $("#Large-modal").modal('show');
+
+    $('#save').click(function (e) {
+
+        var title = document.getElementById("title").value;
+        var comment = document.getElementById("comment").value;
+        var numofstudent = document.getElementById("numofstudent").value;
+        var weekcount = document.getElementById("weekcount").value;
+        var hourcount = document.getElementById("hourcount").value;
+            
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            type : 'POST',
+            url : '/ManageCourse/UpdateCourse',
+            data : {
+                "_userid" : _createdby,
+                "_courseid" : _courseid,
+                "_title" : title,
+                "_comment" : comment,
+                "_numofstudent" : numofstudent,
+                "_weekcount" : weekcount,
+                "_hourcount" : hourcount
+            },
+            success : function(data) {
+                
+                $('#courses').html(data)   
+                $("#Large-modal").modal('hide');
+
+            },
+            error: function(request, status, error) {
+                // 에러 출력을 활성화 하려면 아래 주석을 해제한다. 
+
+                //console.log(request + "/" + status + "/" + error);
+            }
+        }) // End Ajax Request
+    });
 }
+
 
 </script>

@@ -19,7 +19,7 @@ class Course extends Model
 
     protected $fillable = [
         
-        'CourseId', 'NumOfStudent', 'HourCount', 'WeekCount', 'Prerequisite', 'Comment', 'Active', 'CreatedBy'
+        'CourseId', 'Title', 'NumOfStudent', 'HourCount', 'WeekCount', 'Prerequisite', 'Comment', 'Active', 'CreatedBy'
     ];
 
 }
