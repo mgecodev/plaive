@@ -33,7 +33,7 @@ Route::post('/SaveCourseInfo', 'CourseController@saveCourseInfo');
 Route::get('/class', function () {
     return view('ClassIndex');
 });
-Route::get('/ManageClass', 'CourseController@index');
+Route::get('/ManageClass', 'ManageClassController@index');
 
 Route::get('/ManageCourse', 'ManageCourseController@index');
 Route::get('/ManageCourse/ShowAll', 'ManageCourseController@showAll');

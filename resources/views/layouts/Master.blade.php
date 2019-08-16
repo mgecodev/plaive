@@ -180,9 +180,9 @@
         });
 
         $('#submit').click(function (e) {
-                        
+
             var student_ids = [];
-            
+
             $(':checkbox:checked').each(function(i){
                 student_ids[i] = $(this).val();
             });
@@ -197,14 +197,14 @@
                     "student_ids" : student_ids
                 },
                 success : function(data) {
-                    
+
                     $('#overviews').html(data)
                     $('#title_for_invitation').html(student_ids.length + " 명의 학생이 선택되었습니다.");
                     $("#submit").val("되돌리기");
-                   
+
                 },
                 error: function(request, status, error) {
-                    // 에러 출력을 활성화 하려면 아래 주석을 해제한다. 
+                    // 에러 출력을 활성화 하려면 아래 주석을 해제한다.
 
                     //console.log(request + "/" + status + "/" + error);
                 }
@@ -212,7 +212,7 @@
         });
 
         $("#enroll").click(function(e) {
-        
+
             e.preventDefault();
             var id = $(this).attr('val');
             $.ajax({
@@ -221,19 +221,19 @@
                 data : {
                     'user_id' : id
                 },
-                success : function(data) {      
-                    $('#courses').html(data);
+                success : function(data) {
+                    $('#courses').html(data)
                     // window.history.pushState({'user_id' : id}, '', '/ManageCourse/Enroll/'+id);
                     },
                 error: function(request, status, error) {
-                    alert("error!");
+                    alert("error!")
                 }
             }) // End Ajax Request
         });
 
         $("#mycourse").click(function(e) {
-    
-            e.preventDefault();
+
+            e.preventDefault()
             var id = $(this).attr('val');
             $.ajax({
                 type : 'GET',
@@ -241,18 +241,18 @@
                 data : {
                     '_userid' : id
                 },
-                success : function(data) {      
-                    $('#courses').html(data);
-                    // window.history.pushState({'user_id' : id}, '', '/ManageCourse/MyList/'+id);
+                success : function(data) {
+                    $('#courses').html(data)
+
                     },
                 error: function(request, status, error) {
-                    alert("error!");
+                    alert("error!")
                 }
             }) // End Ajax Request
         });
 
         $("#showall").click(function(e) {
-        
+
             e.preventDefault();
             var id = $(this).attr('val');
             $.ajax({
@@ -261,11 +261,11 @@
                 data : {
                     '_userid' : id
                 },
-                success : function(data) {      
+                success : function(data) {
                     $('#courses').html(data)
                 },
                 error: function(request, status, error) {
-                    alert("error!");
+                    alert("error!")
                 }
             }) // End Ajax Request
         });

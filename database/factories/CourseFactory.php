@@ -14,6 +14,6 @@ $factory->define(Course::class, function (Faker $faker) {
         'Prerequisite' => $faker->text(50),
         'Comment' => $faker->text(50),
         'Active' => 1,
-        'CreatedBy' => $faker->numberBetween(59, 59),
+        'CreatedBy' => $faker->numberBetween(0, 0),
     ];
 });

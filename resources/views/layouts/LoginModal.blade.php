@@ -2,12 +2,14 @@
 <script src="/js/all.js"></script>
 
 @if (session('status'))
-    <script type="text/javascript">
-        $(function() {
-            $('#login').modal('show');
-            $('.nav-tabs a[href="#RequestPassword"]').tab('show');
-        });
-    </script>
+    @if(Request::path() !== 'home')
+        <script type="text/javascript">
+            $(function () {
+                $('#login').modal('show');
+                $('.nav-tabs a[href="#RequestPassword"]').tab('show');
+            });
+        </script>
+    @endif
 @endif
 
 <!-- Modal -->
@@ -75,7 +77,7 @@
                     <div class="tab-pane" id="Registration">
                         <form method="POST" role="form" class="form-horizontal" action="{{ route('register') }}">
                             @csrf
-                            
+
                             <div class="form-group">
                                 <div class="col-sm-12">
                                     <input placeholder="name" id="name" type="text"
@@ -88,7 +90,7 @@
                                     @enderror
                                 </div>
                             </div>
-                            
+
                             <div class="form-group">
                                 <div class="col-sm-12">
                                     <input placeholder="email" id="email2" type="email"
@@ -101,7 +103,7 @@
                                     @enderror
                                 </div>
                             </div>
-                            
+
                             <div class="form-group">
                                 <div class="col-sm-12">
                                     <input placeholder="password" id="password2" type="password"
@@ -114,7 +116,7 @@
                                     @enderror
                                 </div>
                             </div>
-                            
+
                             <div class="form-group">
                                 <div class="col-sm-12">
                                     <input placeholder="password-confirm" id="password-confirm2" type="password"
@@ -149,7 +151,7 @@
                         </form>
                     </div>
                     <div class="tab-pane" id="RequestPassword">
-                        
+
                         @if (session('status'))
                             <div class="alert alert-success" role="alert" id="sentemail">
                                 {{ session('status') }}

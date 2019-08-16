@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Class;
+use App\InfoClass;
+use App\Account;
 use App\Course;
 use App\AccountType;
 use Illuminate\Http\Request;
@@ -31,6 +32,8 @@ class ManageClassController extends Controller
 
         $name = $user->name;
         $id = $user->id;
+
+        dd($name, $id);
 
         $account_type_id = Account::where('id', $id)->first()->AccountTypeId;
         $type = AccountType::where('AccountTypeId', '=', $account_type_id)->first()->Type;
@@ -72,7 +75,7 @@ class ManageClassController extends Controller
 
     public function showAllClass($request) {
         // Input :
-        // Output : 
+        // Output :
         // Description : show all the courses that user have made
 
         $user_id = $request->user_id;
@@ -88,6 +91,6 @@ class ManageClassController extends Controller
 
     public function enrollClass() {
 
-        
+
     }
 }
