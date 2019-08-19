@@ -36,8 +36,6 @@ if($route_name == '/' || $route_name == '/home') {
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item {{ $home_active }}"><a class="nav-link" href="{{ asset('/home') }}">홈</a></li>
                     <li class="nav-item {{ $board_active }}"><a class="nav-link" href="{{ asset('/MainBoard') }}">소식</a></li>
-                    @if ($type == 'Teacher')
-                    <li class="nav-item {{ $home_active }}"><a class="nav-link" href="{{ asset('/home') }}">소식</a></li>
                     @if (isset($type) && $type == 'Teacher')
                         <li class="nav-item dropdown {{ $class_active }}">
                             <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">클래스</a>
