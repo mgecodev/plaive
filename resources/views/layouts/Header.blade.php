@@ -37,6 +37,8 @@ if($route_name == '/' || $route_name == '/home') {
                     <li class="nav-item {{ $home_active }}"><a class="nav-link" href="{{ asset('/home') }}">홈</a></li>
                     <li class="nav-item {{ $board_active }}"><a class="nav-link" href="{{ asset('/MainBoard') }}">소식</a></li>
                     @if ($type == 'Teacher')
+                    <li class="nav-item {{ $home_active }}"><a class="nav-link" href="{{ asset('/home') }}">소식</a></li>
+                    @if (isset($type) && $type == 'Teacher')
                         <li class="nav-item dropdown {{ $class_active }}">
                             <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">클래스</a>
                             <div class="dropdown-menu" aria-labelledby="dropdown-a">
@@ -44,7 +46,7 @@ if($route_name == '/' || $route_name == '/home') {
                                 <a class="dropdown-item" href="{{ asset('/ManageCourse') }}">강좌 관리</a>
                             </div>
                         </li>
-                    @else 
+                    @else
                         <li class="nav-item dropdown {{ $class_active }}">
                             <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">클래스</a>
                             <div class="dropdown-menu" aria-labelledby="dropdown-a">
@@ -55,7 +57,7 @@ if($route_name == '/' || $route_name == '/home') {
                             </div>
                         </li>
                     @endif
-                    
+
                     <li class="nav-item dropdown {{ $my_active }}">
                         <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">나의 데이터</a>
                         <div class="dropdown-menu" aria-labelledby="dropdown-a">
@@ -68,16 +70,16 @@ if($route_name == '/' || $route_name == '/home') {
                         @auth
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">
-                                    @if ($type != NULL && $name != NULL) 
+                                    @if ($type != NULL && $name != NULL)
                                         {{ $name." ".$type }}
-                                    @endif 
+                                    @endif
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="dropdown-a">
                                     <a a class="dropdown-item" href="{{ route('logout') }}">로그아웃</a>
                                 </div>
                             </li>
                         @else
-                            <li class="nav-item"><a class="nav-link" href="#" data-toggle="modal" data-target="#login">로그인/회원가입</a></li>   
+                            <li class="nav-item"><a class="nav-link" href="#" data-toggle="modal" data-target="#login">로그인/회원가입</a></li>
                         @endauth
                     @endif
                 </ul>

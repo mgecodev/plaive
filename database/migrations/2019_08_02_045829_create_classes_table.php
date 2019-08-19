@@ -45,8 +45,8 @@ class CreateClassesTable extends Migration
 //                $table->boolean('DeleteFlag')->default(1);
 //            });
 
-            // 4. Rename table
-//            Schema::rename($this->tableName, 'Accounts');
+             4. Rename table
+            Schema::rename($this->tableName, 'InfoClasses');
 
         }
     }

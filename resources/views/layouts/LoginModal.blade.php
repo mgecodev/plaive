@@ -1,3 +1,17 @@
+<!-- ALL JS FILES -->
+<script src="/js/all.js"></script>
+
+@if (session('status'))
+    @if(Request::path() !== 'home')
+        <script type="text/javascript">
+            $(function () {
+                $('#login').modal('show');
+                $('.nav-tabs a[href="#RequestPassword"]').tab('show');
+            });
+        </script>
+    @endif
+@endif
+
 <!-- Modal -->
 <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
@@ -23,7 +37,6 @@
                                     <input placeholder="E-mail" id="email1" type="email"
                                            class="form-control @error('email') is-invalid @enderror" name="email"
                                            value="{{ old('email') }}" required autocomplete="email" autofocus>
-                                    ​
                                     @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -36,7 +49,6 @@
                                     <input placeholder="password" id="password1" type="password"
                                            class="form-control @error('password') is-invalid @enderror" name="password"
                                            required autocomplete="current-password">
-                                    ​
                                     @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -65,6 +77,7 @@
                     <div class="tab-pane" id="Registration">
                         <form method="POST" role="form" class="form-horizontal" action="{{ route('register') }}">
                             @csrf
+
                             <div class="form-group">
                                 <div class="col-sm-12">
                                     <input placeholder="name" id="name" type="text"
@@ -77,12 +90,12 @@
                                     @enderror
                                 </div>
                             </div>
+
                             <div class="form-group">
                                 <div class="col-sm-12">
                                     <input placeholder="email" id="email2" type="email"
                                            class="form-control @error('email') is-invalid @enderror" name="email"
                                            value="{{ old('email') }}" required autocomplete="email">
-                                    ​
                                     @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -90,12 +103,12 @@
                                     @enderror
                                 </div>
                             </div>
+
                             <div class="form-group">
                                 <div class="col-sm-12">
                                     <input placeholder="password" id="password2" type="password"
                                            class="form-control @error('password') is-invalid @enderror" name="password"
                                            required autocomplete="new-password">
-                                    ​
                                     @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -103,6 +116,7 @@
                                     @enderror
                                 </div>
                             </div>
+
                             <div class="form-group">
                                 <div class="col-sm-12">
                                     <input placeholder="password-confirm" id="password-confirm2" type="password"
@@ -137,57 +151,31 @@
                         </form>
                     </div>
                     <div class="tab-pane" id="RequestPassword">
-                        <form method="POST" role="form" class="form-horizontal" action="{{ route('password.update') }}">
+
+                        @if (session('status'))
+                            <div class="alert alert-success" role="alert" id="sentemail">
+                                {{ session('status') }}
+                            </div>
+                        @endif
+                        <form method="POST" action="{{ route('password.email') }}">
                             @csrf
-                            ​
-                            {{-- <input type="hidden" name="token" value="{{ $token }}"> --}}
-                            ​
                             <div class="form-group">
                                 <div class="col-sm-12">
-                                    ​
-                                    <input id="email3" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $email ?? old('email') }}" required autocomplete="email" autofocus>
-                                    ​
+                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="e-mail address" autofocus>
                                     @error('email')
-                                    <span class="invalid-feedback" role="alert">
+                                        <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-sm-12">
-                                    <input placeholder="email" id="email4" type="email"
-                                           class="form-control @error('email') is-invalid @enderror" name="email"
-                                           value="{{ old('email') }}" required autocomplete="email">
-                                    ​
-                                    @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-sm-12">
-                                    <input id="password4" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-                                    ​
-                                    @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-sm-12">
-                                    <input id="password-confirm4" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="form-group col-sm-10">
-                                    <button type="submit" class="btn btn-primary">
-                                        {{ __('Reset Password') }}
-                                    </button>
+                                    <div class="col-md-6 offset-md-4">
+                                        <button id="reset" type="submit" class="btn btn-light btn-radius btn-brd grd1">
+                                            {{ __('Send Password Reset Link') }}
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </form>

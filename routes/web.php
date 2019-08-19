@@ -33,7 +33,7 @@ Route::post('/SaveCourseInfo', 'CourseController@saveCourseInfo');
 Route::get('/class', function () {
     return view('ClassIndex');
 });
-Route::get('/ManageClass', 'CourseController@index');
+Route::get('/ManageClass', 'ManageClassController@index');
 
 Route::get('/ManageCourse', 'ManageCourseController@index');
 Route::get('/ManageCourse/ShowAll', 'ManageCourseController@showAll');
@@ -43,9 +43,7 @@ Route::post('/ManageCourse/EnrollCourse', 'ManageCourseController@enrollCourse')
 Route::post('/ManageCourse/DeleteCourse', 'ManageCourseController@deleteCourse');
 Route::post('/ManageCourse/UpdateCourse', 'ManageCourseController@updateCourse');
 
-Route::get('/OpenClass/Build', 'OpenClassController@buildClass');
 Route::get('/Invite', 'InviteMemberController@index');
-Route::get('/OpenClass', 'OpenClassController@index');
 Route::get('/CheckInvitation', 'CheckInvitationController@index');
 Route::post('/SaveStudent', 'InviteMemberController@saveStudent');
 
