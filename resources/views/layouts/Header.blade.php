@@ -2,14 +2,23 @@
 $home_active = '';
 $class_active = '';
 $my_active = '';
+$board_active = '';
 $host_explode = explode($_SERVER['HTTP_HOST'], url()->full());
 $route_name = $host_explode[1];
+$detail_host = explode('/',$host_explode[1]);
+
 if($route_name == '/' || $route_name == '/home') {
     $home_active = 'active';
 } else if($route_name == '/ManageClass' || $route_name == '/OpenClass' || $route_name == '/ClassBoard') {
     $class_active = 'active';
-} else if($route_name == '/My') {
+} else if($route_name == '/ManageDevice' || $route_name == '/CreateDevice') {
     $my_active = 'active';
+} else if($route_name == '/MainBoard') {
+    $board_active = 'active';
+} else if(count($detail_host)>1) {
+    if($detail_host[1] == 'EditDevice' || $detail_host[1] == 'ShowData') {
+        $my_active = 'active';
+    }
 }
 ?>
 <header class="top-navbar">
@@ -25,7 +34,9 @@ if($route_name == '/' || $route_name == '/home') {
             </button>
             <div class="collapse navbar-collapse" id="navbars-host">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item {{ $home_active }}"><a class="nav-link" href="{{ asset('/home') }}">소식</a></li>
+                    <li class="nav-item {{ $home_active }}"><a class="nav-link" href="{{ asset('/home') }}">홈</a></li>
+                    <li class="nav-item {{ $board_active }}"><a class="nav-link" href="{{ asset('/MainBoard') }}">소식</a></li>
+                    <li class="nav-item {{ $board_active }}"><a class="nav-link" href="{{ asset('/MainBoard') }}">소식test</a></li>
 
                     @if (isset($type) && $type == 'Teacher')
                         <li class="nav-item dropdown {{ $class_active }}">

@@ -267,7 +267,7 @@ function ChannelUpdate() {
                             <input type="hidden" id="field_count" name="FieldCount" value="" />
                             <div class="form-group">
                                 <label for="channel-name" class="control-label mb-1">채널 이름</label>
-                            <input id="channel-name" name="ChannelName" type="text" class="form-control" aria-required="true" aria-invalid="false" value="{{ $channel->ChannelName }}" required>
+                                <input id="channel-name" name="ChannelName" type="text" class="form-control" aria-required="true" aria-invalid="false" value="{{ $channel->ChannelName }}" required>
                             </div>
                             <div class="row">
                                 <div class="col-6">

@@ -39,8 +39,6 @@ $(document).ready( function () {
     });
 });
 function DeleteChannel(_id,_name) {
-    console.log(_id);
-    console.log(_name);
     $("#confirmation-title").empty();
     $("#confirm-content1").empty();
     $("#confirm-content2").empty();
