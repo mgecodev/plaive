@@ -67,4 +67,13 @@ Route::post('/SaveOption/{channel}','SaveDataController@saveOption');
 Route::patch('/SaveOption/{graphOption}','SaveDataController@updateOption');
 Route::patch('/ShowData/DeleteData/{channel}/{index}','SaveDataController@deleteData');
 
+Route::get('/MainBoard','BoardController@index');
+Route::get('/CreateBoard/{type}','BoardController@create');
+Route::post('/CreateBoard/{type}','BoardController@save');
+Route::get('/ShowBoard/{type}/{board}','BoardController@show');
+Route::get('/DownloadFile/{file}','BoardController@fileDownload');
+Route::get('/EditBoard/{type}/{board}/edit','BoardController@edit');
+Route::patch('/UpdateBoard/{type}/{board}','BoardController@update');
+Route::delete('/DeleteBoard/{type}/{board}','BoardController@destroy');
 
+Route::delete('/DeleteBoardFile/{boardFile}', 'BoardFileController@destroy');
