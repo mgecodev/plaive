@@ -58,7 +58,7 @@ class BoardController extends Controller
 
         $account_type_id = Account::where('id', $id)->first()->AccountTypeId;
         $type = AccountType::where('AccountTypeId', '=', $account_type_id)->first()->Type;
-        $statement = DB::select("show table status where name = 'BoardFiles'");
+        $statement = DB::select("show table status where name = 'Boards'");
         $nextId = $statement[0]->Auto_increment;
 
         $nowdate = date('Y-m-d H:i:s');
