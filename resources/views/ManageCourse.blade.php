@@ -19,7 +19,7 @@
             </div>
 
             <div class="col-lg-9">
-                @include('ShowAllCourseAjax');
+                @include('ShowAllCourseAjax')
             </div>
         </div>
     </div>

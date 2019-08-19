@@ -15,7 +15,7 @@
                 </div>
             </div>
             <div class="col-lg-9">
-                @include('ShowAllClassAjax');
+                @include('ShowAllClassAjax')
             </div>
         </div>
     </div>
