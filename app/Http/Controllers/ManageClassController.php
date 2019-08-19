@@ -26,21 +26,23 @@ class ManageClassController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
-    {
+
+    public function index() {
+        // Input :
+        // Output :
+        // Description : show all the list of classes that teacher takes in charge of
+
         $user = Auth::user();
 
         $name = $user->name;
         $id = $user->id;
 
-        dd($name, $id);
-
         $account_type_id = Account::where('id', $id)->first()->AccountTypeId;
         $type = AccountType::where('AccountTypeId', '=', $account_type_id)->first()->Type;
 
-        $courses_info = $this->showCourseInfo();
+        $classes = $this->showClassInfo($id);
         // dd($courses_info);
-        return view('ManageClass')->with('courses_info', $courses_info)->with('name', $name)->with('type', $type)->with('id', $id);
+        return view('ManageClass')->with('classes', $classes)->with('name', $name)->with('type', $type)->with('id', $id);
     }
 
     public function saveCourseInfo() {
@@ -67,10 +69,14 @@ class ManageClassController extends Controller
         return redirect('/OpenClass');
     }
 
-    public function showCourseInfo() {
+    public function showClassInfo($id) {
+        // Input :
+        // Output : get the list of classes
+        // Description : show all the classes that teacher takes in charge of
 
-        $course_info = Course::all();
-        return $course_info;
+        $classes = InfoClass::where('AccountId', $id)->where('Active', 1)->get();
+
+        return $classes;
     }
 
     public function showAllClass($request) {
@@ -87,6 +93,15 @@ class ManageClassController extends Controller
 
 
 
+    }
+    public function enroll(Request $request) {
+        // Input :
+        // Output :
+        // Description : click the 클래스 등록 in side bar which goes to page that can enroll the class using Ajax
+
+        $id = $request->user_id;
+
+        return view('EnrollClassAjax')->with('id', $id);
     }
 
     public function enrollClass() {

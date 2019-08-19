@@ -34,6 +34,7 @@ Route::get('/class', function () {
     return view('ClassIndex');
 });
 Route::get('/ManageClass', 'ManageClassController@index');
+Route::get('/ManageClass/Enroll', 'ManageClassController@enroll');
 
 Route::get('/ManageCourse', 'ManageCourseController@index');
 Route::get('/ManageCourse/ShowAll', 'ManageCourseController@showAll');

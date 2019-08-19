@@ -61,10 +61,8 @@ class ManageCourseController extends Controller
 
     public function enroll(Request $request) {
 
-        
         $id = $request->user_id;
-        $courses = Course::where('CreatedBy', $id)->get();
-        return view('EnrollCourseAjax')->with('courses', $courses)->with('id', $id);
+        return view('EnrollCourseAjax')->with('id', $id);
     }
 
     public function enrollCourse(Request $request) {
@@ -112,7 +110,7 @@ class ManageCourseController extends Controller
         $hourcount = $request->_hourcount;
 
         $id = $request->_userid;
-        
+
         Course::where('CourseId', $course_id)->update(['Title' => $title, 'Comment' => $comment, 'NumOfStudent' => $num_of_student, 'WeekCount' => $weekcount, 'HourCount' => $hourcount]);
         $courses = Course::where('CreatedBy', $id)->where('Active', 1)->get();
         // dd($courses);

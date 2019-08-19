@@ -101,7 +101,7 @@
 	<!-- End header -->
 
     {{-- this code makes unnecessary part of main page. --}}
-    @if(Request::path() !== 'home')
+    @if(!(Request::path() == 'home' or Request::path() == '/'))
         <div class="all-title-box">
             <div class="container text-center">
                 @yield('page_title')
@@ -124,7 +124,12 @@
     <a href="#" id="scroll-to-top" class="dmtop global-radius"><i class="fa fa-angle-up"></i></a>
 
     <!-- ALL JS FILES -->
+
+    <!--script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script-->
+
     <script src="/js/all.js"></script>
+
     <script src="https://s3.ap-northeast-2.amazonaws.com/s3.finedust.10make.com/js/datatable/jquery.dataTables.min.js"></script>
 	<script src="https://s3.ap-northeast-2.amazonaws.com/s3.finedust.10make.com/js/datatable/dataTables.bootstrap4.js"></script>
 	<script src="https://s3.ap-northeast-2.amazonaws.com/s3.finedust.10make.com/js/datatable/dataTables.responsive.js"></script>
@@ -220,6 +225,27 @@
                     $('#courses').html(data)
                     // window.history.pushState({'user_id' : id}, '', '/ManageCourse/Enroll/'+id);
                     },
+                error: function(request, status, error) {
+                    alert("error!")
+                }
+            }) // End Ajax Request
+        });
+
+        $("#enroll-class").click(function(e) {
+
+            e.preventDefault();
+            var id = $(this).attr('val');   // get user id
+
+            $.ajax({
+                type : 'GET',
+                url : '/ManageClass/Enroll',
+                data : {
+                    'user_id' : id
+                },
+                success : function(data) {
+                    $('#courses').html(data)
+                    // window.history.pushState({'user_id' : id}, '', '/ManageCourse/Enroll/'+id);
+                },
                 error: function(request, status, error) {
                     alert("error!")
                 }
