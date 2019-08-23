@@ -27,7 +27,7 @@ class CourseController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    
+
     public function index()
     {
         $user = Auth::user();
@@ -37,10 +37,10 @@ class CourseController extends Controller
 
         $account_type_id = Account::where('id', $id)->first()->AccountTypeId;
         $type = AccountType::where('AccountTypeId', '=', $account_type_id)->first()->Type;
-
+        $students = Account::where('AccountTypeId', 1)->get();
         $courses_info = $this->showCourseInfo();
-        // dd($courses_info);
-        return view('ManageClass')->with('courses_info', $courses_info)->with('name', $name)->with('type', $type)->with('id', $id);
+
+        return view('ManageClass')->with('students', $students)->with('courses_info', $courses_info)->with('name', $name)->with('type', $type)->with('id', $id);
     }
 
     public function saveCourseInfo() {
@@ -70,7 +70,7 @@ class CourseController extends Controller
     public function showCourseInfo() {
         // Input :
         // Output :
-        // Description : 
+        // Description :
 
         $course_info = Course::where('Active', 1)->get();
 
@@ -78,11 +78,11 @@ class CourseController extends Controller
     }
 
     public function showAllCourse($request) {
-        // Input :  
-        // Output : 
+        // Input :
+        // Output :
         // Description : show all the courses that user have made
 
-        
+
 
     }
 

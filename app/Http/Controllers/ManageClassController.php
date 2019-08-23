@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Invitation;
 use App\InfoClass;
 use App\Account;
 use App\Course;
@@ -41,7 +42,7 @@ class ManageClassController extends Controller
         $type = AccountType::where('AccountTypeId', '=', $account_type_id)->first()->Type;
     
         $classes = $this->showClassInfo($id);
-        // dd($courses_info);
+
         return view('ManageClass')->with('classes', $classes)->with('name', $name)->with('type', $type)->with('id', $id);
     }
 
@@ -87,23 +88,147 @@ class ManageClassController extends Controller
 
     }
 
-    public function deleteClass() {
+    public function deleteClass(Request $request) {
+        // Input :
+        // Output :
+        // Description : delete class
 
+        $class_id = $request->_classid;
+        InfoClass::where("ClassId", $class_id)->update(["Active" => 0]);
 
-
+        return redirect('/home');
     }
     public function enroll(Request $request) {
         // Input :
         // Output :
-        // Description : click the 클래스 등록 in side bar which goes to page that can enroll the class using Ajax
+        // Description : click the 클래스 등록 in side bar which goes to page that can enroll the class using Ajax.
+        //                  This function should be accompanied with course data that user can choose before they invite students
+        //                  In addition, they need to show the information for students who teacher can go through
 
         $id = $request->user_id;
 
-        return view('EnrollClassAjax')->with('id', $id);
+        $courses = Course::where('CreatedBy', $id)->orwhere('CreatedBy', 0)->where('Active', 1)->get();    // get the public courses and their own courses
+        $students = Account::where('AccountTypeId', 1)->get();  // get all the students
+
+        return view('EnrollClassAjax')->with('id', $id)->with('courses', $courses)->with('students', $students);
     }
 
     public function enrollClass() {
 
 
+    }
+
+    public function enterClass($class_id, Request $request) {
+        // Input :
+        // Output :
+        // Description :
+
+        $user = Auth::user();
+
+        $name = $user->name;
+        $id = $user->id;
+
+        $account_type_id = Account::where('id', $id)->first()->AccountTypeId;
+        $type = AccountType::where('AccountTypeId', '=', $account_type_id)->first()->Type;
+
+        $class = InfoClass::where('ClassId', $class_id)->where('Active', 1)->first(); // get one class out of specific teacher's
+        $tot_invited_students = $class->getUserInfo()->where("ClassId", $class_id)->get();
+        $tot_accepted_students = $class->getMatchedStudent()->where("ClassId", $class_id)->where('Accepted', 1)->get();
+
+        $tot_viable_students = Account::where("Active", 1)->where("AccountTypeId", 1)->get();   // get students
+
+//        foreach($students as $student) {
+//
+//            $tmp = $student->checkInvitation()->where("ClassId", "<>", $class_id)->get()->toarray();
+//            if ($tmp == NULL or count($tmp) == 0) continue;
+//            else {
+//                var_dump($tmp);
+//            }
+//        }
+//        die();
+
+//        $tot_viable_students = $students->checkInvitation()->where("ClassId", "<>", $class_id)->get();
+//        dd($tot_viable_students);
+
+        return view('EnterClass')->with('class', $class)->with('name', $name)->with('type', $type)->with('id', $id)->with('tot_viable_students', $tot_viable_students)->with('class_id', $class_id)->with('tot_invited_students', $tot_invited_students)->with('tot_accepted_students', $tot_accepted_students);
+    }
+
+    public function inviteAdditionalMember(Request $request) {
+        // Input :
+        // Output :
+        // Description : 1. Check if he/she is already invited
+        //               2. If it is not invited, invite him and refresh page
+        //               3. If it is invited, I don't know
+
+        $user = Auth::user();   // get user
+        $id = $user->id;        // get user id
+
+        $ids = $request->ids;
+        $ids = explode(',', $ids);
+
+        $student_id = $ids[0];  // get student id
+        $teacher_id = $ids[1];  // get teacher id
+        $class_id = $ids[2];    // get class id
+
+        Invitation::create([
+            'InviterId' => $teacher_id,
+            'InviteeId' => $student_id,
+            'ClassId' => $class_id,
+            'Accepted' => 0,
+        ]);
+
+        $class = InfoClass::where('ClassId', $class_id)->where('Active', 1)->first(); // get one class out of specific teacher's
+        $tot_invited_students = $class->getUserInfo()->where("ClassId", $class_id)->get();
+        $tot_accepted_students = $class->getMatchedStudent()->where("ClassId", $class_id)->where('Accepted', 1)->get();
+        $tot_viable_students = Account::where('Active', 1)->checkInvitation()->where("ClassId", "<>", $class_id)->get();
+        dd($tot_viable_students);
+        return view('StudentManagementAjax')->with('id', $id)->with('class_id', $class_id)->with('class', $class)->with('tot_invited_students', $tot_invited_students)->with('tot_accepted_students', $tot_accepted_students);
+    }
+
+    public function acceptInvitation() {
+        // Input :
+        // Output :
+        // Description : change 'accepted' as 1 and add this student into class member table
+
+
+    }
+
+    public function showMyClass(Request $request) {
+        // Input :
+        // Output :
+        // Description : show my class
+
+    }
+
+    public function includeStudent(Request $request) {
+        // Input :
+        // Output :
+        // Description :    1. Make class first
+        //                  2. Get ClassId and invite students
+        $student_ids = $request->_checked_students;
+        $course_id = $request->_courseid;
+        $user_id = $request->_teacherid;
+
+        // save new class
+        InfoClass::create([
+            "AccountId" => $user_id,
+            "CourseId" => $course_id,
+            "Active" => 1
+        ]);
+
+        $class_id = InfoClass::where("AccountId", $user_id)->where("CourseId", $course_id)->first()->ClassId;   // get new class id
+
+        // invite all the students that teacher selected
+        foreach($student_ids as $student_id) {
+
+            Invitation::create([
+                "InviterId" => $user_id,
+                "InviteeId" => $student_id,
+                "ClassId" => $class_id,
+                "Accepted" => 0
+            ]);
+        }
+
+        return redirect("/ManageClass");
     }
 }

@@ -35,6 +35,11 @@ Route::get('/class', function () {
 });
 Route::get('/ManageClass', 'ManageClassController@index');
 Route::get('/ManageClass/Enroll', 'ManageClassController@enroll');
+Route::get('/Class/{classid}', 'ManageClassController@enterClass');
+Route::post('/Invite', 'ManageClassController@inviteAdditionalMember');
+Route::post('/ManageClass/IncludeStudent', 'ManageClassController@includeStudent');
+Route::post('/ManageClass/DeleteClass', 'ManageClassController@deleteClass');
+
 
 Route::get('/ManageCourse', 'ManageCourseController@index');
 Route::get('/ManageCourse/ShowAll', 'ManageCourseController@showAll');
@@ -43,9 +48,13 @@ Route::get('/ManageCourse/Enroll', 'ManageCourseController@enroll');
 Route::post('/ManageCourse/EnrollCourse', 'ManageCourseController@enrollCourse');
 Route::post('/ManageCourse/DeleteCourse', 'ManageCourseController@deleteCourse');
 Route::post('/ManageCourse/UpdateCourse', 'ManageCourseController@updateCourse');
+Route::post('/ManageCourse/SaveCurriculum', 'ManageCourseController@saveCurriculum');
 
-Route::get('/Invite', 'InviteMemberController@index');
+Route::get('/MyClass', 'CheckInvitationController@showMyClass');
 Route::get('/CheckInvitation', 'CheckInvitationController@index');
+Route::post('/AcceptInvitation', 'CheckInvitationController@acceptInvitation');
+Route::post('/DenyInvitation', 'CheckInvitationController@denyInvitation');
+
 Route::post('/SaveStudent', 'InviteMemberController@saveStudent');
 
 Route::get('ClassBoard', function () {

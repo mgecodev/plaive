@@ -22,4 +22,11 @@ class ClassMember extends Model
         'ClassMemberId', 'ClassId', 'AccountId', 'Active'
     ];
 
+    public function getUserInfo() {
+        // Input :
+        // Output :
+        // Description : get the user info based on AccountId
+
+        return $this->hasOne('App\Account', 'AccountId', 'AccountId');
+    }
 }
