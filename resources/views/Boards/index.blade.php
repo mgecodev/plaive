@@ -51,6 +51,8 @@ $(document).ready( function () {
                 <thead>
                     <tr>
                         @if((new \Jenssegers\Agent\Agent())->isPhone())
+                        <th class="text-center">작성자</th>
+                        <th class="text-center">제목</th>
                         @else
                         <th class="text-center datatable-nosearch" >#</th>
                         <th class="text-center">작성자</th>
@@ -65,6 +67,8 @@ $(document).ready( function () {
                 ?>
                 <tr class="item{{$board->BoardId}}" onclick="location.href='{{ asset($url) }}'">
                     @if((new \Jenssegers\Agent\Agent())->isPhone())
+                    <td style="vertical-align: middle;">{{ $board->WriterName }}</td>
+                    <td style="vertical-align: middle;">{{ str_limit($board->BoardTitle,24) }}</td>
                     @else
                     <td style="vertical-align: middle;">{{ $loop->iteration }}</td>
                     <td style="vertical-align: middle;">{{ $board->WriterName }}</td>

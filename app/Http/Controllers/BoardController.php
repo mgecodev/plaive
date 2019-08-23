@@ -31,11 +31,10 @@ class BoardController extends Controller
         $account_type_id = Account::where('id', $id)->first()->AccountTypeId;
         $type = AccountType::where('AccountTypeId', '=', $account_type_id)->first()->Type;
 
-        $top_boards = DB::table('Boards')->where('BoardType','All')->where('TopFix','Y')->orderBy('created_at','desc');
-        $down_boards = DB::table('Boards')->where('BoardType','All')->where('TopFix','N')->orderBy('created_at','desc');
-        $boards = $top_boards->union($down_boards)->get();
-        /*$down_boards = Board::where('BoardType','All')->where('TopFix','N')->orderby('created_at','desc');
-        $boards = Board::where('BoardType','All')->where('TopFix','Y')->orderby('created_at','desc')->get();*/
+        $boards = DB::table('Boards')->where('BoardType','All')->where('Active',1)->where('TopFix','Y')->orderBy('created_at','desc')->get();
+        $down_boards = DB::table('Boards')->where('BoardType','All')->where('Active',1)->where('TopFix','N')->orderBy('created_at','desc')->get();
+        $boards = $boards->merge($down_boards);
+        
         return view('Boards.index',compact('boards'))->with('name', $name)->with('type', $type)->with('id',$id);
     }
     public function create($board_type)
@@ -58,7 +57,7 @@ class BoardController extends Controller
 
         $account_type_id = Account::where('id', $id)->first()->AccountTypeId;
         $type = AccountType::where('AccountTypeId', '=', $account_type_id)->first()->Type;
-        $statement = DB::select("show table status where name = 'BoardFiles'");
+        $statement = DB::select("show table status where name = 'Boards'");
         $nextId = $statement[0]->Auto_increment;
 
         $nowdate = date('Y-m-d H:i:s');
@@ -196,7 +195,17 @@ class BoardController extends Controller
     }
     public function destroy($board_type, Board $board) 
     {
-        $delete = $board->delete();
+        $nowdate = date('Y-m-d H:i:s');
+        $user = Auth::user();
+
+        $name = $user->name;
+        $id = $user->id;
+
+        $delete = DB::table('Boards')->where('BoardId',$board->BoardId)->update([
+            'ModifierNo' => $id,
+            'updated_at' => $nowdate,
+            'Active' => 0,
+        ]);
         if ($delete) {
             return response()->json([
                 'result' => 'Success'            
