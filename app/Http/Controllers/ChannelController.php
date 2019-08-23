@@ -98,6 +98,7 @@ class ChannelController extends Controller
     }
     public function update(Request $request, Channel $channel)
     {
+        $nowdate = date('Y-m-d H:i:s');
         if(!$request->has('Field2Name')){
             $request->merge(['Field2Name'=>NULL]);
         }
@@ -119,6 +120,7 @@ class ChannelController extends Controller
         if(!$request->has('Field8Name')){
             $request->merge(['Field8Name'=>NULL]);
         }
+        $request->merge(['updated_at'=>$nowdate]);
         //dd($request);
         $channel->update($request->all());
         return redirect('/ManageDevice'); 
@@ -126,7 +128,11 @@ class ChannelController extends Controller
     public function destroy(Channel $channel)
     {
         //dd($channel);
-        $delete = $channel->delete();
+        $nowdate = date('Y-m-d H:i:s');
+        $delete = DB::table('Channels')->where('ChannelId',$channel->ChannelId)->update([
+            'Active' => 0,
+            'updated_at' => $nowdate,
+        ]);
         if ($delete) {
             return response()->json([
                 'result' => 'Success'

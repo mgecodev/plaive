@@ -2,20 +2,36 @@
 
 namespace App\Http\Controllers;
 
+use App\AccountType;
 use Illuminate\Http\Request;
-use App\BoardFile;
+use Illuminate\Support\Facades\Auth;
+use App\Account;
 use App\Board;
+use App\BoardFile;
+use Illuminate\Support\Facades\DB;
 
 class BoardFileController extends Controller
 {
     //
     public function destroy($board_id) 
     {
-        //$delete = $board_file->delete();
         $board_file = BoardFile::where("FileId",$board_id)->first();
+        $file_id = $board_file->FileId;
         $board_id = $board_file->BoardId;
-        $delete = $board_file->delete();
+        $nowdate = date('Y-m-d H:i:s');
+        $user = Auth::user();
+
+        $name = $user->name;
+        $id = $user->id;
+
+        $delete = DB::table('BoardFiles')->where('FileId',$file_id)->update([
+            'ModifierNo' => $id,
+            'updated_at' => $nowdate,
+            'Active' => 0,
+        ]);
+
         $files= Board::find($board_id)->files;
+
         if ($delete) {
             return response()->json([
                 'result' => 'Success',

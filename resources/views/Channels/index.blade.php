@@ -55,7 +55,7 @@ function doDelete(_id) {
     var token = $("meta[name='csrf-token']").attr("content");
     $.ajax({
         url: "DeleteDevice/"+_id,
-        type: 'DELETE',
+        type: 'PATCH',
         data: {
             "_token": token,
         },

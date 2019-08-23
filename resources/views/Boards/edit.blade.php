@@ -21,7 +21,7 @@ function fileDelete(_id){
     var token = $("meta[name='csrf-token']").attr("content");
     $.ajax({
         url: "/DeleteBoardFile/"+_id,
-        type: 'DELETE',
+        type: 'PATCH',
         data: {
             "_token": token,
         },

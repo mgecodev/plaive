@@ -57,7 +57,7 @@ Route::get('/CreateDevice', 'ChannelController@createIndex');
 Route::post('/CreateDevice', 'ChannelController@create');
 Route::get('/EditDevice/{channel}/edit', 'ChannelController@edit');
 Route::patch('/EditDevice/{channel}', 'ChannelController@update');
-Route::delete('/DeleteDevice/{channel}', 'ChannelController@destroy');
+Route::patch('/DeleteDevice/{channel}', 'ChannelController@destroy');
 Route::get('/SaveData','SaveDataController@save');
 Route::get('/DownloadData/{channel}','ShowDataController@download');
 Route::get('/ShowData/{channel}','ShowDataController@index');
@@ -73,6 +73,6 @@ Route::get('/ShowBoard/{type}/{board}','BoardController@show');
 Route::get('/DownloadFile/{file}','BoardController@fileDownload');
 Route::get('/EditBoard/{type}/{board}/edit','BoardController@edit');
 Route::patch('/UpdateBoard/{type}/{board}','BoardController@update');
-Route::delete('/DeleteBoard/{type}/{board}','BoardController@destroy');
+Route::patch('/DeleteBoard/{type}/{board}','BoardController@destroy');
 
-Route::delete('/DeleteBoardFile/{boardFile}', 'BoardFileController@destroy');
+Route::patch('/DeleteBoardFile/{boardFile}', 'BoardFileController@destroy');

@@ -11,6 +11,6 @@ class Board extends Model
     protected $table = 'Boards';
     protected $guarded = [];
     public function files() {
-        return $this->hasMany('App\BoardFile','BoardId')->orderBy('created_at','asc');
+        return $this->hasMany('App\BoardFile','BoardId')->where('Active',1)->orderBy('created_at','asc');
     }
 }

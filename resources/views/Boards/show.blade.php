@@ -25,7 +25,7 @@ function boardDelete(_id){
     var token = $("meta[name='csrf-token']").attr("content");
     $.ajax({
         url: "/DeleteBoard/All/"+_id,
-        type: 'DELETE',
+        type: 'PATCH',
         data: {
             "_token": token,
         },
