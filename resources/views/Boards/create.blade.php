@@ -81,7 +81,11 @@ function LoadPage() {
 @section('content')
 <div id="overviews" class="section wb">
     <div class="container">
+        @if($course==null)
         <form action="/CreateBoard/All" method="post" novalidate="novalidate" id="BoardForm" enctype="multipart/form-data">
+        @else
+        <form action="/CreateBoard/Course/{{ $course }}" method="post" novalidate="novalidate" id="BoardForm" enctype="multipart/form-data">
+        @endif
             @csrf
             <div class="form-group">
                 <label style="color:black;font-size:1rem;">새 소식 제목</label>

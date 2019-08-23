@@ -2,8 +2,6 @@
 
 @section('content')
 
-
-
 <div id="overviews" class="section wb">
         <div class="container">
             <div class="row"> 

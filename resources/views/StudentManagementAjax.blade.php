@@ -110,57 +110,32 @@
                                            style="width:100%;">
                                         <thead>
                                         <tr role="row">
-                                            <th class="table-plus datatable-nosort sorting_asc" rowspan="1"
-                                                colspan="1" aria-label="Name">Name
-                                            </th>
-                                            <th class="sorting" tabindex="0"
-                                                aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
-                                                aria-label="Age: activate to sort column ascending">Age
-                                            </th>
-                                            <th class="sorting" tabindex="0"
-                                                aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
-                                                aria-label="Office: activate to sort column ascending">
-                                                Office
-                                            </th>
-                                            <th class="sorting" tabindex="0"
-                                                aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
-                                                aria-label="Address: activate to sort column ascending">
-                                                Address
-                                            </th>
-                                            <th class="datatable-nosort sorting_disabled" rowspan="1"
-                                                colspan="1" aria-label="Action">Action
-                                            </th>
+                                            <th class="text-center datatable-nosearch" >#</th>
+                                            <th class="text-center">작성자</th>
+                                            <th class="text-center">제목</th>
+                                            <th class="text-center datatable-nosearch" style="white-space:nowrap;">생성일</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-
-                                        <tr role="row" class="odd">
-                                            <td class="table-plus sorting_1" tabindex="0">Andrea J. Cagle
-                                            </td>
-                                            <td>30</td>
-                                            <td>Gemini</td>
-                                            <td>1280 Prospect Valley Road Long Beach, CA 90802</td>
-
-                                            <td>
-                                                <div class="dropdown">
-                                                    <a class="btn btn-outline-primary dropdown-toggle"
-                                                       href="#" role="button" data-toggle="dropdown">
-                                                        <i class="fa fa-ellipsis-h"></i>
-                                                    </a>
-                                                    <div class="dropdown-menu dropdown-menu-right">
-                                                        <a class="dropdown-item" href="#"><i
-                                                                class="fa fa-eye"></i> View</a>
-                                                        <a class="dropdown-item" href="#"><i
-                                                                class="fa fa-pencil"></i> Edit</a>
-                                                        <a class="dropdown-item" href="#"><i
-                                                                class="fa fa-trash"></i> Delete</a>
-                                                    </div>
-                                                </div>
-                                            </td>
+                                        @foreach($boards as $board)
+                                        <?php
+                                            $url = 'ShowBoard/Class/'.$board->BoardId;
+                                        ?>
+                                        <tr class="item{{$board->BoardId}}" onclick="location.href='{{ asset($url) }}'">
+                                            <td style="vertical-align: middle;">{{ $loop->iteration }}</td>
+                                            <td style="vertical-align: middle;">{{ $board->WriterName }}</td>
+                                            <td style="vertical-align: middle;">{{ str_limit($board->BoardTitle,50) }}</td>
+                                            <td style="vertical-align: middle;">{{ $board->created_at }}</td>
                                         </tr>
-
+                                        @endforeach
                                         </tbody>
                                     </table>
+                                    <center>
+                                        <?php
+                                            $url = '/CreateBoard/Class/'.$class_id;
+                                        ?>
+                                        <a href="{{ asset($url) }}"><button class="btn btn-secondary">새 게시물</button></a>
+                                    </center>
                                 </div>
                             </div>
                         </div>

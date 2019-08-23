@@ -8,6 +8,7 @@ use App\Account;
 use App\Course;
 use App\AccountType;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 class ManageClassController extends Controller
@@ -136,7 +137,9 @@ class ManageClassController extends Controller
         $tot_accepted_students = $class->getMatchedStudent()->where("ClassId", $class_id)->where('Accepted', 1)->get();
 
         $tot_viable_students = Account::where("Active", 1)->where("AccountTypeId", 1)->get();   // get students
-
+        $boards = DB::table('Boards')->where('BoardType','Course')->where('Active',1)->where('TopFix','Y')->where('ClassId',$class_id)->orderBy('created_at','desc')->get();
+        $down_boards = DB::table('Boards')->where('BoardType','Course')->where('Active',1)->where('TopFix','N')->where('ClassId',$class_id)->orderBy('created_at','desc')->get();
+        $boards = $boards->merge($down_boards);
 //        foreach($students as $student) {
 //
 //            $tmp = $student->checkInvitation()->where("ClassId", "<>", $class_id)->get()->toarray();
@@ -150,7 +153,7 @@ class ManageClassController extends Controller
 //        $tot_viable_students = $students->checkInvitation()->where("ClassId", "<>", $class_id)->get();
 //        dd($tot_viable_students);
 
-        return view('EnterClass')->with('class', $class)->with('name', $name)->with('type', $type)->with('id', $id)->with('tot_viable_students', $tot_viable_students)->with('class_id', $class_id)->with('tot_invited_students', $tot_invited_students)->with('tot_accepted_students', $tot_accepted_students);
+        return view('EnterClass')->with('class', $class)->with('name', $name)->with('type', $type)->with('id', $id)->with('tot_viable_students', $tot_viable_students)->with('class_id', $class_id)->with('tot_invited_students', $tot_invited_students)->with('tot_accepted_students', $tot_accepted_students)->with('boards',$boards);
     }
 
     public function inviteAdditionalMember(Request $request) {
@@ -181,7 +184,7 @@ class ManageClassController extends Controller
         $tot_invited_students = $class->getUserInfo()->where("ClassId", $class_id)->get();
         $tot_accepted_students = $class->getMatchedStudent()->where("ClassId", $class_id)->where('Accepted', 1)->get();
         $tot_viable_students = Account::where('Active', 1)->checkInvitation()->where("ClassId", "<>", $class_id)->get();
-        dd($tot_viable_students);
+        
         return view('StudentManagementAjax')->with('id', $id)->with('class_id', $class_id)->with('class', $class)->with('tot_invited_students', $tot_invited_students)->with('tot_accepted_students', $tot_accepted_students);
     }
 
@@ -215,7 +218,6 @@ class ManageClassController extends Controller
             "CourseId" => $course_id,
             "Active" => 1
         ]);
-
         $class_id = InfoClass::where("AccountId", $user_id)->where("CourseId", $course_id)->first()->ClassId;   // get new class id
 
         // invite all the students that teacher selected
