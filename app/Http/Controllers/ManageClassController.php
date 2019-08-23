@@ -39,7 +39,7 @@ class ManageClassController extends Controller
 
         $account_type_id = Account::where('id', $id)->first()->AccountTypeId;
         $type = AccountType::where('AccountTypeId', '=', $account_type_id)->first()->Type;
-
+    
         $classes = $this->showClassInfo($id);
         // dd($courses_info);
         return view('ManageClass')->with('classes', $classes)->with('name', $name)->with('type', $type)->with('id', $id);
@@ -73,9 +73,7 @@ class ManageClassController extends Controller
         // Input :
         // Output : get the list of classes
         // Description : show all the classes that teacher takes in charge of
-
         $classes = InfoClass::where('AccountId', $id)->where('Active', 1)->get();
-
         return $classes;
     }
 
