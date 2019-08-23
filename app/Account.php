@@ -51,4 +51,9 @@ class Account extends Authenticatable
     public function channels() {
         return $this->hasMany('App\Channel','AccountId')->orderBy('created_at','desc');
     }
+
+    public function checkInvitation() {
+
+        return $this->hasMany('App\Invitation', 'InviteeId');
+    }
 }

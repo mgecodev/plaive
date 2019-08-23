@@ -1,23 +1,24 @@
 <div id="courses">
     <div class="container">
-        <div class="row"> 
+        <div class="row">
             <div class="col-lg-12 col-md-12 col-12">
                 <div class="row">
                     <div class="big-tagline">
                         <h2><strong>로고 </strong>직접 강좌를 개설해 보세요.</h2>
                         <p class="lead">With Landigoo responsive landing page template, you can promote your all hosting, domain and email services. </p>
-            
-                    <a href="javascript:void(0)" class="hover-btn-new" data-toggle="modal" onclick="myFunction('{{ $id }}')">
+
+                        <a href="javascript:void(0)" class="hover-btn-new" data-toggle="modal"
+                           onclick="myFunction('{{ $id }}')">
                             <span>강좌 개설하기</span>
                         </a>
-                       
+
                     </div>
                 </div>
             </div><!-- end col -->
-        </div><!-- end row -->			
-        
-        <hr class="hr3"> 
-    
+        </div><!-- end row -->
+
+        <hr class="hr3">
+
     </div><!-- end container -->
 </div><!-- end section -->
 
@@ -39,8 +40,8 @@
 
         $("#modal-content1").append(content);
 
-        $("#large-modal-button").empty();   
-       
+        $("#large-modal-button").empty();
+
         var content = '<button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>';
         content += '<button type="button" class="btn btn-primary" id="save">저장</button>';
 
@@ -72,13 +73,13 @@
                     "_prerequisite" : prerequisite
                 },
                 success : function(data) {
-                    
-                    $('#courses').html(data)   
+
+                    $('#courses').html(data)
                     $("#Large-modal").modal('hide');
 
                 },
                 error: function(request, status, error) {
-                    // 에러 출력을 활성화 하려면 아래 주석을 해제한다. 
+                    // 에러 출력을 활성화 하려면 아래 주석을 해제한다.
 
                     //console.log(request + "/" + status + "/" + error);
                 }

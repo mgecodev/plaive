@@ -1,7 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="35e28d35-536b-4eab-b88b-4029b9306f6f" name="Default Changelist" comment="" />
+    <list default="true" id="35e28d35-536b-4eab-b88b-4029b9306f6f" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/StudentClassController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/CheckInvitationAjax.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/EnterClass.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/MyClass.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/StudentManagementAjax.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Plaive.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Plaive.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Account.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Account.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/ClassMember.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/ClassMember.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Course.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Course.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Coursework.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Coursework.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CheckInvitationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CheckInvitationController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CourseController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CourseController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ManageClassController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ManageClassController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ManageCourseController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ManageCourseController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/InfoClass.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/InfoClass.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/factories/InfoClassFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/InfoClassFactory.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2019_08_02_045844_create_courses_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_08_02_045844_create_courses_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2019_08_05_092634_create_courseworks_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_08_05_092634_create_courseworks_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/CheckInvitation.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/CheckInvitation.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/EnrollClassAjax.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/EnrollClassAjax.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/EnrollCourseAjax.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/EnrollCourseAjax.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/ManageClass.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/ManageClass.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/ShowAllClassAjax.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/ShowAllClassAjax.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/ShowMyCourseAjax.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/ShowMyCourseAjax.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/Header.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/Header.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/Master.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/Master.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,6 +153,16 @@
       <path value="$PROJECT_DIR$/vendor/jenssegers/agent" />
       <path value="$PROJECT_DIR$/vendor/mobiledetect/mobiledetectlib" />
       <path value="$PROJECT_DIR$/vendor/symfony/yaml" />
+      <path value="$PROJECT_DIR$/vendor/guzzlehttp/promises" />
+      <path value="$PROJECT_DIR$/vendor/guzzlehttp/psr7" />
+      <path value="$PROJECT_DIR$/vendor/guzzlehttp/guzzle" />
+      <path value="$PROJECT_DIR$/vendor/usmanhalalit/laracsv" />
+      <path value="$PROJECT_DIR$/vendor/mtdowling/jmespath.php" />
+      <path value="$PROJECT_DIR$/vendor/ralouphie/getallheaders" />
+      <path value="$PROJECT_DIR$/vendor/aws/aws-sdk-php" />
+      <path value="$PROJECT_DIR$/vendor/league/csv" />
+      <path value="$PROJECT_DIR$/vendor/league/flysystem-aws-s3-v3" />
+      <path value="$PROJECT_DIR$/vendor/psr/http-message" />
     </include_path>
   </component>
   <component name="ProjectId" id="1OdVFJZXJfFWsMtLDc141AAgjiy" />
@@ -210,7 +251,12 @@
       <workItem from="1565568826332" duration="597000" />
       <workItem from="1565853123911" duration="159000" />
       <workItem from="1565914259241" duration="22752000" />
-      <workItem from="1566174405202" duration="8142000" />
+      <workItem from="1566174405202" duration="32446000" />
+      <workItem from="1566260735061" duration="18594000" />
+      <workItem from="1566345519560" duration="25088000" />
+      <workItem from="1566401527252" duration="7605000" />
+      <workItem from="1566427937399" duration="23133000" />
+      <workItem from="1566522793006" duration="14745000" />
     </task>
     <task id="LOCAL-00001" summary="path manager">
       <created>1564317974013</created>
@@ -241,5 +287,16 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="path manager" />
     <option name="LAST_COMMIT_MESSAGE" value="path manager" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/app/Http/Controllers/Controller.php</url>
+          <line>4</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

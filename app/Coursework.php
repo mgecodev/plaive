@@ -12,9 +12,9 @@ class Coursework extends Model
      *
      * @var string
      */
-    protected $table = 'Coursework';
+    protected $table = 'Courseworks';
 
     protected $fillable = [
-        'CourseworkId', 'CourseId', 'WeekNumber', 'Content'
+        'CourseworkId', 'CourseId', 'WeekNumber', 'Content', 'ContentNumber'
     ];
 }

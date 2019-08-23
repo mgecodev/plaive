@@ -22,7 +22,9 @@ class CreateCourseworksTable extends Migration
                 $table->bigIncrements('CourseworkId');
                 $table->Integer('CourseId');
                 $table->Integer('WeekNumber');
+                $table->integer('ContentNumber');
                 $table->text('Content');
+                $table->timestamps();
             });
         }
 
@@ -41,8 +43,7 @@ class CreateCourseworksTable extends Migration
 
             // 3. Add column
 //            Schema::table($this->tableName, function (Blueprint $table) {
-//                $table->integer('AccountTypeId');
-//                $table->boolean('DeleteFlag')->default(1);
+//                $table->timestamps();
 //            });
 
             // 4. Rename table

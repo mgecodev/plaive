@@ -18,8 +18,12 @@ class Course extends Model
 
 
     protected $fillable = [
-        
+
         'CourseId', 'Title', 'NumOfStudent', 'HourCount', 'WeekCount', 'Prerequisite', 'Comment', 'Active', 'CreatedBy'
     ];
 
+    public function getTeacherInfo() {
+
+        return $this->hasOne('App\Account', 'id', 'CreatedBy');
+    }
 }

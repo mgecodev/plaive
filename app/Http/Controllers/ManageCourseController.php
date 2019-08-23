@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Account;
 use App\AccountType;
 use App\Course;
+use App\Coursework;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -25,7 +26,8 @@ class ManageCourseController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index() {
+    public function index()
+    {
 
         $user = Auth::user();
 
@@ -39,7 +41,8 @@ class ManageCourseController extends Controller
         return view('ManageCourse')->with('name', $name)->with('type', $type)->with('id', $id)->with('courses', $courses);
     }
 
-    public function showAll(Request $request) {
+    public function showAll(Request $request)
+    {
         // Input :
         // Output :
         // Description : show all the list of courses including official and mine
@@ -50,7 +53,8 @@ class ManageCourseController extends Controller
         return view('ShowAllCourseAjax')->with('courses', $courses);
     }
 
-    public function showMyCourse(Request $request) {
+    public function showMyCourse(Request $request)
+    {
 
 
         $id = $request->_userid;
@@ -59,13 +63,15 @@ class ManageCourseController extends Controller
         return view('ShowMyCourseAjax')->with('courses', $courses);
     }
 
-    public function enroll(Request $request) {
+    public function enroll(Request $request)
+    {
 
         $id = $request->user_id;
         return view('EnrollCourseAjax')->with('id', $id);
     }
 
-    public function enrollCourse(Request $request) {
+    public function enrollCourse(Request $request)
+    {
         // Input :
         // Output :
         // Description :
@@ -86,7 +92,8 @@ class ManageCourseController extends Controller
 
     }
 
-    public function deleteCourse(Request $request) {
+    public function deleteCourse(Request $request)
+    {
 
         $course_id = $request->course_id;
         $id = $request->_userid;
@@ -97,7 +104,8 @@ class ManageCourseController extends Controller
         return view('ShowMyCourseAjax')->with('courses', $courses);
     }
 
-    public function updateCourse(Request $request) {
+    public function updateCourse(Request $request)
+    {
         // Input :
         // Output :
         // Description :
@@ -115,5 +123,39 @@ class ManageCourseController extends Controller
         $courses = Course::where('CreatedBy', $id)->where('Active', 1)->get();
         // dd($courses);
         return view('ShowMyCourseAjax')->with('courses', $courses);
+    }
+
+    public function saveCurriculum(Request $request)
+    {
+        // Input :
+        // Output :
+        // Description : save all the data from curriculum that teacher wrote
+
+        $results = $request->_result;
+        $course_id = $request->_courseid;
+        $id = $request->_createdby;
+
+//        dd($results);
+        $weekcount = 0;
+
+        foreach ($results as $result) {
+
+            $weekcount++;    // set from 1st week
+
+            // save contents by weekcount and content count
+            for ($content_count = 0; $content_count < count($result); $content_count++) {
+
+                $content = $result[$content_count];
+
+                if ($content == NULL) continue;
+
+                var_dump($course_id, $weekcount, $content, $content_count);
+                Coursework::create(['CourseId' => $course_id, 'WeekNumber' => $weekcount, 'Content' => $content, 'ContentNumber' => $content_count]);
+                $courses = Course::where('CreatedBy', $id)->where('Active', 1)->get();
+            }
+        }
+//        die();
+//        dd($courses);
+        return view('showMyCourseAjax')->with('courses', $courses);
     }
 }
