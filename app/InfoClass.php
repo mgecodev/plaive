@@ -14,7 +14,7 @@ class InfoClass extends Model
     protected $table = 'InfoClasses';
 
     protected $fillable = [
-        'ClassId', 'AccountId', 'CourseId', 'Active'
+        'ClassId', 'AccountId', 'CourseId', 'Active', 'ClassName', 'ClassImage'
     ];
 
     public function getStudentInfo() {

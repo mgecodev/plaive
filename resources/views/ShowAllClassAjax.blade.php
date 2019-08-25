@@ -12,14 +12,15 @@
                     <div class="col-lg-4 col-md-6 col-12">
                         <div class="course-item">
                             <div class="image-blog">
-                                <img src="/images/blog_1.jpg" alt="" class="img-fluid">
+                                @if($class->ClassImage  == null)
+                                    <img src="/images/blog_1.jpg" alt="" class="img-fluid">
+                                @else 
+                                    <img src={{ $class->ClassImage }} alt="" class="img-fluid">
+                                @endif
                             </div>
                             <div class="course-br">
-                                <div class="course-title">
-                                    <h2><a href="/Class/{{ $class->ClassId }}" target="_blank">{{ str_limit($course_info->Title,30) }}</a></h2>
-                                </div>
-                                <div class="course-desc">
-                                    <p>{{ str_limit($course_info->Comment,30) }}</p>
+                                <div class="course-title" style="text-align:center;">
+                                    <h2><a href="/Class/{{ $class->ClassId }}" target="_blank">{{ str_limit($class->ClassName,24) }}</a></h2>
                                 </div>
                             </div>
                             <div class="course-meta-bot">

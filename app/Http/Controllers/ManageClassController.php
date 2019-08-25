@@ -10,6 +10,7 @@ use App\AccountType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class ManageClassController extends Controller
 {
@@ -222,7 +223,17 @@ class ManageClassController extends Controller
         // Output :
         // Description :    1. Make class first
         //                  2. Get ClassId and invite students
-        $student_ids = $request->_checked_students;
+        //dd($request->all());
+        if($request->hasFile('class_image')){
+            $file = $request->file('class_image');
+            $file_name = $file->getClientOriginalName();
+            $path = Storage::disk('s3')->put('plaive/class_image',$file,'public');
+            $s3_url = "https://s3.ap-northeast-2.amazonaws.com/s3.finedust.10make.com/".$path;
+        } else {
+            $s3_url = null;
+        }
+        $temp_student_ids = $request->_checked_students;
+        $student_ids = explode(',',$temp_student_ids);
         $course_id = $request->_courseid;
         $user_id = $request->_teacherid;
 
@@ -230,6 +241,8 @@ class ManageClassController extends Controller
         InfoClass::create([
             "AccountId" => $user_id,
             "CourseId" => $course_id,
+            "ClassName" => $request->class_name,
+            "ClassImage" => $s3_url,
             "Active" => 1
         ]);
         $class_id = InfoClass::where("AccountId", $user_id)->where("CourseId", $course_id)->first()->ClassId;   // get new class id

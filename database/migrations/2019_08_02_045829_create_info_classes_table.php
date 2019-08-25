@@ -21,6 +21,8 @@ class CreateInfoClassesTable extends Migration
                 $table->bigIncrements('ClassId');
                 $table->Integer('AccountId');
                 $table->Integer('CourseId');
+                $table->string('ClassName');
+                $table->string('ClassImage',256)->nullable();
                 $table->timestamps();
                 $table->boolean('Active')->default(1);
             });
@@ -40,10 +42,10 @@ class CreateInfoClassesTable extends Migration
 //            });
 
             // 3. Add column
-//            Schema::table($this->tableName, function (Blueprint $table) {
-//                $table->integer('AccountTypeId');
-//                $table->boolean('DeleteFlag')->default(1);
-//            });
+            Schema::table($this->tableName, function (Blueprint $table) {
+                $table->string('ClassName');
+                $table->string('ClassImage',256)->nullable();
+            });
 
 //             4. Rename table
 //            Schema::rename($this->tableName, 'InfoClasses');
