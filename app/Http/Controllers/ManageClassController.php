@@ -29,7 +29,7 @@ class ManageClassController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
 
-    public function index() {
+    public function index($board_flag=NULL) {
         // Input :
         // Output :
         // Description : show all the list of classes that teacher takes in charge of
@@ -41,10 +41,10 @@ class ManageClassController extends Controller
 
         $account_type_id = Account::where('id', $id)->first()->AccountTypeId;
         $type = AccountType::where('AccountTypeId', '=', $account_type_id)->first()->Type;
-    
+
         $classes = $this->showClassInfo($id);
 
-        return view('ManageClass')->with('classes', $classes)->with('name', $name)->with('type', $type)->with('id', $id);
+        return view('ManageClass')->with('classes', $classes)->with('name', $name)->with('type', $type)->with('id', $id)->with('board_flag',$board_flag);
     }
 
     public function saveCourseInfo() {
@@ -155,7 +155,7 @@ class ManageClassController extends Controller
         return view('EnterClass')->with('class', $class)->with('name', $name)->with('type', $type)->with('id', $id)->with('tot_viable_students', $tot_viable_students)->with('class_id', $class_id)->with('tot_invited_students', $tot_invited_students)->with('tot_accepted_students', $tot_accepted_students)->with('boards',$boards)->with('board_flag',$board_flag);
     }
 
-    public function inviteAdditionalMember(Request $request) {
+    public function inviteAdditionalMember($board_flag=null, Request $request) {
         // Input :
         // Output :
         // Description : 1. Check if he/she is already invited
@@ -199,7 +199,8 @@ class ManageClassController extends Controller
 
 
         //        dd($tot_viable_students);
-        return view('StudentManagementAjax')->with('id', $id)->with('class_id', $class_id)->with('class', $class)->with('tot_invited_students', $tot_invited_students)->with('tot_accepted_students', $tot_accepted_students)->with('tot_viable_students', $tot_viable_students);
+//        return view('StudentManagementAjax')->with('id', $id)->with('class_id', $class_id)->with('class', $class)->with('tot_invited_students', $tot_invited_students)->with('tot_accepted_students', $tot_accepted_students)->with('tot_viable_students', $tot_viable_students)->with('board_flag', $board_flag);
+        return 0;
     }
 
     public function acceptInvitation() {

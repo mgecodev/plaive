@@ -3,11 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="35e28d35-536b-4eab-b88b-4029b9306f6f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Account.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Account.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ManageClassController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ManageClassController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/ShowAllClassAjax.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/ShowAllClassAjax.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/ShowAllCourseAjax.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/ShowAllCourseAjax.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/StudentManagementAjax.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/StudentManagementAjax.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -233,7 +230,7 @@
       <workItem from="1566401527252" duration="7605000" />
       <workItem from="1566427937399" duration="23133000" />
       <workItem from="1566522793006" duration="19291000" />
-      <workItem from="1566708950828" duration="6638000" />
+      <workItem from="1566708950828" duration="8337000" />
     </task>
     <task id="LOCAL-00001" summary="path manager">
       <created>1564317974013</created>

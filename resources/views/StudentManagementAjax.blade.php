@@ -157,7 +157,7 @@
                                             <td>{{ $tot_viable_student->name }}</td>
                                             <td>{{ $tot_viable_student->email }}</td>
                                             <td>
-                                                <input type="submit" val="{{ $tot_viable_student->id.','.$id.','.$class_id }}" name="{{ $id }}"
+                                                <input onclick="changeButton()"type="submit" val="{{ $tot_viable_student->id.','.$id.','.$class_id }}" name="{{ $id }}"
                                                        class="btn btn-primary submit2" value="초대하기"></button>
                                             </td>
                                         </tr>
@@ -174,6 +174,11 @@
 </div>
 
 <script>
+    function changeButton() {
+
+
+    }
+
     $('.submit2').click(function (e) {
 
         var ids = $(this).attr('val');
