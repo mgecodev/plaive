@@ -54,6 +54,6 @@ class Account extends Authenticatable
 
     public function checkInvitation() {
 
-        return $this->hasMany('App\Invitation', 'InviteeId');
+        return $this->hasMany('App\Invitation', 'InviteeId', 'id');
     }
 }
