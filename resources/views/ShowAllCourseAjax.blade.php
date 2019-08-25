@@ -17,14 +17,6 @@
                                 <div class="course-desc">
                                     <p>{{ $course->Comment }}</p>
                                 </div>
-                                <div class="course-rating">
-                                    4.5
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star-half"></i>
-                                </div>
                             </div>
                             <div class="course-meta-bot">
                                 <ul>

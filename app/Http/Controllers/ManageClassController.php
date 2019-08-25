@@ -182,9 +182,24 @@ class ManageClassController extends Controller
         $class = InfoClass::where('ClassId', $class_id)->where('Active', 1)->first(); // get one class out of specific teacher's
         $tot_invited_students = $class->getUserInfo()->where("ClassId", $class_id)->get();
         $tot_accepted_students = $class->getMatchedStudent()->where("ClassId", $class_id)->where('Accepted', 1)->get();
-        $tot_viable_students = Account::where('Active', 1)->checkInvitation()->where("ClassId", "<>", $class_id)->get();
-        
-        return view('StudentManagementAjax')->with('id', $id)->with('class_id', $class_id)->with('class', $class)->with('tot_invited_students', $tot_invited_students)->with('tot_accepted_students', $tot_accepted_students);
+        $students = Account::where('Active', 1)->get();
+        $tot_viable_students = array();
+
+        foreach($students as $student) {
+
+            $cnt = $student->checkInvitation()->where("ClassId", $class_id)->count();
+
+            if ($cnt == 0) {
+                array_push($tot_viable_students, $student);
+            }
+            else {
+                continue;
+            }
+        }
+
+
+        //        dd($tot_viable_students);
+        return view('StudentManagementAjax')->with('id', $id)->with('class_id', $class_id)->with('class', $class)->with('tot_invited_students', $tot_invited_students)->with('tot_accepted_students', $tot_accepted_students)->with('tot_viable_students', $tot_viable_students);
     }
 
     public function acceptInvitation() {
@@ -222,13 +237,17 @@ class ManageClassController extends Controller
         // invite all the students that teacher selected
         foreach($student_ids as $student_id) {
 
+//            var_dump("here");
+
             Invitation::create([
                 "InviterId" => $user_id,
                 "InviteeId" => $student_id,
                 "ClassId" => $class_id,
                 "Accepted" => 0
             ]);
+
         }
+
 
         return redirect("/ManageClass");
     }
