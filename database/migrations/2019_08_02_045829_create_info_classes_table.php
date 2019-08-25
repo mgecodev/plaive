@@ -42,10 +42,10 @@ class CreateInfoClassesTable extends Migration
 //            });
 
             // 3. Add column
-            Schema::table($this->tableName, function (Blueprint $table) {
+            /*Schema::table($this->tableName, function (Blueprint $table) {
                 $table->string('ClassName');
                 $table->string('ClassImage',256)->nullable();
-            });
+            });*/
 
 //             4. Rename table
 //            Schema::rename($this->tableName, 'InfoClasses');

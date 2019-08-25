@@ -43,9 +43,9 @@ class CreateInvitationsTable extends Migration
 //            });
 
             // 3. Add column
-            Schema::table($this->tableName, function (Blueprint $table) {
+            /*Schema::table($this->tableName, function (Blueprint $table) {
                $table->timestamps();
-            });
+            });*/
 
             // 4. Rename table
 //            Schema::rename($this->tableName, 'Accounts');
