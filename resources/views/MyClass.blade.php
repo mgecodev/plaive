@@ -3,10 +3,10 @@
 @section('content')
 
     <div class="row">
-        <div class="col-lg-3">
+        <div class="col-lg-3" class="section wb">
         </div>
         <div class="col-lg-9">
-            <div id="courses">
+            <div id="courses" class="section wb">
                 <div class="container">
                     <div class="row">
                         @foreach($my_classes as $my_class)
