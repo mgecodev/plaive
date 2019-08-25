@@ -38,6 +38,8 @@ Route::get('/ManageClass/Enroll', 'ManageClassController@enroll');
 Route::get('/Class/{classid}/{board_flag?}', 'ManageClassController@enterClass');
 Route::post('/Invite', 'ManageClassController@inviteAdditionalMember');
 Route::post('/ManageClass/IncludeStudent', 'ManageClassController@includeStudent');
+Route::patch('/ManageClass/IncludeStudent/{class_id}', 'ManageClassController@updateStudent');
+
 Route::post('/ManageClass/DeleteClass', 'ManageClassController@deleteClass');
 
 

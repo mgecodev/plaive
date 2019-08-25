@@ -55,7 +55,7 @@
     function inviteStudent(_courseid, _id) {
 
         $("#myLargeModalLabel").empty();
-        $("#myLargeModalLabel").append('학생을 초대해주세요(2 / 2)');
+        $("#myLargeModalLabel").append('학생을 초대해주세요(2 / 3)');
         $("#modal-content1").empty();
         var content = '<div class="table-responsive text-center" style="color:black;">';
         content += '<table class="table table-bordered stripe hover nowrap" id="second_table" style="width:100%;"><thead><tr><th>학생 이름</th><th>이메일</th><th class="datatable-nosort datatable-nosearch"></th></tr></thead>';
@@ -139,7 +139,7 @@
 
     function myFunction1() {
         $("#myLargeModalLabel").empty();
-        $("#myLargeModalLabel").append('강좌를 선택해 주세요(1 / 2)');
+        $("#myLargeModalLabel").append('강좌를 선택해 주세요(1 / 3)');
         $("#modal-content1").empty();
 
         // var content = '<form>';
