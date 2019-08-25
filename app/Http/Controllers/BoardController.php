@@ -37,7 +37,7 @@ class BoardController extends Controller
         
         return view('Boards.index',compact('boards'))->with('name', $name)->with('type', $type)->with('id',$id);
     }
-    public function create($board_type,$course_id=null)
+    public function create($board_type,$class_id=null)
     {
         $user = Auth::user();
 
@@ -46,13 +46,9 @@ class BoardController extends Controller
 
         $account_type_id = Account::where('id', $id)->first()->AccountTypeId;
         $type = AccountType::where('AccountTypeId', '=', $account_type_id)->first()->Type;
-        if($course_id == null) {
-            return view('Boards.create')->with('name', $name)->with('type', $type)->with('id',$id)->with('board_type',$board_type);
-        } else {
-            return view('Boards.create')->with('name', $name)->with('type', $type)->with('id',$id)->with('board_type',$board_type)->with('course',$course_id);
-        }
+        return view('Boards.create')->with('name', $name)->with('type', $type)->with('id',$id)->with('board_type',$board_type)->with('class',$class_id);
     }
-    public function save(Request $request, $board_type, $course_id=null)
+    public function save(Request $request, $board_type, $class_id=null)
     {
         $user = Auth::user();
 
@@ -87,7 +83,7 @@ class BoardController extends Controller
 
         DB::table('Boards')->insert([
             'BoardType' => $board_type,
-            'ClassId' => $course_id,
+            'ClassId' => $class_id,
             'WriterType' => $type,
             'WriterNo' => $id,
             'WriterName' => $name,
@@ -98,13 +94,14 @@ class BoardController extends Controller
             'created_at' => $nowdate,
             'updated_at' => $nowdate,
         ]);
-        if($course_id == null) {
+        if($class_id == null) {
             return redirect('/MainBoard');
         } else {
-            return back();
+            $url = 'Class/'.$class_id.'/board';
+            return redirect($url);
         }
     }
-    public function show($board_type,Board $board)
+    public function show($board_type,Board $board,$class_id=null)
     {
         $user = Auth::user();
 
@@ -116,7 +113,7 @@ class BoardController extends Controller
 
         $files= Board::find($board->BoardId)->files;
 
-        return view('Boards.show',compact('board'))->with('name', $name)->with('type', $type)->with('id',$id)->with('files',$files);
+        return view('Boards.show',compact('board'))->with('name', $name)->with('type', $type)->with('id',$id)->with('files',$files)->with('board_type',$board_type)->with('class_id',$class_id);
 
     }
     public function fileDownload($file_id)
@@ -144,7 +141,7 @@ class BoardController extends Controller
             return $this->respondInternalError( $e->getMessage(), 'object', 500);
         }
     }
-    public function edit($board_type, Board $board)
+    public function edit($board_type, Board $board, $class_id = null)
     {
         $user = Auth::user();
 
@@ -155,9 +152,9 @@ class BoardController extends Controller
         $type = AccountType::where('AccountTypeId', '=', $account_type_id)->first()->Type;
         $files= Board::find($board->BoardId)->files;
 
-        return view('Boards.edit',compact('board'))->with('name', $name)->with('type', $type)->with('id',$id)->with('board_type',$board_type)->with('files',$files);
+        return view('Boards.edit',compact('board'))->with('name', $name)->with('type', $type)->with('id',$id)->with('board_type',$board_type)->with('files',$files)->with('class',$class_id);
     }
-    public function update(Request $request,$board_type,Board $board)
+    public function update(Request $request,$board_type,Board $board,$class_id = null)
     {
         $user = Auth::user();
 
@@ -199,7 +196,7 @@ class BoardController extends Controller
 
         $files= Board::find($board->BoardId)->files;
 
-        return view('Boards.show',compact('board'))->with('name', $name)->with('type', $type)->with('id',$id)->with('files',$files);
+        return view('Boards.show',compact('board'))->with('name', $name)->with('type', $type)->with('id',$id)->with('board_type',$board_type)->with('files',$files)->with('class_id',$class_id);
     }
     public function destroy($board_type, Board $board) 
     {

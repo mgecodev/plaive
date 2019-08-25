@@ -124,12 +124,20 @@ function LoadPage() {
 </script>
 @endsection
 @section("page_title")
-<h1>소식 수정</h1>
+@if($board_type == 'All')
+    <h1>소식 수정</h1>
+@elseif($board_type == 'Class')
+    <h1>게시물 수정</h1>
+@endif
 @endsection
 @section('content')
 <div id="overviews" class="section wb">
     <div class="container">
-            <form action="/UpdateBoard/All/{{ $board->BoardId}}" method="post" novalidate="novalidate" id="BoardForm" enctype="multipart/form-data">
+            @if($class==null)
+                <form action="/UpdateBoard/All/{{ $board->BoardId}}" method="post" novalidate="novalidate" id="BoardForm" enctype="multipart/form-data">
+            @else
+                <form action="/UpdateBoard/Class/{{ $board->BoardId}}/{{ $class }}" method="post" novalidate="novalidate" id="BoardForm" enctype="multipart/form-data">
+            @endif
             @csrf
             @method('PATCH')
             <div class="form-group">

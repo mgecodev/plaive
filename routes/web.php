@@ -35,7 +35,7 @@ Route::get('/class', function () {
 });
 Route::get('/ManageClass', 'ManageClassController@index');
 Route::get('/ManageClass/Enroll', 'ManageClassController@enroll');
-Route::get('/Class/{classid}', 'ManageClassController@enterClass');
+Route::get('/Class/{classid}/{board_flag?}', 'ManageClassController@enterClass');
 Route::post('/Invite', 'ManageClassController@inviteAdditionalMember');
 Route::post('/ManageClass/IncludeStudent', 'ManageClassController@includeStudent');
 Route::post('/ManageClass/DeleteClass', 'ManageClassController@deleteClass');
@@ -76,12 +76,12 @@ Route::patch('/SaveOption/{graphOption}','SaveDataController@updateOption');
 Route::patch('/ShowData/DeleteData/{channel}/{index}','SaveDataController@deleteData');
 
 Route::get('/MainBoard','BoardController@index');
-Route::get('/CreateBoard/{type}/{course_id?}','BoardController@create');
-Route::post('/CreateBoard/{type}/{course_id?}','BoardController@save');
-Route::get('/ShowBoard/{type}/{board}','BoardController@show');
+Route::get('/CreateBoard/{type}/{class_id?}','BoardController@create');
+Route::post('/CreateBoard/{type}/{class_id?}','BoardController@save');
+Route::get('/ShowBoard/{type}/{board}/{class_id?}','BoardController@show');
 Route::get('/DownloadFile/{file}','BoardController@fileDownload');
-Route::get('/EditBoard/{type}/{board}/edit','BoardController@edit');
-Route::patch('/UpdateBoard/{type}/{board}','BoardController@update');
+Route::get('/EditBoard/{type}/{board}/edit/{class_id?}','BoardController@edit');
+Route::patch('/UpdateBoard/{type}/{board}/{class_id?}','BoardController@update');
 Route::patch('/DeleteBoard/{type}/{board}','BoardController@destroy');
 
 Route::patch('/DeleteBoardFile/{boardFile}', 'BoardFileController@destroy');

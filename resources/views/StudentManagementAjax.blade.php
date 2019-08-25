@@ -5,19 +5,19 @@
             <div class="col-md-3 col-sm-12">
                 <ul class="nav flex-column vtabs nav-tabs customtab" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link active show" data-toggle="tab" href="#home4" role="tab" aria-selected="true">학생
+                        <a class="nav-link {{ $board_flag == null ? 'active show' : '' }}" data-toggle="tab" href="#home4" role="tab" aria-selected="true">학생
                             현황</a>
                         <a class="nav-link" data-toggle="tab" href="#invite4" role="tab" aria-selected="false">학생
                             초대하기</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#profile4" role="tab" aria-selected="false">게시물</a>
+                        <a class="nav-link {{ $board_flag == 'board' ? 'active show' : '' }}" data-toggle="tab" href="#profile4" role="tab" aria-selected="false">게시물</a>
                     </li>
                 </ul>
             </div>
             <div class="col-md-9 col-sm-12">
                 <div class="tab-content">
-                    <div class="tab-pane fade active show" id="home4" role="tabpanel">
+                    <div class="tab-pane fade {{ $board_flag == null ? 'active show' : '' }}" id="home4" role="tabpanel">
                         <div class="row clearfix progress-box">
                             <div class="col-lg-4 col-md-6 col-sm-12 mb-30">
                                 <div class="bg-white pd-20 box-shadow border-radius-5 height-100-p">
@@ -71,45 +71,45 @@
                             </div>
                         </div>
                         <div class="pd-20">
-                            <table class="table table-striped">
-                                <thead>
-                                <tr>
-                                    <th scope="col">이름</th>
-                                    <th scope="col">메일</th>
-                                    <th scope="col">상태</th>
-                                    <th scope="col"></th>
-                                </tr>
-                                </thead>
-                                <tbody>
-
-                                @foreach($tot_invited_students as $tot_invited_student)
+                            <div class="table-responsive text-center">
+                                <table class="table table-bordered stripe hover nowrap" id="first_table" style="width:100%;">
+                                    <thead>
                                     <tr>
-                                        <th scope="row">{{ $tot_invited_student->name }}</th>
-                                        <th scope="row">{{ $tot_invited_student->email }}</th>
-                                        <th scope="row">
-                                            @if ($tot_invited_student->Accepted == 1)
-                                                <span class="badge badge-success">Accepted</span>
-                                            @elseif ($tot_invited_student->Accepted == 0)
-                                                <span class="badge badge-primary">Pending</span>
-                                            @endif
-                                        </th>
-                                        <th scope="row"><input class="btn btn-info" type="reset" value="취소"></th>
-
+                                        <th>이름</th>
+                                        <th>메일</th>
+                                        <th>상태</th>
+                                        <th>Action</th>
                                     </tr>
-                                @endforeach
+                                    </thead>
+                                    <tbody>
+                                    @foreach($tot_invited_students as $tot_invited_student)
+                                        <tr>
+                                            <td>{{ $tot_invited_student->name }}</td>
+                                            <td>{{ $tot_invited_student->email }}</td>
+                                            <td>
+                                                @if ($tot_invited_student->Accepted == 1)
+                                                    <span class="badge badge-success">Accepted</span>
+                                                @elseif ($tot_invited_student->Accepted == 0)
+                                                    <span class="badge badge-primary">Pending</span>
+                                                @endif
+                                            </td>
+                                            <td scope="row"><input class="btn btn-info" type="reset" value="취소"></td>
+                                        </tr>
+                                    @endforeach
 
-                                </tbody>
-                            </table>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="profile4" role="tabpanel">
+                    <div class="tab-pane fade {{ $board_flag == 'board' ? 'active show' : '' }}" id="profile4" role="tabpanel">
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="table-responsive text-center">
                                     <table class="table table-bordered stripe hover nowrap" id="table"
                                            style="width:100%;">
                                         <thead>
-                                        <tr role="row">
+                                        <tr>
                                             <th class="text-center datatable-nosearch" >#</th>
                                             <th class="text-center">작성자</th>
                                             <th class="text-center">제목</th>
@@ -119,12 +119,12 @@
                                         <tbody>
                                         @foreach($boards as $board)
                                         <?php
-                                            $url = 'ShowBoard/Class/'.$board->BoardId;
+                                            $url = 'ShowBoard/Class/'.$board->BoardId.'/'.$class_id;
                                         ?>
                                         <tr class="item{{$board->BoardId}}" onclick="location.href='{{ asset($url) }}'">
                                             <td style="vertical-align: middle;">{{ $loop->iteration }}</td>
                                             <td style="vertical-align: middle;">{{ $board->WriterName }}</td>
-                                            <td style="vertical-align: middle;">{{ str_limit($board->BoardTitle,50) }}</td>
+                                            <td style="vertical-align: middle;">{{ str_limit($board->BoardTitle,40) }}</td>
                                             <td style="vertical-align: middle;">{{ $board->created_at }}</td>
                                         </tr>
                                         @endforeach
@@ -143,23 +143,23 @@
                     <div class="tab-pane fade" id="invite4" role="tabpanel">
                         <div class="pd-20">
                             <div class="table-responsive text-center">
-                                <table class="table table-bordered stripe hover nowrap" id="table" style="width:100%;">
+                                <table class="table table-bordered stripe hover nowrap" id="second_table" style="width:100%;">
                                     <thead>
                                     <tr>
-                                        <th scope="col">이름</th>
-                                        <th scope="col">메일</th>
-                                        <th scope="col"></th>
+                                        <th>이름</th>
+                                        <th>메일</th>
+                                        <th class="text-center datatable-nosearch datatable-nosort">Action</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     @foreach($tot_viable_students as $tot_viable_student)
                                         <tr>
-                                            <th scope="row">{{ $tot_viable_student->name }}</th>
-                                            <th scope="row">{{ $tot_viable_student->email }}</th>
-                                            <th scope="row">
+                                            <td>{{ $tot_viable_student->name }}</td>
+                                            <td>{{ $tot_viable_student->email }}</td>
+                                            <td>
                                                 <input type="submit" val="{{ $tot_viable_student->id.','.$id.','.$class_id }}" name="{{ $id }}"
                                                        class="btn btn-primary submit2" value="초대하기"></button>
-                                            </th>
+                                            </td>
                                         </tr>
                                     @endforeach
                                     </tbody>
