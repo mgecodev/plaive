@@ -157,8 +157,8 @@
                                             <td>{{ $tot_viable_student->name }}</td>
                                             <td>{{ $tot_viable_student->email }}</td>
                                             <td>
-                                                <input type="submit" val="{{ $tot_viable_student->id.','.$id.','.$class_id }}" name="{{ $id }}"
-                                                       class="btn btn-primary submit2" value="초대하기"></button>
+                                                <input onclick="changeButton({{ $id }})"type="submit" val="{{ $tot_viable_student->id.','.$id.','.$class_id }}" name="{{ $id }}"
+                                                       class="btn btn-primary submit2" id="{{ "invite_".$id }}" value="초대"></button>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -174,32 +174,53 @@
 </div>
 
 <script>
+    function changeButton(_id) {
+
+        var id = "invite_"+_id;
+
+        if (document.getElementById(id).value == "초대")
+        {
+            document.getElementById(id).value = "취소";
+        }
+        else {
+            document.getElementById(id).value = "초대";
+        }
+    }
+
     $('.submit2').click(function (e) {
 
         var ids = $(this).attr('val');
+        var id = $(this).attr('id');
+
         // var teacher_id = $(this).attr('val2');
 
         // alert(student_id);
 
-        $.ajax({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            type: 'POST',
-            url: '/Invite',
-            data: {
-                "ids": ids
-            },
-            success: function (data) {
+        if (document.getElementById(id).value == "취소") {    // save invitation
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: 'POST',
+                url: '/Invite',
+                data: {
+                    "ids": ids
+                },
+                success: function (data) {
 
-                // $('#invite4').html(data)
-                $("input:text").val("되돌리기")
-            },
-            error: function (request, status, error) {
-                // 에러 출력을 활성화 하려면 아래 주석을 해제한다.
+                    alert("Success");
+                },
+                error: function (request, status, error) {
+                    // 에러 출력을 활성화 하려면 아래 주석을 해제한다.
+                    alert("fail");
+                    //console.log(request + "/" + status + "/" + error);
+                }
+            }) // End Ajax Request
+        }
+        else {  // change
 
-                //console.log(request + "/" + status + "/" + error);
-            }
-        }) // End Ajax Request
+        }
+
+
     });
 </script>
