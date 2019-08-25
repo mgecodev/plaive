@@ -16,10 +16,10 @@
                             </div>
                             <div class="course-br">
                                 <div class="course-title">
-                                    <h2><a href="#" title="">{{ $course_info->Title }}</a></h2>
+                                    <h2><a href="/Class/{{ $class->ClassId }}" target="_blank">{{ str_limit($course_info->Title,30) }}</a></h2>
                                 </div>
                                 <div class="course-desc">
-                                    <p>{{ $course_info->Comment }}</p>
+                                    <p>{{ str_limit($course_info->Comment,30) }}</p>
                                 </div>
                             </div>
                             <div class="course-meta-bot">
@@ -33,8 +33,6 @@
                                 </ul>
                             </div>
                             <div class="big-tagline" style="text-align: center;">
-                                <a href="/Class/{{ $class->ClassId }}" class="hover-btn-new"
-                                   target="_blank"><span>입장</span></a>
                                 <a href="javascript:void(0)" class="hover-btn-new"
                                    data-toggle="modal"><span>수정</span></a>
                                 <a href="#" class="hover-btn-new" data-toggle="modal" data-target="#confirmation-modal"><span>삭제</span></a>
@@ -68,7 +66,6 @@
                             </div>
                         </div>
                     </div><!-- end col -->
-                    <hr class="hr3">
                 @endforeach
             </div><!-- end row -->
         </div><!-- end container -->
