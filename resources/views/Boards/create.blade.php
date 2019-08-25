@@ -76,12 +76,20 @@ function LoadPage() {
 </script>
 @endsection
 @section("page_title")
-<h1>새 소식 작성</h1>
+@if($class==null)
+    <h1>새 소식 작성</h1>
+@else
+    <h1>새 게시물 작성</h1>
+@endif
 @endsection
 @section('content')
 <div id="overviews" class="section wb">
     <div class="container">
+        @if($class==null)
         <form action="/CreateBoard/All" method="post" novalidate="novalidate" id="BoardForm" enctype="multipart/form-data">
+        @else
+        <form action="/CreateBoard/Class/{{ $class }}" method="post" novalidate="novalidate" id="BoardForm" enctype="multipart/form-data">
+        @endif
             @csrf
             <div class="form-group">
                 <label style="color:black;font-size:1rem;">새 소식 제목</label>

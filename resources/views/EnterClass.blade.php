@@ -37,6 +37,26 @@
                 }],
                 language: lang_kor
             });
+            $('#first_table').DataTable({
+                columnDefs: [{
+                    targets: "datatable-nosort",
+                    orderable: false,
+                }, {
+                    targets: "datatable-nosearch",
+                    searchable: false,
+                }],
+                language: lang_kor
+            });
+            $('#second_table').DataTable({
+                columnDefs: [{
+                    targets: "datatable-nosort",
+                    orderable: false,
+                }, {
+                    targets: "datatable-nosearch",
+                    searchable: false,
+                }],
+                language: lang_kor
+            });
         });
     </script>
 @endsection
