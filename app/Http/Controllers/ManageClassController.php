@@ -6,6 +6,7 @@ use App\Invitation;
 use App\InfoClass;
 use App\Account;
 use App\Course;
+use App\Coursework;
 use App\AccountType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -149,19 +150,10 @@ class ManageClassController extends Controller
         $boards = DB::table('Boards')->where('BoardType','Class')->where('Active',1)->where('TopFix','Y')->where('ClassId',$class_id)->orderBy('created_at','desc')->get();
         $down_boards = DB::table('Boards')->where('BoardType','Class')->where('Active',1)->where('TopFix','N')->where('ClassId',$class_id)->orderBy('created_at','desc')->get();
         $boards = $boards->merge($down_boards);
-//        foreach($students as $student) {
-//
-//            $tmp = $student->checkInvitation()->where("ClassId", "<>", $class_id)->get()->toarray();
-//            if ($tmp == NULL or count($tmp) == 0) continue;
-//            else {
-//                var_dump($tmp);
-//            }
-//        }
-//        die();
 
-//        $tot_viable_students = $students->checkInvitation()->where("ClassId", "<>", $class_id)->get();
-//        dd($tot_viable_students);
-        return view('EnterClass')->with('class', $class)->with('name', $name)->with('type', $type)->with('id', $id)->with('tot_viable_students', $tot_viable_students)->with('class_id', $class_id)->with('tot_invited_students', $tot_invited_students)->with('tot_accepted_students', $tot_accepted_students)->with('boards',$boards)->with('board_flag',$board_flag);
+        $courseworks = Coursework::where('CourseId', $class->CourseId)->get();  // get the courseworks related to specific class
+
+        return view('EnterClass')->with('class', $class)->with('name', $name)->with('type', $type)->with('id', $id)->with('tot_viable_students', $tot_viable_students)->with('class_id', $class_id)->with('tot_invited_students', $tot_invited_students)->with('tot_accepted_students', $tot_accepted_students)->with('boards',$boards)->with('board_flag',$board_flag)->with('courseworks', $courseworks);
     }
 
     public function inviteAdditionalMember($board_flag=null, Request $request) {
