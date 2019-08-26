@@ -62,7 +62,9 @@
             } else if(numofstudent == "") {
 
             } else if(weekcount == "") {
-                
+
+            } else if(hourcount == "") {
+
             }
             $.ajax({
                 headers: {

@@ -199,11 +199,11 @@
         $("#modal-content1").empty();
 
         var content = '<div class="form-group">';
-        content += '<label style="color:black;font-size:1rem;">클래스 이름</label>';
+        content += '<label style="color:black;font-size:1rem;">클래스 이름<font color="red">(필수)</font></label>';
         content += '<input class="form-control" id="class_name" type="text" placeholder="클래스 이름">';
         content += '</div>';
         content += '<div class="form-group">';
-        content += '<label style="color:black;font-size:1rem;">클래스 썸네일</label>';
+        content += '<label style="color:black;font-size:1rem;">클래스 썸네일(입력 안할 경우 기본 이미지)</label>';
         content += '<input type="file" class="form-control" id="images" name="file" accept="image/*" />';            
         content += '</div>';
         $("#modal-content1").append(content);
