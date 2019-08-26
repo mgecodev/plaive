@@ -114,13 +114,13 @@
             if($(this).html() == "선택") {
                 $(this).html('취소');
                 $(this).removeClass("btn-primary");
-                $(this).addClass("btn-danger");                 
+                $(this).addClass("btn-danger");
                 var _accountid = $(this).attr('val');
                 arr.push(_accountid);
             } else {
                 $(this).html('선택');
                 $(this).removeClass("btn-danger");
-                $(this).addClass("btn-primary"); 
+                $(this).addClass("btn-primary");
                 var _accountid = $(this).attr('val');
                 arr = arr.filter(e => e !== _accountid);
             }
@@ -204,7 +204,7 @@
         content += '</div>';
         content += '<div class="form-group">';
         content += '<label style="color:black;font-size:1rem;">클래스 썸네일(입력 안할 경우 기본 이미지)</label>';
-        content += '<input type="file" class="form-control" id="images" name="file" accept="image/*" />';            
+        content += '<input type="file" class="form-control" id="images" name="file" accept="image/*" />';
         content += '</div>';
         $("#modal-content1").append(content);
         $("#large-modal-button").empty();
@@ -233,7 +233,6 @@
                 url: '/ManageClass/IncludeStudent',
                 data: formData,
                 success: function (data) {
-                    // $('#courses').html(data)
                     $("#Large-modal").modal('hide');
                     if(data.result == "Success"){
                         $("#Large-modal").modal('hide');

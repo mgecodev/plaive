@@ -202,17 +202,19 @@
                                            style="width:100%;">
                                         <thead>
                                         <tr>
+                                            <th class="text-center">주차</th>
+                                            <th class="text-center">순서</th>
                                             <th class="text-center datatable-nosearch">커리큘럼 내용</th>
-                                            <th class="text-center">작성자</th>
-                                            <th class="text-center">제목</th>
+                                            <th></th>
                                         </tr>
                                         </thead>
                                         <tbody>
                                         @foreach($courseworks as $coursework)
                                             <tr>
-                                                <td>{{ $coursework->Content }}</td>
                                                 <td>{{ $coursework->WeekNumber }}</td>
                                                 <td>{{ $coursework->ContentNumber }}</td>
+                                                <td>{{ $coursework->Content }}</td>
+                                                <td></td>
                                             </tr>
                                         @endforeach
                                         </tbody>
