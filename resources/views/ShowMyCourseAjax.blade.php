@@ -36,27 +36,19 @@
                         <div class="image-blog">
                             <img src="/images/blog_1.jpg" alt="" class="img-fluid">
                         </div>
-                        <div class="course-br">
+                        <div class="course-br" onclick="buildCourse('{{ $course->WeekCount }}', '{{ $course->CourseId }}', '{{ $course->CreatedBy }}')">
                             <div class="course-title">
-                                <h2><a href="#" title="">{{ $course->Title }}</a></h2>
+                                <h2><a href="#" title="">{{ str_limit($course->Title,24) }}</a></h2>
                             </div>
                             <div class="course-desc">
-                                <p>{{ $course->Comment }}</p>
-                            </div>
-                            <div class="course-rating">
-                                4.5
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star-half"></i>
+                                <p>{{ str_limit($course->Comment,30) }}</p>
                             </div>
                         </div>
                         <div class="course-meta-bot">
                             <ul>
-                                <li><i class="fa fa-calendar" aria-hidden="true"></i> {{ $course->NumOfStudent }} 학생들
+                                <li><i class="fa fa-users" aria-hidden="true"></i> {{ $course->NumOfStudent }} 학생들
                                 </li>
-                                <li><i class="fa fa-users" aria-hidden="true"></i> {{ $course->HourCount }} 시수</li>
+                                <li><i class="fa fa-calendar" aria-hidden="true"></i> {{ $course->HourCount }} 시수</li>
                                 <li><i class="fa fa-book" aria-hidden="true"></i> {{ $course->WeekCount }} 주수</li>
                             </ul>
                         </div>
@@ -64,10 +56,8 @@
                             <span class="switchery switchery-default"
                                   style="background-color: rgb(0, 153, 255); border-color: rgb(0, 153, 255); box-shadow: rgb(0, 153, 255) 0px 0px 0px 16px inset; transition: border 0.4s ease 0s, box-shadow 0.4s ease 0s, background-color 1.2s ease 0s;"><small
                                     style="left: 20px; background-color: rgb(255, 255, 255); transition: background-color 0.4s ease 0s, left 0.2s ease 0s;"></small></span>
-                            <a href="javascript:void(0)" class="hover-btn-new" data-toggle="modal"
+                            <a href="javascript:void(0)" class="hover-btn-new"
                                onclick="myFunction('{{ $course->CreatedBy }}','{{ $course->CourseId }}','{{ $course->Title }}','{{ $course->Comment }}','{{ $course->NumOfStudent }}','{{ $course->HourCount }}','{{ $course->WeekCount }}')"><span>수정</span></a>
-                            <a href="javascript:void(0)" class="hover-btn-new" data-toggle="modal"
-                               onclick="buildCourse('{{ $course->WeekCount }}', '{{ $course->CourseId }}', '{{ $course->CreatedBy }}')"><span>커리큘럼 작성</span></a>
                             <a href="#" class="hover-btn-new" data-toggle="modal"
                                data-target="#confirmation-modal"><span>삭제</span></a>
                             <div class="modal fade" id="confirmation-modal" tabindex="-1" role="dialog"

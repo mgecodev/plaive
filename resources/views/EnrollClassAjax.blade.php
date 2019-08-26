@@ -124,7 +124,6 @@
                 var _accountid = $(this).attr('val');
                 arr = arr.filter(e => e !== _accountid);
             }
-            console.log(arr);
         });
 
         $('#save').click(function(e) {
@@ -132,7 +131,9 @@
             if(arr != "") {
                 ClassName(_courseid, _id);
             } else {
-                alert("학생을 선택 하여주세요");
+                $("#modal-content4").empty();
+                $("#modal-content4").append('<p>최소 한명 이상 학생을 선택하여 주세요</p>');
+                $("#alert-modal").modal('show');
             }
         })
     }
@@ -234,7 +235,20 @@
                 success: function (data) {
                     // $('#courses').html(data)
                     $("#Large-modal").modal('hide');
-                    alert("success!");
+                    if(data.result == "Success"){
+                        $("#Large-modal").modal('hide');
+                        $("#modal-success-title").empty();
+                        $("#modal-success-title").append('등록 성공');
+                        $("#modal-content6").empty();
+                        $("#modal-content6").append('성공적으로 등록 되었습니다.');
+                        $("#modal-success-button").empty();
+                        $("#modal-success-button").append(' <button type="button" class="btn btn-primary" onclick="location.reload()">확인</button>');
+                        $("#success-modal").modal('show');
+                    } else {
+                        $("#modal-content4").empty();
+                        $("#modal-content4").append('<p>등록 실패 다시 시도해주세요</p>');
+                        $("#alert-modal").modal('show');
+                    }
                 },
                 error: function (request, status, error) {
                     // 에러 출력을 활성화 하려면 아래 주석을 해제한다.
@@ -242,7 +256,9 @@
                 }
             }) // End Ajax Request
         } else {
-            alert("이름 입력");
+            $("#modal-content4").empty();
+            $("#modal-content4").append('<p>이름을 입력하여 주세요.</p>');
+            $("#alert-modal").modal('show');
         }
     }
 </script>

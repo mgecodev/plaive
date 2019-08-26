@@ -94,11 +94,19 @@ class ManageClassController extends Controller
         // Input :
         // Output :
         // Description : delete class
-
+        $nowdate = date('Y-m-d H:i:s');
         $class_id = $request->_classid;
-        InfoClass::where("ClassId", $class_id)->update(["Active" => 0]);
-
-        return redirect('/home');
+        $delete = InfoClass::where("ClassId", $class_id)->update(["Active" => 0,'updated_at' => $nowdate]);
+        if ($delete) {
+            return response()->json([
+                'result' => 'Success'            
+            ]);
+        } else {
+            return response()->json([
+                'result' => 'Fail'
+            ]);
+        }
+        //return redirect('/home');
     }
     public function enroll(Request $request) {
         // Input :
@@ -239,7 +247,7 @@ class ManageClassController extends Controller
         $user_id = $request->_teacherid;
 
         // save new class
-        InfoClass::create([
+        $insert1 = InfoClass::create([
             "AccountId" => $user_id,
             "CourseId" => $course_id,
             "ClassName" => $request->class_name,
@@ -253,7 +261,7 @@ class ManageClassController extends Controller
 
 //            var_dump("here");
 
-            Invitation::create([
+            $insert2 = Invitation::create([
                 "InviterId" => $user_id,
                 "InviteeId" => $student_id,
                 "ClassId" => $class_id,
@@ -261,8 +269,15 @@ class ManageClassController extends Controller
             ]);
 
         }
-        $message = 'create';
-        return redirect("/ManageClass");
+        if ($insert1 && $insert2) {
+            return response()->json([
+                'result' => 'Success'            
+            ]);
+        } else {
+            return response()->json([
+                'result' => 'Fail'
+            ]);
+        }
     }
     public function updateStudent(InfoClass $class_id,Request $request) {
         $nowdate = date('Y-m-d H:i:s');
@@ -281,13 +296,21 @@ class ManageClassController extends Controller
         }
 
         // update Class
-        InfoClass::where('ClassId',$class_id->ClassId)->update([
+        $update = InfoClass::where('ClassId',$class_id->ClassId)->update([
             "CourseId" => $course_id,
             "ClassName" => $request->class_name,
             "ClassImage" => $s3_url,
             "updated_at" => $nowdate,
             "Active" => 1
         ]);
-        return redirect("/ManageClass");
+        if ($update) {
+            return response()->json([
+                'result' => 'Success'            
+            ]);
+        } else {
+            return response()->json([
+                'result' => 'Fail'
+            ]);
+        }
     }
 }

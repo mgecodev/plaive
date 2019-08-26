@@ -4,8 +4,7 @@
             <div class="col-lg-12 col-md-12 col-12">
                 <div class="row">
                     <div class="big-tagline">
-                        <h2><strong>로고 </strong>직접 강좌를 개설해 보세요.</h2>
-                        <p class="lead">With Landigoo responsive landing page template, you can promote your all hosting, domain and email services. </p>
+                        <h2><strong>직접 강좌 </strong>를 개설해 보세요.</h2>
 
                         <a href="javascript:void(0)" class="hover-btn-new" data-toggle="modal"
                            onclick="myFunction('{{ $id }}')">
@@ -30,13 +29,14 @@
         $("#modal-content1").empty();
 
         var content = '<form>';
-        content += '<div class="form-group row"><label class="col-sm-12 col-md-2 col-form-label">강좌 제목</label><div class="col-sm-12 col-md-10"><input id="title" class="form-control" type="text" placeholder="Data Structure"></div></div>';
-        content += '<div class="form-group row"><label class="col-sm-12 col-md-2 col-form-label">학생 수</label><div class="col-sm-12 col-md-10"><input id="numofstudent" class="form-control" type="text" placeholder="30"></div></div>';
-        content += '<div class="form-group row"><label class="col-sm-12 col-md-2 col-form-label">시수</label><div class="col-sm-12 col-md-10"><input id="hourcount" class="form-control" type="text" placeholder="32"></div></div>';
-        content += '<div class="form-group row"><label class="col-sm-12 col-md-2 col-form-label">주수</label><div class="col-sm-12 col-md-10"><input id="weekcount" class="form-control" type="text" placeholder="16"></div></div>';
-        content += '<div class="form-group row"><label class="col-sm-12 col-md-2 col-form-label">선수강과목</label><div class="col-sm-12 col-md-10"><input id="prerequisite" class="form-control" type="text" placeholder="C Programming"></div></div>';
-        content += '<div class="form-group row"><label class="col-sm-12 col-md-2 col-form-label">소개말</label><div class="col-sm-12 col-md-10"><input id="comment" class="form-control" type="text" placeholder="Hello world"></div></div>';
-        content += '</form>';
+        content += '<div class="form-group row"><label class="col-sm-12 col-md-2 col-form-label" style="color:black;">강좌 제목</label><div class="col-sm-12 col-md-10"><input id="title" class="form-control" type="text" placeholder="Data Structure"></div></div>';
+        content += '<div class="form-group row"><label class="col-sm-12 col-md-2 col-form-label" style="color:black;">학생 수</label><div class="col-sm-12 col-md-10"><input id="numofstudent" class="form-control" type="text" placeholder="30"></div></div>';
+        content += '<div class="form-group row"><label class="col-sm-12 col-md-2 col-form-label" style="color:black;">시수</label><div class="col-sm-12 col-md-10"><input id="hourcount" class="form-control" type="text" placeholder="32"></div></div>';
+        content += '<div class="form-group row"><label class="col-sm-12 col-md-2 col-form-label" style="color:black;">주수</label><div class="col-sm-12 col-md-10"><input id="weekcount" class="form-control" type="text" placeholder="16"></div></div>';
+        content += '<div class="form-group row"><label class="col-sm-12 col-md-2 col-form-label" style="color:black;">선수강과목</label><div class="col-sm-12 col-md-10"><input id="prerequisite" class="form-control" type="text" placeholder="C Programming"></div></div>';
+        content += '<div class="form-group row"><label class="col-sm-12 col-md-2 col-form-label" style="color:black;">소개말</label><div class="col-sm-12 col-md-10"><input id="comment" class="form-control" type="text" placeholder="Hello world"></div></div>';
+        content += '<div class="form-group row"><label class="col-sm-12 col-md-2 col-form-label" style="color:black;">썸네일</label><div class="col-sm-12 col-md-10"><input type="file" class="form-control" id="images" name="file" accept="image/*" /></div></div>';
+        content += '</form>';      
 
         $("#modal-content1").append(content);
 
@@ -49,14 +49,21 @@
         $("#Large-modal").modal('show');
 
         $('#save').click(function (e) {
-
             var title = document.getElementById("title").value;
             var comment = document.getElementById("comment").value;
             var numofstudent = document.getElementById("numofstudent").value;
             var weekcount = document.getElementById("weekcount").value;
             var hourcount = document.getElementById("hourcount").value;
             var prerequisite = document.getElementById("prerequisite").value;
+            if(title == "") {
 
+            } else if(comment == "") {
+
+            } else if(numofstudent == "") {
+
+            } else if(weekcount == "") {
+                
+            }
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
