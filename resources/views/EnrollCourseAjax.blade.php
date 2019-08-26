@@ -60,21 +60,21 @@
                 $("#modal-content4").empty();
                 $("#modal-content4").append('<p>강좌 제목을 입력 해주세요</p>');
                 $("#alert-modal").modal('show');
-            } else if(comment == "") {
-                $("#modal-content4").empty();
-                $("#modal-content4").append('<p>소개말을 입력 해주세요</p>');
-                $("#alert-modal").modal('show');
             } else if(numofstudent == "") {
                 $("#modal-content4").empty();
                 $("#modal-content4").append('<p>학생 수를 입력 해주세요</p>');
+                $("#alert-modal").modal('show');
+            } else if(hourcount == "") {
+                $("#modal-content4").empty();
+                $("#modal-content4").append('<p>시수를 입력 해주세요</p>');
                 $("#alert-modal").modal('show');
             } else if(weekcount == "") {
                 $("#modal-content4").empty();
                 $("#modal-content4").append('<p>주수를 입력 해주세요</p>');
                 $("#alert-modal").modal('show');
-            } else if(hourcount == "") {
+            } else if(comment == "") {
                 $("#modal-content4").empty();
-                $("#modal-content4").append('<p>시수를 입력 해주세요</p>');
+                $("#modal-content4").append('<p>소개말을 입력 해주세요</p>');
                 $("#alert-modal").modal('show');
             } else {
                 var formData = new FormData();
@@ -82,28 +82,22 @@
                 formData.append("_userid",_createdby);
                 formData.append("_title",title);
                 formData.append("_comment",comment);
-                formData.append("_teacherid",_id);
-                formData.append("_checked_students",arr);
+                formData.append("_numofstudent",numofstudent);
+                formData.append("_weekcount",weekcount);
+                formData.append("_hourcount",hourcount);
+                formData.append("_prerequisite",prerequisite);
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
                     type : 'POST',
                     url : '/ManageCourse/EnrollCourse',
-                    data : {
-                        "_userid" : _createdby,
-                        "_title" : title,
-                        "_comment" : comment,
-                        "_numofstudent" : numofstudent,
-                        "_weekcount" : weekcount,
-                        "_hourcount" : hourcount,
-                        "_prerequisite" : prerequisite
-                    },
+                    processData: false,
+                    contentType: false,
+                    data : formData,
                     success : function(data) {
-
                         $('#courses').html(data)
                         $("#Large-modal").modal('hide');
-
                     },
                     error: function(request, status, error) {
                         // 에러 출력을 활성화 하려면 아래 주석을 해제한다.

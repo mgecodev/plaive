@@ -34,7 +34,11 @@
                 <div class="col-lg-4 col-md-6 col-12">
                     <div class="course-item">
                         <div class="image-blog">
-                            <img src="/images/blog_1.jpg" alt="" class="img-fluid">
+                            @if($course->CourseImage == null) 
+                                <img src="/images/blog_1.jpg" alt="" class="img-fluid" style="max-height:200px;min-height:200px;">
+                            @else 
+                                <img src="{{ $course->CourseImage }}" alt="" class="img-fluid" style="max-height:200px;min-height:200px;">
+                            @endif
                         </div>
                         <div class="course-br" onclick="buildCourse('{{ $course->WeekCount }}', '{{ $course->CourseId }}', '{{ $course->CreatedBy }}')">
                             <div class="course-title">
@@ -57,36 +61,8 @@
                                   style="background-color: rgb(0, 153, 255); border-color: rgb(0, 153, 255); box-shadow: rgb(0, 153, 255) 0px 0px 0px 16px inset; transition: border 0.4s ease 0s, box-shadow 0.4s ease 0s, background-color 1.2s ease 0s;"><small
                                     style="left: 20px; background-color: rgb(255, 255, 255); transition: background-color 0.4s ease 0s, left 0.2s ease 0s;"></small></span>
                             <a href="javascript:void(0)" class="hover-btn-new"
-                               onclick="myFunction('{{ $course->CreatedBy }}','{{ $course->CourseId }}','{{ $course->Title }}','{{ $course->Comment }}','{{ $course->NumOfStudent }}','{{ $course->HourCount }}','{{ $course->WeekCount }}')"><span>수정</span></a>
-                            <a href="#" class="hover-btn-new" data-toggle="modal"
-                               data-target="#confirmation-modal"><span>삭제</span></a>
-                            <div class="modal fade" id="confirmation-modal" tabindex="-1" role="dialog"
-                                 style="display: none;" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-body text-center font-18">
-                                            <h4 class="padding-top-30 mb-30 weight-500">정말 삭제하시겠습니까?</h4>
-                                            <div class="padding-bottom-30 row"
-                                                 style="max-width: 170px; margin: 0 auto;">
-                                                <div class="col-6">
-                                                    <button type="button" id="no"
-                                                            class="btn btn-secondary border-radius-100 btn-block confirmation-btn"
-                                                            data-dismiss="modal"><i class="fa fa-times"></i></button>
-                                                    아니요
-                                                </div>
-                                                <div class="col-6">
-                                                    <button type="button" id="yes" val="{{ $course->CourseId }}"
-                                                            user="{{ $course->CreatedBy }}"
-                                                            class="btn btn-primary border-radius-100 btn-block confirmation-btn"
-                                                            data-dismiss="modal"><i class="fa fa-check"></i></button>
-                                                    네
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                               onclick="myFunction('{{ $course->CreatedBy }}','{{ $course->CourseId }}','{{ $course->Title }}','{{ $course->Comment }}','{{ $course->NumOfStudent }}','{{ $course->HourCount }}','{{ $course->WeekCount }}','{{ $course->Prerequisite }}')"><span>수정</span></a>
+                            <a href="#" class="hover-btn-new" onclick="clickDelete({{ $course->CreatedBy }} , {{ $course->CourseId }}, '{{ $course->Title }}')"><span>삭제</span></a>
                         </div>
                     </div>
                 </div><!-- end col -->
@@ -133,38 +109,8 @@
         postfix: "post"
     });
 
-    $("#yes").click(function (e) {
-
-        e.preventDefault();
-
-        var user_id = $(this).attr('user');
-        var id = $(this).attr('val');
-        // var user_id = $(this).attr('user');
-
-        // alert(user_id);
-
-        $.ajax({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            type: 'POST',
-            url: '/ManageCourse/DeleteCourse',
-            data: {
-                'course_id': id,
-                '_userid': user_id,
-                '_createdby': _createdby
-            },
-            success: function (data) {
-                $('#courses').html(data)
-            },
-            error: function (request, status, error) {
-                alert("error!");
-            }
-        }) // End Ajax Request
-    });
-
     var arr = new Array();
-
+    
     function buildCourse(_weekcount, _courseid, _createdby) {
 
         $("#myLargeModalLabel").empty();
@@ -186,7 +132,7 @@
         $("#large-modal-button").empty();
 
         var content = '<button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>';
-        content += '<button type="button" class="btn btn-primary" id="save-course">저장</button>';
+        content += '<button type="button" class="btn btn-primary" data-dismiss="modal" id="save-course">저장</button>';
 
         $("#large-modal-button").append(content);
         $("#Large-modal").modal('show');
@@ -235,14 +181,18 @@
                 url: '/ManageCourse/SaveCurriculum',
                 data: {
                     "_result": result,
-                    "_courseid": _courseid
+                    "_courseid": _courseid,
+                    "_createdby": _createdby
                 },
                 success: function (data) {
-
-                    alert("success");
+                    $("#modal-success-title").empty();
+                    $("#modal-success-title").append('커리큘럼 등록 성공');
+                    $("#modal-content6").empty();
+                    $("#modal-content6").append('성공적으로 등록 되었습니다.');
+                    $("#modal-success-button").empty();
+                    $("#modal-success-button").append(' <button type="button" class="btn btn-primary" data-dismiss="modal">확인</button>');
+                    $("#success-modal").modal('show');
                     $('#courses').html(data)
-                    $("#Large-modal").modal('hide');
-
                 },
                 error: function (request, status, error) {
                     // 에러 출력을 활성화 하려면 아래 주석을 해제한다.
@@ -266,25 +216,27 @@
         d.innerHTML += '<br><input class="form-control" placeholder="소주제" type="search" id='+sub_id+'>';
     }
 
-    function myFunction(_createdby, _courseid, _title, _comment, _numofstudent, _weekcount, _hourcount) {
+    function myFunction(_createdby, _courseid, _title, _comment, _numofstudent, _hourcount, _weekcount, _prerequisite) {
 
         $("#myLargeModalLabel").empty();
         $("#myLargeModalLabel").append('강좌 정보를 수정해주세요');
         $("#modal-content1").empty();
 
         var content = '<form>';
-        content += '<div class="form-group row"><label class="col-sm-12 col-md-2 col-form-label">제목</label><div class="col-sm-12 col-md-10"><input class="form-control" id="title" type="Title" value="' + _title + '"></div></div>';
-        content += '<div class="form-group row"><label class="col-sm-12 col-md-2 col-form-label">코멘트</label><div class="col-sm-12 col-md-10"><input class="form-control" id="comment" type="Comment" value="' + _comment + '"></div></div>';
-        content += '<div class="form-group row"><label class="col-sm-12 col-md-2 col-form-label">학생 수</label><div class="col-sm-12 col-md-10"><input class="form-control" id="numofstudent" type="NumOfStudent" value="' + _numofstudent + '"></div></div>';
-        content += '<div class="form-group row"><label class="col-sm-12 col-md-2 col-form-label">주수</label><div class="col-sm-12 col-md-10"><input class="form-control" id="weekcount" type="Title" value="' + _weekcount + '"></div></div>';
-        content += '<div class="form-group row"><label class="col-sm-12 col-md-2 col-form-label">시수</label><div class="col-sm-12 col-md-10"><input class="form-control" id="hourcount" type="Title" value="' + _hourcount + '"></div></div>';
+        content += '<div class="form-group row"><label class="col-sm-12 col-md-2 col-form-label" style="color:black;">제목</label><div class="col-sm-12 col-md-10"><input class="form-control" id="title" type="Title" value="' + _title + '"></div></div>';
+        content += '<div class="form-group row"><label class="col-sm-12 col-md-2 col-form-label" style="color:black;">소개말</label><div class="col-sm-12 col-md-10"><input class="form-control" id="comment" type="Comment" value="' + _comment + '"></div></div>';
+        content += '<div class="form-group row"><label class="col-sm-12 col-md-2 col-form-label" style="color:black;">학생 수</label><div class="col-sm-12 col-md-10"><input class="form-control" id="numofstudent" type="NumOfStudent" value="' + _numofstudent + '"></div></div>';
+        content += '<div class="form-group row"><label class="col-sm-12 col-md-2 col-form-label" style="color:black;">주수</label><div class="col-sm-12 col-md-10"><input class="form-control" id="weekcount" type="Title" value="' + _weekcount + '"></div></div>';
+        content += '<div class="form-group row"><label class="col-sm-12 col-md-2 col-form-label" style="color:black;">시수</label><div class="col-sm-12 col-md-10"><input class="form-control" id="hourcount" type="Title" value="' + _hourcount + '"></div></div>';
+        content += '<div class="form-group row"><label class="col-sm-12 col-md-2 col-form-label" style="color:black;">선수강과목</label><div class="col-sm-12 col-md-10"><input id="prerequisite" class="form-control" type="text" placeholder="선수강 과목" value="'+_prerequisite+'"></div></div>';
+        content += '<div class="form-group row"><label class="col-sm-12 col-md-2 col-form-label" style="color:black;">썸네일</label><div class="col-sm-12 col-md-10"><input type="file" class="form-control" id="images" name="file" accept="image/*" /></div></div>';
         content += '</form>';
 
         $("#modal-content1").append(content);
         $("#large-modal-button").empty();
 
         var content = '<button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>';
-        content += '<button type="button" class="btn btn-primary" id="save">저장</button>';
+        content += '<button type="button" class="btn btn-primary" data-dismiss="modal" id="save">저장</button>';
 
         $("#large-modal-button").append(content);
         $("#Large-modal").modal('show');
@@ -296,36 +248,104 @@
             var numofstudent = document.getElementById("numofstudent").value;
             var weekcount = document.getElementById("weekcount").value;
             var hourcount = document.getElementById("hourcount").value;
+            var prerequisite = document.getElementById("prerequisite").value;
+            if(title == "") {
+                $("#modal-content4").empty();
+                $("#modal-content4").append('<p>강좌 제목을 입력 해주세요</p>');
+                $("#alert-modal").modal('show');
+            } else if(numofstudent == "") {
+                $("#modal-content4").empty();
+                $("#modal-content4").append('<p>학생 수를 입력 해주세요</p>');
+                $("#alert-modal").modal('show');
+            } else if(hourcount == "") {
+                $("#modal-content4").empty();
+                $("#modal-content4").append('<p>시수를 입력 해주세요</p>');
+                $("#alert-modal").modal('show');
+            } else if(weekcount == "") {
+                $("#modal-content4").empty();
+                $("#modal-content4").append('<p>주수를 입력 해주세요</p>');
+                $("#alert-modal").modal('show');
+            } else if(comment == "") {
+                $("#modal-content4").empty();
+                $("#modal-content4").append('<p>소개말을 입력 해주세요</p>');
+                $("#alert-modal").modal('show');
+            } else {
+                var formData = new FormData();
+                formData.append("course_image",$("input[name=file]")[0].files[0]);
+                formData.append("_userid",_createdby);
+                formData.append("_courseid",_courseid);
+                formData.append("_title",title);
+                formData.append("_comment",comment);
+                formData.append("_numofstudent",numofstudent);
+                formData.append("_weekcount",weekcount);
+                formData.append("_hourcount",hourcount);
+                formData.append("_prerequisite",prerequisite);
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: 'POST',
+                    url: '/ManageCourse/UpdateCourse',
+                    processData: false,
+                    contentType: false,
+                    data: formData,
+                    success: function (data) {
+                        $("#modal-success-title").empty();
+                        $("#modal-success-title").append('수정 성공');
+                        $("#modal-content6").empty();
+                        $("#modal-content6").append('성공적으로 수정 되었습니다.');
+                        $("#modal-success-button").empty();
+                        $("#modal-success-button").append(' <button type="button" class="btn btn-primary" data-dismiss="modal">확인</button>');
+                        $("#success-modal").modal('show');
+                        $('#courses').html(data)
+                    },
+                    error: function (request, status, error) {
+                        // 에러 출력을 활성화 하려면 아래 주석을 해제한다.
 
-            $.ajax({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                type: 'POST',
-                url: '/ManageCourse/UpdateCourse',
-                data: {
-                    "_userid": _createdby,
-                    "_courseid": _courseid,
-                    "_title": title,
-                    "_comment": comment,
-                    "_numofstudent": numofstudent,
-                    "_weekcount": weekcount,
-                    "_hourcount": hourcount
-                },
-                success: function (data) {
-
-                    $('#courses').html(data)
-                    $("#Large-modal").modal('hide');
-
-                },
-                error: function (request, status, error) {
-                    // 에러 출력을 활성화 하려면 아래 주석을 해제한다.
-
-                    //console.log(request + "/" + status + "/" + error);
-                }
-            }) // End Ajax Request
+                        //console.log(request + "/" + status + "/" + error);
+                    }
+                }) // End Ajax Request
+            }
         });
     }
-
-
+    function clickDelete(_userid,_courseid,_coursename) {
+        $("#confirmation-title").empty();
+        $("#confirm-content1").empty();
+        $("#confirm-content2").empty();
+        $("#confirmation-title").append(_coursename + ' 을 지우겠습니까?');
+        var content1 = '<button type="button" class="btn btn-secondary border-radius-100 btn-block confirmation-btn" data-dismiss="modal"><i class="fa fa-times"></i></button>';
+        content1 += '아니오';
+        var content2 = '<button type="button" class="btn btn-primary border-radius-100 btn-block confirmation-btn" data-dismiss="modal" onclick="CourseDelete('+_userid+','+_courseid+')"><i class="fa fa-check"></i></button>';
+        content2 += '예';
+        $("#confirm-content1").append(content1);
+        $("#confirm-content2").append(content2);
+        $("#confirmation-modal").modal('show');
+    }
+    function CourseDelete(_userid,_courseid) {
+        var token = $("meta[name='csrf-token']").attr("content");
+        $.ajax({
+            url: '/ManageCourse/DeleteCourse',
+            type: 'POST',
+            data: {
+                "_token": token,
+                "_userid" : _userid,
+                "_courseid" : _courseid
+            },
+            success: function (data){
+                $("#modal-success-title").empty();
+                $("#modal-success-title").append('삭제 성공');
+                $("#modal-content6").empty();
+                $("#modal-content6").append('성공적으로 삭제 되었습니다.');
+                $("#modal-success-button").empty();
+                $("#modal-success-button").append(' <button type="button" class="btn btn-primary" data-dismiss="modal">확인</button>');
+                $("#success-modal").modal('show');
+                $('#courses').html(data)
+            },
+            error: function() {
+                $("#modal-content4").empty();
+                $("#modal-content4").append('<p>삭제 실패 하였습니다.</p>');
+                $("#alert-modal").modal('show');
+            }
+        });
+    }
 </script>

@@ -19,7 +19,7 @@ class Course extends Model
 
     protected $fillable = [
 
-        'CourseId', 'Title', 'NumOfStudent', 'HourCount', 'WeekCount', 'Prerequisite', 'Comment', 'Active', 'CreatedBy'
+        'CourseId', 'Title', 'NumOfStudent', 'HourCount', 'WeekCount', 'Prerequisite', 'Comment', 'Active', 'CreatedBy','CourseImage'
     ];
 
     public function getTeacherInfo() {

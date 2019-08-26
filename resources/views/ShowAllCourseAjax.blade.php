@@ -8,7 +8,11 @@
                     <div class="col-lg-4 col-md-6 col-12">
                         <div class="course-item">
                             <div class="image-blog">
-                                <img src="/images/blog_1.jpg" alt="" class="img-fluid">
+                            @if($course->CourseImage == null) 
+                                <img src="/images/blog_1.jpg" alt="" class="img-fluid" style="max-height:200px;min-height:200px;">
+                            @else 
+                                <img src="{{ $course->CourseImage }}" alt="" class="img-fluid" style="max-height:200px;min-height:200px;">
+                            @endif
                             </div>
                             <div class="course-br">
                                 <div class="course-title">
