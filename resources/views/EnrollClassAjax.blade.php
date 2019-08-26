@@ -1,4 +1,4 @@
-<!-- Google Font -->
+\<!-- Google Font -->
 <link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,500,600,700" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
 
@@ -99,7 +99,7 @@
             }],
             language: lang_kor
         });
-        
+
         $("#large-modal-button").empty();
         var content = '<button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>';
         content += '<button type="button" class="btn btn-primary" id="save">저장</button>';
@@ -152,7 +152,7 @@
     }
 
     function myFunction1() {
-        
+
         $("#myLargeModalLabel").empty();
         $("#myLargeModalLabel").append('강좌를 선택해 주세요(1 / 2)');
         $("#modal-content1").empty();

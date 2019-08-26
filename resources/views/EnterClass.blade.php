@@ -57,6 +57,17 @@
                 }],
                 language: lang_kor
             });
+
+            $('#third_table').DataTable({
+                columnDefs: [{
+                    targets: "datatable-nosort",
+                    orderable: false,
+                }, {
+                    targets: "datatable-nosearch",
+                    searchable: false,
+                }],
+                language: lang_kor
+            });
         });
     </script>
 @endsection
