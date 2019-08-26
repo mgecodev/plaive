@@ -1,7 +1,8 @@
 @extends('layouts.Master')
-
+@section('page_title')
+<h1>클래스 관리</h1>
+@endsection
 @section('content')
-
 <div id="overviews" class="section wb">
     <div class="container">
         <div class="row">
@@ -20,5 +21,4 @@
         </div>
     </div>
 </div>
-
 @endsection

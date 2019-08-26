@@ -12,9 +12,9 @@ class InfoClass extends Model
      * @var string
      */
     protected $table = 'InfoClasses';
-
+    public $primaryKey = 'ClassId';
     protected $fillable = [
-        'ClassId', 'AccountId', 'CourseId', 'Active'
+        'ClassId', 'AccountId', 'CourseId', 'Active', 'ClassName', 'ClassImage'
     ];
 
     public function getStudentInfo() {

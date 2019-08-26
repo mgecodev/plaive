@@ -38,7 +38,9 @@ Route::get('/ManageClass/Enroll', 'ManageClassController@enroll');
 Route::get('/Class/{classid}/{board_flag?}', 'ManageClassController@enterClass');
 Route::post('/Invite', 'ManageClassController@inviteAdditionalMember');
 Route::post('/ManageClass/IncludeStudent', 'ManageClassController@includeStudent');
-Route::post('/ManageClass/DeleteClass', 'ManageClassController@deleteClass');
+Route::patch('/ManageClass/IncludeStudent/{class_id}', 'ManageClassController@updateStudent');
+
+Route::patch('/ManageClass/DeleteClass', 'ManageClassController@deleteClass');
 
 
 Route::get('/ManageCourse', 'ManageCourseController@index');

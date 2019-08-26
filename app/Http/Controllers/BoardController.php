@@ -66,7 +66,11 @@ class BoardController extends Controller
             $files = $request->file('files');
             foreach($files as $file){
                 $file_name = $file->getClientOriginalName();
-                $path = Storage::disk('s3')->put('plaive/AllDiscussion',$file,'public');
+                if($class_id == null) {
+                    $path = Storage::disk('s3')->put('plaive/AllDiscussion',$file,'public');
+                } else {
+                    $path = Storage::disk('s3')->put('plaive/ClassDiscussion/'.$class_id,$file,'public');
+                }
                 $s3_url = "https://s3.ap-northeast-2.amazonaws.com/s3.finedust.10make.com/".$path;
                 DB::table('BoardFiles')->insert([
                     'BoardId' => $nextId,
@@ -172,7 +176,11 @@ class BoardController extends Controller
             $files = $request->file('files');
             foreach($files as $file){
                 $file_name = $file->getClientOriginalName();
-                $path = Storage::disk('s3')->put('plaive/AllDiscussion',$file,'public');
+                if($class_id == null) {
+                    $path = Storage::disk('s3')->put('plaive/AllDiscussion',$file,'public');
+                } else {
+                    $path = Storage::disk('s3')->put('plaive/ClassDiscussion/'.$class_id,$file,'public');
+                }
                 $s3_url = "https://s3.ap-northeast-2.amazonaws.com/s3.finedust.10make.com/".$path;
                 DB::table('BoardFiles')->insert([
                     'BoardId' => $board_id,

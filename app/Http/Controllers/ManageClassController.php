@@ -11,6 +11,7 @@ use App\AccountType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class ManageClassController extends Controller
 {
@@ -35,6 +36,7 @@ class ManageClassController extends Controller
         // Output :
         // Description : show all the list of classes that teacher takes in charge of
 
+        //dd($action_type);
         $user = Auth::user();
 
         $name = $user->name;
@@ -42,10 +44,9 @@ class ManageClassController extends Controller
 
         $account_type_id = Account::where('id', $id)->first()->AccountTypeId;
         $type = AccountType::where('AccountTypeId', '=', $account_type_id)->first()->Type;
-
+        $courses = Course::where('CreatedBy', $id)->orwhere('CreatedBy', 0)->where('Active', 1)->get();
         $classes = $this->showClassInfo($id);
-
-        return view('ManageClass')->with('classes', $classes)->with('name', $name)->with('type', $type)->with('id', $id)->with('board_flag',$board_flag);
+        return view('ManageClass')->with('classes', $classes)->with('name', $name)->with('type', $type)->with('id', $id)->with('board_flag',$board_flag)->with('courses',$courses);
     }
 
     public function saveCourseInfo() {
@@ -94,11 +95,19 @@ class ManageClassController extends Controller
         // Input :
         // Output :
         // Description : delete class
-
+        $nowdate = date('Y-m-d H:i:s');
         $class_id = $request->_classid;
-        InfoClass::where("ClassId", $class_id)->update(["Active" => 0]);
-
-        return redirect('/home');
+        $delete = InfoClass::where("ClassId", $class_id)->update(["Active" => 0,'updated_at' => $nowdate]);
+        if ($delete) {
+            return response()->json([
+                'result' => 'Success'            
+            ]);
+        } else {
+            return response()->json([
+                'result' => 'Fail'
+            ]);
+        }
+        //return redirect('/home');
     }
     public function enroll(Request $request) {
         // Input :
@@ -215,14 +224,26 @@ class ManageClassController extends Controller
         // Output :
         // Description :    1. Make class first
         //                  2. Get ClassId and invite students
-        $student_ids = $request->_checked_students;
+        //dd($request->all());
+        if($request->hasFile('class_image')){
+            $file = $request->file('class_image');
+            $file_name = $file->getClientOriginalName();
+            $path = Storage::disk('s3')->put('plaive/class_image',$file,'public');
+            $s3_url = "https://s3.ap-northeast-2.amazonaws.com/s3.finedust.10make.com/".$path;
+        } else {
+            $s3_url = null;
+        }
+        $temp_student_ids = $request->_checked_students;
+        $student_ids = explode(',',$temp_student_ids);
         $course_id = $request->_courseid;
         $user_id = $request->_teacherid;
 
         // save new class
-        InfoClass::create([
+        $insert1 = InfoClass::create([
             "AccountId" => $user_id,
             "CourseId" => $course_id,
+            "ClassName" => $request->class_name,
+            "ClassImage" => $s3_url,
             "Active" => 1
         ]);
         $class_id = InfoClass::where("AccountId", $user_id)->where("CourseId", $course_id)->first()->ClassId;   // get new class id
@@ -232,7 +253,7 @@ class ManageClassController extends Controller
 
 //            var_dump("here");
 
-            Invitation::create([
+            $insert2 = Invitation::create([
                 "InviterId" => $user_id,
                 "InviteeId" => $student_id,
                 "ClassId" => $class_id,
@@ -240,8 +261,48 @@ class ManageClassController extends Controller
             ]);
 
         }
+        if ($insert1 && $insert2) {
+            return response()->json([
+                'result' => 'Success'            
+            ]);
+        } else {
+            return response()->json([
+                'result' => 'Fail'
+            ]);
+        }
+    }
+    public function updateStudent(InfoClass $class_id,Request $request) {
+        $nowdate = date('Y-m-d H:i:s');
+        if($request->hasFile('class_image')){
+            $file = $request->file('class_image');
+            $file_name = $file->getClientOriginalName();
+            $path = Storage::disk('s3')->put('plaive/class_image',$file,'public');
+            $s3_url = "https://s3.ap-northeast-2.amazonaws.com/s3.finedust.10make.com/".$path;
+        } else {
+            $s3_url = $class_id->ClassImage;
+        }
+        if($request->_courseid == 0) {
+            $course_id = $class_id->CourseId;
+        } else {
+            $course_id = $request->_courseid;
+        }
 
-
-        return redirect("/ManageClass");
+        // update Class
+        $update = InfoClass::where('ClassId',$class_id->ClassId)->update([
+            "CourseId" => $course_id,
+            "ClassName" => $request->class_name,
+            "ClassImage" => $s3_url,
+            "updated_at" => $nowdate,
+            "Active" => 1
+        ]);
+        if ($update) {
+            return response()->json([
+                'result' => 'Success'            
+            ]);
+        } else {
+            return response()->json([
+                'result' => 'Fail'
+            ]);
+        }
     }
 }
