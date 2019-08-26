@@ -37,9 +37,9 @@ class CreateCoursesTable extends Migration
         else {
 
             // 1. Update column attributes
-            Schema::table($this->tableName, function (Blueprint $table) {
+            /*Schema::table($this->tableName, function (Blueprint $table) {
                 $table->Text('Prerequisite')->nullable()->change();
-            });
+            });*/
 
             // 2. Rename column
 //            Schema::table($this->tableName, function (Blueprint $table) {
@@ -47,9 +47,9 @@ class CreateCoursesTable extends Migration
 //            });
 
             // 3. Add column
-            Schema::table($this->tableName, function (Blueprint $table) {
+            /*Schema::table($this->tableName, function (Blueprint $table) {
                 $table->string('CourseImage',256)->nullable();
-            });
+            });*/
 
             // 4. Rename table
 //            Schema::rename($this->tableName, 'Accounts');
