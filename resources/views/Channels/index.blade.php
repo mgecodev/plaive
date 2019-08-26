@@ -82,8 +82,8 @@ function ShowApi(_api) {
     $("#myLargeModalLabel").empty();
     $("#myLargeModalLabel").append('ApiKey 및 이용안내');
     $("#modal-content1").empty();
-    var field1 = 'POST https://plaive.10make.com/SaveData?api_key='+_api+'&field1={value1}';
-    var field2 = 'POST https://plaive.10make.com/SaveData?api_key='+_api+'&field1={value1}&field2={value2}';
+    var field1 = 'POST http://data.plaive.10make.com/insert.php?api_key='+_api+'&field1={value1}';
+    var field2 = 'POST http://data.plaive.10make.com/insert.php?api_key='+_api+'&field1={value1}&field2={value2}';
     var content = '<form>';
     content += '<div class="form-group">';
     content += '<label style="color:black;">ApiKey</label>';
@@ -112,7 +112,11 @@ function ShowApi(_api) {
 	content += '</div>';
     content += '<div class="form-group">';
     content += '<label style="color:black;">ErrorCode 2000</label>';
-    content += '<input class="form-control" type="text" value="Apikey 에러. Apikey를 확인해 주세요" readonly>';
+    content += '<input class="form-control" type="text" value="Apikey 입력 에러. ApiKey 입력 확인" readonly>';
+	content += '</div>';
+    content += '<div class="form-group">';
+    content += '<label style="color:black;">ErrorCode 3000</label>';
+    content += '<input class="form-control" type="text" value="Apikey 인증 에러. Apikey를 확인해 주세요" readonly>';
 	content += '</div>';
     content += '</form>';
     $("#modal-content1").append(content);
