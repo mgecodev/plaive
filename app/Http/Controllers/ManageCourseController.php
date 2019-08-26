@@ -8,6 +8,7 @@ use App\Course;
 use App\Coursework;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class ManageCourseController extends Controller
 {
@@ -75,27 +76,32 @@ class ManageCourseController extends Controller
         // Input :
         // Output :
         // Description :
-
-        $course_id = $request->_courseid;
+        //dd($request->all());
+        if($request->hasFile('course_image')) {
+            $file = $request->file('course_image');
+            $file_name = $file->getClientOriginalName();
+            $path = Storage::disk('s3')->put('plaive/course_image',$file,'public');
+            $s3_url = "https://s3.ap-northeast-2.amazonaws.com/s3.finedust.10make.com/".$path;
+        } else {
+            $s3_url = null;
+        }
         $title = $request->_title;
         $comment = $request->_comment;
         $num_of_student = $request->_numofstudent;
         $weekcount = $request->_weekcount;
         $hourcount = $request->_hourcount;
         $prerequisite = $request->_prerequisite;
-
         $id = $request->_userid;
-        Course::create(['Title' => $title, 'Comment' => $comment, 'NumOfStudent' => $num_of_student, 'WeekCount' => $weekcount, 'HourCount' => $hourcount, 'Prerequisite' => $prerequisite, 'CreatedBy' => $id]);
+        Course::create(['Title' => $title, 'Comment' => $comment, 'NumOfStudent' => $num_of_student,'CourseImage' => $s3_url, 'WeekCount' => $weekcount, 'HourCount' => $hourcount, 'Prerequisite' => $prerequisite, 'CreatedBy' => $id]);
         $courses = Course::where('CreatedBy', $id)->where('Active', 1)->get();
 
-        return view('EnrollCourseAjax')->with('courses', $courses)->with('id', $id);
-
+        return view('ShowMyCourseAjax')->with('courses', $courses);
     }
 
     public function deleteCourse(Request $request)
     {
 
-        $course_id = $request->course_id;
+        $course_id = $request->_courseid;
         $id = $request->_userid;
 
         Course::where('CourseId', $course_id)->update(['Active' => 0]);
@@ -109,6 +115,14 @@ class ManageCourseController extends Controller
         // Input :
         // Output :
         // Description :
+        if($request->hasFile('course_image')) {
+            $file = $request->file('course_image');
+            $file_name = $file->getClientOriginalName();
+            $path = Storage::disk('s3')->put('plaive/course_image',$file,'public');
+            $s3_url = "https://s3.ap-northeast-2.amazonaws.com/s3.finedust.10make.com/".$path;
+        } else {
+            $s3_url = null;
+        }
 
         $course_id = $request->_courseid;
         $title = $request->_title;
@@ -116,10 +130,14 @@ class ManageCourseController extends Controller
         $num_of_student = $request->_numofstudent;
         $weekcount = $request->_weekcount;
         $hourcount = $request->_hourcount;
-
+        $prerequisite = $request->_prerequisite;
         $id = $request->_userid;
 
-        Course::where('CourseId', $course_id)->update(['Title' => $title, 'Comment' => $comment, 'NumOfStudent' => $num_of_student, 'WeekCount' => $weekcount, 'HourCount' => $hourcount]);
+        if($s3_url == null ) {
+            Course::where('CourseId', $course_id)->update(['Title' => $title, 'Comment' => $comment, 'NumOfStudent' => $num_of_student, 'Prerequisite' => $prerequisite, 'WeekCount' => $weekcount, 'HourCount' => $hourcount]);
+        } else {
+            Course::where('CourseId', $course_id)->update(['Title' => $title, 'Comment' => $comment, 'NumOfStudent' => $num_of_student, 'Prerequisite' => $prerequisite, 'CourseImage' => $s3_url, 'WeekCount' => $weekcount, 'HourCount' => $hourcount]);
+        }
         $courses = Course::where('CreatedBy', $id)->where('Active', 1)->get();
         // dd($courses);
         return view('ShowMyCourseAjax')->with('courses', $courses);
@@ -149,13 +167,13 @@ class ManageCourseController extends Controller
 
                 if ($content == NULL) continue;
 
-                var_dump($course_id, $weekcount, $content, $content_count);
+                //var_dump($course_id, $weekcount, $content, $content_count);
                 Coursework::create(['CourseId' => $course_id, 'WeekNumber' => $weekcount, 'Content' => $content, 'ContentNumber' => $content_count]);
-                $courses = Course::where('CreatedBy', $id)->where('Active', 1)->get();
             }
         }
 //        die();
 //        dd($courses);
+        $courses = Course::where('CreatedBy', $id)->where('Active', 1)->get();
         return view('showMyCourseAjax')->with('courses', $courses);
     }
 }

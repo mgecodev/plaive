@@ -13,9 +13,9 @@
                         <div class="course-item">
                             <div class="image-blog">
                                 @if($class->ClassImage  == null)
-                                    <img src="/images/blog_1.jpg" alt="" class="img-fluid" style="min-height:200px;">
+                                    <img src="/images/blog_1.jpg" alt="" class="img-fluid" style="max-height:200px;min-height:200px;">
                                 @else 
-                                    <img src={{ $class->ClassImage }} alt="" class="img-fluid" style="min-height:200px;">
+                                    <img src={{ $class->ClassImage }} alt="" class="img-fluid" style="max-height:200px;min-height:200px;">
                                 @endif
                             </div>
                             <div class="course-br">
