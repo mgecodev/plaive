@@ -23,8 +23,9 @@ class CreateCoursesTable extends Migration
                 $table->integer('NumOfStudent');
                 $table->integer('HourCount');
                 $table->integer('WeekCount');
-                $table->Text('Prerequisite');
+                $table->Text('Prerequisite')->nullable();
                 $table->Text('Comment');
+                $table->string('CourseImage',256)->nullable();
                 $table->timestamps();
                 $table->integer('CreatedBy');
                 $table->boolean('Active')->default(1);
@@ -36,9 +37,9 @@ class CreateCoursesTable extends Migration
         else {
 
             // 1. Update column attributes
-//            Schema::table($this->tableName, function (Blueprint $table) {
-//                $table->string('name', 100)->nullable()->change();
-//            });
+            Schema::table($this->tableName, function (Blueprint $table) {
+                $table->Text('Prerequisite')->nullable()->change();
+            });
 
             // 2. Rename column
 //            Schema::table($this->tableName, function (Blueprint $table) {
@@ -46,9 +47,9 @@ class CreateCoursesTable extends Migration
 //            });
 
             // 3. Add column
-            // Schema::table($this->tableName, function (Blueprint $table) {
-            //     $table->integer('Title');
-            // });
+            Schema::table($this->tableName, function (Blueprint $table) {
+                $table->string('CourseImage',256)->nullable();
+            });
 
             // 4. Rename table
 //            Schema::rename($this->tableName, 'Accounts');
