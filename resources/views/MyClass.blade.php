@@ -2,62 +2,63 @@
 
 @section('content')
 
+    <style>
+
+    .custom-background {
+
+        background: white !important;
+    }
+
+    </style>
+
     <div class="row">
-        <div class="col-lg-3" class="section wb">
+        <div class="col-lg-2 custom-background">
         </div>
-        <div class="col-lg-9">
+        <div class="col-lg-10 custom-background">
             <div id="courses" class="section wb">
                 <div class="container">
                     <div class="row">
                         @foreach($my_classes as $my_class)
-                            <div class="col-lg-4 col-md-6 col-12">
+                            <div class="col-lg-3 col-md-4 col-sm-12">
                                 <div class="course-item">
                                     <div class="image-blog">
                                         <img src="/images/blog_1.jpg" alt="" class="img-fluid">
                                     </div>
                                     <div class="course-br">
                                         <div class="course-title">
-                                            <h2><a href="#" title="">{{ $my_class->ClassId }}</a></h2>
+                                            <h2><a href="#" title="">{{ $my_class->ClassName }}</a></h2>
                                         </div>
                                         <div class="course-desc">
                                             <p></p>
                                         </div>
                                     </div>
                                     <div class="course-meta-bot">
-                                        <ul>
-                                            <li><i class="fa fa-calendar"
-                                                   aria-hidden="true"></i> 초대된 학생들
-                                            </li>
-                                            <li><i class="fa fa-users" aria-hidden="true"></i> 수락한
-                                                학생들
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="big-tagline" style="text-align: center;">
-                                        <a href="/Class/{{ $my_class->ClassId }}" class="hover-btn-new"
-                                           target="_blank"><span>입장</span></a>
-                                        <a href="javascript:void(0)" class="hover-btn-new"
-                                           data-toggle="modal"><span>수정</span></a>
-                                        <a href="#" class="hover-btn-new" data-toggle="modal"
-                                           data-target="#confirmation-modal"><span>삭제</span></a>
-                                        <div class="modal fade" id="confirmation-modal" tabindex="-1" role="dialog"
-                                             style="display: none;" aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-body text-center font-18">
-                                                        <h4 class="padding-top-30 mb-30 weight-500">정말 삭제하시겠습니까?</h4>
-                                                        <div class="padding-bottom-30 row"
-                                                             style="max-width: 170px; margin: 0 auto;">
-                                                            <div class="col-6">
-                                                                <button type="button" id="no"
-                                                                        class="btn btn-secondary border-radius-100 btn-block confirmation-btn"
-                                                                        data-dismiss="modal"><i class="fa fa-times"></i>
-                                                                </button>
-                                                                아니요
-                                                            </div>
-                                                            <div class="col-6">
-                                                                {{--                                                                <button type="button" id="yes" val="{{ $course->CourseId }}" user="{{ $course->CreatedBy }}" class="btn btn-primary border-radius-100 btn-block confirmation-btn" data-dismiss="modal"><i class="fa fa-check"></i></button>--}}
-                                                                {{--                                                                네--}}
+                                        <div class="big-tagline" style="text-align: center;">
+                                            <a href="/Class/{{ $my_class->ClassId }}" class="hover-btn-new"
+                                               target="_blank"><span>입장</span></a>
+                                            <a href="javascript:void(0)" class="hover-btn-new"
+                                               data-toggle="modal"><span>수정</span></a>
+                                            <a href="#" class="hover-btn-new" data-toggle="modal"
+                                               data-target="#confirmation-modal"><span>삭제</span></a>
+                                            <div class="modal fade" id="confirmation-modal" tabindex="-1" role="dialog"
+                                                 style="display: none;" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-body text-center font-18">
+                                                            <h4 class="padding-top-30 mb-30 weight-500">정말 삭제하시겠습니까?</h4>
+                                                            <div class="padding-bottom-30 row"
+                                                                 style="max-width: 170px; margin: 0 auto;">
+                                                                <div class="col-6">
+                                                                    <button type="button" id="no"
+                                                                            class="btn btn-secondary border-radius-100 btn-block confirmation-btn"
+                                                                            data-dismiss="modal"><i class="fa fa-times"></i>
+                                                                    </button>
+                                                                    아니요
+                                                                </div>
+                                                                <div class="col-6">
+                                                                    {{--                                                                <button type="button" id="yes" val="{{ $course->CourseId }}" user="{{ $course->CreatedBy }}" class="btn btn-primary border-radius-100 btn-block confirmation-btn" data-dismiss="modal"><i class="fa fa-check"></i></button>--}}
+                                                                    {{--                                                                네--}}
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>

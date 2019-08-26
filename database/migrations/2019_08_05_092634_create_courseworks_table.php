@@ -60,6 +60,6 @@ class CreateCourseworksTable extends Migration
     public function down()
     {
         //Execute this when you want to drop the table
-        Schema::dropIfExists($this->tableName);
+//        Schema::dropIfExists($this->tableName);
     }
 }

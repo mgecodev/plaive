@@ -17,13 +17,13 @@ class CreateClassesTable extends Migration
     public function up()
     {
         if (!Schema::hasTable($this->tableName)) {
-//            Schema::create($this->tableName, function (Blueprint $table) {
-//                $table->bigIncrements('ClassId');
-//                $table->Integer('AccountId');
-//                $table->Integer('CourseId');
-//                $table->timestamps();
-//                $table->boolean('Active')->default(1);
-//            });
+            Schema::create($this->tableName, function (Blueprint $table) {
+                $table->bigIncrements('ClassId');
+                $table->Integer('AccountId');
+                $table->Integer('CourseId');
+                $table->timestamps();
+                $table->boolean('Active')->default(1);
+            });
         }
 
         // Run this code if there is already table and you want additional action for the table
@@ -59,6 +59,6 @@ class CreateClassesTable extends Migration
     public function down()
     {
         //Execute this when you want to drop the table
-        Schema::dropIfExists($this->tableName);
+//        Schema::dropIfExists($this->tableName);
     }
 }
