@@ -310,7 +310,7 @@ a img.aligncenter {
   left: 0;
   width: 100%;
   height: 50%;
-  background: #eea412;
+  background: #28b8ce;
   z-index: -1;
   transition: top 1.2s linear 3.1s;
 }
@@ -321,7 +321,7 @@ a img.aligncenter {
   left: 0;
   width: 100%;
   height: 50%;
-  background: #eea412;
+  background: #28b8ce;
   z-index: -1;
   transition: bottom 1.2s linear 3.1s;
 }
@@ -562,7 +562,7 @@ a img.aligncenter {
 	left: 40%;
 }
 .top-navbar .navbar-light .navbar-nav .nav-item.active .nav-link{
-	color: #eea412;
+	color: #28b8ce;
 }
 .top-navbar .navbar-light .navbar-nav .nav-item.active .nav-link::after{
 	opacity: 1;
@@ -578,7 +578,7 @@ a img.aligncenter {
 	left: 40%;
 }
 .top-navbar .navbar-light .navbar-nav .nav-item .nav-link:hover{
-	color: #eea412;
+	color: #28b8ce;
 }
 .top-navbar .navbar-light .navbar-nav .nav-item .nav-link:hover::after{
 	opacity: 1;
@@ -623,7 +623,7 @@ a img.aligncenter {
 }
 
 .top-navbar .navbar-light .navbar-nav li .dropdown-menu a:hover{
-	background: #eea412;
+	background: #28b8ce;
 	color: #ffffff;
 }
 
@@ -642,7 +642,7 @@ a img.aligncenter {
 
 .navbar-right li a.hover-btn-new::before,
 .navbar-right li a.hover-btn-new::after {
-  background: #eea412;
+  background: #28b8ce;
   content: '';
   position: absolute;
   z-index: 1;
@@ -738,7 +738,7 @@ a img.aligncenter {
 	position: relative;
 	display: inline-block;
 	font-size: 18px;
-	color: #333333;
+	color: #ffffff;
 	font-weight: 500;
 }
 
@@ -760,7 +760,7 @@ a img.aligncenter {
 }
 
 .big-tagline a.hover-btn-new:hover span {
-  color: #eea412;
+  color: #28b8ce;
 }
 
 .hover-btn-new::before {
@@ -771,7 +771,7 @@ a img.aligncenter {
 }
 
 .hover-btn-new::after {
-  background: #eea412 !important;
+  background: #28b8ce !important;
   height: 100%;
   left: 0;
   top: 0;
@@ -808,7 +808,7 @@ a img.aligncenter {
 -------------------------------------------------------------------*/
 
 .dbcolor{
-	background: #eea412;
+	background: #28b8ce;
 }
 
 .parallax {
@@ -878,7 +878,7 @@ a img.aligncenter {
     background-color: #448AFF;
 }
 .section.cl {
-	background-color: #2d3032;
+	background-color: #28b8ce;
 }
 
 .hover-btn-new{
@@ -902,6 +902,11 @@ a img.aligncenter {
 .orange{
 	border-color: #eea412;
 }
+
+.cyan{
+    border-color: #28b8ce;
+}
+
 
 .first-section {
     position: relative;
@@ -933,7 +938,7 @@ a img.aligncenter {
 }
 
 .first-section h2 strong{
-	color: #eea412;
+	color: #28b8ce;
 }
 
 .first-section .lead {
@@ -1015,7 +1020,7 @@ a img.aligncenter {
 
 .customwidget a.hover-btn-new::before,
 .customwidget a.hover-btn-new::after {
-  background: #9dc15b;
+  background: #28b8ce;
   content: '';
   position: absolute;
   z-index: 1;
@@ -1062,7 +1067,7 @@ a img.aligncenter {
 }
 .message-box a.hover-btn-new::before,
 .message-box a.hover-btn-new::after {
-	background: #eea412;
+	background: #28b8ce;
 	content: '';
 	position: absolute;
 	z-index: 1;
@@ -1078,7 +1083,7 @@ a img.aligncenter {
   width: 100%;
 }
 .message-box a.hover-btn-new::after {
-  background: #333333 !important;
+  background: #3c3c3b !important;
   height: 100%;
   left: 0;
   top: 0;
@@ -1730,7 +1735,7 @@ a img.aligncenter {
     font-weight: 600;
     letter-spacing: 0.5px;
     font-size: 15px;
-    color: #eea412;
+    color: #ffcd1c;
 }
 
 .message-box h2 {
@@ -2555,7 +2560,7 @@ select.mobile-device {
 
 .copyrights {
     border-top: 1px dashed rgba(255, 255, 255, 0.1);
-    background-color: #1f1f1f;
+    background-color: #3c3c3b;
     box-sizing: border-box;
     width: 100%;
     text-align: left;
@@ -2658,7 +2663,7 @@ select.mobile-device {
 }
 
 .footer-distributed .footer-company-name a:hover{
-	color: #eea412;
+	color: #28b8ce;
 }
 .footer-links-soi{
 	margin: 0px;
@@ -2776,7 +2781,7 @@ select.mobile-device {
     right: 0;
     bottom: 0;
     left: 0;
-    background: #eea412;
+    background: #28b8ce;
     z-index: 11000;
     position: fixed;
     display: block
@@ -3767,7 +3772,7 @@ a.link-style3 {
 	font-weight: 400;
 	padding: 0px;
 	margin-bottom: 15px;
-	border-right: 3px solid #eea412;
+	border-right: 3px solid #28b8ce;
 }
 .widget-categories ul{
 	list-style: none;
@@ -3785,7 +3790,7 @@ a.link-style3 {
 	font-size: 13px;
 }
 .widget-categories ul li a:hover{
-	color: #eea412;
+	color: #28b8ce;
 }
 .widget-tags .widget-title{
 	font-size: 18px;

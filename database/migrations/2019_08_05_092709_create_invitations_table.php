@@ -44,9 +44,9 @@ class CreateInvitationsTable extends Migration
 //            });
 
             // 3. Add column
-            /*Schema::table($this->tableName, function (Blueprint $table) {
-                $table->boolean('Active')->default(1);            
-            });*/
+//            Schema::table($this->tableName, function (Blueprint $table) {
+//                $table->boolean('Active')->default(1);
+//            });
 
             // 4. Rename table
 //            Schema::rename($this->tableName, 'Accounts');

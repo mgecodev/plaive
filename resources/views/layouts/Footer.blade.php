@@ -1,3 +1,10 @@
+<style>
+    .footer {
+        background-color: #3c3c3b !important;
+    }
+
+</style>
+
 <footer class="footer">
     <div class="container">
         <div class="row">
@@ -18,13 +25,13 @@
                     </div>
                 </div><!-- end clearfix -->
             </div><!-- end col -->
-    
+
             <div class="col-lg-6 col-md-6 col-xs-12">
                 <div class="widget clearfix">
                     <div class="widget-title">
                         <h3>Contact Details</h3>
                     </div>
-    
+
                     <ul class="footer-links">
                         <li><a href="mailto:#">Mail. edu@magice.co</a></li>
                         <li><a href="#">http://www.10make.com/</a></li>
@@ -33,7 +40,7 @@
                     </ul><!-- end links -->
                 </div><!-- end clearfix -->
             </div><!-- end col -->
-    
+
         </div><!-- end row -->
     </div><!-- end container -->
     <!-- large modal -->
@@ -87,7 +94,7 @@
                 </div>
             </div>
         </div>
-    </div> 
+    </div>
     <!-- small modal -->
     <div class="modal fade" id="small-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-sm modal-dialog-centered">
@@ -105,7 +112,7 @@
                 </div>
             </div>
         </div>
-    </div>  
+    </div>
     <!-- alert modal -->
     <div class="modal fade" id="alert-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-sm modal-dialog-centered">

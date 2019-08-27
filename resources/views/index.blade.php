@@ -1,7 +1,34 @@
 @extends('layouts.Master')
 
 @section('content')
+<style>
 
+    .big-tagline a.hover-btn-new::before,
+    .big-tagline a.hover-btn-new::after {
+        background: #fff;
+        content: '';
+        position: absolute;
+        z-index: 1;
+        color: #28b8ce !important;
+    }
+
+    .hover-btn-new::before {
+        height: 100%;
+        left: 0;
+        top: 0;
+        width: 100%;
+    }
+    .hover-btn-new::after, .carousel-control-prev, .carousel-control-next {
+        background: #28b8ce !important;
+        /*color: #28b8ce !important;*/
+    }
+
+    body.host_version .stat-wrap, body.host_version .dmtop:hover, body.host_version .cac:hover, body.host_version .features-right li:hover i, body.host_version .features-left li:hover i, body.host_version .divider-bar, body.host_version .owl-next:hover i, body.host_version .owl-prev:hover i, body.host_version .icon-wrapper:hover i:hover, body.host_version .grd1:hover, body.host_version .grd1:focus {
+        background-position: 100px;
+        color: #ffffff !important;
+        background: #28b8ce;
+    }
+</style>
 <div id="carouselExampleControls" class="carousel slide bs-slider box-slider" data-ride="carousel" data-pause="hover" data-interval="false" >
     <!-- Indicators -->
     <ol class="carousel-indicators">
@@ -17,14 +44,14 @@
                         <div class="row">
                             <div class="col-md-12 col-sm-12 text-right">
                                 <div class="big-tagline">
-                                    <h2><strong>Magiceco </strong> education College</h2>
-                                    <p class="lead">With Landigoo responsive landing page template, you can promote your all hosting, domain and email services. </p>
+                                    <h2><strong>Plaive </strong> Learning Management System</h2>
+                                    <p class="lead">플라이브와 함께 클래스를 개설하고 학생과 수업을 진행해 보세요. </p>
                                         <a href="#" class="hover-btn-new"><span>Contact Us</span></a>
                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                         <a href="#" class="hover-btn-new"><span>Read More</span></a>
                                 </div>
                             </div>
-                        </div><!-- end row -->            
+                        </div><!-- end row -->
                     </div><!-- end container -->
                 </div>
             </div><!-- end section -->
@@ -36,14 +63,14 @@
                         <div class="row">
                             <div class="col-md-12 col-sm-12 text-left">
                                 <div class="big-tagline">
-                                    <h2 data-animation="animated zoomInRight">SmartEDU <strong>education school</strong></h2>
-                                    <p class="lead" data-animation="animated fadeInLeft">With Landigoo responsive landing page template, you can promote your all hosting, domain and email services. </p>
+                                    <h2 data-animation="animated zoomInRight">무엇을 <strong>배우고 싶으세요?</strong></h2>
+                                    <p class="lead" data-animation="animated fadeInLeft">플라이브와 함께 AI 챗봇을 만들어보세요. </p>
                                         <a href="#" class="hover-btn-new"><span>Contact Us</span></a>
                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                         <a href="#" class="hover-btn-new"><span>Read More</span></a>
                                 </div>
                             </div>
-                        </div><!-- end row -->            
+                        </div><!-- end row -->
                     </div><!-- end container -->
                 </div>
             </div><!-- end section -->
@@ -55,16 +82,14 @@
                         <div class="row">
                             <div class="col-md-12 col-sm-12 text-center">
                                 <div class="big-tagline">
-                                    <h2 data-animation="animated zoomInRight"><strong>VPS Servers</strong> Company</h2>
-                                    <p class="lead" data-animation="animated fadeInLeft">1 IP included with each server 
-                                        Your Choice of any OS (CentOS, Windows, Debian, Fedora)
-                                        FREE Reboots</p>
+                                    <h2 data-animation="animated zoomInRight"><strong>동영상 컨텐츠</strong> 와 연계된 플라이브만의 다양한 키트</h2>
+                                    <p class="lead" data-animation="animated fadeInLeft">미세먼지 키트와 자율주행 키트는 아이들의 상상력을 자극합니다.</p>
                                         <a href="#" class="hover-btn-new"><span>Contact Us</span></a>
                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                         <a href="#" class="hover-btn-new"><span>Read More</span></a>
                                 </div>
                             </div>
-                        </div><!-- end row -->            
+                        </div><!-- end row -->
                     </div><!-- end container -->
                 </div>
             </div><!-- end section -->
@@ -88,320 +113,310 @@
         <div class="section-title row text-center">
             <div class="col-md-8 offset-md-2">
                 <h3>About</h3>
-                <p class="lead">Lorem Ipsum dolroin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem!</p>
+                <p class="lead">아이들이 메이커 수업을 가장 쉽고 즐겁게 시작하는 곳, 플라이브입니다</p>
             </div>
         </div><!-- end title -->
-    
         <div class="row align-items-center">
-            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
                 <div class="message-box">
-                    <h4>2018 BEST SmartEDU education school</h4>
-                    <h2>Welcome to SmartEDU education school</h2>
-                    <p>Quisque eget nisl id nulla sagittis auctor quis id. Aliquam quis vehicula enim, non aliquam risus. Sed a tellus quis mi rhoncus dignissim.</p>
-
-                    <p> Integer rutrum ligula eu dignissim laoreet. Pellentesque venenatis nibh sed tellus faucibus bibendum. Sed fermentum est vitae rhoncus molestie. Cum sociis natoque penatibus et magnis montes, nascetur ridiculus mus. Sed vitae rutrum neque. </p>
-
-                    <a href="#" class="hover-btn-new orange"><span>Learn More</span></a>
+{{--                    <h4>2018 BEST SmartEDU education school</h4>--}}
+                    <h3 style="text-align:center;">컴퓨터 사고력을 가장 즐겁게 습득하는 방법, 직접 만들며 배우는 메이커교육입니다.</h3>
+                    <br>
+                    <p style="text-align:center;">미래 인재에게는 손으로 직접 만들며 아이디어를 실현해 보는 메이커 교육이 필요합니다. 메이커 교육은 시챙착오를 통해 창의적으로 문제를 해결할 수 있는 능력을 배양합니다.</p>
+{{--                    <a href="#" class="hover-btn-new cyan"><span>Learn More</span></a>--}}
                 </div><!-- end messagebox -->
             </div><!-- end col -->
-            
-            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
-                <div class="post-media wow fadeIn">
-                    <img src="images/about_02.jpg" alt="" class="img-fluid img-rounded">
-                </div><!-- end media -->
+            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
+                <div class="message-box">
+                    <h3 style="text-align:center;">수업에 적용 가능한 단계별 커리큘럼과 무료 동영상 강좌, 빠른 Q&A가 준비되어 있습니다.</h3>
+                    <br>
+                    <p style="text-align:center;">수준 별 커리큘럼을 추천하고 무료로 동영상 강좌를 제공합니다. 선생님과의 상호 학습과 프로젝트 기반의 수업은 학생이 빠르게 실력을 향상시킬 수 있게 도와줍니다. SNS를 통해 빠른 피드백을 받을 수 있습니다.</p>
+{{--                    <a href="#" class="hover-btn-new cyan"><span>Learn More</span></a>--}}
+                </div><!-- end messagebox -->
+            </div><!-- end col -->
+            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
+                <div class="message-box">
+                    <h3 style="text-align:center;">융합형 인재양성을 위한 IoT, Big Data, AI 교육을 합니다.</h3>
+                    <br>
+                    <p style="text-align:center;">자신의 분야에 IoT, Big data, AI를 접목해 발전시켜 나가는 융합적 사고를 기릅니다. 단순한 움직임을 넘어, 인터넷을 통해 데이터를 수집, 축적, 분석하는 가장 쉽고 재미있는 IoT수업이 시작됩니다.</p>
+{{--                    <a href="#" class="hover-btn-new cyan"><span>Learn More</span></a>--}}
+                </div><!-- end messagebox -->
             </div><!-- end col -->
         </div>
-        <div class="row align-items-center">
-            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
-                <div class="post-media wow fadeIn">
-                    <img src="images/about_03.jpg" alt="" class="img-fluid img-rounded">
-                </div><!-- end media -->
-            </div><!-- end col -->
-            
-            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
-                <div class="message-box">
-                    <h2>The standard Lorem Ipsum passage, used since the 1500s</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-
-                    <p> Integer rutrum ligula eu dignissim laoreet. Pellentesque venenatis nibh sed tellus faucibus bibendum.</p>
-
-                    <a href="#" class="hover-btn-new orange"><span>Learn More</span></a>
-                </div><!-- end messagebox -->
-            </div><!-- end col -->
-            
-        </div><!-- end row -->
     </div><!-- end container -->
 </div><!-- end section -->
 
-<section class="section lb page-section">
-    <div class="container">
-         <div class="section-title row text-center">
-            <div class="col-md-8 offset-md-2">
-                <h3>Our history</h3>
-                <p class="lead">Lorem Ipsum dolroin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem!</p>
-            </div>
-        </div><!-- end title -->
-        <div class="timeline">
-            <div class="timeline__wrap">
-                <div class="timeline__items">
-                    <div class="timeline__item">
-                        <div class="timeline__content img-bg-01">
-                            <h2>2018</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dignissim neque condimentum lacus dapibus. Lorem
-                                ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        </div>
-                    </div>
-                    <div class="timeline__item">
-                        <div class="timeline__content img-bg-02">
-                            <h2>2015</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dignissim neque condimentum lacus dapibus. Lorem
-                                ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        </div>
-                    </div>
-                    <div class="timeline__item">
-                        <div class="timeline__content img-bg-03">
-                            <h2>2014</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dignissim neque condimentum lacus dapibus. Lorem
-                                ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        </div>
-                    </div>
-                    <div class="timeline__item">
-                        <div class="timeline__content img-bg-04">
-                            <h2>2012</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dignissim neque condimentum lacus dapibus. Lorem
-                                ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        </div>
-                    </div>
-                    <div class="timeline__item">
-                        <div class="timeline__content img-bg-01">
-                            <h2>2010</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dignissim neque condimentum lacus dapibus. Lorem
-                                ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        </div>
-                    </div>
-                    <div class="timeline__item">
-                        <div class="timeline__content img-bg-02">
-                            <h2>2007</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dignissim neque condimentum lacus dapibus. Lorem
-                                ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        </div>
-                    </div>
-                    <div class="timeline__item">
-                        <div class="timeline__content img-bg-03">
-                            <h2>2004</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dignissim neque condimentum lacus dapibus. Lorem
-                                ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        </div>
-                    </div>
-                    <div class="timeline__item">
-                        <div class="timeline__content img-bg-04">
-                            <h2>2002</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dignissim neque condimentum lacus dapibus. Lorem
-                                ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+{{--<section class="section lb page-section">--}}
+{{--    <div class="container">--}}
+{{--         <div class="section-title row text-center">--}}
+{{--            <div class="col-md-8 offset-md-2">--}}
+{{--                <h3>Our history</h3>--}}
+{{--                <p class="lead">Lorem Ipsum dolroin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem!</p>--}}
+{{--            </div>--}}
+{{--        </div><!-- end title -->--}}
+{{--        <div class="timeline">--}}
+{{--            <div class="timeline__wrap">--}}
+{{--                <div class="timeline__items">--}}
+{{--                    <div class="timeline__item">--}}
+{{--                        <div class="timeline__content img-bg-01">--}}
+{{--                            <h2>2018</h2>--}}
+{{--                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dignissim neque condimentum lacus dapibus. Lorem--}}
+{{--                                ipsum dolor sit amet, consectetur adipiscing elit.</p>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                    <div class="timeline__item">--}}
+{{--                        <div class="timeline__content img-bg-02">--}}
+{{--                            <h2>2015</h2>--}}
+{{--                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dignissim neque condimentum lacus dapibus. Lorem--}}
+{{--                                ipsum dolor sit amet, consectetur adipiscing elit.</p>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                    <div class="timeline__item">--}}
+{{--                        <div class="timeline__content img-bg-03">--}}
+{{--                            <h2>2014</h2>--}}
+{{--                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dignissim neque condimentum lacus dapibus. Lorem--}}
+{{--                                ipsum dolor sit amet, consectetur adipiscing elit.</p>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                    <div class="timeline__item">--}}
+{{--                        <div class="timeline__content img-bg-04">--}}
+{{--                            <h2>2012</h2>--}}
+{{--                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dignissim neque condimentum lacus dapibus. Lorem--}}
+{{--                                ipsum dolor sit amet, consectetur adipiscing elit.</p>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                    <div class="timeline__item">--}}
+{{--                        <div class="timeline__content img-bg-01">--}}
+{{--                            <h2>2010</h2>--}}
+{{--                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dignissim neque condimentum lacus dapibus. Lorem--}}
+{{--                                ipsum dolor sit amet, consectetur adipiscing elit.</p>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                    <div class="timeline__item">--}}
+{{--                        <div class="timeline__content img-bg-02">--}}
+{{--                            <h2>2007</h2>--}}
+{{--                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dignissim neque condimentum lacus dapibus. Lorem--}}
+{{--                                ipsum dolor sit amet, consectetur adipiscing elit.</p>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                    <div class="timeline__item">--}}
+{{--                        <div class="timeline__content img-bg-03">--}}
+{{--                            <h2>2004</h2>--}}
+{{--                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dignissim neque condimentum lacus dapibus. Lorem--}}
+{{--                                ipsum dolor sit amet, consectetur adipiscing elit.</p>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                    <div class="timeline__item">--}}
+{{--                        <div class="timeline__content img-bg-04">--}}
+{{--                            <h2>2002</h2>--}}
+{{--                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dignissim neque condimentum lacus dapibus. Lorem--}}
+{{--                                ipsum dolor sit amet, consectetur adipiscing elit.</p>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
+{{--</section>--}}
 
 <div class="section cl">
     <div class="container">
         <div class="row text-left stat-wrap">
             <div class="col-md-4 col-sm-4 col-xs-12">
                 <span data-scroll class="global-radius icon_wrap effect-1 alignleft"><i class="flaticon-study"></i></span>
-                <p class="stat_count">12000</p>
-                <h3>Students</h3>
+                <p class="stat_count">250</p>
+                <h3>학생 수</h3>
             </div><!-- end col -->
 
             <div class="col-md-4 col-sm-4 col-xs-12">
                 <span data-scroll class="global-radius icon_wrap effect-1 alignleft"><i class="flaticon-online"></i></span>
-                <p class="stat_count">240</p>
-                <h3>Courses</h3>
+                <p class="stat_count">24</p>
+                <h3>클래스 수</h3>
             </div><!-- end col -->
 
             <div class="col-md-4 col-sm-4 col-xs-12">
                 <span data-scroll class="global-radius icon_wrap effect-1 alignleft"><i class="flaticon-years"></i></span>
-                <p class="stat_count">55</p>
-                <h3>Years Completed</h3>
+                <p class="stat_count">45</p>
+                <h3>커리큘럼 수</h3>
             </div><!-- end col -->
         </div><!-- end row -->
     </div><!-- end container -->
 </div><!-- end section -->
 
-<div id="plan" class="section lb">
-    <div class="container">
-        <div class="section-title text-center">
-            <h3>Choose Your Plan</h3>
-            <p>Lorem ipsum dolor sit aet, consectetur adipisicing lit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-        </div><!-- end title -->
+{{--<div id="plan" class="section lb">--}}
+{{--    <div class="container">--}}
+{{--        <div class="section-title text-center">--}}
+{{--            <h3>Choose Your Plan</h3>--}}
+{{--            <p>Lorem ipsum dolor sit aet, consectetur adipisicing lit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>--}}
+{{--        </div><!-- end title -->--}}
 
-        <div class="row">
-            <div class="col-md-6 offset-md-3">
-                <div class="message-box">
-                    <ul class="nav nav-pills nav-stacked" id="myTabs">
-                        <li><a class="active" href="#tab1" data-toggle="pill">Monthly Subscription</a></li>
-                        <li><a href="#tab2" data-toggle="pill">Yearly Subscription</a></li>
-                    </ul>
-                </div>
-            </div><!-- end col -->
-        </div>
+{{--        <div class="row">--}}
+{{--            <div class="col-md-6 offset-md-3">--}}
+{{--                <div class="message-box">--}}
+{{--                    <ul class="nav nav-pills nav-stacked" id="myTabs">--}}
+{{--                        <li><a class="active" href="#tab1" data-toggle="pill">Monthly Subscription</a></li>--}}
+{{--                        <li><a href="#tab2" data-toggle="pill">Yearly Subscription</a></li>--}}
+{{--                    </ul>--}}
+{{--                </div>--}}
+{{--            </div><!-- end col -->--}}
+{{--        </div>--}}
 
-        <hr class="invis">
+{{--        <hr class="invis">--}}
 
-        <div class="row">
-            <div class="col-md-12">
-                <div class="tab-content">
-                    <div class="tab-pane active fade show" id="tab1">
-                        <div class="row text-center">
-                            <div class="col-md-4">
-                                <div class="pricing-table pricing-table-highlighted">
-                                    <div class="pricing-table-header grd1">
-                                        <h2>$45</h2>
-                                        <h3>per month</h3>
-                                    </div>
-                                    <div class="pricing-table-space"></div>
-                                    <div class="pricing-table-features">
-                                        <p><i class="fa fa-envelope-o"></i> <strong>250</strong> Email Addresses</p>
-                                        <p><i class="fa fa-rocket"></i> <strong>125GB</strong> of Storage</p>
-                                        <p><i class="fa fa-database"></i> <strong>140</strong> Databases</p>
-                                        <p><i class="fa fa-link"></i> <strong>60</strong> Domains</p>
-                                        <p><i class="fa fa-life-ring"></i> <strong>24/7 Unlimited</strong> Support</p>
-                                    </div>
-                                    <div class="pricing-table-sign-up">
-                                        <a href="#" class="hover-btn-new orange"><span>Order Now</span></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="pricing-table pricing-table-highlighted">
-                                    <div class="pricing-table-header grd1">
-                                        <h2>$59</h2>
-                                        <h3>per month</h3>
-                                    </div>
-                                    <div class="pricing-table-space"></div>
-                                    <div class="pricing-table-features">
-                                        <p><i class="fa fa-envelope-o"></i> <strong>150</strong> Email Addresses</p>
-                                        <p><i class="fa fa-rocket"></i> <strong>65GB</strong> of Storage</p>
-                                        <p><i class="fa fa-database"></i> <strong>60</strong> Databases</p>
-                                        <p><i class="fa fa-link"></i> <strong>30</strong> Domains</p>
-                                        <p><i class="fa fa-life-ring"></i> <strong>24/7 Unlimited</strong> Support</p>
-                                    </div>
-                                    <div class="pricing-table-sign-up">
-                                        <a href="#" class="hover-btn-new orange"><span>Order Now</span></a>
-                                    </div>
-                                </div>
-                            </div>
+{{--        <div class="row">--}}
+{{--            <div class="col-md-12">--}}
+{{--                <div class="tab-content">--}}
+{{--                    <div class="tab-pane active fade show" id="tab1">--}}
+{{--                        <div class="row text-center">--}}
+{{--                            <div class="col-md-4">--}}
+{{--                                <div class="pricing-table pricing-table-highlighted">--}}
+{{--                                    <div class="pricing-table-header grd1">--}}
+{{--                                        <h2>$45</h2>--}}
+{{--                                        <h3>per month</h3>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="pricing-table-space"></div>--}}
+{{--                                    <div class="pricing-table-features">--}}
+{{--                                        <p><i class="fa fa-envelope-o"></i> <strong>250</strong> Email Addresses</p>--}}
+{{--                                        <p><i class="fa fa-rocket"></i> <strong>125GB</strong> of Storage</p>--}}
+{{--                                        <p><i class="fa fa-database"></i> <strong>140</strong> Databases</p>--}}
+{{--                                        <p><i class="fa fa-link"></i> <strong>60</strong> Domains</p>--}}
+{{--                                        <p><i class="fa fa-life-ring"></i> <strong>24/7 Unlimited</strong> Support</p>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="pricing-table-sign-up">--}}
+{{--                                        <a href="#" class="hover-btn-new orange"><span>Order Now</span></a>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                            <div class="col-md-4">--}}
+{{--                                <div class="pricing-table pricing-table-highlighted">--}}
+{{--                                    <div class="pricing-table-header grd1">--}}
+{{--                                        <h2>$59</h2>--}}
+{{--                                        <h3>per month</h3>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="pricing-table-space"></div>--}}
+{{--                                    <div class="pricing-table-features">--}}
+{{--                                        <p><i class="fa fa-envelope-o"></i> <strong>150</strong> Email Addresses</p>--}}
+{{--                                        <p><i class="fa fa-rocket"></i> <strong>65GB</strong> of Storage</p>--}}
+{{--                                        <p><i class="fa fa-database"></i> <strong>60</strong> Databases</p>--}}
+{{--                                        <p><i class="fa fa-link"></i> <strong>30</strong> Domains</p>--}}
+{{--                                        <p><i class="fa fa-life-ring"></i> <strong>24/7 Unlimited</strong> Support</p>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="pricing-table-sign-up">--}}
+{{--                                        <a href="#" class="hover-btn-new orange"><span>Order Now</span></a>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
 
-                            <div class="col-md-4">
-                                <div class="pricing-table pricing-table-highlighted">
-                                    <div class="pricing-table-header grd1">
-                                        <h2>$85</h2>
-                                        <h3>per month</h3>
-                                    </div>
-                                    <div class="pricing-table-space"></div>
-                                    <div class="pricing-table-features">
-                                        <p><i class="fa fa-envelope-o"></i> <strong>250</strong> Email Addresses</p>
-                                        <p><i class="fa fa-rocket"></i> <strong>125GB</strong> of Storage</p>
-                                        <p><i class="fa fa-database"></i> <strong>140</strong> Databases</p>
-                                        <p><i class="fa fa-link"></i> <strong>60</strong> Domains</p>
-                                        <p><i class="fa fa-life-ring"></i> <strong>24/7 Unlimited</strong> Support</p>
-                                    </div>
-                                    <div class="pricing-table-sign-up">
-                                        <a href="#" class="hover-btn-new orange"><span>Order Now</span></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div><!-- end row -->
-                    </div><!-- end pane -->
+{{--                            <div class="col-md-4">--}}
+{{--                                <div class="pricing-table pricing-table-highlighted">--}}
+{{--                                    <div class="pricing-table-header grd1">--}}
+{{--                                        <h2>$85</h2>--}}
+{{--                                        <h3>per month</h3>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="pricing-table-space"></div>--}}
+{{--                                    <div class="pricing-table-features">--}}
+{{--                                        <p><i class="fa fa-envelope-o"></i> <strong>250</strong> Email Addresses</p>--}}
+{{--                                        <p><i class="fa fa-rocket"></i> <strong>125GB</strong> of Storage</p>--}}
+{{--                                        <p><i class="fa fa-database"></i> <strong>140</strong> Databases</p>--}}
+{{--                                        <p><i class="fa fa-link"></i> <strong>60</strong> Domains</p>--}}
+{{--                                        <p><i class="fa fa-life-ring"></i> <strong>24/7 Unlimited</strong> Support</p>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="pricing-table-sign-up">--}}
+{{--                                        <a href="#" class="hover-btn-new orange"><span>Order Now</span></a>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div><!-- end row -->--}}
+{{--                    </div><!-- end pane -->--}}
 
-                    <div class="tab-pane fade" id="tab2">
-                        <div class="row text-center">
-                            <div class="col-md-4">
-                                <div class="pricing-table pricing-table-highlighted">
-                                    <div class="pricing-table-header grd1">
-                                        <h2>$477</h2>
-                                        <h3>Year</h3>
-                                    </div>
-                                    <div class="pricing-table-space"></div>
-                                    <div class="pricing-table-features">
-                                        <p><i class="fa fa-envelope-o"></i> <strong>250</strong> Email Addresses</p>
-                                        <p><i class="fa fa-rocket"></i> <strong>125GB</strong> of Storage</p>
-                                        <p><i class="fa fa-database"></i> <strong>140</strong> Databases</p>
-                                        <p><i class="fa fa-link"></i> <strong>60</strong> Domains</p>
-                                        <p><i class="fa fa-life-ring"></i> <strong>24/7 Unlimited</strong> Support</p>
-                                    </div>
-                                    <div class="pricing-table-sign-up">
-                                        <a href="#" class="hover-btn-new orange"><span>Order Now</span></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="pricing-table pricing-table-highlighted">
-                                    <div class="pricing-table-header grd1">
-                                        <h2>$485</h2>
-                                        <h3>Year</h3>
-                                    </div>
-                                    <div class="pricing-table-space"></div>
-                                    <div class="pricing-table-features">
-                                        <p><i class="fa fa-envelope-o"></i> <strong>150</strong> Email Addresses</p>
-                                        <p><i class="fa fa-rocket"></i> <strong>65GB</strong> of Storage</p>
-                                        <p><i class="fa fa-database"></i> <strong>60</strong> Databases</p>
-                                        <p><i class="fa fa-link"></i> <strong>30</strong> Domains</p>
-                                        <p><i class="fa fa-life-ring"></i> <strong>24/7 Unlimited</strong> Support</p>
-                                    </div>
-                                    <div class="pricing-table-sign-up">
-                                        <a href="#" class="hover-btn-new orange"><span>Order Now</span></a>
-                                    </div>
-                                </div>
-                            </div>
+{{--                    <div class="tab-pane fade" id="tab2">--}}
+{{--                        <div class="row text-center">--}}
+{{--                            <div class="col-md-4">--}}
+{{--                                <div class="pricing-table pricing-table-highlighted">--}}
+{{--                                    <div class="pricing-table-header grd1">--}}
+{{--                                        <h2>$477</h2>--}}
+{{--                                        <h3>Year</h3>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="pricing-table-space"></div>--}}
+{{--                                    <div class="pricing-table-features">--}}
+{{--                                        <p><i class="fa fa-envelope-o"></i> <strong>250</strong> Email Addresses</p>--}}
+{{--                                        <p><i class="fa fa-rocket"></i> <strong>125GB</strong> of Storage</p>--}}
+{{--                                        <p><i class="fa fa-database"></i> <strong>140</strong> Databases</p>--}}
+{{--                                        <p><i class="fa fa-link"></i> <strong>60</strong> Domains</p>--}}
+{{--                                        <p><i class="fa fa-life-ring"></i> <strong>24/7 Unlimited</strong> Support</p>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="pricing-table-sign-up">--}}
+{{--                                        <a href="#" class="hover-btn-new orange"><span>Order Now</span></a>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                            <div class="col-md-4">--}}
+{{--                                <div class="pricing-table pricing-table-highlighted">--}}
+{{--                                    <div class="pricing-table-header grd1">--}}
+{{--                                        <h2>$485</h2>--}}
+{{--                                        <h3>Year</h3>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="pricing-table-space"></div>--}}
+{{--                                    <div class="pricing-table-features">--}}
+{{--                                        <p><i class="fa fa-envelope-o"></i> <strong>150</strong> Email Addresses</p>--}}
+{{--                                        <p><i class="fa fa-rocket"></i> <strong>65GB</strong> of Storage</p>--}}
+{{--                                        <p><i class="fa fa-database"></i> <strong>60</strong> Databases</p>--}}
+{{--                                        <p><i class="fa fa-link"></i> <strong>30</strong> Domains</p>--}}
+{{--                                        <p><i class="fa fa-life-ring"></i> <strong>24/7 Unlimited</strong> Support</p>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="pricing-table-sign-up">--}}
+{{--                                        <a href="#" class="hover-btn-new orange"><span>Order Now</span></a>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
 
-                            <div class="col-md-4">
-                                <div class="pricing-table pricing-table-highlighted">
-                                    <div class="pricing-table-header grd1">
-                                        <h2>$500</h2>
-                                        <h3>Year</h3>
-                                    </div>
-                                    <div class="pricing-table-space"></div>
-                                    <div class="pricing-table-features">
-                                        <p><i class="fa fa-envelope-o"></i> <strong>250</strong> Email Addresses</p>
-                                        <p><i class="fa fa-rocket"></i> <strong>125GB</strong> of Storage</p>
-                                        <p><i class="fa fa-database"></i> <strong>140</strong> Databases</p>
-                                        <p><i class="fa fa-link"></i> <strong>60</strong> Domains</p>
-                                        <p><i class="fa fa-life-ring"></i> <strong>24/7 Unlimited</strong> Support</p>
-                                    </div>
-                                    <div class="pricing-table-sign-up">
-                                        <a href="#" class="hover-btn-new orange"><span>Order Now</span></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div><!-- end row -->
-                    </div><!-- end pane -->
-                </div><!-- end content -->
-            </div><!-- end col -->
-        </div><!-- end row -->
-    </div><!-- end container -->
-</div><!-- end section -->
+{{--                            <div class="col-md-4">--}}
+{{--                                <div class="pricing-table pricing-table-highlighted">--}}
+{{--                                    <div class="pricing-table-header grd1">--}}
+{{--                                        <h2>$500</h2>--}}
+{{--                                        <h3>Year</h3>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="pricing-table-space"></div>--}}
+{{--                                    <div class="pricing-table-features">--}}
+{{--                                        <p><i class="fa fa-envelope-o"></i> <strong>250</strong> Email Addresses</p>--}}
+{{--                                        <p><i class="fa fa-rocket"></i> <strong>125GB</strong> of Storage</p>--}}
+{{--                                        <p><i class="fa fa-database"></i> <strong>140</strong> Databases</p>--}}
+{{--                                        <p><i class="fa fa-link"></i> <strong>60</strong> Domains</p>--}}
+{{--                                        <p><i class="fa fa-life-ring"></i> <strong>24/7 Unlimited</strong> Support</p>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="pricing-table-sign-up">--}}
+{{--                                        <a href="#" class="hover-btn-new orange"><span>Order Now</span></a>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div><!-- end row -->--}}
+{{--                    </div><!-- end pane -->--}}
+{{--                </div><!-- end content -->--}}
+{{--            </div><!-- end col -->--}}
+{{--        </div><!-- end row -->--}}
+{{--    </div><!-- end container -->--}}
+{{--</div><!-- end section -->--}}
 
 <div id="testimonials" class="parallax section db parallax-off" style="background-image:url('images/parallax_04.jpg');">
     <div class="container">
-        <div class="section-title text-center">
-            <h3>Testimonials</h3>
-            <p>Lorem ipsum dolor sit aet, consectetur adipisicing lit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-        </div><!-- end title -->
+{{--        <div class="section-title text-center">--}}
+{{--            <h3>Testimonials</h3>--}}
+{{--            <p>Lorem ipsum dolor sit aet, consectetur adipisicing lit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>--}}
+{{--        </div><!-- end title -->--}}
 
         <div class="row">
             <div class="col-md-12 col-sm-12">
                 <div class="testi-carousel owl-carousel owl-theme">
                     <div class="testimonial clearfix">
                         <div class="testi-meta">
-                            <img src="images/testi_01.png" alt="" class="img-fluid">
-                            <h4>James Fernando </h4>
+{{--                            <img src="images/testi_01.png" alt="" class="img-fluid">--}}
+{{--                            <h4>James Fernando </h4>--}}
                         </div>
                         <div class="desc">
-                            <h3><i class="fa fa-quote-left"></i> Wonderful Support!</h3>
-                            <p class="lead">They have got my project on time with the competition with a sed highly skilled, and experienced & professional team.</p>
+                            <h3><i class="fa fa-quote-left"></i> 기록을 남길 수 있어서 좋았어요</h3>
+                            <p class="lead">다른 수업과는 달리 내가 수업에서 한 활동들에 대한 기록들이 잘 정리되어 있어 결과를 한 눈에 보기 편했습니다.</p>
+                            <h4>장길준 (소마중 3학년)</h4>
+
                         </div>
                         <!-- end testi-meta -->
                     </div>
