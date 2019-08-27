@@ -120,103 +120,104 @@
             <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
                 <div class="message-box">
 {{--                    <h4>2018 BEST SmartEDU education school</h4>--}}
-                    <h2>컴퓨터 사고력을 가장 즐겁게 습득하는 방법, 직접 만들며 배우는 메이커교육입니다.</h2>
-{{--                    <br>--}}
-                    <p>미래 인재에게는 손으로 직접 만들며 아이디어를 실현해 보는 메이커 교육이 필요합니다. 메이커 교육은 시챙착오를 통해 창의적으로 문제를 해결할 수 있는 능력을 배양합니다.</p>
-                    <a href="#" class="hover-btn-new cyan"><span>Learn More</span></a>
+                    <h3 style="text-align:center;">컴퓨터 사고력을 가장 즐겁게 습득하는 방법, 직접 만들며 배우는 메이커교육입니다.</h3>
+                    <br>
+                    <p style="text-align:center;">미래 인재에게는 손으로 직접 만들며 아이디어를 실현해 보는 메이커 교육이 필요합니다. 메이커 교육은 시챙착오를 통해 창의적으로 문제를 해결할 수 있는 능력을 배양합니다.</p>
+{{--                    <a href="#" class="hover-btn-new cyan"><span>Learn More</span></a>--}}
                 </div><!-- end messagebox -->
             </div><!-- end col -->
             <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
                 <div class="message-box">
-                    <h2>수업에 적용 가능한 단계별 커리큘럼과 무료 동영상 강좌, 빠른 Q&A가 준비되어 있습니다.</h2>
-                    <p>수준 별 커리큘럼을 추천하고 무료로 동영상 강좌를 제공합니다. 선생님과의 상호 학습과 프로젝트 기반의 수업은 학생이 빠르게 실력을 향상시킬 수 있게 도와줍니다. SNS를 통해 빠른 피드백을 받을 수 있습니다.</p>
-                    <a href="#" class="hover-btn-new cyan"><span>Learn More</span></a>
+                    <h3 style="text-align:center;">수업에 적용 가능한 단계별 커리큘럼과 무료 동영상 강좌, 빠른 Q&A가 준비되어 있습니다.</h3>
+                    <br>
+                    <p style="text-align:center;">수준 별 커리큘럼을 추천하고 무료로 동영상 강좌를 제공합니다. 선생님과의 상호 학습과 프로젝트 기반의 수업은 학생이 빠르게 실력을 향상시킬 수 있게 도와줍니다. SNS를 통해 빠른 피드백을 받을 수 있습니다.</p>
+{{--                    <a href="#" class="hover-btn-new cyan"><span>Learn More</span></a>--}}
                 </div><!-- end messagebox -->
             </div><!-- end col -->
             <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
                 <div class="message-box">
-                    <h2>융합형 인재양성을 위한 IoT, Big Data, AI 교육을 합니다.</h2>
-{{--                    <br><br><br><br>--}}
-                    <p>자신의 분야에 IoT, Big data, AI를 접목해 발전시켜 나가는 융합적 사고를 기릅니다. 단순한 움직임을 넘어, 인터넷을 통해 데이터를 수집, 축적, 분석하는 가장 쉽고 재미있는 IoT수업이 시작됩니다.</p>
-                    <a href="#" class="hover-btn-new cyan"><span>Learn More</span></a>
+                    <h3 style="text-align:center;">융합형 인재양성을 위한 IoT, Big Data, AI 교육을 합니다.</h3>
+                    <br>
+                    <p style="text-align:center;">자신의 분야에 IoT, Big data, AI를 접목해 발전시켜 나가는 융합적 사고를 기릅니다. 단순한 움직임을 넘어, 인터넷을 통해 데이터를 수집, 축적, 분석하는 가장 쉽고 재미있는 IoT수업이 시작됩니다.</p>
+{{--                    <a href="#" class="hover-btn-new cyan"><span>Learn More</span></a>--}}
                 </div><!-- end messagebox -->
             </div><!-- end col -->
         </div>
     </div><!-- end container -->
 </div><!-- end section -->
 
-<section class="section lb page-section">
-    <div class="container">
-         <div class="section-title row text-center">
-            <div class="col-md-8 offset-md-2">
-                <h3>Our history</h3>
-                <p class="lead">Lorem Ipsum dolroin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem!</p>
-            </div>
-        </div><!-- end title -->
-        <div class="timeline">
-            <div class="timeline__wrap">
-                <div class="timeline__items">
-                    <div class="timeline__item">
-                        <div class="timeline__content img-bg-01">
-                            <h2>2018</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dignissim neque condimentum lacus dapibus. Lorem
-                                ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        </div>
-                    </div>
-                    <div class="timeline__item">
-                        <div class="timeline__content img-bg-02">
-                            <h2>2015</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dignissim neque condimentum lacus dapibus. Lorem
-                                ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        </div>
-                    </div>
-                    <div class="timeline__item">
-                        <div class="timeline__content img-bg-03">
-                            <h2>2014</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dignissim neque condimentum lacus dapibus. Lorem
-                                ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        </div>
-                    </div>
-                    <div class="timeline__item">
-                        <div class="timeline__content img-bg-04">
-                            <h2>2012</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dignissim neque condimentum lacus dapibus. Lorem
-                                ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        </div>
-                    </div>
-                    <div class="timeline__item">
-                        <div class="timeline__content img-bg-01">
-                            <h2>2010</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dignissim neque condimentum lacus dapibus. Lorem
-                                ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        </div>
-                    </div>
-                    <div class="timeline__item">
-                        <div class="timeline__content img-bg-02">
-                            <h2>2007</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dignissim neque condimentum lacus dapibus. Lorem
-                                ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        </div>
-                    </div>
-                    <div class="timeline__item">
-                        <div class="timeline__content img-bg-03">
-                            <h2>2004</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dignissim neque condimentum lacus dapibus. Lorem
-                                ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        </div>
-                    </div>
-                    <div class="timeline__item">
-                        <div class="timeline__content img-bg-04">
-                            <h2>2002</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dignissim neque condimentum lacus dapibus. Lorem
-                                ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+{{--<section class="section lb page-section">--}}
+{{--    <div class="container">--}}
+{{--         <div class="section-title row text-center">--}}
+{{--            <div class="col-md-8 offset-md-2">--}}
+{{--                <h3>Our history</h3>--}}
+{{--                <p class="lead">Lorem Ipsum dolroin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem!</p>--}}
+{{--            </div>--}}
+{{--        </div><!-- end title -->--}}
+{{--        <div class="timeline">--}}
+{{--            <div class="timeline__wrap">--}}
+{{--                <div class="timeline__items">--}}
+{{--                    <div class="timeline__item">--}}
+{{--                        <div class="timeline__content img-bg-01">--}}
+{{--                            <h2>2018</h2>--}}
+{{--                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dignissim neque condimentum lacus dapibus. Lorem--}}
+{{--                                ipsum dolor sit amet, consectetur adipiscing elit.</p>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                    <div class="timeline__item">--}}
+{{--                        <div class="timeline__content img-bg-02">--}}
+{{--                            <h2>2015</h2>--}}
+{{--                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dignissim neque condimentum lacus dapibus. Lorem--}}
+{{--                                ipsum dolor sit amet, consectetur adipiscing elit.</p>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                    <div class="timeline__item">--}}
+{{--                        <div class="timeline__content img-bg-03">--}}
+{{--                            <h2>2014</h2>--}}
+{{--                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dignissim neque condimentum lacus dapibus. Lorem--}}
+{{--                                ipsum dolor sit amet, consectetur adipiscing elit.</p>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                    <div class="timeline__item">--}}
+{{--                        <div class="timeline__content img-bg-04">--}}
+{{--                            <h2>2012</h2>--}}
+{{--                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dignissim neque condimentum lacus dapibus. Lorem--}}
+{{--                                ipsum dolor sit amet, consectetur adipiscing elit.</p>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                    <div class="timeline__item">--}}
+{{--                        <div class="timeline__content img-bg-01">--}}
+{{--                            <h2>2010</h2>--}}
+{{--                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dignissim neque condimentum lacus dapibus. Lorem--}}
+{{--                                ipsum dolor sit amet, consectetur adipiscing elit.</p>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                    <div class="timeline__item">--}}
+{{--                        <div class="timeline__content img-bg-02">--}}
+{{--                            <h2>2007</h2>--}}
+{{--                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dignissim neque condimentum lacus dapibus. Lorem--}}
+{{--                                ipsum dolor sit amet, consectetur adipiscing elit.</p>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                    <div class="timeline__item">--}}
+{{--                        <div class="timeline__content img-bg-03">--}}
+{{--                            <h2>2004</h2>--}}
+{{--                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dignissim neque condimentum lacus dapibus. Lorem--}}
+{{--                                ipsum dolor sit amet, consectetur adipiscing elit.</p>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                    <div class="timeline__item">--}}
+{{--                        <div class="timeline__content img-bg-04">--}}
+{{--                            <h2>2002</h2>--}}
+{{--                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dignissim neque condimentum lacus dapibus. Lorem--}}
+{{--                                ipsum dolor sit amet, consectetur adipiscing elit.</p>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
+{{--</section>--}}
 
 <div class="section cl">
     <div class="container">
@@ -413,8 +414,9 @@
                         </div>
                         <div class="desc">
                             <h3><i class="fa fa-quote-left"></i> 기록을 남길 수 있어서 좋았어요</h3>
-                            <h4>장길준 (소마중 3학년)</h4>
                             <p class="lead">다른 수업과는 달리 내가 수업에서 한 활동들에 대한 기록들이 잘 정리되어 있어 결과를 한 눈에 보기 편했습니다.</p>
+                            <h4>장길준 (소마중 3학년)</h4>
+
                         </div>
                         <!-- end testi-meta -->
                     </div>

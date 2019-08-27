@@ -26,7 +26,7 @@
 
 body.host_version .icon_wrap i,
 body.host_version .customwidget li i{
-    color: #2d3032 !important;
+    color: #28b8ce !important;
 }
 
 body.host_version .lead strong {
@@ -44,7 +44,7 @@ body.host_version .stat-wrap h3 {
 
 
 /**************************************
-GRADIENTS 
+GRADIENTS
 **************************************/
 
 body.host_version .icon_wrap:hover,

@@ -738,7 +738,7 @@ a img.aligncenter {
 	position: relative;
 	display: inline-block;
 	font-size: 18px;
-	color: #333333;
+	color: #ffffff;
 	font-weight: 500;
 }
 
@@ -878,7 +878,7 @@ a img.aligncenter {
     background-color: #448AFF;
 }
 .section.cl {
-	background-color: #2d3032;
+	background-color: #28b8ce;
 }
 
 .hover-btn-new{
@@ -2663,7 +2663,7 @@ select.mobile-device {
 }
 
 .footer-distributed .footer-company-name a:hover{
-	color: #eea412;
+	color: #28b8ce;
 }
 .footer-links-soi{
 	margin: 0px;
