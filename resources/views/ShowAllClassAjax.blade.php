@@ -6,8 +6,8 @@
                     <?php
                     $course_info = $class->getCourseInfo()->first();
                     $student_info = $class->getStudentInfo()->count();
-                    $tot_invited_student = $class->getTotalInvitedStudent()->where('InviterId', $id)->count();
-                    $matched_student_info = $class->getMatchedStudent()->where('Accepted', 1)->where('InviterId', $id)->count();
+                    $tot_invited_student = $class->getTotalInvitedStudent()->where('InviterId', $id)->where('Active',1)->count();
+                    $matched_student_info = $class->getMatchedStudent()->where('Accepted', 1)->where('InviterId', $id)->where('Active',1)->count();
                     ?>
                     <div class="col-lg-4 col-md-6 col-12">
                         <div class="course-item">
