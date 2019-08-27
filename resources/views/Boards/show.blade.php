@@ -158,7 +158,7 @@ function SuccessDelete(_class){
             </div>
         </div>
         @else
-            @if($board_type == 'Class' && ($type=='Admin' || $type='Teacher'))
+            @if($board_type == 'Class' && ($type=='Admin' || $type=='Teacher'))
                 <div style="height:30px;"></div>
                 <div class="row">
                     <div class="col-md-6">
@@ -183,10 +183,14 @@ function SuccessDelete(_class){
                 </div>
             @else
                 <div style="height:30px;"></div>
+                @if($board_type == 'Class')
                 <?php
                     $url = 'Class/'.$class_id.'/board';
                 ?>
                 <a href="{{ asset($url) }}">
+                @elseif($board_type=='All')
+                <a href="{{ asset('/MainBoard') }}">
+                @endif
                     <button id="payment-button" class="btn btn-lg btn-secondary btn-block">
                         <i class="fa fa-arrow-left fa-lg"></i>&nbsp;
                         <span id="payment-button-amount">목록으로</span>

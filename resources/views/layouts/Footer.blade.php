@@ -123,7 +123,9 @@
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                                 tempor incididunt ut labore et dolore magna aliqua.</p>
                     </div>
-                    <button type="button" class="btn btn-light" style="padding:0.375rem 0.75rem;" data-dismiss="modal"> OK</button>
+                    <div id="alert-modal-button">
+                        <button type="button" class="btn btn-light" style="padding:0.375rem 0.75rem;" data-dismiss="modal"> OK</button>
+                    </div>
                 </div>
             </div>
         </div>

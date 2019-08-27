@@ -102,6 +102,7 @@ function LoadPage() {
                 <label style="color:black;font-size:1rem;">첨부 파일</label>
                 <input type="file" class="form-control" id="multiFiles" name="files[]" multiple="multiple" />            
             </div>
+            @if($type == "Teacher" || $type=="Admin")
             <div class="form-group">
                 <label style="color:black;font-size:1rem;">상단 고정 여부</label>
                 <select class="form-control" name="TopFix">
@@ -109,6 +110,7 @@ function LoadPage() {
                     <option value="Y">예</option>
                 </select>
             </div>
+            @endif
         </form>
         <div style="height:30px;"></div>
         <div class="row">
