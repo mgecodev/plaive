@@ -47,7 +47,7 @@
                 }],
                 language: lang_kor
             });
-            $('#second_table').DataTable({
+            var second_table = $('#second_table').DataTable({
                 columnDefs: [{
                     targets: "datatable-nosort",
                     orderable: false,
@@ -57,7 +57,9 @@
                 }],
                 language: lang_kor
             });
-
+            $('#second_table').on("click", "button", function(){
+                second_table.row($(this).parents('tr')).remove().draw(false);
+            });
             $('#third_table').DataTable({
                 columnDefs: [{
                     targets: "datatable-nosort",

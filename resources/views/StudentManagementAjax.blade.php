@@ -9,7 +9,7 @@
                             <a class="nav-link {{ $board_flag == null ? 'active show' : '' }}" data-toggle="tab"
                                href="#home4" role="tab" aria-selected="true">학생
                                 현황</a>
-                            <a class="nav-link" data-toggle="tab" href="#invite4" role="tab" aria-selected="false">학생
+                            <a class="nav-link {{ $board_flag == 'invite' ? 'active show' : '' }}" data-toggle="tab" href="#invite4" role="tab" aria-selected="false">학생
                                 초대하기</a>
                         </li>
 
@@ -92,8 +92,8 @@
                                         <tr>
                                             <th>이름</th>
                                             <th>메일</th>
-                                            <th>상태</th>
-                                            <th>Action</th>
+                                            <th class="datatable-nosort datatable-nosearch">상태</th>
+                                            <th class="datatable-nosort datatable-nosearch">Action</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -108,7 +108,14 @@
                                                         <span class="badge badge-primary">Pending</span>
                                                     @endif
                                                 </td>
-                                                <td scope="row"><input class="btn btn-info" type="reset" value="취소">
+                                                <td>
+                                                    @if ($tot_invited_student->Accepted == 0)
+                                                    <button class="btn btn-danger" onclick="CancelInvite({{ $tot_invited_student->InvitationId }},{{ $class_id }})">취소</button>
+                                                    @elseif ($tot_invited_student->Accepted == 1)
+                                                    <button class="btn btn-danger" onclick="CancelClass({{ $tot_invited_student->id}} , {{ $class_id }}, {{ $tot_invited_student->InvitationId }})">방출</button>
+                                                    @elseif ($tot_invited_student->Accepted == 2)
+                                                    <button class="btn btn-info" onclick="ReInvite({{ $tot_invited_student->InvitationId }}, {{ $class_id }})">재초대</button>
+                                                    @endif
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -161,7 +168,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="invite4" role="tabpanel">
+                    <div class="tab-pane fade {{ $board_flag == 'invite' ? 'active show' : '' }}" id="invite4" role="tabpanel">
                         <div class="pd-20">
                             <div class="table-responsive text-center">
                                 <table class="table table-bordered stripe hover nowrap" id="second_table"
@@ -179,11 +186,7 @@
                                             <td>{{ $tot_viable_student->name }}</td>
                                             <td>{{ $tot_viable_student->email }}</td>
                                             <td>
-                                                <input onclick="changeButton({{ $id }})" type="submit"
-                                                       val="{{ $tot_viable_student->id.','.$id.','.$class_id }}"
-                                                       name="{{ $id }}"
-                                                       class="btn btn-primary submit2" id="{{ "invite_".$id }}"
-                                                       value="초대"></button>
+                                                <button class="btn btn-primary" onclick="InviteAddition({{ $tot_viable_student->id }}, {{ $id }}, {{ $class_id }})">초대</button>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -238,50 +241,138 @@
 </div>
 
 <script>
-    function changeButton(_id) {
-
-        var id = "invite_" + _id;
-
-        if (document.getElementById(id).value == "초대") {
-            document.getElementById(id).value = "취소";
+    function InviteAddition(_inviteeid,_inviterid,_classid) {
+        var ids = _inviteeid+','+_inviterid+','+_classid;
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            type: 'POST',
+            url: '/Invite',
+            data: {
+                "ids": ids
+            },
+            success: function (data) {
+                $("#modal-success-title").empty();
+                $("#modal-success-title").append('초대 성공');
+                $("#modal-content6").empty();
+                $("#modal-content6").append('성공적으로 초대 되었습니다.');
+                $("#modal-success-button").empty();
+                $("#modal-success-button").append(' <button type="button" class="btn btn-primary" onclick="goPage('+_classid+',0)">확인</button>');
+                $("#success-modal").modal('show');
+            },
+            error: function (request, status, error) {
+                // 에러 출력을 활성화 하려면 아래 주석을 해제한다.
+                $("#modal-content4").empty();
+                $("#modal-content4").append('<p>초대 실패 하였습니다.</p>');
+                $("#alert-modal").modal('show');
+                //console.log(request + "/" + status + "/" + error);
+            }
+        }) 
+    }
+    function goPage(_classid,_type) {
+        if(_type == 0) {
+            location.href = "/Class/"+_classid+'/invite';
         } else {
-            document.getElementById(id).value = "초대";
+            location.href = "/Class/"+_classid;
         }
     }
-
-    $('.submit2').click(function (e) {
-
-        var ids = $(this).attr('val');
-        var id = $(this).attr('id');
-
-        // var teacher_id = $(this).attr('val2');
-
-        // alert(student_id);
-
-        if (document.getElementById(id).value == "취소") {    // save invitation
-            $.ajax({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                type: 'POST',
-                url: '/Invite',
-                data: {
-                    "ids": ids
-                },
-                success: function (data) {
-
-                    alert("Success");
-                },
-                error: function (request, status, error) {
-                    // 에러 출력을 활성화 하려면 아래 주석을 해제한다.
-                    alert("fail");
-                    //console.log(request + "/" + status + "/" + error);
+    function CancelInvite(_invitationid,_classid) {
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            type: 'POST',
+            url: '/ManageClass/DenyStudent/'+_invitationid,
+            data: {
+                "_method":'PATCH'
+            },
+            success: function (data) {
+                if(data.result == "Success") {
+                    $("#Large-modal").modal('hide');
+                    $("#modal-success-title").empty();
+                    $("#modal-success-title").append('취소 성공');
+                    $("#modal-content6").empty();
+                    $("#modal-content6").append('성공적으로 취소 되었습니다.');
+                    $("#modal-success-button").empty();
+                    $("#modal-success-button").append(' <button type="button" class="btn btn-primary" onclick="goPage('+_classid+',1)">확인</button>');
+                    $("#success-modal").modal('show');
+                } else {
+                    $("#modal-content4").empty();
+                    $("#modal-content4").append('<p>취소 실패 다시 시도해주세요</p>');
+                    $("#alert-modal").modal('show');
                 }
-            }) // End Ajax Request
-        } else {  // change
-
-        }
-
-
-    });
+            },
+            error: function (request, status, error) {
+                // 에러 출력을 활성화 하려면 아래 주석을 해제한다.
+                //console.log(request + "/" + status + "/" + error);
+            }
+        }) // End Ajax Request
+    }
+    function CancelClass(_userid,_classid,_invitationid) {
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            type: 'POST',
+            url: '/ManageClass/EmitStudent/'+_invitationid,
+            data: {
+                "_method":'PATCH',
+                "_userid":_userid,
+                "_classid":_classid
+            },
+            success: function (data) {
+                if(data.result == "Success") {
+                    $("#Large-modal").modal('hide');
+                    $("#modal-success-title").empty();
+                    $("#modal-success-title").append('방출 성공');
+                    $("#modal-content6").empty();
+                    $("#modal-content6").append('성공적으로 방출 되었습니다.');
+                    $("#modal-success-button").empty();
+                    $("#modal-success-button").append(' <button type="button" class="btn btn-primary" onclick="goPage('+_classid+',1)">확인</button>');
+                    $("#success-modal").modal('show');
+                } else {
+                    $("#modal-content4").empty();
+                    $("#modal-content4").append('<p>방출 실패 다시 시도해주세요</p>');
+                    $("#alert-modal").modal('show');
+                }
+            },
+            error: function (request, status, error) {
+                // 에러 출력을 활성화 하려면 아래 주석을 해제한다.
+                //console.log(request + "/" + status + "/" + error);
+            }
+        })
+    }
+    function ReInvite(_invitationid,_classid) {
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            type: 'POST',
+            url: '/ManageClass/ReInvite/'+_invitationid,
+            data: {
+                "_method":'PATCH'
+            },
+            success: function (data) {
+                if(data.result == "Success") {
+                    $("#Large-modal").modal('hide');
+                    $("#modal-success-title").empty();
+                    $("#modal-success-title").append('재초대 성공');
+                    $("#modal-content6").empty();
+                    $("#modal-content6").append('성공적으로 재초대 되었습니다.');
+                    $("#modal-success-button").empty();
+                    $("#modal-success-button").append(' <button type="button" class="btn btn-primary" onclick="goPage('+_classid+',1)">확인</button>');
+                    $("#success-modal").modal('show');
+                } else {
+                    $("#modal-content4").empty();
+                    $("#modal-content4").append('<p>재초대 실패 다시 시도해주세요</p>');
+                    $("#alert-modal").modal('show');
+                }
+            },
+            error: function (request, status, error) {
+                // 에러 출력을 활성화 하려면 아래 주석을 해제한다.
+                //console.log(request + "/" + status + "/" + error);
+            }
+        })
+    }
 </script>

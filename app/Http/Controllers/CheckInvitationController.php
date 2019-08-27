@@ -35,11 +35,18 @@ class CheckInvitationController extends Controller
 
         $name = $user->name;
         $id = $user->id;
-
+        
         $account_type_id = Account::where('id', $id)->first()->AccountTypeId;
         $type = AccountType::where('AccountTypeId', '=', $account_type_id)->first()->Type;
-        $invitations = Invitation::where('InviteeId', '=', $id)->where('Accepted', 0)->get();   // get the data which is not accepted and whose invitee is the user
-
+        $invitations = DB::table('Invitations')
+                            ->join('InfoClasses','Invitations.ClassId','=','InfoClasses.ClassId')
+                            ->where('Invitations.Accepted','=',0)
+                            ->where('InfoClasses.Active','=',1)
+                            ->where('Invitations.Active','=',1)
+                            ->where('Invitations.InviteeId','=',$id)
+                            ->select('InfoClasses.ClassName','Invitations.InvitationId')
+                            ->get();
+        //$invitations = Invitation::where('InviteeId', '=', $id)->where('Accepted', 0)->get();   // get the data which is not accepted and whose invitee is the user
         return view('CheckInvitation')->with('invitations', $invitations)->with('name', $name)->with('type', $type);
     }
 
@@ -64,7 +71,15 @@ class CheckInvitationController extends Controller
             'AccountId' => $id,
             'Active' => 1
         ]);
-        $invitations = Invitation::where('InviteeId', '=', $id)->where('Accepted', 0)->get();   // get the data which is not accepted and whose invitee is the user
+        $invitations = DB::table('Invitations')
+                            ->join('InfoClasses','Invitations.ClassId','=','InfoClasses.ClassId')
+                            ->where('Invitations.Accepted','=',0)
+                            ->where('InfoClasses.Active','=',1)
+                            ->where('Invitations.Active','=',1)
+                            ->where('Invitations.InviteeId','=',$id)
+                            ->select('InfoClasses.ClassName','Invitations.InvitationId')
+                            ->get();
+        //$invitations = Invitation::where('InviteeId', '=', $id)->where('Accepted', 0)->get();   // get the data which is not accepted and whose invitee is the user
 
         return view('CheckInvitationAjax')->with('invitations', $invitations)->with('name', $name);
 //        return redirect('/CheckInvitation');
@@ -85,18 +100,19 @@ class CheckInvitationController extends Controller
 
         $class_id = Invitation::where('InvitationId', $invitation_id)->first()->ClassId;   // get class id. This code should be better!
 
-        Invitation::where('InvitationId', $invitation_id)->delete();   // delete the accepted col
+        Invitation::where('InvitationId', $invitation_id)->update(['Accepted' => 2]);   // update the accepted col
 
-        // create member in ClassMember table
-        ClassMember::create([
-            'ClassId' => $class_id,
-            'AccountId' => $id,
-            'Active' => 1
-        ]);
+        $invitations = DB::table('Invitations')
+                            ->join('InfoClasses','Invitations.ClassId','=','InfoClasses.ClassId')
+                            ->where('Invitations.Accepted','=',0)
+                            ->where('InfoClasses.Active','=',1)
+                            ->where('Invitations.Active','=',1)
+                            ->where('Invitations.InviteeId','=',$id)
+                            ->select('InfoClasses.ClassName','Invitations.InvitationId')
+                            ->get();   // get the data which is not accepted and in which invitee is the user
 
-        $invitations = Invitation::where('InviteeId', '=', $id)->where('Accepted', 0)->get();   // get the data which is not accepted and in which invitee is the user
+        return view('CheckInvitationAjax')->with('invitations', $invitations)->with('name', $name)->with('type', $type);
 
-        return view('CheckInvitationAjax')->with('invitations', $invitations)->with('name', $name);
     }
 
     public function showMyClass(Request $request) {
@@ -114,5 +130,47 @@ class CheckInvitationController extends Controller
         $my_classes = ClassMember::where('AccountId', $id)->orderBy('ClassMemberId', 'desc')->get();  // get the class that user participate in
 
         return view('MyClass')->with('my_classes', $my_classes)->with('type', $type)->with('name', $name);
+    }
+    public function emitStudent($invitation,Request $request) {
+        $update = Invitation::where('InvitationId',$invitation)->update([
+            'Active' => 0
+        ]);
+        $update2 = ClassMember::where('ClassId',$request->_classid)->where('AccountId',$request->_userid)->update([
+            'Active' => 0
+        ]);
+        if ($update && $update2) {
+            return response()->json([
+                'result' => 'Success'            
+            ]);
+        } else {
+            return response()->json([
+                'result' => 'Fail'
+            ]);
+        }
+    }
+    public function RealTimeStudent(Request $request) {
+        $user = Auth::user();
+
+        $name = $user->name;
+        $id = $user->id;
+        
+        $account_type_id = Account::where('id', $id)->first()->AccountTypeId;
+        $type = AccountType::where('AccountTypeId', '=', $account_type_id)->first()->Type;
+        $invitations = DB::table('Invitations')
+                            ->join('InfoClasses','Invitations.ClassId','=','InfoClasses.ClassId')
+                            ->where('Invitations.Accepted','=',0)
+                            ->where('InfoClasses.Active','=',1)
+                            ->where('Invitations.Active','=',1)
+                            ->where('Invitations.InviteeId','=',$id)
+                            ->select('InfoClasses.ClassName','Invitations.InvitationId')
+                            ->get();
+        //$invitations = Invitation::where('InviteeId', '=', $id)->where('Accepted', 0)->get();   // get the data which is not accepted and whose invitee is the user
+        if($request->_count != count($invitations)) {
+            return view('CheckInvitationAjax')->with('invitations', $invitations)->with('name', $name)->with('message','Success');
+        } else {
+            return response()->json([
+                'result' => 'Fail'
+            ]);
+        }
     }
 }

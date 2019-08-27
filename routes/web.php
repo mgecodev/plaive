@@ -39,9 +39,10 @@ Route::get('/Class/{classid}/{board_flag?}', 'ManageClassController@enterClass')
 Route::post('/Invite', 'ManageClassController@inviteAdditionalMember');
 Route::post('/ManageClass/IncludeStudent', 'ManageClassController@includeStudent');
 Route::patch('/ManageClass/IncludeStudent/{class_id}', 'ManageClassController@updateStudent');
-
+Route::patch('/ManageClass/ReInvite/{invitation_id}','ManageClassController@ReInvite');
+Route::patch('/ManageClass/DenyStudent/{invitation_id}','ManageClassController@denyStudent');
+Route::patch('/ManageClass/EmitStudent/{invitation_id}','CheckInvitationController@emitStudent');
 Route::patch('/ManageClass/DeleteClass', 'ManageClassController@deleteClass');
-
 
 Route::get('/ManageCourse', 'ManageCourseController@index');
 Route::get('/ManageCourse/ShowAll', 'ManageCourseController@showAll');
@@ -51,11 +52,11 @@ Route::post('/ManageCourse/EnrollCourse', 'ManageCourseController@enrollCourse')
 Route::post('/ManageCourse/DeleteCourse', 'ManageCourseController@deleteCourse');
 Route::post('/ManageCourse/UpdateCourse', 'ManageCourseController@updateCourse');
 Route::post('/ManageCourse/SaveCurriculum', 'ManageCourseController@saveCurriculum');
-
 Route::get('/MyClass', 'CheckInvitationController@showMyClass');
 Route::get('/CheckInvitation', 'CheckInvitationController@index');
 Route::post('/AcceptInvitation', 'CheckInvitationController@acceptInvitation');
 Route::post('/DenyInvitation', 'CheckInvitationController@denyInvitation');
+Route::get('/CheckInvitation/student/realtime', 'CheckInvitationController@RealTimeStudent');
 
 Route::post('/SaveStudent', 'InviteMemberController@saveStudent');
 
