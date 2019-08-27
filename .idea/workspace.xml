@@ -3,12 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="35e28d35-536b-4eab-b88b-4029b9306f6f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/versions.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/versions.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/Copyrights.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/Copyrights.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/Header.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/Header.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/Master.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/Master.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2019_08_05_092709_create_invitations_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_08_05_092709_create_invitations_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/ShowAllClassAjax.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/ShowAllClassAjax.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/ShowMyCourseAjax.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/ShowMyCourseAjax.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -236,7 +233,7 @@
       <workItem from="1566522793006" duration="19291000" />
       <workItem from="1566708950828" duration="18329000" />
       <workItem from="1566736837810" duration="18855000" />
-      <workItem from="1566866018064" duration="20227000" />
+      <workItem from="1566866018064" duration="22188000" />
     </task>
     <task id="LOCAL-00001" summary="path manager">
       <created>1564317974013</created>

@@ -47,7 +47,7 @@
                             @endif
                         </div>
                         <div class="course-br"
-                             onclick="buildCourse({{ json_encode($courseworks) }}, '{{ $course->WeekCount }}', '{{ $course->CourseId }}', '{{ $course->CreatedBy }}')">
+                             onclick="buildCourse('{{ json_encode($courseworks) }}', '{{ $course->WeekCount }}', '{{ $course->CourseId }}', '{{ $course->CreatedBy }}')">
                             <div class="course-title">
                                 <h2><a href="#" title="">{{ str_limit($course->Title, 24) }}</a></h2>
                             </div>
@@ -120,11 +120,11 @@
 
     function buildCourse(_courseworks, _weekcount, _courseid, _createdby) {
 
-        // alert(_courseworks);
+        alert(_courseworks);
         var len = _courseworks.length;
 
         for (var i = 0; i < _courseworks.length; i++) {
-            // console.log(_courseworks[i]['Content']);
+            console.log(_courseworks[i]['Content']);
             // alert(_courseworks[i]);
         }
 
