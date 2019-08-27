@@ -158,7 +158,7 @@ function SuccessDelete(_class){
             </div>
         </div>
         @else
-            @if($board_type == 'Class' && ($type=='Admin' || $type='Teacher'))
+            @if($board_type == 'Class' && ($type=='Admin' || $type=='Teacher'))
                 <div style="height:30px;"></div>
                 <div class="row">
                     <div class="col-md-6">

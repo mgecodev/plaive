@@ -7,6 +7,7 @@ use App\InfoClass;
 use App\Account;
 use App\Course;
 use App\Coursework;
+use App\ClassMember;
 use App\AccountType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -141,27 +142,55 @@ class ManageClassController extends Controller
 
         $account_type_id = Account::where('id', $id)->first()->AccountTypeId;
         $type = AccountType::where('AccountTypeId', '=', $account_type_id)->first()->Type;
+        if($type == "Student") {
+            $valid = ClassMember::where('AccountId','=',$id)->where('ClassId','=',$class_id)->where('Active',1)->get();
+            if(count($valid) < 1) {
+                $not_valid = 1;
+            } else {
+                $not_valid = 0;
+            }
+        } else if($type == "Teacher") {
+            $valid = InfoClass::where('AccountId','=',$id)->where('ClassId','=',$class_id)->where('Active',1)->get();
+            if(count($valid) < 1) {
+                $not_valid = 1;
+            } else {
+                $not_valid = 0;
+            }
+        } else {
+            $not_valid = 0;
+        }
+        if($not_valid == 0) {
+            $class = InfoClass::where('ClassId', $class_id)->where('Active', 1)->first();// get one class out of specific teacher's
+            if(!$class) {
+                return redirect('/MyClass/Delete');
+            } else {
+                $tot_accepted_students = $class->getMatchedStudent()->where("ClassId", $class_id)->where('Accepted', 1)->where('Active',1)->get();
+                $tot_denied_students = $class->getMatchedStudent()->where("ClassId", $class_id)->where('Accepted', 2)->where('Active',1)->get();
+                $tot_invited_students = DB::table('Accounts')
+                                            ->join('Invitations','Invitations.InviteeId','=','Accounts.id')
+                                            ->where('Invitations.ClassId','=',$class_id)
+                                            ->where('Accounts.Active','=',1)
+                                            ->where('Invitations.Active','=',1)
+                                            ->select('Accounts.name','Accounts.id','Accounts.email','Invitations.Accepted','Invitations.InvitationId')
+                                            ->get();
+                    
+                $temp_viable_students = Invitation::where('ClassId',$class_id)->where('Active',1)->pluck('inviteeId')->all();
+                $tot_viable_students = Account::whereNotIn('id',$temp_viable_students)->where('AccountTypeId',1)->where('Active',1)->get();
+                
+                $boards = DB::table('Boards')->where('BoardType','Class')->where('Active',1)->where('TopFix','Y')->where('ClassId',$class_id)->orderBy('created_at','desc')->get();
+                $down_boards = DB::table('Boards')->where('BoardType','Class')->where('Active',1)->where('TopFix','N')->where('ClassId',$class_id)->orderBy('created_at','desc')->get();
+                $boards = $boards->merge($down_boards);
+                $courseworks = Coursework::where('CourseId', $class->CourseId)->get();  // get the courseworks related to specific class
 
-        $class = InfoClass::where('ClassId', $class_id)->where('Active', 1)->first(); // get one class out of specific teacher's
-        $tot_accepted_students = $class->getMatchedStudent()->where("ClassId", $class_id)->where('Accepted', 1)->where('Active',1)->get();
-
-        $tot_invited_students = DB::table('Accounts')
-                                    ->join('Invitations','Invitations.InviteeId','=','Accounts.id')
-                                    ->where('Invitations.ClassId','=',$class_id)
-                                    ->where('Accounts.Active','=',1)
-                                    ->where('Invitations.Active','=',1)
-                                    ->select('Accounts.name','Accounts.id','Accounts.email','Invitations.Accepted','Invitations.InvitationId')
-                                    ->get();
-        
-        $temp_viable_students = Invitation::where('ClassId',$class_id)->where('Active',1)->pluck('inviteeId')->all();
-        $tot_viable_students = Account::whereNotIn('id',$temp_viable_students)->where('AccountTypeId',1)->where('Active',1)->get();
-        
-        $boards = DB::table('Boards')->where('BoardType','Class')->where('Active',1)->where('TopFix','Y')->where('ClassId',$class_id)->orderBy('created_at','desc')->get();
-        $down_boards = DB::table('Boards')->where('BoardType','Class')->where('Active',1)->where('TopFix','N')->where('ClassId',$class_id)->orderBy('created_at','desc')->get();
-        $boards = $boards->merge($down_boards);
-        $courseworks = Coursework::where('CourseId', $class->CourseId)->get();  // get the courseworks related to specific class
-
-        return view('EnterClass')->with('class', $class)->with('name', $name)->with('type', $type)->with('id', $id)->with('tot_viable_students', $tot_viable_students)->with('class_id', $class_id)->with('tot_invited_students', $tot_invited_students)->with('tot_accepted_students', $tot_accepted_students)->with('boards',$boards)->with('board_flag',$board_flag)->with('courseworks', $courseworks);
+                return view('EnterClass')->with('class', $class)->with('name', $name)->with('type', $type)->with('id', $id)->with('tot_viable_students', $tot_viable_students)->with('class_id', $class_id)->with('tot_invited_students', $tot_invited_students)->with('tot_accepted_students', $tot_accepted_students)->with('tot_denied_students', $tot_denied_students)->with('boards',$boards)->with('board_flag',$board_flag)->with('courseworks', $courseworks);
+            }
+        } else {
+            if($type == "Teacher") {
+                return redirect('/ManageClass');
+            } else {
+                return redirect('/MyClass/Fail');
+            }
+        }
     }
 
     public function inviteAdditionalMember($board_flag=null, Request $request) {

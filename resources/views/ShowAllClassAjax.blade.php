@@ -20,7 +20,7 @@
                             </div>
                             <div class="course-br">
                                 <div class="course-title" style="text-align:center;">
-                                    <h2><a href="/Class/{{ $class->ClassId }}" target="_blank">{{ str_limit($class->ClassName,24) }}</a></h2>
+                                    <h2><a href="/Class/{{ $class->ClassId }}">{{ str_limit($class->ClassName,24) }}</a></h2>
                                 </div>
                             </div>
                             <div class="course-meta-bot">

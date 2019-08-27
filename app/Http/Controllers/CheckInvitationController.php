@@ -8,6 +8,7 @@ use App\AccountType;
 use App\Account;
 use App\Invitation;
 use App\ClassMember;
+use App\InfoClass;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -115,11 +116,10 @@ class CheckInvitationController extends Controller
 
     }
 
-    public function showMyClass(Request $request) {
+    public function showMyClass($state = 'Init', Request $request) {
         // Input :
         // Output :
         // Description : show my class that I have dived into
-
         $user = Auth::user();   // get user
 
         $name = $user->name;
@@ -127,9 +127,17 @@ class CheckInvitationController extends Controller
 
         $account_type_id = Account::where('id', $id)->first()->AccountTypeId;
         $type = AccountType::where('AccountTypeId', '=', $account_type_id)->first()->Type;
-        $my_classes = ClassMember::where('AccountId', $id)->orderBy('ClassMemberId', 'desc')->get();  // get the class that user participate in
+        $my_classes = DB::table('InfoClasses')
+                        ->join('ClassMembers','InfoClasses.ClassId','=','ClassMembers.ClassId')
+                        ->where('ClassMembers.AccountId','=',$id)
+                        ->where('InfoClasses.Active','=',1)
+                        ->where('ClassMembers.Active','=',1)
+                        ->select('InfoClasses.ClassName','InfoClasses.ClassImage','ClassMembers.ClassId','ClassMembers.ClassMemberId')
+                        ->orderBy('ClassMembers.ClassMemberId','desc')
+                        ->get();
+        //$my_classes = ClassMember::where('AccountId', $id)->where('Active',1)->orderBy('ClassMemberId', 'desc')->get();  // get the class that user participate in
 
-        return view('MyClass')->with('my_classes', $my_classes)->with('type', $type)->with('name', $name);
+        return view('MyClass')->with('my_classes', $my_classes)->with('type', $type)->with('name', $name)->with('message',$state);
     }
     public function emitStudent($invitation,Request $request) {
         $update = Invitation::where('InvitationId',$invitation)->update([
@@ -167,6 +175,34 @@ class CheckInvitationController extends Controller
         //$invitations = Invitation::where('InviteeId', '=', $id)->where('Accepted', 0)->get();   // get the data which is not accepted and whose invitee is the user
         if($request->_count != count($invitations)) {
             return view('CheckInvitationAjax')->with('invitations', $invitations)->with('name', $name)->with('message','Success');
+        } else {
+            return response()->json([
+                'result' => 'Fail'
+            ]);
+        }
+    }
+    public function RealTimeTeacher(Request $request) {
+        $user = Auth::user();
+
+        $name = $user->name;
+        $id = $user->id;
+        
+        $class_id = $request->class_id;
+        $account_type_id = Account::where('id', $id)->first()->AccountTypeId;
+        $type = AccountType::where('AccountTypeId', '=', $account_type_id)->first()->Type;
+        $class = InfoClass::where('ClassId', $class_id)->where('Active', 1)->first(); // get one class out of specific teacher's
+        $tot_accepted_students = $class->getMatchedStudent()->where("ClassId", $class_id)->where('Accepted', 1)->where('Active',1)->get();
+        $tot_denied_students = $class->getMatchedStudent()->where("ClassId", $class_id)->where('Accepted', 2)->where('Active',1)->get();
+        if($request->accept_count != count($tot_accepted_students) || $request->deny_count != count($tot_denied_students)) {
+            $tot_invited_students = DB::table('Accounts')
+                                        ->join('Invitations','Invitations.InviteeId','=','Accounts.id')
+                                        ->where('Invitations.ClassId','=',$class_id)
+                                        ->where('Accounts.Active','=',1)
+                                        ->where('Invitations.Active','=',1)
+                                        ->select('Accounts.name','Accounts.id','Accounts.email','Invitations.Accepted','Invitations.InvitationId')
+                                        ->get();
+            return view('TeacherRealTime')->with('tot_invited_students', $tot_invited_students)->with('tot_accepted_students', $tot_accepted_students)->with('tot_denied_students', $tot_denied_students)->with('class_id', $class_id)->with('type',$type);
+
         } else {
             return response()->json([
                 'result' => 'Fail'

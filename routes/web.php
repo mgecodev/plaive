@@ -52,11 +52,12 @@ Route::post('/ManageCourse/EnrollCourse', 'ManageCourseController@enrollCourse')
 Route::post('/ManageCourse/DeleteCourse', 'ManageCourseController@deleteCourse');
 Route::post('/ManageCourse/UpdateCourse', 'ManageCourseController@updateCourse');
 Route::post('/ManageCourse/SaveCurriculum', 'ManageCourseController@saveCurriculum');
-Route::get('/MyClass', 'CheckInvitationController@showMyClass');
+Route::get('/MyClass/{state?}', 'CheckInvitationController@showMyClass');
 Route::get('/CheckInvitation', 'CheckInvitationController@index');
 Route::post('/AcceptInvitation', 'CheckInvitationController@acceptInvitation');
 Route::post('/DenyInvitation', 'CheckInvitationController@denyInvitation');
 Route::get('/CheckInvitation/student/realtime', 'CheckInvitationController@RealTimeStudent');
+Route::get('/CheckInvitation/teacher/realtime', 'CheckInvitationController@RealTimeTeacher');
 
 Route::post('/SaveStudent', 'InviteMemberController@saveStudent');
 
