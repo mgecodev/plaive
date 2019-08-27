@@ -23,6 +23,7 @@
             padding:1rem;
             margin:0rem 0rem 0rem auto !important;
         }
+
     </style>
     <!-- Basic -->
     <meta charset="utf-8">
@@ -38,6 +39,9 @@
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
+
+    <!-- Site CSS -->
+    <link rel="stylesheet" href="/css/style.css">
 
     <!-- Site Icons -->
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
@@ -72,8 +76,7 @@
 	<link rel="stylesheet" type="text/css" href="https://s3.ap-northeast-2.amazonaws.com/s3.finedust.10make.com/plaive/src/styles/style.css">
 	<link rel="stylesheet" type="text/css" href="https://s3.ap-northeast-2.amazonaws.com/s3.finedust.10make.com/plaive/src/styles/media.css">
     <link rel="stylesheet" type="text/css" href="https://s3.ap-northeast-2.amazonaws.com/s3.finedust.10make.com/plaive/src/plugins/jvectormap/jquery-jvectormap-2.0.3.css">
-    <!-- Site CSS -->
-    <link rel="stylesheet" href="/css/style.css">
+
     <!-- ALL VERSION CSS -->
     <link rel="stylesheet" href="/css/versions.css">
     <!-- Responsive CSS -->

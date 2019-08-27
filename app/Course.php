@@ -26,4 +26,9 @@ class Course extends Model
 
         return $this->hasOne('App\Account', 'id', 'CreatedBy');
     }
+
+    public function getCoursework() {
+
+        return $this->hasMany('App\Coursework', 'CourseId', 'CourseId');
+    }
 }

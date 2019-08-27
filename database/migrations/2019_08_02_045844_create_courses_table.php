@@ -47,9 +47,9 @@ class CreateCoursesTable extends Migration
 //            });
 
             // 3. Add column
-            /*Schema::table($this->tableName, function (Blueprint $table) {
-                $table->string('CourseImage',256)->nullable();
-            });*/
+//            Schema::table($this->tableName, function (Blueprint $table) {
+//                $table->string('CourseImage',256)->nullable();
+//            });
 
             // 4. Rename table
 //            Schema::rename($this->tableName, 'Accounts');

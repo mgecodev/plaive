@@ -41,8 +41,8 @@
 }
 
 .timeline__item:after {
-	background-color: #e7544a;
-	border: 2px solid #eea412;
+	background-color: #2865CC;
+	border: 2px solid #28B8CE;
 	border-radius: 6px;
 	content: '';
 	height: 20px;
@@ -100,7 +100,7 @@
 
 .timeline__content {
 	background-color: #fff;
-	border: 2px solid #eea412;
+	border: 2px solid #28b8ce;
 	border-radius: 30px;
 	color: #333;
 	display: block;
@@ -158,7 +158,7 @@
 }
 
 .timeline--horizontal .timeline-divider {
-	background-color: #eea412;
+	background-color: #28B8CE;
 	display: block;
 	height: 4px;
 	left: 40px;
@@ -214,7 +214,7 @@
 .timeline--horizontal .timeline__item .timeline__content:before {
 	border-left: 12px solid transparent;
 	border-right: 12px solid transparent;
-	border-top: 12px solid #eea412;
+	border-top: 12px solid #28b8ce;
 	left: 50%;
 	right: auto;
 	-webkit-transform: translateX(-50%);
@@ -224,6 +224,7 @@
 }
 
 .timeline--horizontal .timeline__item .timeline__content:after {
+    /*border-bottom: 10px solid #28b8ce;*/
 	border-left: 10px solid transparent;
 	border-right: 10px solid transparent;
 	border-top: 10px solid #fff;
@@ -248,7 +249,7 @@
 }
 
 .timeline--horizontal .timeline__item--bottom .timeline__content:before {
-	border-bottom: 12px solid #eea412;
+	border-bottom: 12px solid #28B8CE;
 	border-left: 12px solid transparent;
 	border-right: 12px solid transparent;
 	border-top: none;
@@ -266,8 +267,8 @@
 }
 
 .timeline-nav-button {
-	background: #333333;
-	border: 2px solid #eea412;
+	background: #28b8ce;
+	border: 2px solid #2865CC;
 	border-radius: 6px;
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
@@ -347,7 +348,7 @@
 .timeline--mobile .timeline__item .timeline__content:before {
 	left: -12px;
 	border-bottom: 12px solid transparent;
-	border-right: 12px solid #ccc;
+	border-right: 12px solid #28B8CE;
 	border-left: none;
 	border-top: 12px solid transparent
 }

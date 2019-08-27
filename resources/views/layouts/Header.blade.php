@@ -21,8 +21,18 @@ if ($route_name == '/' || $route_name == '/home') {
     }
 }
 ?>
+
+<style>
+    .top-navbar, .navbar-light {
+        background-color: #3c3c3b !important;
+    }
+    .top-navbar .navbar-light .navbar-nav .nav-item.active .nav-link {
+        color: #28b8ce !important;
+    }
+</style>
+
 <header class="top-navbar">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container-fluid">
             <a class="navbar-brand" href="{{ asset('/home') }}">
                 <img src="{{ asset('images/logo.png') }}" alt=""/>

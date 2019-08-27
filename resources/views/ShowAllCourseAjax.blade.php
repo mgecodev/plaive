@@ -8,18 +8,18 @@
                     <div class="col-lg-4 col-md-6 col-12">
                         <div class="course-item">
                             <div class="image-blog">
-                            @if($course->CourseImage == null) 
+                            @if($course->CourseImage == null)
                                 <img src="/images/blog_1.jpg" alt="" class="img-fluid" style="max-height:200px;min-height:200px;">
-                            @else 
+                            @else
                                 <img src="{{ $course->CourseImage }}" alt="" class="img-fluid" style="max-height:200px;min-height:200px;">
                             @endif
                             </div>
                             <div class="course-br">
                                 <div class="course-title">
-                                    <h2><a href="#" title="">{{ str_limit($course->Title,24) }}</a></h2>
+                                    <h2><a href="#" title="">{{ str_limit($course->Title, 20) }}</a></h2>
                                 </div>
                                 <div class="course-desc">
-                                    <p>{{ str_limit($course->Comment,30) }}</p>
+                                    <p>{{ str_limit($course->Comment, 20) }}</p>
                                 </div>
                             </div>
                             <div class="course-meta-bot">
