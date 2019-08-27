@@ -162,6 +162,7 @@ function LoadPage() {
                 <label style="color:black;font-size:1rem;">파일 추가</label>
                 <input type="file" class="form-control" id="multiFiles" name="files[]" multiple="multiple" />            
             </div>
+            @if($type == "Teacher" || $type=="Admin")
             <div class="form-group">
                 <label style="color:black;font-size:1rem;">상단 고정 여부</label>
                 <select class="form-control" name="TopFix">
@@ -169,6 +170,7 @@ function LoadPage() {
                     <option value="Y" {{ $board->TopFix == 'Y' ? 'selected' : '' }}>예</option>
                 </select>
             </div>
+            @endif
         </form>
         <div style="height:30px;"></div>
         <div class="row">
@@ -179,7 +181,11 @@ function LoadPage() {
                 </button>
             </div>
             <?php
-                $url="ShowBoard/All/".$board->BoardId;
+                if($board_type == "Class") {
+                    $url="ShowBoard/".$board_type."/".$board->BoardId."/".$class;
+                } else if($board_type == "All") {
+                    $url="ShowBoard/".$board_type."/".$board->BoardId;
+                }
             ?>
             <div class="col-md-6">
                 <a href="{{ asset($url) }}">
