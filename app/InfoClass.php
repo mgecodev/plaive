@@ -53,6 +53,6 @@ class InfoClass extends Model
         // Output :
         // Description :
 
-        return $this->hasManyThrough('App\Account', 'App\Invitation', 'ClassId', 'id', 'ClassId', 'InviteeId');
+        return $this->hasManyThrough('App\Account', 'App\Invitation', 'ClassId', 'id', 'ClassId', 'InviteeId','Active','1');
     }
 }

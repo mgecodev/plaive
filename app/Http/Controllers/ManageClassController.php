@@ -143,14 +143,22 @@ class ManageClassController extends Controller
         $type = AccountType::where('AccountTypeId', '=', $account_type_id)->first()->Type;
 
         $class = InfoClass::where('ClassId', $class_id)->where('Active', 1)->first(); // get one class out of specific teacher's
-        $tot_invited_students = $class->getUserInfo()->where("ClassId", $class_id)->get();
-        $tot_accepted_students = $class->getMatchedStudent()->where("ClassId", $class_id)->where('Accepted', 1)->get();
+        $tot_accepted_students = $class->getMatchedStudent()->where("ClassId", $class_id)->where('Accepted', 1)->where('Active',1)->get();
 
-        $tot_viable_students = Account::where("Active", 1)->where("AccountTypeId", 1)->get();   // get students
+        $tot_invited_students = DB::table('Accounts')
+                                    ->join('Invitations','Invitations.InviteeId','=','Accounts.id')
+                                    ->where('Invitations.ClassId','=',$class_id)
+                                    ->where('Accounts.Active','=',1)
+                                    ->where('Invitations.Active','=',1)
+                                    ->select('Accounts.name','Accounts.id','Accounts.email','Invitations.Accepted','Invitations.InvitationId')
+                                    ->get();
+        
+        $temp_viable_students = Invitation::where('ClassId',$class_id)->where('Active',1)->pluck('inviteeId')->all();
+        $tot_viable_students = Account::whereNotIn('id',$temp_viable_students)->where('AccountTypeId',1)->where('Active',1)->get();
+        
         $boards = DB::table('Boards')->where('BoardType','Class')->where('Active',1)->where('TopFix','Y')->where('ClassId',$class_id)->orderBy('created_at','desc')->get();
         $down_boards = DB::table('Boards')->where('BoardType','Class')->where('Active',1)->where('TopFix','N')->where('ClassId',$class_id)->orderBy('created_at','desc')->get();
         $boards = $boards->merge($down_boards);
-
         $courseworks = Coursework::where('CourseId', $class->CourseId)->get();  // get the courseworks related to specific class
 
         return view('EnterClass')->with('class', $class)->with('name', $name)->with('type', $type)->with('id', $id)->with('tot_viable_students', $tot_viable_students)->with('class_id', $class_id)->with('tot_invited_students', $tot_invited_students)->with('tot_accepted_students', $tot_accepted_students)->with('boards',$boards)->with('board_flag',$board_flag)->with('courseworks', $courseworks);
@@ -246,20 +254,18 @@ class ManageClassController extends Controller
             "ClassImage" => $s3_url,
             "Active" => 1
         ]);
-        $class_id = InfoClass::where("AccountId", $user_id)->where("CourseId", $course_id)->first()->ClassId;   // get new class id
+        if($insert1) {
+            $class_id = $insert1->ClassId;   // get new class id
+            // invite all the students that teacher selected
+            foreach($student_ids as $student_id) {
+                $insert2 = Invitation::create([
+                    "InviterId" => $user_id,
+                    "InviteeId" => $student_id,
+                    "ClassId" => $class_id,
+                    "Accepted" => 0
+                ]);
 
-        // invite all the students that teacher selected
-        foreach($student_ids as $student_id) {
-
-//            var_dump("here");
-
-            $insert2 = Invitation::create([
-                "InviterId" => $user_id,
-                "InviteeId" => $student_id,
-                "ClassId" => $class_id,
-                "Accepted" => 0
-            ]);
-
+            }
         }
         if ($insert1 && $insert2) {
             return response()->json([
@@ -294,6 +300,34 @@ class ManageClassController extends Controller
             "ClassImage" => $s3_url,
             "updated_at" => $nowdate,
             "Active" => 1
+        ]);
+        if ($update) {
+            return response()->json([
+                'result' => 'Success'            
+            ]);
+        } else {
+            return response()->json([
+                'result' => 'Fail'
+            ]);
+        }
+    }
+    public function denyStudent($invitation) {
+        $update = Invitation::where('InvitationId',$invitation)->update([
+            'Active' => 0
+        ]);
+        if ($update) {
+            return response()->json([
+                'result' => 'Success'            
+            ]);
+        } else {
+            return response()->json([
+                'result' => 'Fail'
+            ]);
+        }
+    }
+    public function ReInvite($invitation) {
+        $update = Invitation::where('InvitationId',$invitation)->update([
+            'Accepted' => 0
         ]);
         if ($update) {
             return response()->json([
