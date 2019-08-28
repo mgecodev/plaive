@@ -112,6 +112,7 @@
             <span class="fa fa-angle-right" aria-hidden="true"></span>
             <span class="sr-only">Next</span>
         </a>
+        @endif
     </div>
 </div>
 
