@@ -51,7 +51,9 @@
 <script>
 
     var arr = new Array();
-
+    function TestButton() {
+        console.log("test444");
+    }
     function inviteStudent(_courseid, _id) {
 
         $("#myLargeModalLabel").empty();
@@ -59,7 +61,7 @@
         $("#modal-content1").empty();
         var content = '<div class="table-responsive text-center" style="color:black;">';
         content += '<table class="table table-bordered stripe hover nowrap" id="second_table" style="width:100%;"><thead><tr><th>학생 이름</th><th>이메일</th><th class="datatable-nosort datatable-nosearch"></th></tr></thead>';
-        content += '<tbody>@foreach($students as $student)<tr><td>{{ $student->name }}</td><td>{{ $student->email }}</td><td><button type="button" class="btn btn-primary choose" id="choose_{{ $student->id }}" val="{{ $student->id }}">선택</button></td>';
+        content += '<tbody>@foreach($students as $student)<tr><td>{{ $student->name }}</td><td>{{ $student->email }}</td><td><button type="button" class="btn btn-primary choose" id="choose_{{ $student->id }}" onclick="TestButton()" val="{{ $student->id }}">선택</button></td>';
         content += '@endforeach</tbody></table>';
         content += '</div>';
 
