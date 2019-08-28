@@ -33,7 +33,6 @@
             @foreach($courses as $course)
                 <?php
                 $courseworks = $course->getCoursework()->get()->toarray();
-
                 ?>
                 <div class="col-lg-4 col-md-6 col-12">
                     <div class="course-item">
@@ -118,14 +117,14 @@
 
     var arr = new Array();
 
-    function buildCourse(_courseworks, _weekcount, _courseid, _createdby) {
+    function buildCourse(_jsoncourseworks, _weekcount, _courseid, _createdby) {
 
-        alert(_courseworks);
+        _courseworks = JSON.parse(_jsoncourseworks);
+        console.log(_courseworks);
         var len = _courseworks.length;
-
+        console.log(len);
         for (var i = 0; i < _courseworks.length; i++) {
             console.log(_courseworks[i]['Content']);
-            // alert(_courseworks[i]);
         }
 
         $("#myLargeModalLabel").empty();
@@ -139,14 +138,14 @@
         var content = '<form>';
 
         if (len == 0) {
-            for (var i = 0; i < _weekcount; i++) {
+            for (var i = 1; i <= _weekcount; i++) {
                 content += '<div class="form-group row"><label class="col-sm-12 col-md-2 col-form-label">' + i + ' 주차' + '</label><div class="col-sm-12 col-md-8" id="week_' + i + '">';
                 content += '<input class="form-control" value="" type="search" id="week' + i + '"></div><a href="javascript:void(0);" onclick="appendRow(' + i + ');">';
                 content += '<i class="icon-copy ion-plus-circled"></i></a><div></div></div>';
             }
         } else {
             var value = null, week, day;
-            var res = new Array(_weekcount);
+            var res = new Array();
 
             // change array into new array which is called as res
             for (var i = 0; i < len; i++) {
@@ -154,23 +153,29 @@
                 value = _courseworks[i]['Content'];
                 week = _courseworks[i]['WeekNumber'];
                 day = _courseworks[i]['ContentNumber'];
-                res[week] = [];
-                res[week][day] = value;
-                console.log(value);
+                try {
+                    res[week][day] = value;
+                } catch(e) {
+                    res[week] = new Array();
+                    res[week][day] = value;
+                }
             }
             console.log(res);
             for (var i = 1; i <= _weekcount; i++) {
-
-
                 // console.log(res[i][0]);
                 content += '<div class="form-group row"><label class="col-sm-12 col-md-2 col-form-label">' + i + ' 주차' + '</label><div class="col-sm-12 col-md-8" id="week_' + i + '">';
-                content += '<input class="form-control" value="' + res[i][0] + '" type="search" id="week' + i + '"></div><a href="javascript:void(0);" onclick="appendRow(' + i + ');">';
-                // for (var j = 1; j < res[i].length; j++) {
-                //
-                // }
-
-
-                content += '<i class="icon-copy ion-plus-circled"></i></a><div></div></div>';
+                try {
+                    content += '<input class="form-control" value="' + res[i][0] + '" type="search" id="week' + i + '">';
+                    for(var j=1;j<res[i].length;j++) {
+                        content += '<br><input class="form-control" placeholder="소주제" type="search" value="'+res[i][j]+'">';
+                        content += '<a href="javascript:void(0);" onclick="appendRow(' + i + ');">';
+                        content += '<i class="icon-copy ion-plus-circled"></i></a>';
+                    }
+                    content += '</div><a href="javascript:void(0);" onclick="appendRow(' + i + ');">';
+                } catch(e){
+                    content += '<input class="form-control" value="" type="search" id="week' + i + '"></div><a href="javascript:void(0);" onclick="appendRow(' + i + ');">';
+                }
+                content += '<i class="icon-copy ion-plus-circled"></i></a></div>';
             }
 
         }

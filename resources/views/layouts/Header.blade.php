@@ -9,7 +9,7 @@ $detail_host = explode('/', $host_explode[1]);
 
 if ($route_name == '/' || $route_name == '/home') {
     $home_active = 'active';
-} else if ($route_name == '/ManageClass' || $route_name == '/OpenClass' || $route_name == '/ClassBoard') {
+} else if ($route_name == '/ManageClass' || $route_name == '/OpenClass' || $route_name == '/ClassBoard' ||$route_name =='/ManageCourse') {
     $class_active = 'active';
 } else if ($route_name == '/ManageDevice' || $route_name == '/CreateDevice') {
     $my_active = 'active';
@@ -18,6 +18,8 @@ if ($route_name == '/' || $route_name == '/home') {
 } else if (count($detail_host) > 1) {
     if ($detail_host[1] == 'EditDevice' || $detail_host[1] == 'ShowData') {
         $my_active = 'active';
+    } else if($detail_host[1] == 'ShowBoard') {
+        $board_active = 'active';
     }
 }
 ?>
@@ -104,7 +106,6 @@ if ($route_name == '/' || $route_name == '/home') {
                                             <ul>
                                                 <li>
                                                     <a href="#">
-                                                        <img src="vendors/images/img.jpg" alt="">
                                                         <h3 class="clearfix">John Doe <span>3 mins ago</span></h3>
                                                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed...</p>
                                                     </a>
