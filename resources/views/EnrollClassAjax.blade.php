@@ -112,7 +112,7 @@
         $('.choose').click(function(e) {
             console.log('button click');
             var id = $(this).attr('id');
-            e.preventDefault();
+            //e.preventDefault();
             if($(this).html() == "선택") {
                 $(this).html('취소');
                 $(this).removeClass("btn-primary");
@@ -127,6 +127,7 @@
                 arr = arr.filter(e => e !== _accountid);
             }
         });
+
         $('#save').click(function(e) {
             e.preventDefault();
             if(arr != "") {
