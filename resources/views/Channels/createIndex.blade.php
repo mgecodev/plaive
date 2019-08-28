@@ -336,6 +336,13 @@ function ChannelSubmit() {
                 </div>
             </div><!-- end col -->
             <div class="col-lg-3 col-12 right-single">
+                <h1>도움말</h1><br>
+                <li style="font-size:20px;">
+                    Field는 1번 부터 순서대로 사용할 갯수만큼 옆에 체크 박스를 선택하여 사용하시면 됩니다.
+                </li><br>
+                <li style="font-size:20px;">
+                    사용하지 않는 Field를 지울때 역시 순서대로 윗번호부터 체크박스를 해제해서 사용하시면 됩니다.
+                </li>
             </div>
         </div><!-- end row -->
     </div>
