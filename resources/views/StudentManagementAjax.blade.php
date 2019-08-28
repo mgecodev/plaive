@@ -44,11 +44,16 @@
                                            style="width:100%;">
                                         <thead>
                                         <tr>
+                                            @if((new \Jenssegers\Agent\Agent())->isPhone())
+                                            <th class="text-center">작성자</th>
+                                            <th class="text-center">제목</th>
+                                            @else
                                             <th class="text-center datatable-nosearch">#</th>
                                             <th class="text-center">작성자</th>
                                             <th class="text-center">제목</th>
                                             <th class="text-center datatable-nosearch" style="white-space:nowrap;">생성일
                                             </th>
+                                            @endif
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -58,10 +63,15 @@
                                             ?>
                                             <tr class="item{{$board->BoardId}}"
                                                 onclick="location.href='{{ asset($url) }}'">
+                                                @if((new \Jenssegers\Agent\Agent())->isPhone())
+                                                <td style="vertical-align: middle;">{{ $board->WriterName }}</td>
+                                                <td style="vertical-align: middle;">{{ str_limit($board->BoardTitle,24) }}</td>
+                                                @else
                                                 <td style="vertical-align: middle;">{{ $loop->iteration }}</td>
                                                 <td style="vertical-align: middle;">{{ $board->WriterName }}</td>
                                                 <td style="vertical-align: middle;">{{ str_limit($board->BoardTitle,40) }}</td>
                                                 <td style="vertical-align: middle;">{{ $board->created_at }}</td>
+                                                @endif
                                             </tr>
                                         @endforeach
                                         </tbody>
