@@ -51,6 +51,27 @@
 <script>
 
     var arr = new Array();
+    $(document).ready( function () {
+        $('.choose').click(function(e) {
+            console.log('button click');
+            var id = $(this).attr('id');
+            e.preventDefault();
+            if($(this).html() == "선택") {
+                $(this).html('취소');
+                $(this).removeClass("btn-primary");
+                $(this).addClass("btn-danger");
+                var _accountid = $(this).attr('val');
+                arr.push(_accountid);
+            } else {
+                $(this).html('선택');
+                $(this).removeClass("btn-danger");
+                $(this).addClass("btn-primary");
+                var _accountid = $(this).attr('val');
+                arr = arr.filter(e => e !== _accountid);
+            }
+        });
+    });
+
     function TestButton() {
         console.log("test444");
     }
@@ -120,24 +141,7 @@
             }
         })
     }
-    $('.choose').click(function(e) {
-            console.log('button click');
-            var id = $(this).attr('id');
-            e.preventDefault();
-            if($(this).html() == "선택") {
-                $(this).html('취소');
-                $(this).removeClass("btn-primary");
-                $(this).addClass("btn-danger");
-                var _accountid = $(this).attr('val');
-                arr.push(_accountid);
-            } else {
-                $(this).html('선택');
-                $(this).removeClass("btn-danger");
-                $(this).addClass("btn-primary");
-                var _accountid = $(this).attr('val');
-                arr = arr.filter(e => e !== _accountid);
-            }
-        });
+
     function myFunction1() {
         $("#myLargeModalLabel").empty();
         $("#myLargeModalLabel").append('강좌를 선택해 주세요(1 / 3)');
