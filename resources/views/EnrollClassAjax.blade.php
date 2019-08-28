@@ -51,8 +51,24 @@
 <script>
 
     var arr = new Array();
-    function TestButton() {
-        console.log("test444");
+
+    function InviteButton(_studentid) {
+        var button_id = 'choose_'+_studentid;
+        var text = $("#"+button_id).text();
+        console.log(text);
+        if(text == "선택") {
+            $("#"+button_id).html('취소');
+            $("#"+button_id).removeClass("btn-primary");
+            $("#"+button_id).addClass("btn-danger");
+            var _accountid = _studentid;
+            arr.push(_accountid);
+        } else {
+            $("#"+button_id).html('선택');
+            $("#"+button_id).removeClass("btn-danger");
+            $("#"+button_id).addClass("btn-primary");
+            var _accountid = _studentid;
+            arr = arr.filter(e => e !== _accountid);
+        }
     }
     function inviteStudent(_courseid, _id) {
 
@@ -61,7 +77,7 @@
         $("#modal-content1").empty();
         var content = '<div class="table-responsive text-center" style="color:black;">';
         content += '<table class="table table-bordered stripe hover nowrap" id="second_table" style="width:100%;"><thead><tr><th>학생 이름</th><th>이메일</th><th class="datatable-nosort datatable-nosearch"></th></tr></thead>';
-        content += '<tbody>@foreach($students as $student)<tr><td>{{ $student->name }}</td><td>{{ $student->email }}</td><td><button type="button" class="btn btn-primary choose" id="choose_{{ $student->id }}" val="{{ $student->id }}">선택</button></td>';
+        content += '<tbody>@foreach($students as $student)<tr><td>{{ $student->name }}</td><td>{{ $student->email }}</td><td><button type="button" class="btn btn-primary choose" onclick="InviteButton({{ $student->id }})" id="choose_{{ $student->id }}" val="{{ $student->id }}">선택</button></td>';
         content += '@endforeach</tbody></table>';
         content += '</div>';
 
@@ -108,25 +124,6 @@
 
         $("#large-modal-button").append(content);
         $("#Large-modal").modal('show');
-
-        $('.choose').click(function(e) {
-            console.log('button click');
-            var id = $(this).attr('id');
-            //e.preventDefault();
-            if($(this).html() == "선택") {
-                $(this).html('취소');
-                $(this).removeClass("btn-primary");
-                $(this).addClass("btn-danger");
-                var _accountid = $(this).attr('val');
-                arr.push(_accountid);
-            } else {
-                $(this).html('선택');
-                $(this).removeClass("btn-danger");
-                $(this).addClass("btn-primary");
-                var _accountid = $(this).attr('val');
-                arr = arr.filter(e => e !== _accountid);
-            }
-        });
 
         $('#save').click(function(e) {
             e.preventDefault();

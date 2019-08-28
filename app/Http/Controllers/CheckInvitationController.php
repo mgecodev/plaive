@@ -112,7 +112,7 @@ class CheckInvitationController extends Controller
                             ->select('InfoClasses.ClassName','Invitations.InvitationId')
                             ->get();   // get the data which is not accepted and in which invitee is the user
 
-        return view('CheckInvitationAjax')->with('invitations', $invitations)->with('name', $name)->with('type', $type);
+        return view('CheckInvitationAjax')->with('invitations', $invitations)->with('name', $name);
 
     }
 

@@ -15,11 +15,11 @@
                         @foreach($invitations as $invitation)
                             <tr class="tr-shadow">
                                 <td>
-                                    <span class="block-email"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="8be7e4f9e2cbeef3eae6fbe7eea5e8e4e6">{{ $invitation->ClassName }}</a></span>
+                                    <span class="block-email">{{ $invitation->ClassName }}</span>
                                 </td>
                                 <td>
-                                    <button type="button" class="btn btn-primary accept1" val="{{ $invitation->InvitationId }}">수락</button>
-                                    <button type="button" class="btn btn-danger decline1" val="{{ $invitation->InvitationId }}">거절</button>
+                                    <button type="button" class="btn btn-primary accept1" onclick="DoAccept({{ $invitation->InvitationId }})">수락</button>
+                                    <button type="button" class="btn btn-danger decline1" onclick="DoReject({{ $invitation->InvitationId }})">거절</button>
                                 </td>
                             </tr>
                         @endforeach
@@ -88,10 +88,7 @@
             });
         },3000);
     });
-    $(".accept1").click(function() {
-
-        var invitation_id = $(this).attr("val");    // get invitation id
-
+    function DoAccept(invitation_id) {
         $.ajax({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -113,12 +110,9 @@
             }
         }) // End Ajax Request
 
-    });
+    };
 
-    $('.decline1').click(function() {
-
-        var invitation_id = $(this).attr("val");    // get invitation id
-
+    function DoReject(invitation_id) {
         $.ajax({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -139,6 +133,6 @@
                 //console.log(request + "/" + status + "/" + error);
             }
         }) // End Ajax Request
-    });
+    };
 
 </script>
