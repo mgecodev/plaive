@@ -108,7 +108,7 @@
         $("#Large-modal").modal('show');
 
         $('.choose').click(function(e) {
-
+            console.log('button click');
             var id = $(this).attr('id');
             e.preventDefault();
             if($(this).html() == "선택") {
