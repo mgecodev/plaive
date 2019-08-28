@@ -24,8 +24,14 @@
         margin: 0rem 0rem 0rem auto !important;
     }
 
-    div, p, h2, h3, h4 {
+    h2, h3, h4 {
         font-family: 'KoPub Dotum' !important;
+        letter-spacing: -3px !important;
+    }
+
+    div, p {
+        font-family: 'KoPub Dotum' !important;
+        letter-spacing: -1px !important;
     }
 
 </style>
@@ -39,7 +45,7 @@
 <meta name="csrf-token" content="{{ csrf_token() }}">
 
 <!-- Site Metas -->
-<title>Plaive Education Management Service</title>
+<title>Plaive</title>
 <meta name="keywords" content="">
 <meta name="description" content="">
 <meta name="author" content="">

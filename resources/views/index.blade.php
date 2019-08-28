@@ -28,6 +28,11 @@
         color: #ffffff !important;
         background: #28b8ce;
     }
+
+    .container {
+        max-width: 1220px !important;
+        width: 100%;
+    }
 </style>
 <div id="carouselExampleControls" class="carousel slide bs-slider box-slider" data-ride="carousel" data-pause="hover" data-interval="false" >
     <!-- Indicators -->
@@ -44,7 +49,7 @@
                         <div class="row">
                             <div class="col-md-12 col-sm-12 text-right">
                                 <div class="big-tagline">
-                                    <h2><strong>Plaive </strong> Learning Management System</h2>
+                                    <h2><strong>플라이브 </strong> 교육 관리 플랫폼</h2>
                                     <p class="lead">플라이브와 함께 클래스를 개설하고 학생과 수업을 진행해 보세요. </p>
                                         <a href="#" class="hover-btn-new"><span>Contact Us</span></a>
                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -120,7 +125,10 @@
             <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
                 <div class="message-box">
 {{--                    <h4>2018 BEST SmartEDU education school</h4>--}}
-                    <h3 style="text-align:center;">컴퓨터 사고력을 가장 즐겁게 습득하는 방법, 직접 만들며 배우는 메이커교육입니다.</h3>
+                    <h3 style="text-align: center;">컴퓨터 사고력을</h3>
+                    <h3 style="text-align: center;">즐겁게 습득하는 방법,</h3>
+                    <h3 style="text-align: center;">직접 만들며 배우는</h3>
+                    <h3 style="text-align: center;"><b>메이커교육</b>입니다.</h3>
                     <br>
                     <p style="text-align:center;">미래 인재에게는 손으로 직접 만들며 아이디어를 실현해 보는 메이커 교육이 필요합니다. 메이커 교육은 시챙착오를 통해 창의적으로 문제를 해결할 수 있는 능력을 배양합니다.</p>
 {{--                    <a href="#" class="hover-btn-new cyan"><span>Learn More</span></a>--}}
@@ -128,17 +136,23 @@
             </div><!-- end col -->
             <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
                 <div class="message-box">
-                    <h3 style="text-align:center;">수업에 적용 가능한 단계별 커리큘럼과 무료 동영상 강좌, 빠른 Q&A가 준비되어 있습니다.</h3>
+                    <h3 style="text-align:center;">수업에 적용 가능한</h3>
+                    <h3 style="text-align: center;">단계별 커리큘럼과</h3>
+                    <h3 style="text-align: center;">무료 동영상 강좌,</h3>
+                    <h3 style="text-align: center;">빠른 피드백을 제공합니다.</h3>
                     <br>
-                    <p style="text-align:center;">수준 별 커리큘럼을 추천하고 무료로 동영상 강좌를 제공합니다. 선생님과의 상호 학습과 프로젝트 기반의 수업은 학생이 빠르게 실력을 향상시킬 수 있게 도와줍니다. SNS를 통해 빠른 피드백을 받을 수 있습니다.</p>
+                    <p style="text-align:center;">수준 별 커리큘럼을 추천하고 무료로 동영상 강좌를 제공합니다. 선생님과의 상호 학습과 프로젝트 기반의 수업은 학생이 빠르게 실력을 향상시킬 수 있게 도와줍니다.</p>
 {{--                    <a href="#" class="hover-btn-new cyan"><span>Learn More</span></a>--}}
                 </div><!-- end messagebox -->
             </div><!-- end col -->
             <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
                 <div class="message-box">
-                    <h3 style="text-align:center;">융합형 인재양성을 위한 IoT, Big Data, AI 교육을 합니다.</h3>
+                    <h3 style="text-align:center;">융합형 인재양성을 위한</h3>
+                    <h3 style="text-align:center;">IoT, Big Data, AI</h3>
+                    <h3 style="text-align:center;">이 모든 교육을</h3>
+                    <h3 style="text-align:center;"><b>플라이브</b>에서 시작합니다.</h3>
                     <br>
-                    <p style="text-align:center;">자신의 분야에 IoT, Big data, AI를 접목해 발전시켜 나가는 융합적 사고를 기릅니다. 단순한 움직임을 넘어, 인터넷을 통해 데이터를 수집, 축적, 분석하는 가장 쉽고 재미있는 IoT수업이 시작됩니다.</p>
+                    <p style="text-align:center;">자신의 분야에 IoT, Big data, AI를 접목해 발전시켜 나가는 융합적 사고를 기릅니다. 인터넷을 통해 데이터를 수집, 축적, 분석하는 가장 쉽고 재미있는 IoT수업을 제공합니다.</p>
 {{--                    <a href="#" class="hover-btn-new cyan"><span>Learn More</span></a>--}}
                 </div><!-- end messagebox -->
             </div><!-- end col -->
