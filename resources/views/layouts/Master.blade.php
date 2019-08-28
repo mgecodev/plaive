@@ -56,7 +56,6 @@
 <!-- Site Icons -->
 <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon"/>
 <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
-{{--<link rel='stylesheet' href='//cdn.jsdelivr.net/font-kopub/1.0/kopubdotum.css'>--}}
 
 
 <!-- Google Font -->
