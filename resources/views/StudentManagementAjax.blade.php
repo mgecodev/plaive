@@ -1,5 +1,5 @@
 <div class="pd-20 bg-white border-radius-4 box-shadow">
-    <h5 class="weight-500 mb-20">{{ $class_id }} 클래스입니다</h5>
+    <h5 class="weight-500 mb-20">{{ $class->ClassName }} 클래스입니다</h5>
     <div class="tab">
         <div class="row clearfix">
             <div class="col-md-3 col-sm-12">
