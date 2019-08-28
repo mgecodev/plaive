@@ -109,7 +109,18 @@
         $("#large-modal-button").append(content);
         $("#Large-modal").modal('show');
 
-        $('.choose').click(function(e) {
+        $('#save').click(function(e) {
+            e.preventDefault();
+            if(arr != "") {
+                ClassName(_courseid, _id);
+            } else {
+                $("#modal-content4").empty();
+                $("#modal-content4").append('<p>최소 한명 이상 학생을 선택하여 주세요</p>');
+                $("#alert-modal").modal('show');
+            }
+        })
+    }
+    $('.choose').click(function(e) {
             console.log('button click');
             var id = $(this).attr('id');
             e.preventDefault();
@@ -127,19 +138,6 @@
                 arr = arr.filter(e => e !== _accountid);
             }
         });
-
-        $('#save').click(function(e) {
-            e.preventDefault();
-            if(arr != "") {
-                ClassName(_courseid, _id);
-            } else {
-                $("#modal-content4").empty();
-                $("#modal-content4").append('<p>최소 한명 이상 학생을 선택하여 주세요</p>');
-                $("#alert-modal").modal('show');
-            }
-        })
-    }
-
     function myFunction1() {
         $("#myLargeModalLabel").empty();
         $("#myLargeModalLabel").append('강좌를 선택해 주세요(1 / 3)');
