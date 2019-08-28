@@ -35,7 +35,8 @@ $(document).ready( function () {
             targets: "datatable-nosearch",
 			searchable: false,
         }],
-        language: lang_kor
+        language: lang_kor,
+        aaSorting: []
     });
 });
 </script>
