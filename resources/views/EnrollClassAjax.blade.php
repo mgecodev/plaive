@@ -51,27 +51,6 @@
 <script>
 
     var arr = new Array();
-    $(document).ready( function () {
-        $('.choose').click(function(e) {
-            console.log('button click');
-            var id = $(this).attr('id');
-            e.preventDefault();
-            if($(this).html() == "선택") {
-                $(this).html('취소');
-                $(this).removeClass("btn-primary");
-                $(this).addClass("btn-danger");
-                var _accountid = $(this).attr('val');
-                arr.push(_accountid);
-            } else {
-                $(this).html('선택');
-                $(this).removeClass("btn-danger");
-                $(this).addClass("btn-primary");
-                var _accountid = $(this).attr('val');
-                arr = arr.filter(e => e !== _accountid);
-            }
-        });
-    });
-
     function TestButton() {
         console.log("test444");
     }
@@ -130,6 +109,24 @@
         $("#large-modal-button").append(content);
         $("#Large-modal").modal('show');
 
+        $('.choose').click(function(e) {
+            console.log('button click');
+            var id = $(this).attr('id');
+            e.preventDefault();
+            if($(this).html() == "선택") {
+                $(this).html('취소');
+                $(this).removeClass("btn-primary");
+                $(this).addClass("btn-danger");
+                var _accountid = $(this).attr('val');
+                arr.push(_accountid);
+            } else {
+                $(this).html('선택');
+                $(this).removeClass("btn-danger");
+                $(this).addClass("btn-primary");
+                var _accountid = $(this).attr('val');
+                arr = arr.filter(e => e !== _accountid);
+            }
+        });
         $('#save').click(function(e) {
             e.preventDefault();
             if(arr != "") {
