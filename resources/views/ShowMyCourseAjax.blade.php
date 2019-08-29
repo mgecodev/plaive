@@ -45,8 +45,7 @@
                                      style="max-height:200px;min-height:200px;">
                             @endif
                         </div>
-                        <div class="course-br"
-                             onclick="buildCourse('{{ json_encode($courseworks) }}', '{{ $course->WeekCount }}', '{{ $course->CourseId }}', '{{ $course->CreatedBy }}')">
+                        <div class="course-br" onclick="goCoursework({{ $course->CourseId }})">
                             <div class="course-title">
                                 <h2><a href="#" title="">{{ str_limit($course->Title, 24) }}</a></h2>
                             </div>
@@ -402,5 +401,8 @@
                 $("#alert-modal").modal('show');
             }
         });
+    }
+    function goCoursework(_courseid) {
+        location.href = '/EnrollCourseDetail/'+_courseid;
     }
 </script>

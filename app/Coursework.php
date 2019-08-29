@@ -13,8 +13,11 @@ class Coursework extends Model
      * @var string
      */
     protected $table = 'Courseworks';
-
+    public $primaryKey = 'CourseworkId';
     protected $fillable = [
         'CourseworkId', 'CourseId', 'WeekNumber', 'Content', 'ContentNumber'
     ];
+    public function getSubCourseworks() {
+        return $this->hasMany('App\SubCoursework','CourseworkId');
+    }
 }

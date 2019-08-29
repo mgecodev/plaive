@@ -6,6 +6,7 @@ use App\Account;
 use App\AccountType;
 use App\Course;
 use App\Coursework;
+use App\SubCoursework;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -149,31 +150,100 @@ class ManageCourseController extends Controller
         // Output :
         // Description : save all the data from curriculum that teacher wrote
 
-        $results = $request->_result;
         $course_id = $request->_courseid;
-        $id = $request->_createdby;
-
-//        dd($results);
-        $weekcount = 0;
-
-        foreach ($results as $result) {
-
-            $weekcount++;    // set from 1st week
-
-            // save contents by weekcount and content count
-            for ($content_count = 0; $content_count < count($result); $content_count++) {
-
-                $content = $result[$content_count];
-
-                if ($content == NULL) continue;
-
-                //var_dump($course_id, $weekcount, $content, $content_count);
-                Coursework::create(['CourseId' => $course_id, 'WeekNumber' => $weekcount, 'Content' => $content, 'ContentNumber' => $content_count]);
+        $courseworks = $request->_courseworks;
+        $subcourseworks = $request->_subcourseworks;
+        $week = $request->_week;
+        for($i=1;$i<=$week;$i++){
+            if(isset($courseworks[$i])) {
+                $temp[$i] = Coursework::create([
+                    'CourseId' => $course_id,
+                    'WeekNumber' => $i,
+                    'Content' => $courseworks[$i],
+                ]);
             }
         }
-//        die();
-//        dd($courses);
-        $courses = Course::where('CreatedBy', $id)->where('Active', 1)->get();
-        return view('showMyCourseAjax')->with('courses', $courses);
+        for($j=1;$j<=$week;$j++){
+            if(isset($subcourseworks[$j])) {
+                for($k=1;$k<count($subcourseworks[$j]);$k++){
+                    $create = SubCoursework::create([
+                        'CourseworkId' => $temp[$j]->CourseworkId,
+                        'Content' => $subcourseworks[$j][$k],
+                        'ContentNumber' => $k
+                    ]);
+                }
+            }
+        }
+
+        return 0;
+    }
+    function enrollDetail($course_id)
+    {
+        $user = Auth::user();
+
+        $name = $user->name;
+        $id = $user->id;
+
+        $account_type_id = Account::where('id', $id)->first()->AccountTypeId;
+        $type = AccountType::where('AccountTypeId', '=', $account_type_id)->first()->Type;
+
+        $course = Course::where('CourseId',$course_id)->where('Active',1)->first();
+        if(!$course){
+
+        } else {
+            $courseworks = $course->getCoursework()->where('Active',1)->orderby('WeekNumber','asc')->get();
+            $subcourseworks = $course->getSubCourseworks()->where('SubCourseworks.Active',1)->where('Courseworks.Active',1)->orderby('SubCourseworks.CourseworkId','asc')->get();
+            if(count($courseworks) < 1) {
+                return view('EnrollDetailCourse',compact('courseworks'))->with('name', $name)->with('type', $type)->with('id', $id)->with('course', $course);
+            } else {
+                return view('UpdateDetailCourse',compact('courseworks'))->with('name', $name)->with('type', $type)->with('id', $id)->with('course', $course)->with('subcourseworks',$subcourseworks);
+            }
+        }
+    }
+    function updateCurriculum(Request $request) 
+    {
+        $course_id = $request->_courseid;
+        $courseworks = $request->_courseworks;
+        $subcourseworks = $request->_subcourseworks;
+        $week = $request->_week;
+        for($i=1;$i<=$week;$i++){
+            if(isset($courseworks[$i])) {
+                $temp[$i] = Coursework::updateOrCreate(
+                    ['WeekNumber'=>$i, 'CourseId'=>$course_id],
+                    ['Content' => $courseworks[$i],'Active' => 1]
+                );
+            }
+        }
+
+        for($j=1;$j<=$week;$j++){
+            if(isset($subcourseworks[$j])) {
+                for($k=1;$k<count($subcourseworks[$j]);$k++){
+                    $update = SubCoursework::updateOrCreate(
+                        ['CourseworkId'=>$temp[$j]->CourseworkId, 'ContentNumber'=>$k],
+                        ['Content' => $subcourseworks[$j][$k],'Active' => 1]
+                    );
+                    if($update){
+                        if(isset($count_update[$j])) {
+                            $count_update[$j]++;
+                        } else {
+                            $count_update[$j] = 1;
+                        }
+                    }
+                }
+            }
+        }
+        for($t=1;$t<=$week;$t++) {
+            $coursework = Coursework::where('CourseId',$course_id)->where('WeekNumber',$t)->where('Active',1)->first();
+            if(!$coursework) {
+            } else {
+                if(!isset($count_update[$t])){
+                    $count_update[$t] = 0;
+                }
+                $delete = SubCoursework::where('CourseworkId',$coursework->CourseworkId)->where('ContentNumber','>',$count_update[$t])->update([
+                    'Active'=> 0
+                ]);
+            }
+        }
+        return 0;
     }
 }
