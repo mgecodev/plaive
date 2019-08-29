@@ -53,6 +53,8 @@
                                 <p>{{ str_limit($course->Comment, 30) }}</p>
                             </div>
                         </div>
+                        <button type="button" href="/ManageCourse/{{ $course->CourseId }}/specific">세부사항 설정</button>
+
                         <div class="course-meta-bot">
                             <ul>
                                 <li><i class="fa fa-users" aria-hidden="true"></i> {{ $course->NumOfStudent }} 학생들</li>

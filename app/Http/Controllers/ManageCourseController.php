@@ -246,4 +246,9 @@ class ManageCourseController extends Controller
         }
         return 0;
     }
+
+    public function setSpecific($course_id, Request $request) {
+
+        dd($course_id);
+    }
 }
