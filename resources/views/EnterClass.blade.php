@@ -73,6 +73,9 @@
         });
     </script>
 @endsection
+@section("page_title")
+<h1>{{ $class->ClassName.' 클래스' }}</h1>
+@endsection
 @section('content')
     <div id="overviews" class="section wb">
         <div class="container">

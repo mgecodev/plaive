@@ -100,16 +100,17 @@
             </div><!-- end section -->
         </div>
         <!-- Left Control -->
+        @if(!(new \Jenssegers\Agent\Agent())->isPhone())
         <a class="new-effect carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
             <span class="fa fa-angle-left" aria-hidden="true"></span>
             <span class="sr-only">Previous</span>
         </a>
-
         <!-- Right Control -->
         <a class="new-effect carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
             <span class="fa fa-angle-right" aria-hidden="true"></span>
             <span class="sr-only">Next</span>
         </a>
+        @endif
     </div>
 </div>
 
