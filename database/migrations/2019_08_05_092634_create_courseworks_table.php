@@ -42,7 +42,7 @@ class CreateCourseworksTable extends Migration
 //            });
 
             // 3. Add column
-            Schema::table($this->tableName, function (Blueprint $table) {
+            /*Schema::table($this->tableName, function (Blueprint $table) {
                 $table->boolean('Active')->default(1);            
             });
 
@@ -51,7 +51,7 @@ class CreateCourseworksTable extends Migration
             // 5. Drop Column
             Schema::table($this->tableName, function (Blueprint $table) {
                 $table->dropColumn(['ContentNumber']);
-            });
+            });*/
         }
     }
 
