@@ -14,12 +14,12 @@
                                 <img src="{{ $course->CourseImage }}" alt="" class="img-fluid" style="max-height:200px;min-height:200px;">
                             @endif
                             </div>
-                            <div class="course-br">
+                            <div class="course-br" onclick="goCoursework({{ $course->CourseId }})">
                                 <div class="course-title">
-                                    <h2><a href="#" title="">{{ str_limit($course->Title, 20) }}</a></h2>
+                                    <h2><a href="#" title="">{{ str_limit($course->Title, 24) }}</a></h2>
                                 </div>
                                 <div class="course-desc">
-                                    <p>{{ str_limit($course->Comment, 20) }}</p>
+                                    <p>{{ str_limit($course->Comment, 30) }}</p>
                                 </div>
                             </div>
                             <div class="course-meta-bot">
@@ -42,5 +42,7 @@
 </div><!-- end section -->
 
 <script>
-
+function goCoursework(_courseid){
+    location.href = '/ReadCourseDetail/'+_courseid;
+}
 </script>

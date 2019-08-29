@@ -31,4 +31,9 @@ class Course extends Model
 
         return $this->hasMany('App\Coursework', 'CourseId', 'CourseId');
     }
+
+    public function getSubCourseworks() {
+
+        return $this->hasManyThrough('App\SubCoursework', 'App\Coursework','CourseId','CourseworkId','CourseId','CourseworkId');
+    }
 }
