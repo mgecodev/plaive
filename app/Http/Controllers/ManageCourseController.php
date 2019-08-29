@@ -246,7 +246,25 @@ class ManageCourseController extends Controller
         }
         return 0;
     }
+    function readonlyDetail($course_id)
+    {
+        $user = Auth::user();
 
+        $name = $user->name;
+        $id = $user->id;
+
+        $account_type_id = Account::where('id', $id)->first()->AccountTypeId;
+        $type = AccountType::where('AccountTypeId', '=', $account_type_id)->first()->Type;
+
+        $course = Course::where('CourseId',$course_id)->where('Active',1)->first();
+        if(!$course){
+
+        } else {
+            $courseworks = $course->getCoursework()->where('Active',1)->orderby('WeekNumber','asc')->get();
+            $subcourseworks = $course->getSubCourseworks()->where('SubCourseworks.Active',1)->where('Courseworks.Active',1)->orderby('SubCourseworks.CourseworkId','asc')->get();           
+            return view('ReadonlyDetailCourse',compact('courseworks'))->with('name', $name)->with('type', $type)->with('id', $id)->with('course', $course)->with('subcourseworks',$subcourseworks);
+        }
+    }
     public function setSpecific($course_id, Request $request) {
 
         dd($course_id);

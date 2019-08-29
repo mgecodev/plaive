@@ -45,6 +45,7 @@ Route::patch('/ManageClass/EmitStudent/{invitation_id}','CheckInvitationControll
 Route::patch('/ManageClass/DeleteClass', 'ManageClassController@deleteClass');
 
 Route::get('/EnrollCourseDetail/{course_id}', 'ManageCourseController@enrollDetail');
+Route::get('/ReadCourseDetail/{course_id}', 'ManageCourseController@readonlyDetail');
 Route::get('/ManageCourse', 'ManageCourseController@index');
 Route::get('/ManageCourse/ShowAll', 'ManageCourseController@showAll');
 Route::get('/ManageCourse/MyList', 'ManageCourseController@showMyCourse');
