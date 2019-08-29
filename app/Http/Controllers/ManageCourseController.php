@@ -176,4 +176,9 @@ class ManageCourseController extends Controller
         $courses = Course::where('CreatedBy', $id)->where('Active', 1)->get();
         return view('showMyCourseAjax')->with('courses', $courses);
     }
+
+    public function setSpecific($course_id, Request $request) {
+
+        dd($course_id);
+    }
 }
