@@ -44,6 +44,7 @@ Route::patch('/ManageClass/DenyStudent/{invitation_id}','ManageClassController@d
 Route::patch('/ManageClass/EmitStudent/{invitation_id}','CheckInvitationController@emitStudent');
 Route::patch('/ManageClass/DeleteClass', 'ManageClassController@deleteClass');
 
+Route::get('/Coursework/{course_id}/Show', 'ManageCourseController@showCurriculum');
 Route::get('/ManageCourse', 'ManageCourseController@index');
 Route::get('/ManageCourse/ShowAll', 'ManageCourseController@showAll');
 Route::get('/ManageCourse/MyList', 'ManageCourseController@showMyCourse');

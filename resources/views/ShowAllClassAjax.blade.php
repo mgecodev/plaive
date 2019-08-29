@@ -97,6 +97,7 @@
     }
 
     function ClassModify(_classid, _classname) {
+
         $("#myLargeModalLabel").empty();
         $("#myLargeModalLabel").append('강좌 수정(1 / 2) - 강좌를 수정 안할 경우 다음 버튼을 눌러주세요');
         $("#modal-content1").empty();

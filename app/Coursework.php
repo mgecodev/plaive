@@ -17,4 +17,9 @@ class Coursework extends Model
     protected $fillable = [
         'CourseworkId', 'CourseId', 'WeekNumber', 'Content', 'ContentNumber'
     ];
+
+    public function getSubCoursework() {
+
+        return $this->hasMany('App\SubCoursework', 'CourseworkId', 'CourseworkId');
+    }
 }

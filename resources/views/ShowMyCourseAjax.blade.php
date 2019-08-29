@@ -45,16 +45,24 @@
                                      style="max-height:200px;min-height:200px;">
                             @endif
                         </div>
-                        <div class="course-br"
-                             onclick="buildCourse('{{ json_encode($courseworks) }}', '{{ $course->WeekCount }}', '{{ $course->CourseId }}', '{{ $course->CreatedBy }}')">
+{{--                        <div class="course-br"--}}
+{{--                             onclick="buildCourse('{{ json_encode($courseworks) }}', '{{ $course->WeekCount }}', '{{ $course->CourseId }}', '{{ $course->CreatedBy }}')">--}}
+{{--                            <div class="course-title">--}}
+{{--                                <h2><a href="#" title="">{{ str_limit($course->Title, 24) }}</a></h2>--}}
+{{--                            </div>--}}
+{{--                            <div class="course-desc">--}}
+{{--                                <p>{{ str_limit($course->Comment, 30) }}</p>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+                        <div class="course-br">
                             <div class="course-title">
-                                <h2><a href="#" title="">{{ str_limit($course->Title, 24) }}</a></h2>
+                                <h2><a href="/Coursework/{{ $course->CourseId }}/Show" title="">{{ str_limit($course->Title, 24) }}</a></h2>
                             </div>
                             <div class="course-desc">
                                 <p>{{ str_limit($course->Comment, 30) }}</p>
                             </div>
                         </div>
-                        <button type="button" href="/ManageCourse/{{ $course->CourseId }}/specific">세부사항 설정</button>
+{{--                        <button type="button" href="/ManageCourse/{{ $course->CourseId }}/specific">세부사항 설정</button>--}}
 
                         <div class="course-meta-bot">
                             <ul>

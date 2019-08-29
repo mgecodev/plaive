@@ -26,7 +26,7 @@
 
 body.host_version .icon_wrap i,
 body.host_version .customwidget li i{
-    color: #28b8ce !important;
+    color: #FFFFFF !important;
 }
 
 body.host_version .lead strong {
@@ -214,7 +214,7 @@ body.host_version .affix {
 
 body.host_version .icon_wrap,
 body.host_version .header_style_01 {
-    background: #ffffff !important;
+    background: #28b8ce !important;
     position: relative;
 }
 

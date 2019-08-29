@@ -2,12 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="35e28d35-536b-4eab-b88b-4029b9306f6f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/deployment.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/webServers.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/SubCoursework.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/Courseworks/ShowCourseworkList.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/Courseworks/ShowSubCourseworkList.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Coursework.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Coursework.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ManageCourseController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ManageCourseController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/versions.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/versions.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/parallax_04.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/parallax_04.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/ShowAllClassAjax.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/ShowAllClassAjax.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/ShowMyCourseAjax.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/ShowMyCourseAjax.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/Master.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/Master.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -245,6 +251,7 @@
       <workItem from="1566918840016" duration="2276000" />
       <workItem from="1566960020210" duration="7795000" />
       <workItem from="1567037777947" duration="1769000" />
+      <workItem from="1567053540479" duration="12938000" />
     </task>
     <task id="LOCAL-00001" summary="path manager">
       <created>1564317974013</created>
