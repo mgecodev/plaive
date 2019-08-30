@@ -97,7 +97,4 @@ Route::patch('/DeleteBoard/{type}/{board}','BoardController@destroy');
 
 Route::patch('/DeleteBoardFile/{boardFile}', 'BoardFileController@destroy');
 Route::get('/ShowStatus/{class_id}/{coursework_id}','ManageClassController@showStatus');
-<<<<<<< HEAD
-=======
 Route::get('/ShowStatus/student/data/{class_id}/{coursework_id}','ManageClassController@getStatus');
->>>>>>> 558edfa4f3a4398730bf3fd9baf74602c374938d
