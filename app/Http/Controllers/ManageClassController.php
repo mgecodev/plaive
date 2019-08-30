@@ -387,6 +387,18 @@ class ManageClassController extends Controller
                         ->select('Accounts.name','Accounts.id')
                         ->get();
         $subcourseworks = SubCoursework::where('CourseworkId',$coursework_id)->where('Active',1)->get();
-        return view('ShowStatus')->with('students',$students)->with('subcourseworks',$subcourseworks);
+        return view('ShowStatus')->with('students',$students)->with('subcourseworks',$subcourseworks)->with('class_id',$class_id)->with('coursework_id',$coursework_id);
     }
+}
+public function getStatus(Request $request)
+{
+    $user = Auth::user();
+
+    $name = $user->name;
+    $id = $user->id;
+        
+    $account_type_id = Account::where('id', $id)->first()->AccountTypeId;
+    $type = AccountType::where('AccountTypeId', '=', $account_type_id)->first()->Type;
+
+    
 }
