@@ -12,19 +12,19 @@ class CreateSubCourseworksTable extends Migration
      * @return void
      */
 
-    public $tableName = 'SubCourseworks';
-    public $connection = 'aurora';
+    // public $tableName = 'SubCourseworks';
+    // public $connection = 'aurora';
 
     public function up()
     {
-        Schema::create($this->tableName, function (Blueprint $table) {
+        // Schema::create($this->tableName, function (Blueprint $table) {
 
-            $table->bigIncrements('SubCourseworkId');
-            $table->integer('CourseworkId');
-            $table->text('Content');
-            $table->timestamps();
+        //     $table->bigIncrements('SubCourseworkId');
+        //     $table->integer('CourseworkId');
+        //     $table->text('Content');
+        //     $table->timestamps();
 
-        });
+        // });
     }
 
     /**
@@ -34,6 +34,6 @@ class CreateSubCourseworksTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists($this->tableName);
+        // Schema::dropIfExists($this->tableName);
     }
 }
