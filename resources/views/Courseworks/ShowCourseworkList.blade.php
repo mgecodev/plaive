@@ -94,7 +94,7 @@
                                 @endif
                                 <tr class="tr-shadow">
                                     <td>
-                                        <span class="block-email">{{ $coursework->WeekNumber }}</span>
+                                        <span class="block-email">{{ $coursework->ContentNumber }}</span>
                                     </td>
                                     <td>
                                         <div>{{ $coursework->Content }}</div>

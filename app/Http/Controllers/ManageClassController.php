@@ -10,6 +10,7 @@ use App\Coursework;
 use App\SubCoursework;
 use App\ClassMember;
 use App\AccountType;
+use App\StudentRecord;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -48,7 +49,7 @@ class ManageClassController extends Controller
         $type = AccountType::where('AccountTypeId', '=', $account_type_id)->first()->Type;
         $courses = Course::where('CreatedBy', $id)->orwhere('CreatedBy', 0)->where('Active', 1)->get();
         $classes = $this->showClassInfo($id);
-        return view('ManageClass')->with('classes', $classes)->with('name', $name)->with('type', $type)->with('id', $id)->with('board_flag',$board_flag)->with('courses',$courses);
+        return view('ManageClass')->with('classes', $classes)->with('name', $name)->with('type', $type)->with('id', $id)->with('board_flag',$board_flag)->with('courses', $courses);
     }
 
     public function saveCourseInfo() {
@@ -102,7 +103,7 @@ class ManageClassController extends Controller
         $delete = InfoClass::where("ClassId", $class_id)->update(["Active" => 0,'updated_at' => $nowdate]);
         if ($delete) {
             return response()->json([
-                'result' => 'Success'            
+                'result' => 'Success'
             ]);
         } else {
             return response()->json([
@@ -174,10 +175,10 @@ class ManageClassController extends Controller
                                             ->where('Invitations.Active','=',1)
                                             ->select('Accounts.name','Accounts.id','Accounts.email','Invitations.Accepted','Invitations.InvitationId')
                                             ->get();
-                    
+
                 $temp_viable_students = Invitation::where('ClassId',$class_id)->where('Active',1)->pluck('inviteeId')->all();
                 $tot_viable_students = Account::whereNotIn('id',$temp_viable_students)->where('AccountTypeId',1)->where('Active',1)->get();
-                
+
                 $boards = DB::table('Boards')->where('BoardType','Class')->where('Active',1)->where('TopFix','Y')->where('ClassId',$class_id)->orderBy('created_at','desc')->get();
                 $down_boards = DB::table('Boards')->where('BoardType','Class')->where('Active',1)->where('TopFix','N')->where('ClassId',$class_id)->orderBy('created_at','desc')->get();
                 $boards = $boards->merge($down_boards);
@@ -299,7 +300,7 @@ class ManageClassController extends Controller
         }
         if ($insert1 && $insert2) {
             return response()->json([
-                'result' => 'Success'            
+                'result' => 'Success'
             ]);
         } else {
             return response()->json([
@@ -333,7 +334,7 @@ class ManageClassController extends Controller
         ]);
         if ($update) {
             return response()->json([
-                'result' => 'Success'            
+                'result' => 'Success'
             ]);
         } else {
             return response()->json([
@@ -347,7 +348,7 @@ class ManageClassController extends Controller
         ]);
         if ($update) {
             return response()->json([
-                'result' => 'Success'            
+                'result' => 'Success'
             ]);
         } else {
             return response()->json([
@@ -361,7 +362,7 @@ class ManageClassController extends Controller
         ]);
         if ($update) {
             return response()->json([
-                'result' => 'Success'            
+                'result' => 'Success'
             ]);
         } else {
             return response()->json([
@@ -369,13 +370,13 @@ class ManageClassController extends Controller
             ]);
         }
     }
-    public function showStatus($class_id,$coursework_id)
-    {
+    public function showStatus($class_id,$coursework_id) {
+
         $user = Auth::user();
 
         $name = $user->name;
         $id = $user->id;
-        
+
         $account_type_id = Account::where('id', $id)->first()->AccountTypeId;
         $type = AccountType::where('AccountTypeId', '=', $account_type_id)->first()->Type;
         //$students = ClassMember::where('ClassId',$class_id)->where('Active',1)->get();
@@ -389,4 +390,59 @@ class ManageClassController extends Controller
         $subcourseworks = SubCoursework::where('CourseworkId',$coursework_id)->where('Active',1)->get();
         return view('ShowStatus')->with('students',$students)->with('subcourseworks',$subcourseworks);
     }
+
+    public function checkCoursework($class_id, $coursework_id, $weekcount) {
+        // Input :
+        // Output :
+        // Description : let student check the subcoursework and let themselves how many stages they can deal with
+        //              1. Students should choose or check the sub courses that they've done
+        //              2. Students should look through all the sub courses related to main courses
+        //              3. Students should check 'save' button on the bottom of the page after they select all the sub courses that they've done
+        //              4. Students should check 'return' to go back to prior page
+        //              5. Students should check 'checkall' and 'uncheckall' function in the page
+
+        $user = Auth::user();
+
+        $name = $user->name;
+        $id = $user->id;
+
+        $account_type_id = Account::where('id', $id)->first()->AccountTypeId;
+        $type = AccountType::where('AccountTypeId', '=', $account_type_id)->first()->Type;
+
+        $subcourseworks = SubCoursework::where('CourseworkId', $coursework_id)->get();  // get sub courses
+
+        return view('Courseworks.ShowSubCourseworkList')->with('subcourseworks', $subcourseworks)->with('id', $id)->with('name', $name)->with('type', $type)->with('class_id', $class_id)->with('coursework_id', $coursework_id);
+    }
+
+    public function saveMyFootprint(Request $request) {
+
+        $user = Auth::user();
+
+        $name = $user->name;
+        $id = $user->id;
+
+        $account_type_id = Account::where('id', $id)->first()->AccountTypeId;
+        $type = AccountType::where('AccountTypeId', '=', $account_type_id)->first()->Type;
+
+        $checked_tasks = $request->obj;
+        $coursework_id = $request->_courseworkid;
+        $class_id = $request->_classid;
+
+        foreach($checked_tasks as $key=>$value) {
+
+            StudentRecord::updateOrCreate(['AccountId' => $id, 'ClassId' => $class_id, 'CourseworkId' => $coursework_id, 'SubCourseworkId' => $key], [
+
+                'Done' => $value,
+                'Active' => 1
+
+            ]);
+
+
+        }
+
+
+
+    }
+
+
 }

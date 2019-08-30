@@ -14,14 +14,12 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" data-toggle="tab"
-                               href="#take-class" role="tab" aria-selected="false">수업
-                                현황</a>
+                               href="#take-class" role="tab" aria-selected="false">수업 현황</a>
                         </li>
                     @elseif ($type == 'Student')
                         <li class="nav-item">
                             <a class="nav-link" data-toggle="tab"
-                               href="#take-class" role="tab" aria-selected="false">수업
-                                듣기</a>
+                               href="#take-class" role="tab" aria-selected="false">수업 듣기</a>
                         </li>
 
                     @endif
@@ -164,7 +162,7 @@
                                             <th class="text-center">주차</th>
                                             <th class="text-center">순서</th>
                                             <th class="text-center datatable-nosearch">커리큘럼 내용</th>
-                                            <th></th>
+                                            <th>action</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -173,7 +171,7 @@
                                                 <td>{{ $coursework->WeekNumber }}</td>
                                                 <td>{{ $coursework->ContentNumber }}</td>
                                                 <td>{{ $coursework->Content }}</td>
-                                                <td></td>
+                                                <td><input type="button" class="btn btn-primary" value="들어가기" onclick="window.location.href='/Class/{{ $class->ClassId.'/'.$coursework->CourseworkId }}/{{ $coursework->WeekNumber }}'"></input></td>
                                             </tr>
                                         @endforeach
                                         </tbody>
@@ -216,7 +214,7 @@
                 $("#alert-modal").modal('show');
                 //console.log(request + "/" + status + "/" + error);
             }
-        }) 
+        })
     }
     function goPage(_classid,_type) {
         if(_type == 0) {

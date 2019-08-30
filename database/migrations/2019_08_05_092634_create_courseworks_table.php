@@ -42,16 +42,16 @@ class CreateCourseworksTable extends Migration
 //            });
 
             // 3. Add column
-            /*Schema::table($this->tableName, function (Blueprint $table) {
-                $table->boolean('Active')->default(1);            
-            });
+//            Schema::table($this->tableName, function (Blueprint $table) {
+//                $table->boolean('Active')->default(1);
+//            });
 
             // 4. Rename table
 //            Schema::rename($this->tableName, 'Accounts');
             // 5. Drop Column
-            Schema::table($this->tableName, function (Blueprint $table) {
-                $table->dropColumn(['ContentNumber']);
-            });*/
+//            Schema::table($this->tableName, function (Blueprint $table) {
+//                $table->dropColumn(['ContentNumber']);
+//            });
         }
     }
 

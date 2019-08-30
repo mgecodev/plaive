@@ -36,6 +36,8 @@ Route::get('/class', function () {
 Route::get('/ManageClass', 'ManageClassController@index');
 Route::get('/ManageClass/Enroll', 'ManageClassController@enroll');
 Route::get('/Class/{classid}/{board_flag?}', 'ManageClassController@enterClass');
+Route::get('/Class/{classid}/{courseworkid}/{weekcount}', 'ManageClassController@checkCoursework');
+Route::post('/saveMyFootprint', 'ManageClassController@saveMyFootprint');
 Route::post('/Invite', 'ManageClassController@inviteAdditionalMember');
 Route::post('/ManageClass/IncludeStudent', 'ManageClassController@includeStudent');
 Route::patch('/ManageClass/IncludeStudent/{class_id}', 'ManageClassController@updateStudent');

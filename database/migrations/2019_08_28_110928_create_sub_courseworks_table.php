@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class RemoveSubCourseworksTable extends Migration
+class CreateSubCourseworksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -25,10 +25,26 @@ class RemoveSubCourseworksTable extends Migration
                 $table->timestamps();
                 $table->boolean('Active')->default(1);
             });
-        } else {
-            /*Schema::table($this->tableName, function (Blueprint $table) {
-                $table->renameColumn('CourseId', 'CourseworkId');
-            });*/
+        }
+        else {
+            // 1. Update column attributes
+            //    Schema::table($this->tableName, function (Blueprint $table) {
+            //        $table->Integer('AccountTypeId')->change();
+            //        $table->timestamps();
+            //    });
+
+            // 2. Rename column
+//            Schema::table($this->tableName, function (Blueprint $table) {
+//                $table->renameColumn('DeleteFlag', 'Active');
+//            });
+
+            // 3. Add column
+            Schema::table($this->tableName, function (Blueprint $table) {
+                $table->Integer('ContentNumber');
+            });
+
+            // 4. Rename table
+//            Schema::rename($this->tableName, 'Accounts');
         }
     }
 
