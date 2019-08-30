@@ -51,9 +51,9 @@
                                 <div class="big-tagline">
                                     <h2><strong>플라이브 </strong> 교육 관리 플랫폼</h2>
                                     <p class="lead">플라이브와 함께 클래스를 개설하고 학생과 수업을 진행해 보세요. </p>
-                                        <a href="#" class="hover-btn-new"><span>Contact Us</span></a>
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                        <a href="#" class="hover-btn-new"><span>Read More</span></a>
+{{--                                        <a href="#" class="hover-btn-new"><span>Contact Us</span></a>--}}
+{{--                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--}}
+{{--                                        <a href="#" class="hover-btn-new"><span>Read More</span></a>--}}
                                 </div>
                             </div>
                         </div><!-- end row -->
@@ -70,9 +70,9 @@
                                 <div class="big-tagline">
                                     <h2 data-animation="animated zoomInRight">무엇을 <strong>배우고 싶으세요?</strong></h2>
                                     <p class="lead" data-animation="animated fadeInLeft">플라이브와 함께 AI 챗봇을 만들어보세요. </p>
-                                        <a href="#" class="hover-btn-new"><span>Contact Us</span></a>
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                        <a href="#" class="hover-btn-new"><span>Read More</span></a>
+{{--                                        <a href="#" class="hover-btn-new"><span>Contact Us</span></a>--}}
+{{--                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--}}
+{{--                                        <a href="#" class="hover-btn-new"><span>Read More</span></a>--}}
                                 </div>
                             </div>
                         </div><!-- end row -->
@@ -89,9 +89,9 @@
                                 <div class="big-tagline">
                                     <h2 data-animation="animated zoomInRight"><strong>동영상 컨텐츠</strong> 와 연계된 플라이브만의 다양한 키트</h2>
                                     <p class="lead" data-animation="animated fadeInLeft">미세먼지 키트와 자율주행 키트는 아이들의 상상력을 자극합니다.</p>
-                                        <a href="#" class="hover-btn-new"><span>Contact Us</span></a>
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                        <a href="#" class="hover-btn-new"><span>Read More</span></a>
+{{--                                        <a href="#" class="hover-btn-new"><span>Contact Us</span></a>--}}
+{{--                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--}}
+{{--                                        <a href="#" class="hover-btn-new"><span>Read More</span></a>--}}
                                 </div>
                             </div>
                         </div><!-- end row -->
@@ -239,6 +239,7 @@
         <div class="row text-left stat-wrap">
             <div class="col-md-4 col-sm-4 col-xs-12">
                 <span data-scroll class="global-radius icon_wrap effect-1 alignleft"><i class="flaticon-study"></i></span>
+
                 <p class="stat_count">250</p>
                 <h3>학생 수</h3>
             </div><!-- end col -->

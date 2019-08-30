@@ -47,7 +47,7 @@
                         </div>
                         <div class="course-br" onclick="goCoursework({{ $course->CourseId }})">
                             <div class="course-title">
-                                <h2><a href="#" title="">{{ str_limit($course->Title, 24) }}</a></h2>
+                                <h2><a href="javascript:void(0);" title="">{{ str_limit($course->Title, 24) }}</a></h2>
                             </div>
                             <div class="course-desc">
                                 <p>{{ str_limit($course->Comment, 30) }}</p>

@@ -34,6 +34,7 @@
         letter-spacing: -1px !important;
     }
 
+
 </style>
 <!-- Basic -->
 <meta charset="utf-8">
@@ -145,11 +146,32 @@
 
 {{-- this code makes unnecessary part of main page. --}}
 @if(!(Request::path() == 'home' or Request::path() == '/'))
-    <div class="all-title-box">
-        <div class="container text-center">
-            @yield('page_title')
+    @if(Request::path() == 'MainBoard')
+
+        <div class="all-title-box" style="background-image: url('images/소식.jpg');">
+            <div class="container text-center">
+                @yield('page_title')
+            </div>
         </div>
-    </div>
+
+    @elseif(Request::path() == 'ManageDevice' or Request::path() == 'CreateDevice')
+
+        <div class="all-title-box" style="background-image: url('images/나의데이터.jpg');">
+            <div class="container text-center">
+                @yield('page_title')
+            </div>
+        </div>
+
+    @else
+
+        <div class="all-title-box" style="background-image: url('images/클래스.jpg');">
+            <div class="container text-center">
+                @yield('page_title')
+            </div>
+        </div>
+
+    @endif
+
 @endif
 
 <!-- Start content -->

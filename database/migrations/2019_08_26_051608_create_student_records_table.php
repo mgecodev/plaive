@@ -15,14 +15,41 @@ class CreateStudentRecordsTable extends Migration
 
     public function up()
     {
-        Schema::create($this->tableName, function (Blueprint $table) {
-            $table->bigIncrements('StudentRecordId');
-            $table->integer('AccountId');
-            $table->integer('ClassId');
-            $table->integer('CourseworkId');
-            $table->boolean('Done')->default(0);
-            $table->timestamps();
-        });
+        if (!Schema::hasTable($this->tableName)) {
+            Schema::create($this->tableName, function (Blueprint $table) {
+                $table->bigIncrements('StudentRecordId');
+                $table->integer('AccountId');
+                $table->integer('ClassId');
+                $table->integer('CourseworkId');
+                $table->boolean('Done')->default(0);
+                $table->timestamps();
+            });
+        }
+
+        // Run this code if there is already table and you want additional action for the table
+        else {
+
+            // 1. Update column attributes
+//            Schema::table($this->tableName, function (Blueprint $table) {
+//                $table->Integer('AccountTypeId')->change();
+//            });
+
+            // 2. Rename column
+//            Schema::table($this->tableName, function (Blueprint $table) {
+//                $table->renameColumn('DeleteFlag', 'Active');
+//            });
+
+            // 3. Add column
+            Schema::table($this->tableName, function (Blueprint $table) {
+        
+                $table->integer('SubCourseworkId');
+                $table->boolean('Active')->default(1);
+            });
+
+            // 4. Rename table
+//            Schema::rename($this->tableName, 'Accounts');
+
+        }
     }
 
     /**
@@ -32,6 +59,6 @@ class CreateStudentRecordsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists($this->tableName);
+        // Schema::dropIfExists($this->tableName);
     }
 }

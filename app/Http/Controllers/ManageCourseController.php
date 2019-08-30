@@ -144,6 +144,22 @@ class ManageCourseController extends Controller
         return view('ShowMyCourseAjax')->with('courses', $courses);
     }
 
+    public function showCurriculum($course_id) {
+        // Input :
+        // Output :
+        // Description :
+//        dd("hey");
+        $courseworks = Coursework::where("CourseId", $course_id)->get();
+        $user = Auth::user();
+        $name = $user->name;
+        $id = $user->id;
+        $account_type_id = Account::where('id', $id)->first()->AccountTypeId;
+        $type = AccountType::where('AccountTypeId', '=', $account_type_id)->first()->Type;
+
+//        dd($type);
+
+        return view('Courseworks.ShowCourseworkList')->with('name', $name)->with('type', $type)->with('id', $id)->with('courseworks', $courseworks);
+    }
     public function saveCurriculum(Request $request)
     {
         // Input :
