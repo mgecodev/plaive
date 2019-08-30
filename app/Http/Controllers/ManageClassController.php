@@ -10,6 +10,7 @@ use App\Coursework;
 use App\SubCoursework;
 use App\ClassMember;
 use App\AccountType;
+use App\StudentRecord;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -389,16 +390,26 @@ class ManageClassController extends Controller
         $subcourseworks = SubCoursework::where('CourseworkId',$coursework_id)->where('Active',1)->get();
         return view('ShowStatus')->with('students',$students)->with('subcourseworks',$subcourseworks)->with('class_id',$class_id)->with('coursework_id',$coursework_id);
     }
-}
-public function getStatus(Request $request)
-{
-    $user = Auth::user();
+    public function getStatus($class_id, $coursework_id)
+    {
+        $user = Auth::user();
 
-    $name = $user->name;
-    $id = $user->id;
-        
-    $account_type_id = Account::where('id', $id)->first()->AccountTypeId;
-    $type = AccountType::where('AccountTypeId', '=', $account_type_id)->first()->Type;
+        $name = $user->name;
+        $id = $user->id;
+            
+        $account_type_id = Account::where('id', $id)->first()->AccountTypeId;
+        $type = AccountType::where('AccountTypeId', '=', $account_type_id)->first()->Type;
 
-    
+        $records = StudentRecord::where('ClassId',$class_id)->where('CourseworkId',$coursework_id)->where('Active',1)->where('Done',1)->get();
+        if (count($records) < 1) {
+            return response()->json([
+                'result' => 'Fail'            
+            ]);
+        } else {
+            return response()->json([
+                'result' => 'Success',
+                'data' => $records
+            ]);
+        }
+    }
 }
