@@ -388,7 +388,29 @@ class ManageClassController extends Controller
                         ->select('Accounts.name','Accounts.id')
                         ->get();
         $subcourseworks = SubCoursework::where('CourseworkId',$coursework_id)->where('Active',1)->get();
-        return view('ShowStatus')->with('students',$students)->with('subcourseworks',$subcourseworks);
+        return view('ShowStatus')->with('students',$students)->with('subcourseworks',$subcourseworks)->with('class_id',$class_id)->with('coursework_id',$coursework_id);
+    }
+    public function getStatus($class_id, $coursework_id)
+    {
+        $user = Auth::user();
+
+        $name = $user->name;
+        $id = $user->id;
+            
+        $account_type_id = Account::where('id', $id)->first()->AccountTypeId;
+        $type = AccountType::where('AccountTypeId', '=', $account_type_id)->first()->Type;
+
+        $records = StudentRecord::where('ClassId',$class_id)->where('CourseworkId',$coursework_id)->where('Active',1)->where('Done',1)->get();
+        if (count($records) < 1) {
+            return response()->json([
+                'result' => 'Fail'            
+            ]);
+        } else {
+            return response()->json([
+                'result' => 'Success',
+                'data' => $records
+            ]);
+        }
     }
 
     public function checkCoursework($class_id, $coursework_id, $weekcount) {
