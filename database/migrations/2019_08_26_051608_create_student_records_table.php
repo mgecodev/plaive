@@ -22,6 +22,8 @@ class CreateStudentRecordsTable extends Migration
                 $table->integer('ClassId');
                 $table->integer('CourseworkId');
                 $table->boolean('Done')->default(0);
+                $table->integer('SubCourseworkId');
+                $table->boolean('Active')->default(1);
                 $table->timestamps();
             });
         }
@@ -40,11 +42,11 @@ class CreateStudentRecordsTable extends Migration
 //            });
 
             // 3. Add column
-            Schema::table($this->tableName, function (Blueprint $table) {
+            // Schema::table($this->tableName, function (Blueprint $table) {
         
-                $table->integer('SubCourseworkId');
-                $table->boolean('Active')->default(1);
-            });
+            //     $table->integer('SubCourseworkId');
+            //     $table->boolean('Active')->default(1);
+            // });
 
             // 4. Rename table
 //            Schema::rename($this->tableName, 'Accounts');
