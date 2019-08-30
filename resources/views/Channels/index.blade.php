@@ -169,8 +169,11 @@ function ApiCopy() {
                                         <i class="fa fa-ellipsis-h"></i>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right">
-                                        <a class="dropdown-item" href="#"><i class="fa fa-eye"></i>&nbsp;&nbsp;ApiKey</a>
-                                        <a class="dropdown-item" href="#"><i class="fa fa-download"></i>&nbsp;&nbsp;다운로드</a>
+                                        <a class="dropdown-item" href="javascript:void(0);" onclick="ShowApi('{{ $channel->ApiKey }}');"><i class="fa fa-eye"></i>&nbsp;&nbsp;ApiKey</a>
+                                        <?php
+                                            $url = 'DownloadData/'.$channel->ChannelId;
+                                        ?>
+                                        <a class="dropdown-item" href="{{ asset($url) }}"><i class="fa fa-download"></i>&nbsp;&nbsp;다운로드</a>
                                         <?php
                                             $url = 'EditDevice/'.$channel->ChannelId.'/edit';
                                         ?>

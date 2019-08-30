@@ -7,6 +7,7 @@ use App\InfoClass;
 use App\Account;
 use App\Course;
 use App\Coursework;
+use App\SubCoursework;
 use App\ClassMember;
 use App\AccountType;
 use Illuminate\Http\Request;
@@ -180,7 +181,7 @@ class ManageClassController extends Controller
                 $boards = DB::table('Boards')->where('BoardType','Class')->where('Active',1)->where('TopFix','Y')->where('ClassId',$class_id)->orderBy('created_at','desc')->get();
                 $down_boards = DB::table('Boards')->where('BoardType','Class')->where('Active',1)->where('TopFix','N')->where('ClassId',$class_id)->orderBy('created_at','desc')->get();
                 $boards = $boards->merge($down_boards);
-                $courseworks = Coursework::where('CourseId', $class->CourseId)->get();  // get the courseworks related to specific class
+                $courseworks = Coursework::where('CourseId', $class->CourseId)->where('Active',1)->orderby('WeekNumber','asc')->get();  // get the courseworks related to specific class
 
                 return view('EnterClass')->with('class', $class)->with('name', $name)->with('type', $type)->with('id', $id)->with('tot_viable_students', $tot_viable_students)->with('class_id', $class_id)->with('tot_invited_students', $tot_invited_students)->with('tot_accepted_students', $tot_accepted_students)->with('tot_denied_students', $tot_denied_students)->with('boards',$boards)->with('board_flag',$board_flag)->with('courseworks', $courseworks);
             }
@@ -367,5 +368,25 @@ class ManageClassController extends Controller
                 'result' => 'Fail'
             ]);
         }
+    }
+    public function showStatus($class_id,$coursework_id)
+    {
+        $user = Auth::user();
+
+        $name = $user->name;
+        $id = $user->id;
+        
+        $account_type_id = Account::where('id', $id)->first()->AccountTypeId;
+        $type = AccountType::where('AccountTypeId', '=', $account_type_id)->first()->Type;
+        //$students = ClassMember::where('ClassId',$class_id)->where('Active',1)->get();
+        $students = DB::table('Accounts')
+                        ->join('ClassMembers','ClassMembers.AccountId','=','Accounts.id')
+                        ->where('ClassMembers.ClassId','=',$class_id)
+                        ->where('Accounts.Active','=',1)
+                        ->where('ClassMembers.Active','=',1)
+                        ->select('Accounts.name','Accounts.id')
+                        ->get();
+        $subcourseworks = SubCoursework::where('CourseworkId',$coursework_id)->where('Active',1)->get();
+        return view('ShowStatus')->with('students',$students)->with('subcourseworks',$subcourseworks);
     }
 }

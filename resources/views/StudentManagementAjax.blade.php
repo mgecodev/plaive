@@ -12,10 +12,14 @@
                             <a class="nav-link {{ $board_flag == 'invite' ? 'active show' : '' }}" data-toggle="tab" href="#invite4" role="tab" aria-selected="false">학생
                                 초대하기</a>
                         </li>
-
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab"
+                               href="#take-class" role="tab" aria-selected="false">수업
+                                현황</a>
+                        </li>
                     @elseif ($type == 'Student')
                         <li class="nav-item">
-                            <a class="nav-link {{ $board_flag == null ? 'active show' : '' }}" data-toggle="tab"
+                            <a class="nav-link" data-toggle="tab"
                                href="#take-class" role="tab" aria-selected="false">수업
                                 듣기</a>
                         </li>
@@ -116,9 +120,40 @@
                             </div>
                         </div>
                     </div>
+                    <div class="tab-pane fade" id="take-class" role="tabpanel">
+                            <div class="pd-20">
+                                <div class="table-responsive text-center">
+                                    <table class="table table-bordered stripe hover nowrap" id="fourth_table"
+                                           style="width:100%;">
+                                        <thead>
+                                        <tr>
+                                            @if((new \Jenssegers\Agent\Agent())->isPhone())
+                                            <th class="text-center">내용</th>
+                                            @else
+                                            <th class="text-center">주차</th>
+                                            <th class="text-center">내용</th>
+                                            @endif
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        @foreach($courseworks as $coursework)
+                                            <tr onclick="goCourseStatus({{ $class_id }},{{ $coursework->CourseworkId }})">
+                                                @if((new \Jenssegers\Agent\Agent())->isPhone())
+                                                <th class="text-center">내용</th>
+                                                @else
+                                                <td>{{ $coursework->WeekNumber }}</td>
+                                                <td>{{ $coursework->Content }}</td>
+                                                @endif
+                                            </tr>
+                                        @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
                     @endif
                     @if ($type == 'Student')
-                        <div class="tab-pane fade {{ $board_flag == null ? 'active show' : '' }}" id="take-class"
+                        <div class="tab-pane fade" id="take-class"
                              role="tabpanel">
                             <div class="pd-20">
                                 <div class="table-responsive text-center">
@@ -287,5 +322,9 @@
                 //console.log(request + "/" + status + "/" + error);
             }
         })
+    }
+    function goCourseStatus(_classid,_courseworkid) {
+        var url = '/ShowStatus/'+_classid+'/'+_courseworkid;
+        window.open(url,'_blank');
     }
 </script>
