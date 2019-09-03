@@ -85,9 +85,9 @@ function SuccessDelete(_class){
 @endsection
 @section("page_title")
 @if($board_type == 'Class')
-    <h1>게시물</h1>
+    <h1>{{ $board->BoardTitle }}</h1>
 @else
-    <h1>소식</h1>
+    <h1>{{ $board->BoardTitle }}</h1>
 @endif
 @endsection
 @section('content')
