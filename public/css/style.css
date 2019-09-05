@@ -3145,7 +3145,7 @@ span.m_1 {
 
 .customer-box .nav-tabs > li > a.active{
 	border: none;
-	background: #eea412;
+	background: #28b8ce;
 	color: #fff;
 	border-radius: 0px;
 }
@@ -3161,7 +3161,7 @@ span.m_1 {
 }
 
 .customer-box .nav-tabs > li > a:hover{
-	background: #eea412;
+	background: #28b8ce;
 	color: #ffffff;
 	border: 0px;
 }

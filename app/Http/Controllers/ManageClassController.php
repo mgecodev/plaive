@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Storage;
 
 class ManageClassController extends Controller
 {
-   /**
+    /**
      * Create a new controller instance.
      *
      * @return void
@@ -34,7 +34,8 @@ class ManageClassController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
 
-    public function index($board_flag=NULL) {
+    public function index($board_flag = NULL)
+    {
         // Input :
         // Output :
         // Description : show all the list of classes that teacher takes in charge of
@@ -49,10 +50,11 @@ class ManageClassController extends Controller
         $type = AccountType::where('AccountTypeId', '=', $account_type_id)->first()->Type;
         $courses = Course::where('CreatedBy', $id)->orwhere('CreatedBy', 0)->where('Active', 1)->get();
         $classes = $this->showClassInfo($id);
-        return view('ManageClass')->with('classes', $classes)->with('name', $name)->with('type', $type)->with('id', $id)->with('board_flag',$board_flag)->with('courses', $courses);
+        return view('ManageClass')->with('classes', $classes)->with('name', $name)->with('type', $type)->with('id', $id)->with('board_flag', $board_flag)->with('courses', $courses);
     }
 
-    public function saveCourseInfo() {
+    public function saveCourseInfo()
+    {
 
         // get data from post method
         $user_id = Auth::user()->id;
@@ -76,7 +78,8 @@ class ManageClassController extends Controller
         return redirect('/OpenClass');
     }
 
-    public function showClassInfo($id) {
+    public function showClassInfo($id)
+    {
         // Input :
         // Output : get the list of classes
         // Description : show all the classes that teacher takes in charge of
@@ -84,7 +87,8 @@ class ManageClassController extends Controller
         return $classes;
     }
 
-    public function showAllClass($request) {
+    public function showAllClass($request)
+    {
         // Input :
         // Output :
         // Description : show all the courses that user have made
@@ -94,13 +98,14 @@ class ManageClassController extends Controller
 
     }
 
-    public function deleteClass(Request $request) {
+    public function deleteClass(Request $request)
+    {
         // Input :
         // Output :
         // Description : delete class
         $nowdate = date('Y-m-d H:i:s');
         $class_id = $request->_classid;
-        $delete = InfoClass::where("ClassId", $class_id)->update(["Active" => 0,'updated_at' => $nowdate]);
+        $delete = InfoClass::where("ClassId", $class_id)->update(["Active" => 0, 'updated_at' => $nowdate]);
         if ($delete) {
             return response()->json([
                 'result' => 'Success'
@@ -112,7 +117,9 @@ class ManageClassController extends Controller
         }
         //return redirect('/home');
     }
-    public function enroll(Request $request) {
+
+    public function enroll(Request $request)
+    {
         // Input :
         // Output :
         // Description : click the 클래스 등록 in side bar which goes to page that can enroll the class using Ajax.
@@ -127,12 +134,14 @@ class ManageClassController extends Controller
         return view('EnrollClassAjax')->with('id', $id)->with('courses', $courses)->with('students', $students);
     }
 
-    public function enrollClass() {
+    public function enrollClass()
+    {
 
 
     }
 
-    public function enterClass($class_id, $board_flag=null, Request $request) {
+    public function enterClass($class_id, $board_flag = null, Request $request)
+    {
         // Input :
         // Output :
         // Description :
@@ -144,16 +153,16 @@ class ManageClassController extends Controller
 
         $account_type_id = Account::where('id', $id)->first()->AccountTypeId;
         $type = AccountType::where('AccountTypeId', '=', $account_type_id)->first()->Type;
-        if($type == "Student") {
-            $valid = ClassMember::where('AccountId','=',$id)->where('ClassId','=',$class_id)->where('Active',1)->get();
-            if(count($valid) < 1) {
+        if ($type == "Student") {
+            $valid = ClassMember::where('AccountId', '=', $id)->where('ClassId', '=', $class_id)->where('Active', 1)->get();
+            if (count($valid) < 1) {
                 $not_valid = 1;
             } else {
                 $not_valid = 0;
             }
-        } else if($type == "Teacher") {
-            $valid = InfoClass::where('AccountId','=',$id)->where('ClassId','=',$class_id)->where('Active',1)->get();
-            if(count($valid) < 1) {
+        } else if ($type == "Teacher") {
+            $valid = InfoClass::where('AccountId', '=', $id)->where('ClassId', '=', $class_id)->where('Active', 1)->get();
+            if (count($valid) < 1) {
                 $not_valid = 1;
             } else {
                 $not_valid = 0;
@@ -161,33 +170,33 @@ class ManageClassController extends Controller
         } else {
             $not_valid = 0;
         }
-        if($not_valid == 0) {
+        if ($not_valid == 0) {
             $class = InfoClass::where('ClassId', $class_id)->where('Active', 1)->first();// get one class out of specific teacher's
-            if(!$class) {
+            if (!$class) {
                 return redirect('/MyClass/Delete');
             } else {
-                $tot_accepted_students = $class->getMatchedStudent()->where("ClassId", $class_id)->where('Accepted', 1)->where('Active',1)->get();
-                $tot_denied_students = $class->getMatchedStudent()->where("ClassId", $class_id)->where('Accepted', 2)->where('Active',1)->get();
+                $tot_accepted_students = $class->getMatchedStudent()->where("ClassId", $class_id)->where('Accepted', 1)->where('Active', 1)->get();
+                $tot_denied_students = $class->getMatchedStudent()->where("ClassId", $class_id)->where('Accepted', 2)->where('Active', 1)->get();
                 $tot_invited_students = DB::table('Accounts')
-                                            ->join('Invitations','Invitations.InviteeId','=','Accounts.id')
-                                            ->where('Invitations.ClassId','=',$class_id)
-                                            ->where('Accounts.Active','=',1)
-                                            ->where('Invitations.Active','=',1)
-                                            ->select('Accounts.name','Accounts.id','Accounts.email','Invitations.Accepted','Invitations.InvitationId')
-                                            ->get();
+                    ->join('Invitations', 'Invitations.InviteeId', '=', 'Accounts.id')
+                    ->where('Invitations.ClassId', '=', $class_id)
+                    ->where('Accounts.Active', '=', 1)
+                    ->where('Invitations.Active', '=', 1)
+                    ->select('Accounts.name', 'Accounts.id', 'Accounts.email', 'Invitations.Accepted', 'Invitations.InvitationId')
+                    ->get();
+//                dd($tot_invited_students);
+                $temp_viable_students = Invitation::where('ClassId', $class_id)->where('Active', 1)->pluck('inviteeId')->all();
+                $tot_viable_students = Account::whereNotIn('id', $temp_viable_students)->where('AccountTypeId', 1)->where('Active', 1)->get();
 
-                $temp_viable_students = Invitation::where('ClassId',$class_id)->where('Active',1)->pluck('inviteeId')->all();
-                $tot_viable_students = Account::whereNotIn('id',$temp_viable_students)->where('AccountTypeId',1)->where('Active',1)->get();
-
-                $boards = DB::table('Boards')->where('BoardType','Class')->where('Active',1)->where('TopFix','Y')->where('ClassId',$class_id)->orderBy('created_at','desc')->get();
-                $down_boards = DB::table('Boards')->where('BoardType','Class')->where('Active',1)->where('TopFix','N')->where('ClassId',$class_id)->orderBy('created_at','desc')->get();
+                $boards = DB::table('Boards')->where('BoardType', 'Class')->where('Active', 1)->where('TopFix', 'Y')->where('ClassId', $class_id)->orderBy('created_at', 'desc')->get();
+                $down_boards = DB::table('Boards')->where('BoardType', 'Class')->where('Active', 1)->where('TopFix', 'N')->where('ClassId', $class_id)->orderBy('created_at', 'desc')->get();
                 $boards = $boards->merge($down_boards);
-                $courseworks = Coursework::where('CourseId', $class->CourseId)->where('Active',1)->orderby('WeekNumber','asc')->get();  // get the courseworks related to specific class
+                $courseworks = Coursework::where('CourseId', $class->CourseId)->where('Active', 1)->orderby('WeekNumber', 'asc')->get();  // get the courseworks related to specific class
 
-                return view('EnterClass')->with('class', $class)->with('name', $name)->with('type', $type)->with('id', $id)->with('tot_viable_students', $tot_viable_students)->with('class_id', $class_id)->with('tot_invited_students', $tot_invited_students)->with('tot_accepted_students', $tot_accepted_students)->with('tot_denied_students', $tot_denied_students)->with('boards',$boards)->with('board_flag',$board_flag)->with('courseworks', $courseworks);
+                return view('EnterClass')->with('class', $class)->with('name', $name)->with('type', $type)->with('id', $id)->with('tot_viable_students', $tot_viable_students)->with('class_id', $class_id)->with('tot_invited_students', $tot_invited_students)->with('tot_accepted_students', $tot_accepted_students)->with('tot_denied_students', $tot_denied_students)->with('boards', $boards)->with('board_flag', $board_flag)->with('courseworks', $courseworks);
             }
         } else {
-            if($type == "Teacher") {
+            if ($type == "Teacher") {
                 return redirect('/ManageClass');
             } else {
                 return redirect('/MyClass/Fail');
@@ -195,7 +204,8 @@ class ManageClassController extends Controller
         }
     }
 
-    public function inviteAdditionalMember($board_flag=null, Request $request) {
+    public function inviteAdditionalMember($board_flag = null, Request $request)
+    {
         // Input :
         // Output :
         // Description : 1. Check if he/she is already invited
@@ -225,14 +235,13 @@ class ManageClassController extends Controller
         $students = Account::where('Active', 1)->get();
         $tot_viable_students = array();
 
-        foreach($students as $student) {
+        foreach ($students as $student) {
 
             $cnt = $student->checkInvitation()->where("ClassId", $class_id)->count();
 
             if ($cnt == 0) {
                 array_push($tot_viable_students, $student);
-            }
-            else {
+            } else {
                 continue;
             }
         }
@@ -243,7 +252,8 @@ class ManageClassController extends Controller
         return 0;
     }
 
-    public function acceptInvitation() {
+    public function acceptInvitation()
+    {
         // Input :
         // Output :
         // Description : change 'accepted' as 1 and add this student into class member table
@@ -251,29 +261,31 @@ class ManageClassController extends Controller
 
     }
 
-    public function showMyClass(Request $request) {
+    public function showMyClass(Request $request)
+    {
         // Input :
         // Output :
         // Description : show my class
 
     }
 
-    public function includeStudent(Request $request) {
+    public function includeStudent(Request $request)
+    {
         // Input :
         // Output :
         // Description :    1. Make class first
         //                  2. Get ClassId and invite students
         //dd($request->all());
-        if($request->hasFile('class_image')){
+        if ($request->hasFile('class_image')) {
             $file = $request->file('class_image');
             $file_name = $file->getClientOriginalName();
-            $path = Storage::disk('s3')->put('plaive/class_image',$file,'public');
-            $s3_url = "https://s3.ap-northeast-2.amazonaws.com/s3.finedust.10make.com/".$path;
+            $path = Storage::disk('s3')->put('plaive/class_image', $file, 'public');
+            $s3_url = "https://s3.ap-northeast-2.amazonaws.com/s3.finedust.10make.com/" . $path;
         } else {
             $s3_url = null;
         }
         $temp_student_ids = $request->_checked_students;
-        $student_ids = explode(',',$temp_student_ids);
+        $student_ids = explode(',', $temp_student_ids);
         $course_id = $request->_courseid;
         $user_id = $request->_teacherid;
 
@@ -285,17 +297,32 @@ class ManageClassController extends Controller
             "ClassImage" => $s3_url,
             "Active" => 1
         ]);
-        if($insert1) {
-            $class_id = $insert1->ClassId;   // get new class id
-            // invite all the students that teacher selected
-            foreach($student_ids as $student_id) {
-                $insert2 = Invitation::create([
-                    "InviterId" => $user_id,
-                    "InviteeId" => $student_id,
-                    "ClassId" => $class_id,
-                    "Accepted" => 0
-                ]);
+        if ($insert1) {
 
+            $class_id = $insert1->ClassId;   // get new class id
+
+            // invite all the students that teacher selected
+            foreach ($student_ids as $student_id) {
+
+//                $insert2 = Invitation::create([
+//                    "InviterId" => $user_id,
+//                    "InviteeId" => $student_id,
+//                    "ClassId" => $class_id,
+//                    "Accepted" => 0
+//                ]);
+
+                $insert2 = Invitation::updateOrCreate(
+                    ['InviterId' => $user_id,
+                        'InviteeId' => $student_id,
+                        'ClassId' => $class_id,
+                    ]
+                    , [
+                        "InviterId" => $user_id,
+                        "InviteeId" => $student_id,
+                        "ClassId" => $class_id,
+                        "Accepted" => 0
+                    ]
+                );
             }
         }
         if ($insert1 && $insert2) {
@@ -308,24 +335,26 @@ class ManageClassController extends Controller
             ]);
         }
     }
-    public function updateStudent(InfoClass $class_id,Request $request) {
+
+    public function updateStudent(InfoClass $class_id, Request $request)
+    {
         $nowdate = date('Y-m-d H:i:s');
-        if($request->hasFile('class_image')){
+        if ($request->hasFile('class_image')) {
             $file = $request->file('class_image');
             $file_name = $file->getClientOriginalName();
-            $path = Storage::disk('s3')->put('plaive/class_image',$file,'public');
-            $s3_url = "https://s3.ap-northeast-2.amazonaws.com/s3.finedust.10make.com/".$path;
+            $path = Storage::disk('s3')->put('plaive/class_image', $file, 'public');
+            $s3_url = "https://s3.ap-northeast-2.amazonaws.com/s3.finedust.10make.com/" . $path;
         } else {
             $s3_url = $class_id->ClassImage;
         }
-        if($request->_courseid == 0) {
+        if ($request->_courseid == 0) {
             $course_id = $class_id->CourseId;
         } else {
             $course_id = $request->_courseid;
         }
 
         // update Class
-        $update = InfoClass::where('ClassId',$class_id->ClassId)->update([
+        $update = InfoClass::where('ClassId', $class_id->ClassId)->update([
             "CourseId" => $course_id,
             "ClassName" => $request->class_name,
             "ClassImage" => $s3_url,
@@ -342,8 +371,10 @@ class ManageClassController extends Controller
             ]);
         }
     }
-    public function denyStudent($invitation) {
-        $update = Invitation::where('InvitationId',$invitation)->update([
+
+    public function denyStudent($invitation)
+    {
+        $update = Invitation::where('InvitationId', $invitation)->update([
             'Active' => 0
         ]);
         if ($update) {
@@ -356,8 +387,10 @@ class ManageClassController extends Controller
             ]);
         }
     }
-    public function ReInvite($invitation) {
-        $update = Invitation::where('InvitationId',$invitation)->update([
+
+    public function ReInvite($invitation)
+    {
+        $update = Invitation::where('InvitationId', $invitation)->update([
             'Accepted' => 0
         ]);
         if ($update) {
@@ -370,7 +403,9 @@ class ManageClassController extends Controller
             ]);
         }
     }
-    public function showStatus($class_id,$coursework_id) {
+
+    public function showStatus($class_id, $coursework_id)
+    {
 
         $user = Auth::user();
 
@@ -381,29 +416,30 @@ class ManageClassController extends Controller
         $type = AccountType::where('AccountTypeId', '=', $account_type_id)->first()->Type;
         //$students = ClassMember::where('ClassId',$class_id)->where('Active',1)->get();
         $students = DB::table('Accounts')
-                        ->join('ClassMembers','ClassMembers.AccountId','=','Accounts.id')
-                        ->where('ClassMembers.ClassId','=',$class_id)
-                        ->where('Accounts.Active','=',1)
-                        ->where('ClassMembers.Active','=',1)
-                        ->select('Accounts.name','Accounts.id')
-                        ->get();
-        $subcourseworks = SubCoursework::where('CourseworkId',$coursework_id)->where('Active',1)->get();
-        return view('ShowStatus')->with('students',$students)->with('subcourseworks',$subcourseworks)->with('class_id',$class_id)->with('coursework_id',$coursework_id);
+            ->join('ClassMembers', 'ClassMembers.AccountId', '=', 'Accounts.id')
+            ->where('ClassMembers.ClassId', '=', $class_id)
+            ->where('Accounts.Active', '=', 1)
+            ->where('ClassMembers.Active', '=', 1)
+            ->select('Accounts.name', 'Accounts.id')
+            ->get();
+        $subcourseworks = SubCoursework::where('CourseworkId', $coursework_id)->where('Active', 1)->get();
+        return view('ShowStatus')->with('students', $students)->with('subcourseworks', $subcourseworks)->with('class_id', $class_id)->with('coursework_id', $coursework_id);
     }
+
     public function getStatus($class_id, $coursework_id)
     {
         $user = Auth::user();
 
         $name = $user->name;
         $id = $user->id;
-            
+
         $account_type_id = Account::where('id', $id)->first()->AccountTypeId;
         $type = AccountType::where('AccountTypeId', '=', $account_type_id)->first()->Type;
 
-        $records = StudentRecord::where('ClassId',$class_id)->where('CourseworkId',$coursework_id)->where('Active',1)->where('Done',1)->get();
+        $records = StudentRecord::where('ClassId', $class_id)->where('CourseworkId', $coursework_id)->where('Active', 1)->where('Done', 1)->get();
         if (count($records) < 1) {
             return response()->json([
-                'result' => 'Fail'            
+                'result' => 'Fail'
             ]);
         } else {
             return response()->json([
@@ -413,7 +449,8 @@ class ManageClassController extends Controller
         }
     }
 
-    public function checkCoursework($class_id, $coursework_id, $weekcount) {
+    public function checkCoursework($class_id, $coursework_id, $weekcount)
+    {
         // Input :
         // Output :
         // Description : let student check the subcoursework and let themselves how many stages they can deal with
@@ -436,7 +473,8 @@ class ManageClassController extends Controller
         return view('Courseworks.ShowSubCourseworkList')->with('subcourseworks', $subcourseworks)->with('id', $id)->with('name', $name)->with('type', $type)->with('class_id', $class_id)->with('coursework_id', $coursework_id);
     }
 
-    public function saveMyFootprint(Request $request) {
+    public function saveMyFootprint(Request $request)
+    {
 
         $user = Auth::user();
 
@@ -450,7 +488,7 @@ class ManageClassController extends Controller
         $coursework_id = $request->_courseworkid;
         $class_id = $request->_classid;
 
-        foreach($checked_tasks as $key=>$value) {
+        foreach ($checked_tasks as $key => $value) {
 
             StudentRecord::updateOrCreate(['AccountId' => $id, 'ClassId' => $class_id, 'CourseworkId' => $coursework_id, 'SubCourseworkId' => $key], [
 
@@ -461,7 +499,6 @@ class ManageClassController extends Controller
 
 
         }
-
 
 
     }

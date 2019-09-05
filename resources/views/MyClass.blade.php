@@ -16,7 +16,7 @@
     <div class="row">
         <div class="col-lg-2 custom-background">
         </div>
-        <div class="col-lg-10 custom-background">
+        <div class="col-lg-8 custom-background">
             <div id="courses" class="section wb">
                 <div class="container">
                     <div class="row">
@@ -26,7 +26,7 @@
                                     <div class="image-blog">
                                         @if($my_class->ClassImage  == null)
                                         <img src="/images/blog_1.jpg" alt="" class="img-fluid" style="max-height:200px;min-height:200px;">
-                                        @else 
+                                        @else
                                         <img src={{ $my_class->ClassImage }} alt="" class="img-fluid" style="max-height:200px;min-height:200px;">
                                         @endif
                                     </div>
@@ -41,6 +41,8 @@
                     </div><!-- end row -->
                 </div><!-- end container -->
             </div><!-- end section -->
+        </div>
+        <div class="col-lg-2 custom-background">
         </div>
     </div><!-- end row -->
     <script>

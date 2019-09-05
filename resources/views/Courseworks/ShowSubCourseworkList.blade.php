@@ -100,6 +100,69 @@
             }
         }
 
+        // function checkAll(e) {
+        //
+        //     e.preventDefault();
+        //
+        //     // put every id into obj array
+        //     if (e.checked) {
+        //
+        //         obj[_subcourseworkid] = 1;
+        //         console.log(Object.size(obj));
+        //     } else {
+        //
+        //         obj[_subcourseworkid] = 0;
+        //         console.log(Object.size(obj));
+        //     }
+        //
+        //     var key, value, _id;
+        //
+        //     for (key in obj) {
+        //
+        //         _id = '#' + key;
+        //         if($(_id).is(":checked")) {
+        //             alert('checked');
+        //         }
+        //         else {
+        //             alert('unchecked');
+        //         }
+            //     }
+        // }
+
+        $('#check_all').click(function(event) {
+
+            var _id;
+
+            if(this.checked) {
+                // Iterate each checkbox
+                $(':checkbox').each(function() {
+                    this.checked = true;
+                    _id = $(this).attr('id');
+
+                    if (_id == 'check_all') {
+                        return true;
+                    }
+                    else {
+                        obj[_id] = 1;
+                    }
+                });
+            } else {
+                $(':checkbox').each(function() {
+                    this.checked = false;
+
+                    _id = $(this).attr('id');
+
+                    if (_id == 'check_all') {
+                        return true;
+                    }
+                    else {
+                        obj[_id] = 0;
+                    }
+                });
+            }
+            console.log(obj);
+        });
+
     </script>
 
     <style>
@@ -204,7 +267,7 @@
                                 <th>내용</th>
                                 <th class="datatable-nosort datatable-nosearch">
                                     <div class="checks"><input type="checkbox"
-                                                               id="check_all"> <label
+                                                               id="check_all"><label
                                             for="check_all"></label></div>
                                 </th>
                             </tr>

@@ -431,7 +431,7 @@
                         <div class="desc">
                             <h3><i class="fa fa-quote-left"></i> 기록을 남길 수 있어서 좋았어요</h3>
                             <p class="lead">다른 수업과는 달리 내가 수업에서 한 활동들에 대한 기록들이 잘 정리되어 있어 결과를 한 눈에 보기 편했습니다.</p>
-                            <h4>장길준 (소마중 3학년)</h4>
+                            <h4>장길준 ( 소마중 3학년 )</h4>
 
                         </div>
                         <!-- end testi-meta -->
@@ -440,12 +440,14 @@
 
                     <div class="testimonial clearfix">
                         <div class="testi-meta">
-                            <img src="images/testi_02.png" alt="" class="img-fluid">
-                            <h4>Jacques Philips </h4>
+                            {{--                            <img src="images/testi_01.png" alt="" class="img-fluid">--}}
+                            {{--                            <h4>James Fernando </h4>--}}
                         </div>
                         <div class="desc">
-                            <h3><i class="fa fa-quote-left"></i> Awesome Services!</h3>
-                            <p class="lead">Explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you completed.</p>
+                            <h3><i class="fa fa-quote-left"></i> 매우 쉽게 선생님과 소통할 수 있어요</h3>
+                            <p class="lead"> 선생님이 내주는 과제를 할 수 있어서 좋습니다.</p>
+                            <h4>김숭 ( 가미초 3학년 )</h4>
+
                         </div>
                         <!-- end testi-meta -->
                     </div>
@@ -453,81 +455,44 @@
 
                     <div class="testimonial clearfix">
                         <div class="testi-meta">
-                            <img src="images/testi_03.png" alt="" class="img-fluid ">
-                            <h4>Venanda Mercy </h4>
+                            {{--                            <img src="images/testi_01.png" alt="" class="img-fluid">--}}
+                            {{--                            <h4>James Fernando </h4>--}}
                         </div>
                         <div class="desc">
-                            <h3><i class="fa fa-quote-left"></i> Great & Talented Team!</h3>
-                            <p class="lead">The master-builder of human happines no one rejects, dislikes avoids pleasure itself, because it is very pursue pleasure. </p>
+                            <h3><i class="fa fa-quote-left"></i> 쉽게 학생들과 클래스를 만들 수 있어요</h3>
+                            <p class="lead"> 클래스 안에서 학생들과 소통하고 관리할 수 있어요.</p>
+                            <h4>김미애 ( 행당초선생님 )</h4>
                         </div>
                         <!-- end testi-meta -->
                     </div>
-                    <!-- end testimonial -->
-                    <div class="testimonial clearfix">
-                        <div class="testi-meta">
-                            <img src="images/testi_01.png" alt="" class="img-fluid">
-                            <h4>James Fernando </h4>
-                        </div>
-                        <div class="desc">
-                            <h3><i class="fa fa-quote-left"></i> Wonderful Support!</h3>
-                            <p class="lead">They have got my project on time with the competition with a sed highly skilled, and experienced & professional team.</p>
-                        </div>
-                        <!-- end testi-meta -->
-                    </div>
-                    <!-- end testimonial -->
-
-                    <div class="testimonial clearfix">
-                        <div class="testi-meta">
-                            <img src="images/testi_02.png" alt="" class="img-fluid">
-                            <h4>Jacques Philips </h4>
-                        </div>
-                        <div class="desc">
-                            <h3><i class="fa fa-quote-left"></i> Awesome Services!</h3>
-                            <p class="lead">Explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you completed.</p>
-                        </div>
-                        <!-- end testi-meta -->
-                    </div>
-                    <!-- end testimonial -->
-
-                    <div class="testimonial clearfix">
-                        <div class="testi-meta">
-                            <img src="images/testi_03.png" alt="" class="img-fluid">
-                            <h4>Venanda Mercy </h4>
-                        </div>
-                        <div class="desc">
-                            <h3><i class="fa fa-quote-left"></i> Great & Talented Team!</h3>
-                            <p class="lead">The master-builder of human happines no one rejects, dislikes avoids pleasure itself, because it is very pursue pleasure. </p>
-                        </div>
-                        <!-- end testi-meta -->
-                    </div><!-- end testimonial -->
                 </div><!-- end carousel -->
             </div><!-- end col -->
         </div><!-- end row -->
     </div><!-- end container -->
 </div><!-- end section -->
 
-<div class="parallax section dbcolor">
-    <div class="container">
-        <div class="row logos">
-            <div class="col-md-2 col-sm-2 col-xs-6 wow fadeInUp">
-                <a href="#"><img src="images/logo_01.png" alt="" class="img-repsonsive"></a>
-            </div>
-            <div class="col-md-2 col-sm-2 col-xs-6 wow fadeInUp">
-                <a href="#"><img src="images/logo_02.png" alt="" class="img-repsonsive"></a>
-            </div>
-            <div class="col-md-2 col-sm-2 col-xs-6 wow fadeInUp">
-                <a href="#"><img src="images/logo_03.png" alt="" class="img-repsonsive"></a>
-            </div>
-            <div class="col-md-2 col-sm-2 col-xs-6 wow fadeInUp">
-                <a href="#"><img src="images/logo_04.png" alt="" class="img-repsonsive"></a>
-            </div>
-            <div class="col-md-2 col-sm-2 col-xs-6 wow fadeInUp">
-                <a href="#"><img src="images/logo_05.png" alt="" class="img-repsonsive"></a>
-            </div>
-            <div class="col-md-2 col-sm-2 col-xs-6 wow fadeInUp">
-                <a href="#"><img src="images/logo_06.png" alt="" class="img-repsonsive"></a>
-            </div>
-        </div><!-- end row -->
-    </div><!-- end container -->
-</div><!-- end section -->
+{{--<div class="parallax section dbcolor">--}}
+{{--    <div class="container">--}}
+{{--        <div class="row logos">--}}
+{{--            <div class="col-md-2 col-sm-2 col-xs-6 wow fadeInUp">--}}
+{{--                <a href="#"><img src="images/logo_01.png" alt="" class="img-repsonsive"></a>--}}
+{{--            </div>--}}
+{{--            <div class="col-md-2 col-sm-2 col-xs-6 wow fadeInUp">--}}
+{{--                <a href="#"><img src="images/logo_02.png" alt="" class="img-repsonsive"></a>--}}
+{{--            </div>--}}
+{{--            <div class="col-md-2 col-sm-2 col-xs-6 wow fadeInUp">--}}
+{{--                <a href="#"><img src="images/logo_03.png" alt="" class="img-repsonsive"></a>--}}
+{{--            </div>--}}
+{{--            <div class="col-md-2 col-sm-2 col-xs-6 wow fadeInUp">--}}
+{{--                <a href="#"><img src="images/logo_04.png" alt="" class="img-repsonsive"></a>--}}
+{{--            </div>--}}
+{{--            <div class="col-md-2 col-sm-2 col-xs-6 wow fadeInUp">--}}
+{{--                <a href="#"><img src="images/logo_05.png" alt="" class="img-repsonsive"></a>--}}
+{{--            </div>--}}
+{{--            <div class="col-md-2 col-sm-2 col-xs-6 wow fadeInUp">--}}
+{{--                <a href="#"><img src="images/logo_06.png" alt="" class="img-repsonsive"></a>--}}
+{{--            </div>--}}
+{{--        </div><!-- end row -->--}}
+{{--    </div><!-- end container -->--}}
+{{--</div><!-- end section -->--}}
 @stop

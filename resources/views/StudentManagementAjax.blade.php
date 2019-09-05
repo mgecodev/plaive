@@ -1,3 +1,19 @@
+<style>
+    .btn-primary {
+
+        color: #fff;
+        background-color: #28b8ce !important;
+        border-color: #28b8ce !important;
+    }
+
+    .page-item.active .page-link {
+        z-index: 1;
+        color: #fff;
+        background-color: #28b8ce !important;
+        border-color: #28b8ce !important;
+    }
+</style>
+
 <div class="pd-20 bg-white border-radius-4 box-shadow">
     <h5 class="weight-500 mb-20">{{ $class->ClassName }} 클래스입니다</h5>
     <div class="tab">
@@ -9,26 +25,29 @@
                             <a class="nav-link {{ $board_flag == null ? 'active show' : '' }}" data-toggle="tab"
                                href="#home4" role="tab" aria-selected="true">학생
                                 현황</a>
-                            <a class="nav-link {{ $board_flag == 'invite' ? 'active show' : '' }}" data-toggle="tab" href="#invite4" role="tab" aria-selected="false">학생
+                            <a class="nav-link {{ $board_flag == 'invite' ? 'active show' : '' }}" data-toggle="tab"
+                               href="#invite4" role="tab" aria-selected="false">학생
                                 초대하기</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" data-toggle="tab"
                                href="#take-class" role="tab" aria-selected="false">수업 현황</a>
+                            <a class="nav-link {{ $board_flag == 'board' ? 'active show' : '' }}" data-toggle="tab"
+                               href="#profile4" role="tab" aria-selected="false">게시물</a>
                         </li>
+
                     @elseif ($type == 'Student')
-                        <li class="nav-item active show">
+                        <li class="nav-item">
                             <a class="nav-link" data-toggle="tab"
                                href="#take-class" role="tab" aria-selected="false">수업 듣기</a>
+                            <a class="nav-link {{ $board_flag == 'board' ? 'active show' : '' }}" data-toggle="tab"
+                               href="#profile4" role="tab" aria-selected="false">게시물</a>
                         </li>
 
                     @endif
-                    <li class="nav-item">
-                        <a class="nav-link {{ $board_flag == 'board' ? 'active show' : '' }}" data-toggle="tab"
-                           href="#profile4" role="tab" aria-selected="false">게시물</a>
-                    </li>
                 </ul>
             </div>
+
             <div class="col-md-9 col-sm-12">
                 <div class="tab-content">
                     @if ($type == 'Teacher')
@@ -47,14 +66,15 @@
                                         <thead>
                                         <tr>
                                             @if((new \Jenssegers\Agent\Agent())->isPhone())
-                                            <th class="text-center">작성자</th>
-                                            <th class="text-center">제목</th>
+                                                <th class="text-center">작성자</th>
+                                                <th class="text-center">제목</th>
                                             @else
-                                            <th class="text-center datatable-nosearch">#</th>
-                                            <th class="text-center">작성자</th>
-                                            <th class="text-center">제목</th>
-                                            <th class="text-center datatable-nosearch" style="white-space:nowrap;">생성일
-                                            </th>
+                                                <th class="text-center datatable-nosearch">#</th>
+                                                <th class="text-center">작성자</th>
+                                                <th class="text-center">제목</th>
+                                                <th class="text-center datatable-nosearch" style="white-space:nowrap;">
+                                                    생성일
+                                                </th>
                                             @endif
                                         </tr>
                                         </thead>
@@ -66,13 +86,13 @@
                                             <tr class="item{{$board->BoardId}}"
                                                 onclick="location.href='{{ asset($url) }}'">
                                                 @if((new \Jenssegers\Agent\Agent())->isPhone())
-                                                <td style="vertical-align: middle;">{{ $board->WriterName }}</td>
-                                                <td style="vertical-align: middle;">{{ str_limit($board->BoardTitle,24) }}</td>
+                                                    <td style="vertical-align: middle;">{{ $board->WriterName }}</td>
+                                                    <td style="vertical-align: middle;">{{ str_limit($board->BoardTitle,24) }}</td>
                                                 @else
-                                                <td style="vertical-align: middle;">{{ $loop->iteration }}</td>
-                                                <td style="vertical-align: middle;">{{ $board->WriterName }}</td>
-                                                <td style="vertical-align: middle;">{{ str_limit($board->BoardTitle,40) }}</td>
-                                                <td style="vertical-align: middle;">{{ $board->created_at }}</td>
+                                                    <td style="vertical-align: middle;">{{ $loop->iteration }}</td>
+                                                    <td style="vertical-align: middle;">{{ $board->WriterName }}</td>
+                                                    <td style="vertical-align: middle;">{{ str_limit($board->BoardTitle,40) }}</td>
+                                                    <td style="vertical-align: middle;">{{ $board->created_at }}</td>
                                                 @endif
                                             </tr>
                                         @endforeach
@@ -91,34 +111,38 @@
                         </div>
                     </div>
                     @if ($type == 'Teacher')
-                    <div class="tab-pane fade {{ $board_flag == 'invite' ? 'active show' : '' }}" id="invite4" role="tabpanel">
-                        <div class="pd-20">
-                            <div class="table-responsive text-center">
-                                <table class="table table-bordered stripe hover nowrap" id="second_table"
-                                       style="width:100%;">
-                                    <thead>
-                                    <tr>
-                                        <th>이름</th>
-                                        <th>메일</th>
-                                        <th class="text-center datatable-nosearch datatable-nosort">Action</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    @foreach($tot_viable_students as $tot_viable_student)
+                        <div class="tab-pane fade {{ $board_flag == 'invite' ? 'active show' : '' }}" id="invite4"
+                             role="tabpanel">
+                            <div class="pd-20">
+                                <div class="table-responsive text-center">
+                                    <table class="table table-bordered stripe hover nowrap" id="second_table"
+                                           style="width:100%;">
+                                        <thead>
                                         <tr>
-                                            <td>{{ $tot_viable_student->name }}</td>
-                                            <td>{{ $tot_viable_student->email }}</td>
-                                            <td>
-                                                <button class="btn btn-primary" onclick="InviteAddition({{ $tot_viable_student->id }}, {{ $id }}, {{ $class_id }})">초대</button>
-                                            </td>
+                                            <th>이름</th>
+                                            <th>메일</th>
+                                            <th class="text-center datatable-nosearch datatable-nosort">Action</th>
                                         </tr>
-                                    @endforeach
-                                    </tbody>
-                                </table>
+                                        </thead>
+                                        <tbody>
+                                        @foreach($tot_viable_students as $tot_viable_student)
+                                            <tr>
+                                                <td>{{ $tot_viable_student->name }}</td>
+                                                <td>{{ $tot_viable_student->email }}</td>
+                                                <td>
+                                                    <button class="btn btn-primary"
+                                                            onclick="InviteAddition({{ $tot_viable_student->id }}, {{ $id }}, {{ $class_id }})">
+                                                        초대
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="tab-pane fade" id="take-class" role="tabpanel">
+                        <div class="tab-pane fade" id="take-class" role="tabpanel">
                             <div class="pd-20">
                                 <div class="table-responsive text-center">
                                     <table class="table table-bordered stripe hover nowrap" id="fourth_table"
@@ -126,10 +150,10 @@
                                         <thead>
                                         <tr>
                                             @if((new \Jenssegers\Agent\Agent())->isPhone())
-                                            <th class="text-center">내용</th>
+                                                <th class="text-center">내용</th>
                                             @else
-                                            <th class="text-center">주차</th>
-                                            <th class="text-center">내용</th>
+                                                <th class="text-center">주차</th>
+                                                <th class="text-center">내용</th>
                                             @endif
                                         </tr>
                                         </thead>
@@ -137,10 +161,10 @@
                                         @foreach($courseworks as $coursework)
                                             <tr onclick="goCourseStatus({{ $class_id }},{{ $coursework->CourseworkId }})">
                                                 @if((new \Jenssegers\Agent\Agent())->isPhone())
-                                                <th class="text-center">내용</th>
+                                                    <th class="text-center">내용</th>
                                                 @else
-                                                <td>{{ $coursework->WeekNumber }}</td>
-                                                <td>{{ $coursework->Content }}</td>
+                                                    <td>{{ $coursework->WeekNumber }}</td>
+                                                    <td>{{ $coursework->Content }}</td>
                                                 @endif
                                             </tr>
                                         @endforeach
@@ -171,7 +195,9 @@
                                                 <td>{{ $coursework->WeekNumber }}</td>
                                                 <td>{{ $coursework->ContentNumber }}</td>
                                                 <td>{{ $coursework->Content }}</td>
-                                                <td><input type="button" class="btn btn-primary" value="들어가기" onclick="window.location.href='/Class/{{ $class->ClassId.'/'.$coursework->CourseworkId }}/{{ $coursework->WeekNumber }}'"></input></td>
+                                                <td><input type="button" class="btn btn-primary" value="들어가기"
+                                                           onclick="window.location.href='/Class/{{ $class->ClassId.'/'.$coursework->CourseworkId }}/{{ $coursework->WeekNumber }}'"></input>
+                                                </td>
                                             </tr>
                                         @endforeach
                                         </tbody>
@@ -187,8 +213,8 @@
 </div>
 
 <script>
-    function InviteAddition(_inviteeid,_inviterid,_classid) {
-        var ids = _inviteeid+','+_inviterid+','+_classid;
+    function InviteAddition(_inviteeid, _inviterid, _classid) {
+        var ids = _inviteeid + ',' + _inviterid + ',' + _classid;
         $.ajax({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -204,7 +230,7 @@
                 $("#modal-content6").empty();
                 $("#modal-content6").append('성공적으로 초대 되었습니다.');
                 $("#modal-success-button").empty();
-                $("#modal-success-button").append(' <button type="button" class="btn btn-primary" onclick="goPage('+_classid+',0)">확인</button>');
+                $("#modal-success-button").append(' <button type="button" class="btn btn-primary" onclick="goPage(' + _classid + ',0)">확인</button>');
                 $("#success-modal").modal('show');
             },
             error: function (request, status, error) {
@@ -216,32 +242,34 @@
             }
         })
     }
-    function goPage(_classid,_type) {
-        if(_type == 0) {
-            location.href = "/Class/"+_classid+'/invite';
+
+    function goPage(_classid, _type) {
+        if (_type == 0) {
+            location.href = "/Class/" + _classid + '/invite';
         } else {
-            location.href = "/Class/"+_classid;
+            location.href = "/Class/" + _classid;
         }
     }
-    function CancelInvite(_invitationid,_classid) {
+
+    function CancelInvite(_invitationid, _classid) {
         $.ajax({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             type: 'POST',
-            url: '/ManageClass/DenyStudent/'+_invitationid,
+            url: '/ManageClass/DenyStudent/' + _invitationid,
             data: {
-                "_method":'PATCH'
+                "_method": 'PATCH'
             },
             success: function (data) {
-                if(data.result == "Success") {
+                if (data.result == "Success") {
                     $("#Large-modal").modal('hide');
                     $("#modal-success-title").empty();
                     $("#modal-success-title").append('취소 성공');
                     $("#modal-content6").empty();
                     $("#modal-content6").append('성공적으로 취소 되었습니다.');
                     $("#modal-success-button").empty();
-                    $("#modal-success-button").append(' <button type="button" class="btn btn-primary" onclick="goPage('+_classid+',1)">확인</button>');
+                    $("#modal-success-button").append(' <button type="button" class="btn btn-primary" onclick="goPage(' + _classid + ',1)">확인</button>');
                     $("#success-modal").modal('show');
                 } else {
                     $("#modal-content4").empty();
@@ -255,27 +283,28 @@
             }
         }) // End Ajax Request
     }
-    function CancelClass(_userid,_classid,_invitationid) {
+
+    function CancelClass(_userid, _classid, _invitationid) {
         $.ajax({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             type: 'POST',
-            url: '/ManageClass/EmitStudent/'+_invitationid,
+            url: '/ManageClass/EmitStudent/' + _invitationid,
             data: {
-                "_method":'PATCH',
-                "_userid":_userid,
-                "_classid":_classid
+                "_method": 'PATCH',
+                "_userid": _userid,
+                "_classid": _classid
             },
             success: function (data) {
-                if(data.result == "Success") {
+                if (data.result == "Success") {
                     $("#Large-modal").modal('hide');
                     $("#modal-success-title").empty();
                     $("#modal-success-title").append('방출 성공');
                     $("#modal-content6").empty();
                     $("#modal-content6").append('성공적으로 방출 되었습니다.');
                     $("#modal-success-button").empty();
-                    $("#modal-success-button").append(' <button type="button" class="btn btn-primary" onclick="goPage('+_classid+',1)">확인</button>');
+                    $("#modal-success-button").append(' <button type="button" class="btn btn-primary" onclick="goPage(' + _classid + ',1)">확인</button>');
                     $("#success-modal").modal('show');
                 } else {
                     $("#modal-content4").empty();
@@ -289,25 +318,26 @@
             }
         })
     }
-    function ReInvite(_invitationid,_classid) {
+
+    function ReInvite(_invitationid, _classid) {
         $.ajax({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             type: 'POST',
-            url: '/ManageClass/ReInvite/'+_invitationid,
+            url: '/ManageClass/ReInvite/' + _invitationid,
             data: {
-                "_method":'PATCH'
+                "_method": 'PATCH'
             },
             success: function (data) {
-                if(data.result == "Success") {
+                if (data.result == "Success") {
                     $("#Large-modal").modal('hide');
                     $("#modal-success-title").empty();
                     $("#modal-success-title").append('재초대 성공');
                     $("#modal-content6").empty();
                     $("#modal-content6").append('성공적으로 재초대 되었습니다.');
                     $("#modal-success-button").empty();
-                    $("#modal-success-button").append(' <button type="button" class="btn btn-primary" onclick="goPage('+_classid+',1)">확인</button>');
+                    $("#modal-success-button").append(' <button type="button" class="btn btn-primary" onclick="goPage(' + _classid + ',1)">확인</button>');
                     $("#success-modal").modal('show');
                 } else {
                     $("#modal-content4").empty();
@@ -321,8 +351,9 @@
             }
         })
     }
-    function goCourseStatus(_classid,_courseworkid) {
-        var url = '/ShowStatus/'+_classid+'/'+_courseworkid;
-        window.open(url,'_blank');
+
+    function goCourseStatus(_classid, _courseworkid) {
+        var url = '/ShowStatus/' + _classid + '/' + _courseworkid;
+        window.open(url, '_blank');
     }
 </script>

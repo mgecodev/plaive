@@ -11,14 +11,30 @@
 |
 */
 
-// Route::get('/home', 'HomeController@index')->name('home');
+use App\Account;
+use App\AccountType;
 
+// Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', function () {
 
-    $id = NULL;
-    $type = NULL;
+    $user = Auth::user();
+    if ($user == NULL) {
 
-    return view('index')->with('id', $id)->with('type', $type);
+        $id = NULL;
+        $type = NULL;
+        $name = NULL;
+
+    }
+    else {
+
+        $name = $user->name;
+        $id = $user->id;
+
+        $account_type_id = Account::where('id', $id)->first()->AccountTypeId;
+        $type = AccountType::where('AccountTypeId', '=', $account_type_id)->first()->Type;
+    }
+
+    return view('index')->with('id', $id)->with('type', $type)->with('name', $name);
 });
 
 Auth::routes();
