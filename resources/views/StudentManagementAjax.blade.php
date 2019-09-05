@@ -17,7 +17,7 @@
                                href="#take-class" role="tab" aria-selected="false">수업 현황</a>
                         </li>
                     @elseif ($type == 'Student')
-                        <li class="nav-item">
+                        <li class="nav-item active show">
                             <a class="nav-link" data-toggle="tab"
                                href="#take-class" role="tab" aria-selected="false">수업 듣기</a>
                         </li>
@@ -151,7 +151,7 @@
                         </div>
                     @endif
                     @if ($type == 'Student')
-                        <div class="tab-pane fade" id="take-class"
+                        <div class="tab-pane fade active show" id="take-class"
                              role="tabpanel">
                             <div class="pd-20">
                                 <div class="table-responsive text-center">
