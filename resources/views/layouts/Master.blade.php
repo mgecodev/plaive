@@ -146,17 +146,25 @@
 
 {{-- this code makes unnecessary part of main page. --}}
 @if(!(Request::path() == 'home' or Request::path() == '/'))
-    @if(Request::path() == 'MainBoard')
+    <?php
+        $front = explode('/',Request::path());
+        if(count($front) > 1){
+            $flag = 0;
+        } else {
+            $flag = 1;
+        }
+    ?>
+    @if(Request::path() == 'MainBoard' or ($flag==0 and $front[0] == 'ShowBoard' and $front[1] == 'All') or ($flag==0 and $front[0] == 'EditBoard' and $front[1] == 'All'))
 
-        <div class="all-title-box" style="background-image: url('images/소식.jpg');">
+        <div class="all-title-box" style="background-image: url('/images/소식.jpg');">
             <div class="container text-center">
                 @yield('page_title')
             </div>
         </div>
 
-    @elseif(Request::path() == 'ManageDevice' or Request::path() == 'CreateDevice')
+    @elseif(Request::path() == 'ManageDevice' or Request::path() == 'CreateDevice' or ($flag==0 and $front[0] == 'ShowData') or ($flag==0 and $front[0]=='EditDevice'))
 
-        <div class="all-title-box" style="background-image: url('images/나의데이터.jpg');">
+        <div class="all-title-box" style="background-image: url('/images/나의데이터.jpg');">
             <div class="container text-center">
                 @yield('page_title')
             </div>
@@ -164,7 +172,7 @@
 
     @else
 
-        <div class="all-title-box" style="background-image: url('images/클래스.jpg');">
+        <div class="all-title-box" style="background-image: url('/images/클래스.jpg');">
             <div class="container text-center">
                 @yield('page_title')
             </div>

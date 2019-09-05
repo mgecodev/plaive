@@ -19,7 +19,23 @@ if ($route_name == '/' || $route_name == '/home') {
     if ($detail_host[1] == 'EditDevice' || $detail_host[1] == 'ShowData') {
         $my_active = 'active';
     } else if($detail_host[1] == 'ShowBoard') {
-        $board_active = 'active';
+        if($detail_host[2] == 'All') {
+            $board_active = 'active';
+        } else {
+            $class_active = 'active';
+        }
+    } else if($detail_host[1] == 'Class') {
+        $class_active = 'active';
+    } else if($detail_host[1] == 'EnrollCourseDetail') {
+        $class_active = 'active';
+    } else if($detail_host[1] == 'EditBoard') {
+        if($detail_host[2] == 'Class') {
+            $class_active = 'active';
+        } else if($detail_host[2] == 'All') {
+            $board_active = 'active';
+        }
+    } else if($detail_host[1] == 'ReadCourseDetail') {
+        $class_active = 'active';
     }
 }
 ?>

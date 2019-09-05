@@ -1,5 +1,7 @@
 @extends('layouts.Master')
-
+@section("page_title")
+<h1>나의 클래스 리스트</h1>
+@endsection
 @section('content')
 
     <style>
