@@ -33,6 +33,16 @@
         max-width: 1220px !important;
         width: 100%;
     }
+
+    .center {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%;
+        padding: 0px 0px 20px 0px;
+    }
+
+
 </style>
 <div id="carouselExampleControls" class="carousel slide bs-slider box-slider" data-ride="carousel" data-pause="hover" data-interval="false" >
     <!-- Indicators -->
@@ -125,35 +135,47 @@
         <div class="row align-items-center">
             <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
                 <div class="message-box">
-{{--                    <h4>2018 BEST SmartEDU education school</h4>--}}
-                    <h3 style="text-align: center;">컴퓨터 사고력을</h3>
-                    <h3 style="text-align: center;">즐겁게 습득하는 방법,</h3>
-                    <h3 style="text-align: center;">직접 만들며 배우는</h3>
-                    <h3 style="text-align: center;"><b>메이커교육</b>입니다.</h3>
-                    <br>
-                    <p style="text-align:center;">미래 인재에게는 손으로 직접 만들며 아이디어를 실현해 보는 메이커 교육이 필요합니다. 메이커 교육은 시챙착오를 통해 창의적으로 문제를 해결할 수 있는 능력을 배양합니다.</p>
+                    <img src="/images/11-01.png" class="center">
+                    <h3 style="text-align:center;">컴퓨터 사고력을</h3>
+                    <h3 style="text-align: center;">습득하는 메이커교육</h3>
+
+{{--                    <h3 style="text-align: center;">컴퓨터 사고력을</h3>--}}
+{{--                    <h3 style="text-align: center;">즐겁게 습득하는 방법,</h3>--}}
+{{--                    <h3 style="text-align: center;">직접 만들며 배우는</h3>--}}
+{{--                    <h3 style="text-align: center;"><b>메이커교육</b>입니다.</h3>--}}
+{{--                    <br>--}}
+{{--                    <p style="text-align:center;">미래 인재에게는 손으로 직접 만들며 아이디어를 실현해 보는 메이커 교육이 필요합니다. 메이커 교육은 시챙착오를 통해 창의적으로 문제를 해결할 수 있는 능력을 배양합니다.</p>--}}
 {{--                    <a href="#" class="hover-btn-new cyan"><span>Learn More</span></a>--}}
                 </div><!-- end messagebox -->
             </div><!-- end col -->
             <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
                 <div class="message-box">
-                    <h3 style="text-align:center;">수업에 적용 가능한</h3>
-                    <h3 style="text-align: center;">단계별 커리큘럼과</h3>
-                    <h3 style="text-align: center;">무료 동영상 강좌,</h3>
-                    <h3 style="text-align: center;">빠른 피드백을 제공합니다.</h3>
-                    <br>
-                    <p style="text-align:center;">수준 별 커리큘럼을 추천하고 무료로 동영상 강좌를 제공합니다. 선생님과의 상호 학습과 프로젝트 기반의 수업은 학생이 빠르게 실력을 향상시킬 수 있게 도와줍니다.</p>
+                    <img src="/images/11-02.png" class="center">
+                    <h3 style="text-align:center;">단계별 커리큘럼과</h3>
+                    <h3 style="text-align: center;">무료 동영상 강좌 제공</h3>
+
+
+                    {{--                    <h3 style="text-align:center;">수업에 적용 가능한</h3>--}}
+{{--                    <h3 style="text-align: center;">단계별 커리큘럼과</h3>--}}
+{{--                    <h3 style="text-align: center;">무료 동영상 강좌,</h3>--}}
+{{--                    <h3 style="text-align: center;">빠른 피드백을 제공합니다.</h3>--}}
+{{--                    <br>--}}
+{{--                    <p style="text-align:center;">수준 별 커리큘럼을 추천하고 무료로 동영상 강좌를 제공합니다. 선생님과의 상호 학습과 프로젝트 기반의 수업은 학생이 빠르게 실력을 향상시킬 수 있게 도와줍니다.</p>--}}
 {{--                    <a href="#" class="hover-btn-new cyan"><span>Learn More</span></a>--}}
                 </div><!-- end messagebox -->
             </div><!-- end col -->
             <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
                 <div class="message-box">
+                    <img src="/images/11-03.png" class="center">
                     <h3 style="text-align:center;">융합형 인재양성을 위한</h3>
-                    <h3 style="text-align:center;">IoT, Big Data, AI</h3>
-                    <h3 style="text-align:center;">이 모든 교육을</h3>
-                    <h3 style="text-align:center;"><b>플라이브</b>에서 시작합니다.</h3>
-                    <br>
-                    <p style="text-align:center;">자신의 분야에 IoT, Big data, AI를 접목해 발전시켜 나가는 융합적 사고를 기릅니다. 인터넷을 통해 데이터를 수집, 축적, 분석하는 가장 쉽고 재미있는 IoT수업을 제공합니다.</p>
+                    <h3 style="text-align: center;">IoT, Big Data, AI 교육</h3>
+
+{{--                    <h3 style="text-align:center;">융합형 인재양성을 위한</h3>--}}
+{{--                    <h3 style="text-align:center;">IoT, Big Data, AI</h3>--}}
+{{--                    <h3 style="text-align:center;">이 모든 교육을</h3>--}}
+{{--                    <h3 style="text-align:center;"><b>플라이브</b>에서 시작합니다.</h3>--}}
+{{--                    <br>--}}
+{{--                    <p style="text-align:center;">자신의 분야에 IoT, Big data, AI를 접목해 발전시켜 나가는 융합적 사고를 기릅니다. 인터넷을 통해 데이터를 수집, 축적, 분석하는 가장 쉽고 재미있는 IoT수업을 제공합니다.</p>--}}
 {{--                    <a href="#" class="hover-btn-new cyan"><span>Learn More</span></a>--}}
                 </div><!-- end messagebox -->
             </div><!-- end col -->
@@ -237,20 +259,20 @@
 <div class="section cl">
     <div class="container">
         <div class="row text-left stat-wrap">
-            <div class="col-md-4 col-sm-4 col-xs-12">
+            <div class="col-md-4 col-sm-4 col-xs-12" style="padding: 30px 0px; ">
                 <span data-scroll class="global-radius icon_wrap effect-1 alignleft"><i class="flaticon-study"></i></span>
 
                 <p class="stat_count">250</p>
                 <h3>학생 수</h3>
             </div><!-- end col -->
 
-            <div class="col-md-4 col-sm-4 col-xs-12">
+            <div class="col-md-4 col-sm-4 col-xs-12" style="padding: 30px 0px;">
                 <span data-scroll class="global-radius icon_wrap effect-1 alignleft"><i class="flaticon-online"></i></span>
                 <p class="stat_count">24</p>
                 <h3>클래스 수</h3>
             </div><!-- end col -->
 
-            <div class="col-md-4 col-sm-4 col-xs-12">
+            <div class="col-md-4 col-sm-4 col-xs-12" style="padding: 30px 0px;">
                 <span data-scroll class="global-radius icon_wrap effect-1 alignleft"><i class="flaticon-years"></i></span>
                 <p class="stat_count">45</p>
                 <h3>커리큘럼 수</h3>

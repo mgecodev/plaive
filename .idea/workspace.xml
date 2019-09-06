@@ -3,15 +3,15 @@
   <component name="ChangeListManager">
     <list default="true" id="35e28d35-536b-4eab-b88b-4029b9306f6f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CheckInvitationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CheckInvitationController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ManageClassController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ManageClassController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/logo.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/Courseworks/ShowSubCourseworkList.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Courseworks/ShowSubCourseworkList.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/MyClass.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/MyClass.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/EnterClass.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/EnterClass.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/StudentManagementAjax.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/StudentManagementAjax.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/TeacherRealTime.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/TeacherRealTime.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/Header.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/Header.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/LoginModal.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/LoginModal.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/Master.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/Master.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -251,7 +251,8 @@
       <workItem from="1567053540479" duration="13589000" />
       <workItem from="1567128518561" duration="16636000" />
       <workItem from="1567317998914" duration="67000" />
-      <workItem from="1567645711977" duration="18652000" />
+      <workItem from="1567645711977" duration="22373000" />
+      <workItem from="1567730355365" duration="8095000" />
     </task>
     <task id="LOCAL-00001" summary="path manager">
       <created>1564317974013</created>

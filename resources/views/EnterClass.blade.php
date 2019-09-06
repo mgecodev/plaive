@@ -1,5 +1,34 @@
 @extends('layouts.Master')
 @section('javascript')
+    <style>
+
+        .page-item.active .page-link {
+            z-index: 1;
+            color: #fff;
+            background-color: #dee2e6 !important;
+            border-color: #dee2e6 !important;
+        }
+
+        .btn-primary {
+
+            color: #fff;
+            background-color: #28b8ce !important;
+            border-color: #28b8ce !important;
+        }
+
+        .page-link {
+            position: relative;
+            display: block;
+            padding: 0.5rem 0.75rem;
+            margin-left: -1px;
+            line-height: 1.25;
+            color: #3c3c3b !important;
+            background-color: #fff;
+            border: 1px solid #dee2e6;
+        }
+
+    </style>
+
     <script>
         $(document).ready(function () {
             var lang_kor = {

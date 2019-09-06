@@ -127,8 +127,8 @@
 
                             <div class="form-group">
                                 <div class="col-md-12">
-                                    <select id="AccountType" class="form-control"  name="AccountTypeId" value="select">
-                                        <option value="0" type="hidden">Select</option>
+                                    <select id="AccountType" class="form-control"  name="AccountTypeId" value="select" required>
+                                        <option value="" selected disabled hidden>Select</option>
                                         <option value="1">Student</option>
                                         <option value="2">Teacher</option>
                                         <option value="3">Parent</option>

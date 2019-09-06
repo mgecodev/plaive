@@ -1,3 +1,20 @@
+<style>
+    .btn-custom {
+        color: #fff;
+        background-color: #f56767 !important;
+        border-color: #f56767;
+        /*padding: 0px 0px !important;*/
+        margin-top: 0px !important;
+    }
+
+    .badge-custom {
+        color: #fff;
+        padding: 12px 12px !important;
+        background-color: #41ccba;
+    }
+
+</style>
+
 <div class="row clearfix progress-box">
     <div class="col-lg-4 col-md-6 col-sm-12 mb-30">
         <div class="bg-white pd-20 box-shadow border-radius-5 height-100-p">
@@ -69,18 +86,18 @@
                         <td>{{ $tot_invited_student->email }}</td>
                         <td>
                             @if ($tot_invited_student->Accepted == 1)
-                                <span class="badge badge-success">Accepted</span>
+                                <span class="badge badge-custom">승인</span>
                             @elseif ($tot_invited_student->Accepted == 0)
-                                <span class="badge badge-primary">Pending</span>
+                                <span class="badge badge-primary">대기</span>
                             @elseif ($tot_invited_student->Accepted == 2)
-                                <span class="badge badge-danger">Reject</span>
+                                <span class="badge badge-danger">거절</span>
                             @endif
                         </td>
                         <td>
                             @if ($tot_invited_student->Accepted == 0)
-                            <button class="btn btn-danger" onclick="CancelInvite({{ $tot_invited_student->InvitationId }},{{ $class_id }})">취소</button>
+                            <button class="btn btn-custom" onclick="CancelInvite({{ $tot_invited_student->InvitationId }},{{ $class_id }})">취소</button>
                             @elseif ($tot_invited_student->Accepted == 1)
-                            <button class="btn btn-danger" onclick="CancelClass({{ $tot_invited_student->id}} , {{ $class_id }}, {{ $tot_invited_student->InvitationId }})">방출</button>
+                            <button class="btn btn-custom" onclick="CancelClass({{ $tot_invited_student->id}} , {{ $class_id }}, {{ $tot_invited_student->InvitationId }})">방출</button>
                             @elseif ($tot_invited_student->Accepted == 2)
                             <button class="btn btn-info" onclick="ReInvite({{ $tot_invited_student->InvitationId }}, {{ $class_id }})">재초대</button>
                             @endif
@@ -116,7 +133,7 @@ $(document).ready( function () {
                     }
                     if(change == 0) {
                         $('#home4').html(data);
-                    } 
+                    }
                 }
             });
         },3000);

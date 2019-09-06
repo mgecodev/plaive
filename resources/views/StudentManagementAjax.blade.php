@@ -1,19 +1,3 @@
-<style>
-    .btn-primary {
-
-        color: #fff;
-        background-color: #28b8ce !important;
-        border-color: #28b8ce !important;
-    }
-
-    .page-item.active .page-link {
-        z-index: 1;
-        color: #fff;
-        background-color: #28b8ce !important;
-        border-color: #28b8ce !important;
-    }
-</style>
-
 <div class="pd-20 bg-white border-radius-4 box-shadow">
     <h5 class="weight-500 mb-20">{{ $class->ClassName }} 클래스입니다</h5>
     <div class="tab">

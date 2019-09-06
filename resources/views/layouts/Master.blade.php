@@ -34,7 +34,16 @@
         letter-spacing: -1px !important;
     }
 
-
+    .second-section::before {
+        content: "";
+        position: absolute;
+        height: 80%;
+        width: 100%;
+        top: 88px;
+        left: 0px;
+        display: block;
+        background: rgba(0,0,0,0.5);
+    }
 </style>
 <!-- Basic -->
 <meta charset="utf-8">
@@ -155,31 +164,24 @@
         }
     ?>
     @if(Request::path() == 'MainBoard' or ($flag==0 and $front[0] == 'ShowBoard' and $front[1] == 'All') or ($flag==0 and $front[0] == 'EditBoard' and $front[1] == 'All'))
-
-        <div class="all-title-box" style="background-image: url('/images/소식.jpg');">
+        <div class="all-title-box second-section" style="background-image: url('/images/소식.jpg');">
             <div class="container text-center">
                 @yield('page_title')
             </div>
         </div>
-
     @elseif(Request::path() == 'ManageDevice' or Request::path() == 'CreateDevice' or ($flag==0 and $front[0] == 'ShowData') or ($flag==0 and $front[0]=='EditDevice'))
-
-        <div class="all-title-box" style="background-image: url('/images/나의데이터.jpg');">
+        <div class="all-title-box second-section" style="background-image: url('/images/나의데이터.jpg');">
             <div class="container text-center">
                 @yield('page_title')
             </div>
         </div>
-
     @else
-
-        <div class="all-title-box" style="background-image: url('/images/클래스.jpg');">
+        <div class="all-title-box second-section" style="background-image: url('/images/클래스.jpg');">
             <div class="container text-center">
                 @yield('page_title')
             </div>
         </div>
-
     @endif
-
 @endif
 
 <!-- Start content -->

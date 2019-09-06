@@ -100,62 +100,31 @@
             }
         }
 
-        // function checkAll(e) {
-        //
-        //     e.preventDefault();
-        //
-        //     // put every id into obj array
-        //     if (e.checked) {
-        //
-        //         obj[_subcourseworkid] = 1;
-        //         console.log(Object.size(obj));
-        //     } else {
-        //
-        //         obj[_subcourseworkid] = 0;
-        //         console.log(Object.size(obj));
-        //     }
-        //
-        //     var key, value, _id;
-        //
-        //     for (key in obj) {
-        //
-        //         _id = '#' + key;
-        //         if($(_id).is(":checked")) {
-        //             alert('checked');
-        //         }
-        //         else {
-        //             alert('unchecked');
-        //         }
-            //     }
-        // }
-
-        $('#check_all').click(function(event) {
+        $('#check_all').click(function (event) {
 
             var _id;
 
-            if(this.checked) {
+            if (this.checked) {
                 // Iterate each checkbox
-                $(':checkbox').each(function() {
+                $(':checkbox').each(function () {
                     this.checked = true;
                     _id = $(this).attr('id');
 
                     if (_id == 'check_all') {
                         return true;
-                    }
-                    else {
+                    } else {
                         obj[_id] = 1;
                     }
                 });
             } else {
-                $(':checkbox').each(function() {
+                $(':checkbox').each(function () {
                     this.checked = false;
 
                     _id = $(this).attr('id');
 
                     if (_id == 'check_all') {
                         return true;
-                    }
-                    else {
+                    } else {
                         obj[_id] = 0;
                     }
                 });
@@ -245,6 +214,30 @@
             box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05), inset 15px 10px -12px rgba(255, 255, 255, 0.1);
         }
 
+        .page-item.active .page-link {
+            z-index: 1;
+            color: #fff;
+            background-color: #28b8ce !important;
+            border-color: #28b8ce !important;
+        }
+
+        .btn-primary {
+
+            color: #fff;
+            background-color: #28b8ce !important;
+            border-color: #28b8ce !important;
+        }
+
+        .page-link {
+            position: relative;
+            display: block;
+            padding: 0.5rem 0.75rem;
+            margin-left: -1px;
+            line-height: 1.25;
+            color: #3c3c3b !important;
+            background-color: #fff;
+            border: 1px solid #dee2e6;
+        }
 
     </style>
 
@@ -297,7 +290,8 @@
                             </tbody>
                         </table>
 
-                        <input class="btn btn-primary" type="button" onClick="location.href='/Class/{{ $class_id }}'" value="이전으로">
+                        <input class="btn btn-primary" type="button" onClick="location.href='/Class/{{ $class_id }}'"
+                               value="이전으로">
                         <input class="btn btn-primary" type="button" id="save" courseworkid="{{ $coursework_id }}"
                                classid="{{ $class_id }}" value="저장">
                         <br>
