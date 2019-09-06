@@ -259,23 +259,23 @@
 <div class="section cl">
     <div class="container">
         <div class="row text-left stat-wrap">
-            <div class="col-md-4 col-sm-4 col-xs-12" style="padding: 30px 0px; ">
+            <div class="col-md-4 col-sm-4 col-xs-12" style="padding: 30px 100px; ">
                 <span data-scroll class="global-radius icon_wrap effect-1 alignleft"><i class="flaticon-study"></i></span>
 
                 <p class="stat_count">250</p>
-                <h3>학생 수</h3>
+                <h3>학생</h3>
             </div><!-- end col -->
 
-            <div class="col-md-4 col-sm-4 col-xs-12" style="padding: 30px 0px;">
+            <div class="col-md-4 col-sm-4 col-xs-12" style="padding: 30px 100px;">
                 <span data-scroll class="global-radius icon_wrap effect-1 alignleft"><i class="flaticon-online"></i></span>
                 <p class="stat_count">24</p>
-                <h3>클래스 수</h3>
+                <h3>클래스</h3>
             </div><!-- end col -->
 
-            <div class="col-md-4 col-sm-4 col-xs-12" style="padding: 30px 0px;">
+            <div class="col-md-4 col-sm-4 col-xs-12" style="padding: 30px 100px;">
                 <span data-scroll class="global-radius icon_wrap effect-1 alignleft"><i class="flaticon-years"></i></span>
                 <p class="stat_count">45</p>
-                <h3>커리큘럼 수</h3>
+                <h3>커리큘럼</h3>
             </div><!-- end col -->
         </div><!-- end row -->
     </div><!-- end container -->

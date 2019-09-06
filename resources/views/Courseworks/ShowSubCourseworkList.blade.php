@@ -256,7 +256,7 @@
                                style="width:100%;">
                             <thead>
                             <tr>
-                                <th>클래스</th>
+                                <th>챕터</th>
                                 <th>내용</th>
                                 <th class="datatable-nosort datatable-nosearch">
                                     <div class="checks"><input type="checkbox"

@@ -1,5 +1,6 @@
 <style>
     .btn-custom {
+        font-family: 'KoPub Dotum' !important;
         color: #fff;
         background-color: #f56767 !important;
         border-color: #f56767;
@@ -8,6 +9,10 @@
     }
 
     .badge-custom {
+        font-size:16px;
+        /*top:50%;*/
+
+        font-family: 'KoPub Dotum' !important;
         color: #fff;
         padding: 12px 12px !important;
         background-color: #41ccba;

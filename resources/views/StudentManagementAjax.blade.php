@@ -168,16 +168,14 @@
                                         <thead>
                                         <tr>
                                             <th class="text-center">주차</th>
-                                            <th class="text-center">순서</th>
-                                            <th class="text-center datatable-nosearch">커리큘럼 내용</th>
-                                            <th>action</th>
+                                            <th class="text-center">커리큘럼 내용</th>
+                                            <th class="datatable-nosearch datatable-nosort"></th>
                                         </tr>
                                         </thead>
                                         <tbody>
                                         @foreach($courseworks as $coursework)
                                             <tr>
                                                 <td>{{ $coursework->WeekNumber }}</td>
-                                                <td>{{ $coursework->ContentNumber }}</td>
                                                 <td>{{ $coursework->Content }}</td>
                                                 <td><input type="button" class="btn btn-primary" value="들어가기"
                                                            onclick="window.location.href='/Class/{{ $class->ClassId.'/'.$coursework->CourseworkId }}/{{ $coursework->WeekNumber }}'"></input>
