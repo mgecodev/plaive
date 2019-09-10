@@ -19,6 +19,7 @@
     }
 
     .badge-primary {
+        font-size:16px;
         font-family: 'KoPub Dotum' !important;
         padding: 12px 12px !important;
     }
