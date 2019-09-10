@@ -87,7 +87,7 @@
                     <th>이름</th>
                     <th>메일</th>
                     <th class="datatable-nosort datatable-nosearch">상태</th>
-                    <th class="datatable-nosort datatable-nosearch">Action</th>
+                    <th class="datatable-nosort datatable-nosearch"></th>
                 </tr>
                 </thead>
                 <tbody>
