@@ -39,9 +39,9 @@ class CreateSubCourseworksTable extends Migration
 //            });
 
             // 3. Add column
-            Schema::table($this->tableName, function (Blueprint $table) {
-                $table->Integer('ContentNumber');
-            });
+//            Schema::table($this->tableName, function (Blueprint $table) {
+//                $table->Integer('ContentNumber');
+//            });
 
             // 4. Rename table
 //            Schema::rename($this->tableName, 'Accounts');

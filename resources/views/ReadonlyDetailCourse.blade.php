@@ -52,16 +52,16 @@
                 <?php
                     if($i == $coursework->WeekNumber) {
                         $update_flag = 1;
-                        $name = $coursework->Content;
+                        $content_name = $coursework->Content;
                         break;
-                    } 
+                    }
                 ?>
                 @endforeach
                 <div id="total_week_div{{ $i }}">
                     <div class="form-group row">
                         <label class="col-sm-12 col-md-2 col-form-label">{{ $i. ' 주차' }}</label>
                         <div class="col-sm-12 col-md-8">
-                            <input class="form-control" value="{{ $update_flag == 1 ? $name : '' }}" type="search" id="week_input{{ $i }}" readonly>
+                            <input class="form-control" value="{{ $update_flag == 1 ? $content_name : '' }}" type="search" id="week_input{{ $i }}" readonly>
                         </div>
                     </div>
                     <div id="week_sub_total_div{{ $i }}" style="display:none;"></div>
