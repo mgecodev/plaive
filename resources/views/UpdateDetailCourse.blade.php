@@ -162,7 +162,7 @@
                 <?php
                     if($i == $coursework->WeekNumber) {
                         $update_flag = 1;
-                        $name = $coursework->Content;
+                        $course_name = $coursework->Content;
                         break;
                     } 
                 ?>
@@ -171,7 +171,7 @@
                     <div class="form-group row">
                         <label class="col-sm-12 col-md-2 col-form-label">{{ $i. ' 주차' }}</label>
                         <div class="col-sm-12 col-md-8">
-                            <input class="form-control" value="{{ $update_flag == 1 ? $name : '' }}" type="search" id="week_input{{ $i }}">
+                            <input class="form-control" value="{{ $update_flag == 1 ? $course_name : '' }}" type="search" id="week_input{{ $i }}">
                         </div>
                         <a href="javascript:void(0);" onclick="appendSub({{ $i }})"><i class="icon-copy ion-plus-circled"></i></a>
                     </div>
