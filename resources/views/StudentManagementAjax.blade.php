@@ -17,7 +17,7 @@
                             <a class="nav-link" data-toggle="tab"
                                href="#take-class" role="tab" aria-selected="false">수업 현황</a>
                             <a class="nav-link {{ $board_flag == 'board' ? 'active show' : '' }}" data-toggle="tab"
-                               href="#profile4" role="tab" aria-selected="false">게시물</a>
+                               href="#profile4" role="tab" aria-selected="false">게시판</a>
                         </li>
 
                     @elseif ($type == 'Student')
@@ -25,7 +25,7 @@
                             <a class="nav-link" data-toggle="tab"
                                href="#take-class" role="tab" aria-selected="false">수업 듣기</a>
                             <a class="nav-link {{ $board_flag == 'board' ? 'active show' : '' }}" data-toggle="tab"
-                               href="#profile4" role="tab" aria-selected="false">게시물</a>
+                               href="#profile4" role="tab" aria-selected="false">게시판</a>
                         </li>
 
                     @endif
