@@ -18,6 +18,11 @@
         background-color: #41ccba;
     }
 
+    .badge-primary {
+        font-family: 'KoPub Dotum' !important;
+        padding: 12px 12px !important;
+    }
+
 </style>
 
 <div class="row clearfix progress-box">
